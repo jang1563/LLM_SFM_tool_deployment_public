@@ -1,0 +1,38 @@
+{
+  "artifact_policy": {
+    "raw_eval_report_committed": false,
+    "raw_predictions_committed": false,
+    "raw_scheduler_logs_committed": false,
+    "summary_only": true
+  },
+  "dataset": "negbiodb_ct_stage_a_prediction_eval_v1",
+  "generation_mode": "hf_chat",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "prompt_contract": "stage_a_v3_tool_trace",
+  "result": {
+    "cases": 5,
+    "gate_accuracy": {},
+    "mean_score": 0.0,
+    "parse_errors": {
+      "Unknown evidence_status: 'verified'": 5
+    },
+    "passed": 0,
+    "violations": {
+      "prediction_parse_error": 5
+    }
+  },
+  "run_context": {
+    "compute_site": "Cayuga",
+    "heldout_rows": 5,
+    "model_cache_note": "The successful rerun used an explicit HF_HOME so the job could see the existing Hugging Face cache.",
+    "no_local_heavy_compute": true,
+    "scored_offline": true
+  },
+  "run_id": "stage_a_v3_tool_trace_qwen05b_2026_07_09_cache",
+  "scientific_readout": {
+    "diagnostic_question": "Can a small open HF chat model emit the ordered Stage A tool trace and valid compact JSON enums without post-training?",
+    "interpretation": "The model wrote JSON-like objects but used invalid evidence_status=verified in all held-out rows and called only one tool, so this is an enum/schema failure before evidence routing.",
+    "next_decision": "Add a canonical JSON prompt contract that explicitly rejects verified/valid-style statuses, then rerun the saved-output smoke before considering tool_query, DPO, RLVR, Hugging Face publication, or release tagging."
+  },
+  "summary_date": "2026-07-09"
+}

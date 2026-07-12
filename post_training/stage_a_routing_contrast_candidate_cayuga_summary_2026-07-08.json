@@ -1,0 +1,162 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_outputs_committed": false,
+    "raw_outputs_location": "ignored post_training/runs/ on the Cayuga working copy"
+  },
+  "cluster": "Cayuga Slurm GPU",
+  "component": "routing_after_loop",
+  "contrast_axis": "action_status",
+  "dataset": "negbiodb_ct_stage_a_routing_contrast_candidate_rank_v1",
+  "failure_mode": "routing_action_status_confusion",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "objective": {
+    "candidate_policy": "train_observed_routing_contrast_pairs_with_visible_citations",
+    "candidate_space_size": 5,
+    "margin_logprob_mode": "mean",
+    "pairwise_margin": 0.05,
+    "pairwise_margin_weight": 1.0,
+    "target_format": "routing_action_status_json"
+  },
+  "prompt_contract": "stage_a_v2_evidence_conditioned_component",
+  "run_id": "stage_a_routing_contrast_candidate_cayuga_2026_07_08",
+  "runner": "post_training/run_stage_a_routing_contrast_sft_smoke.py",
+  "source_pairs": {
+    "heldout_examples": 3,
+    "train_by_chosen_pair": {
+      "defer/insufficient": 4,
+      "flag/invalid_value": 4,
+      "verify/insufficient": 4
+    },
+    "train_examples": 12
+  },
+  "candidate_outputs": [
+    {
+      "action": "defer",
+      "evidence_status": "insufficient"
+    },
+    {
+      "action": "reject",
+      "evidence_status": "contradicted"
+    },
+    {
+      "action": "verify",
+      "evidence_status": "insufficient"
+    },
+    {
+      "action": "flag",
+      "evidence_status": "invalid_value"
+    },
+    {
+      "action": "ground",
+      "evidence_status": "supported"
+    }
+  ],
+  "base_candidate_summary": {
+    "action_status_top1": 0,
+    "all_candidates_retained_cases": 3,
+    "cases": 3,
+    "exact_top1": 0,
+    "gold_in_retained_candidates": 3,
+    "gold_rank_histogram": {
+      "2": 2,
+      "5": 1
+    },
+    "mean_gold_rank_observed": 3.0,
+    "mean_top_gold_margin_observed": 0.116919,
+    "target_pair_counts": {
+      "defer/insufficient": 1,
+      "flag/invalid_value": 1,
+      "verify/insufficient": 1
+    },
+    "top_pair_counts": {
+      "ground/supported": 1,
+      "reject/contradicted": 2
+    }
+  },
+  "trained_candidate_summary": {
+    "action_status_top1": 2,
+    "all_candidates_retained_cases": 3,
+    "cases": 3,
+    "exact_top1": 2,
+    "gold_in_retained_candidates": 3,
+    "gold_rank_histogram": {
+      "1": 2,
+      "2": 1
+    },
+    "mean_gold_rank_observed": 1.333333,
+    "mean_top_gold_margin_observed": 0.026745,
+    "target_pair_counts": {
+      "defer/insufficient": 1,
+      "flag/invalid_value": 1,
+      "verify/insufficient": 1
+    },
+    "top_pair_counts": {
+      "flag/invalid_value": 1,
+      "verify/insufficient": 2
+    }
+  },
+  "heldout_candidate_readout": [
+    {
+      "base_gold_rank": 5,
+      "base_top_candidate": "reject/contradicted",
+      "case_family": "insufficient_evidence",
+      "chosen_pair": "defer/insufficient",
+      "trained_gold_rank": 2,
+      "trained_top_candidate": "verify/insufficient",
+      "trained_top_gold_margin": 0.080234
+    },
+    {
+      "base_gold_rank": 2,
+      "base_top_candidate": "reject/contradicted",
+      "case_family": "related_evidence_requires_verification",
+      "chosen_pair": "verify/insufficient",
+      "trained_gold_rank": 1,
+      "trained_top_candidate": "verify/insufficient",
+      "trained_top_gold_margin": 0.0
+    },
+    {
+      "base_gold_rank": 2,
+      "base_top_candidate": "ground/supported",
+      "case_family": "invalid_value_attribution_failure",
+      "chosen_pair": "flag/invalid_value",
+      "trained_gold_rank": 1,
+      "trained_top_candidate": "flag/invalid_value",
+      "trained_top_gold_margin": 0.0
+    }
+  ],
+  "margin_summary": {
+    "base_margin_wins": 0,
+    "heldout_pairs": 3,
+    "mean_base_margin": -0.116919,
+    "mean_margin_delta": 0.231818,
+    "mean_trained_margin": 0.1149,
+    "trained_margin_wins": 3
+  },
+  "scientific_readout": {
+    "interpretation": "Finite-candidate routing improves from 0/3 exact top-1 to 2/3 after the targeted SFT/margin run. The remaining held-out failure is insufficient evidence: the gold defer/insufficient route moves from rank 5 to rank 2 but still loses to verify/insufficient.",
+    "next_decision": "Keep tool_query, DPO, RLVR, release tagging, and Hugging Face publication gated. The next repair should target the defer-vs-verify distinction for insufficient-evidence routing before broadening to tool_query.",
+    "question": "Does the teacher-forced routing margin repair transfer to finite-candidate routing selection?",
+    "result": "Partially: margin wins are 3/3, finite-candidate exact top-1 improves from 0/3 to 2/3, and mean gold rank improves from 3.0 to 1.333333."
+  },
+  "trace": {
+    "base_margin_report_sha256": "1f4ea4c81bb77d1cabe4593fce4640be9cc8f7ce913a52bb4927cce8a82a18bc",
+    "base_routing_candidate_report_sha256": "28f32a0608c0c9962bb869141f4d65c41bce34aa7e90b9af36a88d97feaee663",
+    "base_routing_candidates_jsonl_sha256": "e8dde8831658a66cc84c21200b618e060766e30c9c37d2c1af18e77fa4131dd5",
+    "heldout_margin_report_sha256": "6b326f6cfc79a37c4ce5ac3064f333d9d58b3e47fe7901466c2ffd5925fcc97a",
+    "margin_delta_report_sha256": "660214a11f9e7092c5c3758ac328f16e5ac2bd31564fc4b650971550256a4d61",
+    "report_sha256": "f995d51f6ec4bd2b7bb51916dbf26d0da4ed70f1f147c48db9f0bc70f15553d0",
+    "routing_candidate_report_sha256": "d72220fd0384319d39409851b863eb662ce32bd7b1bfcb4eea143d1177a802bf",
+    "routing_candidates_jsonl_sha256": "269c01215d08f164232e9a6f064b864ea8368b51cf845ab50ec97ad440c670cd",
+    "train_margin_report_sha256": "37dff16ba5436e657c5c9257ec99f397f5b52a353c8376fe4950a730c3e17cb4",
+    "trainable_state_sha256": "3097f2860b74bc2be533fa85467a439466101f61253507b03f608989a0d66e1b"
+  },
+  "training": {
+    "batch_size": 1,
+    "device": "cuda",
+    "loss_delta": -1.323916,
+    "max_steps": 20,
+    "train_last_layers": 1,
+    "trainable_params": 14913280
+  }
+}

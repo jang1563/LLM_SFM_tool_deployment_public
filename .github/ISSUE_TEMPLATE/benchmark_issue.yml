@@ -1,0 +1,46 @@
+name: Benchmark Issue
+description: Report a benchmark, evaluator, artifact, or documentation issue.
+title: "[Benchmark]: "
+labels: ["benchmark", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the benchmark. Please avoid including private data, API keys, local paths, or unpublished records.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Stage A manifest
+        - Trajectory evaluator
+        - Post-training artifact
+        - Public release metadata
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What looks wrong or unclear?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or Reproduction
+      description: Include commands, file paths, row IDs, or validator output when available.
+      placeholder: |
+        python scripts/check_public_release.py
+        python post_training/validate_post_training_data.py
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should the benchmark, artifact, or documentation do instead?
+    validations:
+      required: false

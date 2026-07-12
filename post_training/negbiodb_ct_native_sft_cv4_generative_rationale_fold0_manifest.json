@@ -1,0 +1,27 @@
+{
+  "by_action_class": {
+    "defer": 2,
+    "flag": 2,
+    "ground": 2,
+    "reject": 2,
+    "verify": 2
+  },
+  "by_evidence_action": {
+    "defer": 2,
+    "flag": 2,
+    "ground": 2,
+    "reject": 2,
+    "verify": 2
+  },
+  "by_role": {
+    "generative_evidence_rationale": 10
+  },
+  "dataset": "negbiodb_ct_native_sft_generative_rationale_fold0_v1",
+  "evidence_action_matches": 10,
+  "evidence_action_mismatches": 0,
+  "evidence_action_unlabeled": 0,
+  "examples": 10,
+  "out": "post_training/generative_rationale/negbiodb_ct_native_sft_cv4_generative_rationale_v1_fold0_heldout.jsonl",
+  "source": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_heldout.jsonl",
+  "strategy": "generative_evidence_rationale_v1"
+}

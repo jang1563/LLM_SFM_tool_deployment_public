@@ -1,0 +1,3064 @@
+{
+  "conditions": {
+    "oracle_balanced_constrained": {
+      "accuracy": 0.2,
+      "class_accuracy": {
+        "defer": "0/8",
+        "flag": "0/8",
+        "ground": "8/8",
+        "reject": "0/8",
+        "verify": "0/8"
+      },
+      "confusion_matrix": {
+        "defer": {
+          "reject": 8
+        },
+        "flag": {
+          "ground": 8
+        },
+        "ground": {
+          "ground": 8
+        },
+        "reject": {
+          "ground": 8
+        },
+        "verify": {
+          "reject": 8
+        }
+      },
+      "correct": 8,
+      "failure_count": 32,
+      "failures": [
+        {
+          "fold": "fold0_heldout",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 7,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT00588770"
+            },
+            "gold_mean_nll": 1.430822491645813,
+            "gold_minus_winner_mean_nll": 1.425923075992614,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT00588770"
+            },
+            "winner_mean_nll": 0.0048994156531989574
+          },
+          "packet_id": "ct::flag::368::3511",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT00588770"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT01095094"
+            },
+            "gold_mean_nll": 1.4516814947128296,
+            "gold_minus_winner_mean_nll": 1.4494321786332875,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT01095094"
+            },
+            "winner_mean_nll": 0.002249316079542041
+          },
+          "packet_id": "ct::flag::28988::9989",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT01095094"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 5.015758514404297,
+            "gold_minus_winner_mean_nll": 0.8176231384277344,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.1981353759765625
+          },
+          "packet_id": "ct::defer::6426::28490",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "verify",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "verify"
+            },
+            "gold_mean_nll": 4.554364204406738,
+            "gold_minus_winner_mean_nll": 0.3298759460449219,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.224488258361816
+          },
+          "packet_id": "ct::verify::69004::7330",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "verify",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "verify"
+            },
+            "gold_mean_nll": 4.590309143066406,
+            "gold_minus_winner_mean_nll": 0.38344240188598633,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.20686674118042
+          },
+          "packet_id": "ct::verify::24969::44875",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 7,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 4.262404918670654,
+            "gold_minus_winner_mean_nll": 4.259985273703933,
+            "gold_rank": 5,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT03124459"
+            },
+            "winner_mean_nll": 0.0024196449667215347
+          },
+          "packet_id": "ct::reject::41090::27993",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT03124459"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 7,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 4.215662479400635,
+            "gold_minus_winner_mean_nll": 4.213492709444836,
+            "gold_rank": 5,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT02777190"
+            },
+            "winner_mean_nll": 0.0021697699557989836
+          },
+          "packet_id": "ct::reject::155::6192",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT02777190"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 5.008640766143799,
+            "gold_minus_winner_mean_nll": 0.8464045524597168,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.162236213684082
+          },
+          "packet_id": "ct::defer::50845::834",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT00844805"
+            },
+            "gold_mean_nll": 1.4579616785049438,
+            "gold_minus_winner_mean_nll": 1.4560162833658978,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT00844805"
+            },
+            "winner_mean_nll": 0.0019453951390460134
+          },
+          "packet_id": "ct::flag::383::5105",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT00844805"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "verify",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "verify"
+            },
+            "gold_mean_nll": 4.590190410614014,
+            "gold_minus_winner_mean_nll": 0.40109729766845703,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.189093112945557
+          },
+          "packet_id": "ct::verify::48428::49338",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 5.040236949920654,
+            "gold_minus_winner_mean_nll": 0.8507223129272461,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.189514636993408
+          },
+          "packet_id": "ct::defer::158039::15870",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "verify",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "verify"
+            },
+            "gold_mean_nll": 4.608082294464111,
+            "gold_minus_winner_mean_nll": 0.4011807441711426,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.206901550292969
+          },
+          "packet_id": "ct::verify::42767::3541",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT01949337"
+            },
+            "gold_mean_nll": 1.4482909440994263,
+            "gold_minus_winner_mean_nll": 1.4468520709779114,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT01949337"
+            },
+            "winner_mean_nll": 0.0014388731215149164
+          },
+          "packet_id": "ct::flag::4675::2550",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT01949337"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 5.024320125579834,
+            "gold_minus_winner_mean_nll": 0.8530464172363281,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.171273708343506
+          },
+          "packet_id": "ct::defer::134453::3090",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 4.2956342697143555,
+            "gold_minus_winner_mean_nll": 4.293864506529644,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT01917006"
+            },
+            "winner_mean_nll": 0.001769763184711337
+          },
+          "packet_id": "ct::reject::22::1591",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT01917006"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 4.224283695220947,
+            "gold_minus_winner_mean_nll": 4.222678719670512,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT04222972"
+            },
+            "winner_mean_nll": 0.0016049755504354835
+          },
+          "packet_id": "ct::reject::913::39750",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT04222972"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "verify",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "verify"
+            },
+            "gold_mean_nll": 4.563480377197266,
+            "gold_minus_winner_mean_nll": 0.36541128158569336,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.198069095611572
+          },
+          "packet_id": "ct::verify::38487::47651",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 4.984726905822754,
+            "gold_minus_winner_mean_nll": 0.8308224678039551,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.153904438018799
+          },
+          "packet_id": "ct::defer::26670::54004",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 5.028929710388184,
+            "gold_minus_winner_mean_nll": 0.8485846519470215,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.180345058441162
+          },
+          "packet_id": "ct::defer::166731::7134",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 4.25112247467041,
+            "gold_minus_winner_mean_nll": 4.249031204730272,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT01798485"
+            },
+            "winner_mean_nll": 0.002091269940137863
+          },
+          "packet_id": "ct::reject::22104::5857",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT01798485"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 4.2688703536987305,
+            "gold_minus_winner_mean_nll": 4.266835797578096,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT00570674"
+            },
+            "winner_mean_nll": 0.002034556120634079
+          },
+          "packet_id": "ct::reject::1060::12635",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT00570674"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT00828178"
+            },
+            "gold_mean_nll": 1.465669870376587,
+            "gold_minus_winner_mean_nll": 1.4640871675219387,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT00828178"
+            },
+            "winner_mean_nll": 0.0015827028546482325
+          },
+          "packet_id": "ct::flag::13976::643",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT00828178"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT03504644"
+            },
+            "gold_mean_nll": 1.4386829137802124,
+            "gold_minus_winner_mean_nll": 1.4368386749411002,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT03504644"
+            },
+            "winner_mean_nll": 0.0018442388391122222
+          },
+          "packet_id": "ct::flag::1413::20487",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT03504644"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "verify",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "verify"
+            },
+            "gold_mean_nll": 4.572298526763916,
+            "gold_minus_winner_mean_nll": 0.4189314842224121,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.153367042541504
+          },
+          "packet_id": "ct::verify::143457::15070",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 5.004238605499268,
+            "gold_minus_winner_mean_nll": 0.868619441986084,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.135619163513184
+          },
+          "packet_id": "ct::defer::59110::32859",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 5.013250827789307,
+            "gold_minus_winner_mean_nll": 0.8329477310180664,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.18030309677124
+          },
+          "packet_id": "ct::defer::124533::4281",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 7,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT01196390"
+            },
+            "gold_mean_nll": 1.4221822023391724,
+            "gold_minus_winner_mean_nll": 1.418358783936128,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT01196390"
+            },
+            "winner_mean_nll": 0.003823418403044343
+          },
+          "packet_id": "ct::flag::148::1617",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT01196390"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "verify",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "verify"
+            },
+            "gold_mean_nll": 4.572330474853516,
+            "gold_minus_winner_mean_nll": 0.3654823303222656,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.20684814453125
+          },
+          "packet_id": "ct::verify::5277::29636",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "verify",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "verify"
+            },
+            "gold_mean_nll": 4.563565254211426,
+            "gold_minus_winner_mean_nll": 0.3922610282897949,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 4.171304225921631
+          },
+          "packet_id": "ct::verify::65190::9649",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 4.233338356018066,
+            "gold_minus_winner_mean_nll": 4.231549544841982,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT00634933"
+            },
+            "winner_mean_nll": 0.001788811176083982
+          },
+          "packet_id": "ct::reject::18::633",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT00634933"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT03664232"
+            },
+            "gold_mean_nll": 1.4538679122924805,
+            "gold_minus_winner_mean_nll": 1.4522278374060988,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT03664232"
+            },
+            "winner_mean_nll": 0.0016400748863816261
+          },
+          "packet_id": "ct::flag::24736::209",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT03664232"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 11,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 4.012328624725342,
+            "gold_minus_winner_mean_nll": 4.005572774447501,
+            "gold_rank": 9,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT04805671"
+            },
+            "winner_mean_nll": 0.006755850277841091
+          },
+          "packet_id": "ct::reject::22::97",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT04805671"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        }
+      ],
+      "gold_candidate_rank_summary": {
+        "defer": {
+          "mean_gold_minus_winner_mean_nll": 0.8436,
+          "rank_counts": {
+            "3": 8
+          },
+          "total": 8
+        },
+        "flag": {
+          "mean_gold_minus_winner_mean_nll": 1.4437,
+          "rank_counts": {
+            "2": 6,
+            "3": 2
+          },
+          "total": 8
+        },
+        "ground": {
+          "mean_gold_minus_winner_mean_nll": 0.0,
+          "rank_counts": {
+            "1": 8
+          },
+          "total": 8
+        },
+        "reject": {
+          "mean_gold_minus_winner_mean_nll": 4.2179,
+          "rank_counts": {
+            "3": 5,
+            "5": 2,
+            "9": 1
+          },
+          "total": 8
+        },
+        "verify": {
+          "mean_gold_minus_winner_mean_nll": 0.3822,
+          "rank_counts": {
+            "2": 8
+          },
+          "total": 8
+        }
+      },
+      "n": 40,
+      "parse_failures": 0,
+      "violation_counts": {
+        "contradicted_claim_requires_reject_or_flag": 8,
+        "evidence_status_mismatch": 32,
+        "invalid_value_requires_reject_or_flag": 8,
+        "terminal_action_mismatch": 32
+      }
+    },
+    "oracle_balanced_strict": {
+      "accuracy": 0.2,
+      "class_accuracy": {
+        "defer": "0/8",
+        "flag": "0/8",
+        "ground": "8/8",
+        "reject": "0/8",
+        "verify": "0/8"
+      },
+      "confusion_matrix": {
+        "defer": {
+          "None": 7,
+          "ground": 1
+        },
+        "flag": {
+          "ground": 8
+        },
+        "ground": {
+          "ground": 8
+        },
+        "reject": {
+          "ground": 8
+        },
+        "verify": {
+          "None": 5,
+          "ground": 3
+        }
+      },
+      "correct": 8,
+      "failure_count": 32,
+      "failures": [
+        {
+          "fold": "fold0_heldout",
+          "gold": "flag",
+          "packet_id": "ct::flag::368::3511",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT00588770"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "flag",
+          "packet_id": "ct::flag::28988::9989",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT01095094"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "defer",
+          "packet_id": "ct::defer::6426::28490",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "verify",
+          "packet_id": "ct::verify::69004::7330",
+          "pred": null,
+          "pred_detail": {
+            "action": null,
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "external_tool_required"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "verify",
+          "packet_id": "ct::verify::24969::44875",
+          "pred": null,
+          "pred_detail": {
+            "action": null,
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "external_tool_required"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "reject",
+          "packet_id": "ct::reject::41090::27993",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT03124459"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "reject",
+          "packet_id": "ct::reject::155::6192",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT02777190"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold0_heldout",
+          "gold": "defer",
+          "packet_id": "ct::defer::50845::834",
+          "pred": null,
+          "pred_detail": {
+            "action": null,
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "external_tool_required"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "flag",
+          "packet_id": "ct::flag::383::5105",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT00844805"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "verify",
+          "packet_id": "ct::verify::48428::49338",
+          "pred": null,
+          "pred_detail": {
+            "action": null,
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "external_tool_required"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "defer",
+          "packet_id": "ct::defer::158039::15870",
+          "pred": null,
+          "pred_detail": {
+            "action": null,
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "external_tool_required"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "verify",
+          "packet_id": "ct::verify::42767::3541",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "flag",
+          "packet_id": "ct::flag::4675::2550",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT01949337"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "defer",
+          "packet_id": "ct::defer::134453::3090",
+          "pred": null,
+          "pred_detail": {
+            "action": null,
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "external_tool_required"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "reject",
+          "packet_id": "ct::reject::22::1591",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT01917006"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold1_heldout",
+          "gold": "reject",
+          "packet_id": "ct::reject::913::39750",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT04222972"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "verify",
+          "packet_id": "ct::verify::38487::47651",
+          "pred": null,
+          "pred_detail": {
+            "action": null,
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "external_tool_required"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "defer",
+          "packet_id": "ct::defer::26670::54004",
+          "pred": null,
+          "pred_detail": {
+            "action": null,
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "external_tool_required"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "defer",
+          "packet_id": "ct::defer::166731::7134",
+          "pred": null,
+          "pred_detail": {
+            "action": null,
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "external_tool_required"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "reject",
+          "packet_id": "ct::reject::22104::5857",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT01798485"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "reject",
+          "packet_id": "ct::reject::1060::12635",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT00570674"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "flag",
+          "packet_id": "ct::flag::13976::643",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT00828178"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "flag",
+          "packet_id": "ct::flag::1413::20487",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT03504644"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold2_heldout",
+          "gold": "verify",
+          "packet_id": "ct::verify::143457::15070",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "defer",
+          "packet_id": "ct::defer::59110::32859",
+          "pred": null,
+          "pred_detail": {
+            "action": null,
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "external_tool_required"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "defer",
+          "packet_id": "ct::defer::124533::4281",
+          "pred": null,
+          "pred_detail": {
+            "action": null,
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "external_tool_required"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "flag",
+          "packet_id": "ct::flag::148::1617",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT01196390"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "verify",
+          "packet_id": "ct::verify::5277::29636",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "verify",
+          "packet_id": "ct::verify::65190::9649",
+          "pred": null,
+          "pred_detail": {
+            "action": null,
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "external_tool_required"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "reject",
+          "packet_id": "ct::reject::18::633",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT00634933"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "flag",
+          "packet_id": "ct::flag::24736::209",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT03664232"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold3_heldout",
+          "gold": "reject",
+          "packet_id": "ct::reject::22::97",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT04805671"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        }
+      ],
+      "gold_candidate_rank_summary": {},
+      "n": 40,
+      "parse_failures": 12,
+      "violation_counts": {
+        "contradicted_claim_requires_reject_or_flag": 8,
+        "evidence_status_mismatch": 32,
+        "external_tool_required": 12,
+        "invalid_value_requires_reject_or_flag": 8,
+        "terminal_action_mismatch": 32
+      }
+    },
+    "pressure_constrained": {
+      "accuracy": 0.45,
+      "class_accuracy": {
+        "defer": "0/8",
+        "flag": "6/8",
+        "ground": "1/8",
+        "reject": "3/8",
+        "verify": "8/8"
+      },
+      "confusion_matrix": {
+        "defer": {
+          "verify": 8
+        },
+        "flag": {
+          "flag": 6,
+          "reject": 2
+        },
+        "ground": {
+          "flag": 6,
+          "ground": 1,
+          "reject": 1
+        },
+        "reject": {
+          "flag": 4,
+          "reject": 3,
+          "verify": 1
+        },
+        "verify": {
+          "verify": 8
+        }
+      },
+      "correct": 18,
+      "failure_count": 22,
+      "failures": [
+        {
+          "fold": "fold0",
+          "gold": "ground",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "ground",
+              "nct": "NCT01562548"
+            },
+            "gold_mean_nll": 0.08363263309001923,
+            "gold_minus_winner_mean_nll": 0.059715110808610916,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT01562548"
+            },
+            "winner_mean_nll": 0.02391752228140831
+          },
+          "packet_id": "ct::ground::47205::44830",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT01562548"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 7,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT00588770"
+            },
+            "gold_mean_nll": 0.08622442185878754,
+            "gold_minus_winner_mean_nll": 0.026430930942296982,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 0.059793490916490555
+          },
+          "packet_id": "ct::flag::368::3511",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 1.268964409828186,
+            "gold_minus_winner_mean_nll": 1.2683059648261406,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.0006584450020454824
+          },
+          "packet_id": "ct::defer::6426::28490",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "ground",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "ground",
+              "nct": "NCT04345913"
+            },
+            "gold_mean_nll": 0.09200704842805862,
+            "gold_minus_winner_mean_nll": 0.059999797493219376,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT04345913"
+            },
+            "winner_mean_nll": 0.03200725093483925
+          },
+          "packet_id": "ct::ground::5768::4152",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT04345913"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 7,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 0.15814171731472015,
+            "gold_minus_winner_mean_nll": 0.07037833333015442,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.08776338398456573
+          },
+          "packet_id": "ct::reject::41090::27993",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 7,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 0.13040940463542938,
+            "gold_minus_winner_mean_nll": 0.0657477080821991,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT02777190"
+            },
+            "winner_mean_nll": 0.06466169655323029
+          },
+          "packet_id": "ct::reject::155::6192",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT02777190"
+          },
+          "violations": [
+            "evidence_status_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.8053595423698425,
+            "gold_minus_winner_mean_nll": 0.8040219141403213,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.001337628229521215
+          },
+          "packet_id": "ct::defer::50845::834",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.40765461325645447,
+            "gold_minus_winner_mean_nll": 0.3930962458252907,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.014558367431163788
+          },
+          "packet_id": "ct::defer::158039::15870",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "ground",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "ground",
+              "nct": "NCT01804777"
+            },
+            "gold_mean_nll": 0.09634499996900558,
+            "gold_minus_winner_mean_nll": 0.005285866558551788,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT01804777"
+            },
+            "winner_mean_nll": 0.0910591334104538
+          },
+          "packet_id": "ct::ground::4693::3070",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT01804777"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.5064767003059387,
+            "gold_minus_winner_mean_nll": 0.5001650927588344,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.006311607547104359
+          },
+          "packet_id": "ct::defer::134453::3090",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.56206876039505,
+            "gold_minus_winner_mean_nll": 0.5539172450080514,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.008151515386998653
+          },
+          "packet_id": "ct::defer::26670::54004",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "ground",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "ground",
+              "nct": "NCT03664232"
+            },
+            "gold_mean_nll": 0.07220153510570526,
+            "gold_minus_winner_mean_nll": 0.04840097203850746,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT03664232"
+            },
+            "winner_mean_nll": 0.0238005630671978
+          },
+          "packet_id": "ct::ground::24736::209",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT03664232"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.6663145422935486,
+            "gold_minus_winner_mean_nll": 0.6611699876375496,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.005144554655998945
+          },
+          "packet_id": "ct::defer::166731::7134",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 0.13525570929050446,
+            "gold_minus_winner_mean_nll": 0.09878168255090714,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT01798485"
+            },
+            "winner_mean_nll": 0.03647402673959732
+          },
+          "packet_id": "ct::reject::22104::5857",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT01798485"
+          },
+          "violations": [
+            "evidence_status_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 0.18325498700141907,
+            "gold_minus_winner_mean_nll": 0.1591969970613718,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT00570674"
+            },
+            "winner_mean_nll": 0.024057989940047264
+          },
+          "packet_id": "ct::reject::1060::12635",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT00570674"
+          },
+          "violations": [
+            "evidence_status_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "ground",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "ground",
+              "nct": "NCT00068692"
+            },
+            "gold_mean_nll": 0.061956290155649185,
+            "gold_minus_winner_mean_nll": 0.03155807964503765,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT00068692"
+            },
+            "winner_mean_nll": 0.030398210510611534
+          },
+          "packet_id": "ct::ground::1196::14942",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT00068692"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.5406767725944519,
+            "gold_minus_winner_mean_nll": 0.5363062173128128,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.004370555281639099
+          },
+          "packet_id": "ct::defer::59110::32859",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.523589551448822,
+            "gold_minus_winner_mean_nll": 0.5184706593863666,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.005118892062455416
+          },
+          "packet_id": "ct::defer::124533::4281",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 7,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT01196390"
+            },
+            "gold_mean_nll": 0.09858403354883194,
+            "gold_minus_winner_mean_nll": 0.0627470500767231,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 0.03583698347210884
+          },
+          "packet_id": "ct::flag::148::1617",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "ground",
+          "gold_candidate_rank": {
+            "candidate_count": 7,
+            "gold_candidate": {
+              "action": "ground",
+              "nct": "NCT01001325"
+            },
+            "gold_mean_nll": 0.1941903978586197,
+            "gold_minus_winner_mean_nll": 0.16120902448892593,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 0.032981373369693756
+          },
+          "packet_id": "ct::ground::22::300",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 11,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 0.16265995800495148,
+            "gold_minus_winner_mean_nll": 0.10376738011837006,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT04805671"
+            },
+            "winner_mean_nll": 0.05889257788658142
+          },
+          "packet_id": "ct::reject::22::97",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT04805671"
+          },
+          "violations": [
+            "evidence_status_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "ground",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "ground",
+              "nct": "NCT05218499"
+            },
+            "gold_mean_nll": 0.12511812150478363,
+            "gold_minus_winner_mean_nll": 0.10802436992526054,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT05218499"
+            },
+            "winner_mean_nll": 0.017093751579523087
+          },
+          "packet_id": "ct::ground::1716::17720",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT05218499"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        }
+      ],
+      "gold_candidate_rank_summary": {
+        "defer": {
+          "mean_gold_minus_winner_mean_nll": 0.6544,
+          "rank_counts": {
+            "2": 7,
+            "3": 1
+          },
+          "total": 8
+        },
+        "flag": {
+          "mean_gold_minus_winner_mean_nll": 0.0111,
+          "rank_counts": {
+            "1": 6,
+            "2": 2
+          },
+          "total": 8
+        },
+        "ground": {
+          "mean_gold_minus_winner_mean_nll": 0.0593,
+          "rank_counts": {
+            "1": 1,
+            "2": 6,
+            "3": 1
+          },
+          "total": 8
+        },
+        "reject": {
+          "mean_gold_minus_winner_mean_nll": 0.0622,
+          "rank_counts": {
+            "1": 3,
+            "2": 1,
+            "3": 4
+          },
+          "total": 8
+        },
+        "verify": {
+          "mean_gold_minus_winner_mean_nll": 0.0,
+          "rank_counts": {
+            "1": 8
+          },
+          "total": 8
+        }
+      },
+      "n": 40,
+      "parse_failures": 0,
+      "violation_counts": {
+        "contradicted_claim_requires_reject_or_flag": 1,
+        "evidence_status_mismatch": 14,
+        "missing_required_attribution": 3,
+        "terminal_action_mismatch": 16
+      }
+    },
+    "pressure_strict": {
+      "accuracy": 0.4,
+      "class_accuracy": {
+        "defer": "0/8",
+        "flag": "4/8",
+        "ground": "0/8",
+        "reject": "4/8",
+        "verify": "8/8"
+      },
+      "confusion_matrix": {
+        "defer": {
+          "verify": 8
+        },
+        "flag": {
+          "flag": 4,
+          "reject": 4
+        },
+        "ground": {
+          "flag": 5,
+          "reject": 3
+        },
+        "reject": {
+          "flag": 3,
+          "reject": 4,
+          "verify": 1
+        },
+        "verify": {
+          "verify": 8
+        }
+      },
+      "correct": 16,
+      "failure_count": 24,
+      "failures": [
+        {
+          "fold": "fold0",
+          "gold": "ground",
+          "packet_id": "ct::ground::47205::44830",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT01562548"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "flag",
+          "packet_id": "ct::flag::368::3511",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "defer",
+          "packet_id": "ct::defer::6426::28490",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "ground",
+          "packet_id": "ct::ground::5768::4152",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT04345913"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "reject",
+          "packet_id": "ct::reject::41090::27993",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "contradicted_claim_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "defer",
+          "packet_id": "ct::defer::50845::834",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "flag",
+          "packet_id": "ct::flag::383::5105",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "defer",
+          "packet_id": "ct::defer::158039::15870",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "ground",
+          "packet_id": "ct::ground::4693::3070",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "flag",
+          "packet_id": "ct::flag::4675::2550",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "defer",
+          "packet_id": "ct::defer::134453::3090",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "ground",
+          "packet_id": "ct::ground::291::22264",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "defer",
+          "packet_id": "ct::defer::26670::54004",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "ground",
+          "packet_id": "ct::ground::24736::209",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT03664232"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "defer",
+          "packet_id": "ct::defer::166731::7134",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "reject",
+          "packet_id": "ct::reject::22104::5857",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT01798485"
+          },
+          "violations": [
+            "evidence_status_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "reject",
+          "packet_id": "ct::reject::1060::12635",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT00570674"
+          },
+          "violations": [
+            "evidence_status_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "ground",
+          "packet_id": "ct::ground::1196::14942",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT00068692"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "defer",
+          "packet_id": "ct::defer::59110::32859",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "defer",
+          "packet_id": "ct::defer::124533::4281",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "flag",
+          "packet_id": "ct::flag::148::1617",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "ground",
+          "packet_id": "ct::ground::22::300",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "reject",
+          "packet_id": "ct::reject::22::97",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT04805671"
+          },
+          "violations": [
+            "evidence_status_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "ground",
+          "packet_id": "ct::ground::1716::17720",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT05218499"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        }
+      ],
+      "gold_candidate_rank_summary": {},
+      "n": 40,
+      "parse_failures": 0,
+      "violation_counts": {
+        "contradicted_claim_requires_reject_or_flag": 1,
+        "evidence_status_mismatch": 16,
+        "missing_required_attribution": 7,
+        "terminal_action_mismatch": 17
+      }
+    }
+  },
+  "recurrent_failures": [
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold3",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold3",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold3_heldout",
+          "gold": "defer",
+          "pred": null
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold3_heldout",
+          "gold": "defer",
+          "pred": "reject"
+        }
+      ],
+      "packet_id": "ct::defer::124533::4281"
+    },
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold1",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold1",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold1_heldout",
+          "gold": "defer",
+          "pred": null
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold1_heldout",
+          "gold": "defer",
+          "pred": "reject"
+        }
+      ],
+      "packet_id": "ct::defer::134453::3090"
+    },
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold1",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold1",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold1_heldout",
+          "gold": "defer",
+          "pred": null
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold1_heldout",
+          "gold": "defer",
+          "pred": "reject"
+        }
+      ],
+      "packet_id": "ct::defer::158039::15870"
+    },
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold2",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold2",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold2_heldout",
+          "gold": "defer",
+          "pred": null
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold2_heldout",
+          "gold": "defer",
+          "pred": "reject"
+        }
+      ],
+      "packet_id": "ct::defer::166731::7134"
+    },
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold2",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold2",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold2_heldout",
+          "gold": "defer",
+          "pred": null
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold2_heldout",
+          "gold": "defer",
+          "pred": "reject"
+        }
+      ],
+      "packet_id": "ct::defer::26670::54004"
+    },
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold0",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold0",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold0_heldout",
+          "gold": "defer",
+          "pred": null
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold0_heldout",
+          "gold": "defer",
+          "pred": "reject"
+        }
+      ],
+      "packet_id": "ct::defer::50845::834"
+    },
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold3",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold3",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold3_heldout",
+          "gold": "defer",
+          "pred": null
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold3_heldout",
+          "gold": "defer",
+          "pred": "reject"
+        }
+      ],
+      "packet_id": "ct::defer::59110::32859"
+    },
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold0",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold0",
+          "gold": "defer",
+          "pred": "verify"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold0_heldout",
+          "gold": "defer",
+          "pred": "ground"
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold0_heldout",
+          "gold": "defer",
+          "pred": "reject"
+        }
+      ],
+      "packet_id": "ct::defer::6426::28490"
+    },
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold3",
+          "gold": "flag",
+          "pred": "reject"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold3",
+          "gold": "flag",
+          "pred": "reject"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold3_heldout",
+          "gold": "flag",
+          "pred": "ground"
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold3_heldout",
+          "gold": "flag",
+          "pred": "ground"
+        }
+      ],
+      "packet_id": "ct::flag::148::1617"
+    },
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold0",
+          "gold": "flag",
+          "pred": "reject"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold0",
+          "gold": "flag",
+          "pred": "reject"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold0_heldout",
+          "gold": "flag",
+          "pred": "ground"
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold0_heldout",
+          "gold": "flag",
+          "pred": "ground"
+        }
+      ],
+      "packet_id": "ct::flag::368::3511"
+    },
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold2",
+          "gold": "reject",
+          "pred": "flag"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold2",
+          "gold": "reject",
+          "pred": "flag"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold2_heldout",
+          "gold": "reject",
+          "pred": "ground"
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold2_heldout",
+          "gold": "reject",
+          "pred": "ground"
+        }
+      ],
+      "packet_id": "ct::reject::1060::12635"
+    },
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold2",
+          "gold": "reject",
+          "pred": "flag"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold2",
+          "gold": "reject",
+          "pred": "flag"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold2_heldout",
+          "gold": "reject",
+          "pred": "ground"
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold2_heldout",
+          "gold": "reject",
+          "pred": "ground"
+        }
+      ],
+      "packet_id": "ct::reject::22104::5857"
+    },
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold3",
+          "gold": "reject",
+          "pred": "flag"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold3",
+          "gold": "reject",
+          "pred": "flag"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold3_heldout",
+          "gold": "reject",
+          "pred": "ground"
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold3_heldout",
+          "gold": "reject",
+          "pred": "ground"
+        }
+      ],
+      "packet_id": "ct::reject::22::97"
+    },
+    {
+      "failure_conditions": 4,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold0",
+          "gold": "reject",
+          "pred": "verify"
+        },
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold0",
+          "gold": "reject",
+          "pred": "verify"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold0_heldout",
+          "gold": "reject",
+          "pred": "ground"
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold0_heldout",
+          "gold": "reject",
+          "pred": "ground"
+        }
+      ],
+      "packet_id": "ct::reject::41090::27993"
+    },
+    {
+      "failure_conditions": 3,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold1",
+          "gold": "flag",
+          "pred": "reject"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold1_heldout",
+          "gold": "flag",
+          "pred": "ground"
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold1_heldout",
+          "gold": "flag",
+          "pred": "ground"
+        }
+      ],
+      "packet_id": "ct::flag::383::5105"
+    },
+    {
+      "failure_conditions": 3,
+      "failures": [
+        {
+          "condition": "pressure_strict",
+          "fold": "fold1",
+          "gold": "flag",
+          "pred": "reject"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold1_heldout",
+          "gold": "flag",
+          "pred": "ground"
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold1_heldout",
+          "gold": "flag",
+          "pred": "ground"
+        }
+      ],
+      "packet_id": "ct::flag::4675::2550"
+    },
+    {
+      "failure_conditions": 3,
+      "failures": [
+        {
+          "condition": "pressure_constrained",
+          "fold": "fold0",
+          "gold": "reject",
+          "pred": "flag"
+        },
+        {
+          "condition": "oracle_balanced_strict",
+          "fold": "fold0_heldout",
+          "gold": "reject",
+          "pred": "ground"
+        },
+        {
+          "condition": "oracle_balanced_constrained",
+          "fold": "fold0_heldout",
+          "gold": "reject",
+          "pred": "ground"
+        }
+      ],
+      "packet_id": "ct::reject::155::6192"
+    }
+  ],
+  "tasks": "negbiodb_ct/tasks_pilot.jsonl"
+}

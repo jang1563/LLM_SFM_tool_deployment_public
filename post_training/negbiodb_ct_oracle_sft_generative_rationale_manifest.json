@@ -1,0 +1,27 @@
+{
+  "by_action_class": {
+    "defer": 120,
+    "flag": 40,
+    "ground": 140,
+    "reject": 40,
+    "verify": 60
+  },
+  "by_evidence_action": {
+    "defer": 120,
+    "flag": 40,
+    "ground": 140,
+    "reject": 40,
+    "verify": 60
+  },
+  "by_role": {
+    "generative_evidence_rationale": 400
+  },
+  "dataset": "negbiodb_ct_oracle_sft_generative_rationale_v1",
+  "evidence_action_matches": 400,
+  "evidence_action_mismatches": 0,
+  "evidence_action_unlabeled": 0,
+  "examples": 400,
+  "out": "post_training/negbiodb_ct_oracle_sft_generative_rationale_v1.jsonl",
+  "source": "post_training/negbiodb_ct_oracle_sft_v1.jsonl",
+  "strategy": "generative_evidence_rationale_v1"
+}

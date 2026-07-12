@@ -1,0 +1,151 @@
+{
+  "dataset": "negbiodb_ct_stage_a_strict_component_sft_smoke_v1",
+  "rank_diagnostic_dataset": "negbiodb_ct_stage_a_routing_candidate_rank_diagnostic_v1",
+  "run_id": "stage_a_evidence_routing_after_loop_observed_pair_cayuga_2026_07_08",
+  "date": "2026-07-08",
+  "cluster": "Cayuga",
+  "component": "routing_after_loop",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "decode_mode": "routing_observed_pair_score",
+  "candidate_policy": "train_observed_routing_pairs_with_visible_citations",
+  "candidate_space_size": 5,
+  "source_target_dataset": "negbiodb_ct_stage_a_evidence_conditioned_component_targets_v1",
+  "source_prompt_contract": "stage_a_v2_evidence_conditioned_component",
+  "train_examples": 20,
+  "heldout_examples": 5,
+  "training": {
+    "max_steps": 20,
+    "batch_size": 1,
+    "train_last_layers": 1,
+    "trainable_params": 14913280,
+    "loss_delta": -0.588189959526062
+  },
+  "heldout_summary": {
+    "cases": 5,
+    "passed": 2,
+    "mean_score": 0.85,
+    "gate_accuracy": {
+      "target_keys": 1.0,
+      "enum_validity": 1.0,
+      "tool_query_shape": 1.0,
+      "exact_match": 0.4
+    },
+    "violations": {
+      "target_mismatch": 3
+    }
+  },
+  "candidate_rank_summary": {
+    "exact_top1": 2,
+    "action_status_top1": 2,
+    "citation_required_cases": 2,
+    "citation_required_exact_top1": 1,
+    "gold_in_retained_candidates": 5,
+    "all_candidates_retained_cases": 5,
+    "mean_gold_rank_observed": 2.0,
+    "mean_action_status_rank_observed": 2.0,
+    "mean_top_gold_margin_observed": 0.044718,
+    "gold_rank_histogram": {
+      "1": 2,
+      "2": 2,
+      "4": 1
+    },
+    "action_status_rank_histogram": {
+      "1": 2,
+      "2": 2,
+      "4": 1
+    },
+    "field_rank_patterns": {
+      "exact_top1": 2,
+      "both_field_failure": 3
+    },
+    "top_pair_counts": {
+      "ground/supported": 2,
+      "reject/contradicted": 3
+    }
+  },
+  "heldout_readout": [
+    {
+      "case_family": "supported_negative_evidence",
+      "expected_action_status": "ground/supported",
+      "top_action_status": "ground/supported",
+      "expected_citations": [
+        "NCT00588770"
+      ],
+      "top_citations": [
+        "NCT00588770"
+      ],
+      "full_rank": 1,
+      "action_status_rank": 1,
+      "top_gold_margin": 0.0,
+      "rank_pattern": "exact_top1",
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "expected_action_status": "reject/contradicted",
+      "top_action_status": "reject/contradicted",
+      "expected_citations": [],
+      "top_citations": [],
+      "full_rank": 1,
+      "action_status_rank": 1,
+      "top_gold_margin": 0.0,
+      "rank_pattern": "exact_top1",
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "case_family": "insufficient_evidence",
+      "expected_action_status": "defer/insufficient",
+      "top_action_status": "reject/contradicted",
+      "expected_citations": [],
+      "top_citations": [],
+      "full_rank": 4,
+      "action_status_rank": 4,
+      "top_gold_margin": 0.115769,
+      "rank_pattern": "both_field_failure",
+      "passed": false,
+      "score": 0.75
+    },
+    {
+      "case_family": "related_evidence_requires_verification",
+      "expected_action_status": "verify/insufficient",
+      "top_action_status": "reject/contradicted",
+      "expected_citations": [],
+      "top_citations": [],
+      "full_rank": 2,
+      "action_status_rank": 2,
+      "top_gold_margin": 0.063698,
+      "rank_pattern": "both_field_failure",
+      "passed": false,
+      "score": 0.75
+    },
+    {
+      "case_family": "invalid_value_attribution_failure",
+      "expected_action_status": "flag/invalid_value",
+      "top_action_status": "ground/supported",
+      "expected_citations": [
+        "NCT00828178"
+      ],
+      "top_citations": [
+        "NCT00828178"
+      ],
+      "full_rank": 2,
+      "action_status_rank": 2,
+      "top_gold_margin": 0.044123,
+      "rank_pattern": "both_field_failure",
+      "passed": false,
+      "score": 0.75
+    }
+  ],
+  "raw_artifacts": {
+    "location": "ignored Cayuga post_training/runs directory",
+    "report_sha256": "f50bdf5ff42656e30932b53667c1fc4124263a3a34d87798afde5690807be9e1",
+    "eval_report_sha256": "5679c4c78ac48f0485ca048e044fc4564234840d18528a7b5e8ab77c520f81f8",
+    "predictions_sha256": "6f08d1e0e3db3cc550e2d70aaa092a405a898afb0649d175ba39ba1b16791c4d",
+    "rank_report_sha256": "d579b48a94e311e7594db9b74583b55f830d86774e17f041831ed70d387392bc",
+    "rank_markdown_sha256": "74831c773905fc1df492607b299b49d43e64424a60aa0e2088981420a4ddd05e"
+  },
+  "interpretation": "Constrained routing fixes schema and enum validity compared with free-form routing, and improves held-out pass rate from 0/5 to 2/5. The remaining failures are action/status routing failures, not citation-only failures: insufficient, verification-needed, and invalid-value cases still rank reject/contradicted or ground/supported above the gold route.",
+  "next_decision": "Keep tool_query, DPO, RLVR, release tagging, and Hugging Face publication gated. The next repair should target evidence-conditioned action/status routing for insufficient, verify, and invalid-value families before preference optimization or audited RLVR."
+}

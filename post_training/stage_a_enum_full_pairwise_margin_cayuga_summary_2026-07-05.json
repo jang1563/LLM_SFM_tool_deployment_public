@@ -1,0 +1,344 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_outputs_committed": false,
+    "raw_outputs_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "cluster": "Cayuga Slurm GPU",
+  "component": "enum_action",
+  "dataset": "negbiodb_ct_stage_a_enum_full_pairwise_margin_cayuga_v1",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "objective": {
+    "margin_logprob_mode": "mean",
+    "pairwise_margin": 0.05,
+    "pairwise_margin_weight": 1.0,
+    "target_format": "full"
+  },
+  "prompt_contract": "stage_a_v2_strict",
+  "runs": {
+    "same_status_action_contrast": {
+      "candidate_policy": "same_status_action_contrast",
+      "contrast_axis": "action",
+      "failure_mode": "same_status_wrong_action_contrast",
+      "focus": {
+        "focus_chosen_pairs": [
+          "flag/invalid_value"
+        ],
+        "focus_only": false,
+        "focus_repeat": 4,
+        "train_examples": 16,
+        "training_by_chosen_pair": {
+          "defer/insufficient": 4,
+          "flag/invalid_value": 16,
+          "reject/contradicted": 4,
+          "verify/insufficient": 4
+        },
+        "training_examples": 28
+      },
+      "heldout_base_summary": {
+        "heldout_pairs": 4,
+        "margin_accuracy": 0.25,
+        "margin_wins": 1,
+        "mean_margin": -0.079422,
+        "min_margin": -0.152232,
+        "violations": {
+          "chosen_not_above_rejected": 3
+        }
+      },
+      "heldout_delta_readout": [
+        {
+          "base_margin": -0.059933,
+          "case_family": "contradicted_or_mixed_endpoint_claim",
+          "case_id": "stage_a::000007",
+          "chosen_output": {
+            "action": "reject",
+            "evidence_status": "contradicted"
+          },
+          "chosen_pair": "reject/contradicted",
+          "margin_delta": 0.235318,
+          "outcome": "newly_won",
+          "rejected_output": {
+            "action": "ground",
+            "evidence_status": "contradicted"
+          },
+          "rejected_pair": "ground/contradicted",
+          "trained_margin": 0.175385
+        },
+        {
+          "base_margin": -0.150195,
+          "case_family": "insufficient_evidence",
+          "case_id": "stage_a::000012",
+          "chosen_output": {
+            "action": "defer",
+            "evidence_status": "insufficient"
+          },
+          "chosen_pair": "defer/insufficient",
+          "margin_delta": 0.259467,
+          "outcome": "newly_won",
+          "rejected_output": {
+            "action": "ground",
+            "evidence_status": "insufficient"
+          },
+          "rejected_pair": "ground/insufficient",
+          "trained_margin": 0.109272
+        },
+        {
+          "base_margin": 0.044673,
+          "case_family": "related_evidence_requires_verification",
+          "case_id": "stage_a::000019",
+          "chosen_output": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "chosen_pair": "verify/insufficient",
+          "margin_delta": 0.150621,
+          "outcome": "remained_won",
+          "rejected_output": {
+            "action": "ground",
+            "evidence_status": "insufficient"
+          },
+          "rejected_pair": "ground/insufficient",
+          "trained_margin": 0.195294
+        },
+        {
+          "base_margin": -0.152232,
+          "case_family": "invalid_value_attribution_failure",
+          "case_id": "stage_a::000021",
+          "chosen_output": {
+            "action": "flag",
+            "evidence_status": "invalid_value"
+          },
+          "chosen_pair": "flag/invalid_value",
+          "margin_delta": 0.250963,
+          "outcome": "newly_won",
+          "rejected_output": {
+            "action": "ground",
+            "evidence_status": "invalid_value"
+          },
+          "rejected_pair": "ground/invalid_value",
+          "trained_margin": 0.098731
+        }
+      ],
+      "heldout_delta_summary": {
+        "base_margin_wins": 1,
+        "heldout_pairs": 4,
+        "mean_base_margin": -0.079422,
+        "mean_margin_delta": 0.224092,
+        "mean_trained_margin": 0.144671,
+        "min_margin_delta": 0.150621,
+        "newly_lost": 0,
+        "newly_won": 3,
+        "outcomes": {
+          "newly_won": 3,
+          "remained_won": 1
+        },
+        "trained_margin_wins": 4
+      },
+      "heldout_trained_summary": {
+        "heldout_pairs": 4,
+        "margin_accuracy": 1.0,
+        "margin_wins": 4,
+        "mean_margin": 0.144671,
+        "min_margin": 0.098731,
+        "violations": {}
+      },
+      "run_id": "stage_a_enum_action_contrast_full_pairwise_margin_cayuga_2026_07_05",
+      "scientific_readout": {
+        "interpretation": "The supervised pairwise-margin objective repairs same-status wrong-action contrasts even when the full action+evidence_status JSON target is scored.",
+        "question": "Does the action-only pairwise-margin repair persist when evidence_status remains in the output target?",
+        "result": "Yes on this slice: held-out wins improve from 1/4 base to 4/4 trained, with all four action families positive and no chosen-not-above-rejected violations."
+      },
+      "trace": {
+        "base_margin_report_sha256": "f38f239e2dbfb4129b5b4d0362629ed02b2a34fa94d08463a0c7f2bcdc4ec502",
+        "base_margins_jsonl_sha256": "5753d00e574ae59e2d260e83686ec3a0317f0ac4eb4c7786c0df852474550770",
+        "heldout_margin_report_sha256": "023b5f420e27b258d1e75824a586e8d49ba7c042fa45519e0738ebee4f4dd006",
+        "heldout_margins_jsonl_sha256": "30ebf6df11496990469c1314e2bceecbe6ffa7afb6fc79619fa0889d37000f37",
+        "margin_delta_report_sha256": "61524bd3ec1f6ee9f4dc492bf95642b614b5d0149d1f35f34fc1241433ed17ca",
+        "report_sha256": "f347516a5ae519428d5ac4cd9c99000d3e3fe5213a7c9faf9faf6328bed12a3d",
+        "train_margin_report_sha256": "14e68df9754b4e5f2946800bc95f6253a78ffcfc7805e98a512b41e8ea877697",
+        "train_margins_jsonl_sha256": "46cab4ffa6847a8077147f044ffa497a10975cdac06aed5ffce22063fa4ade30",
+        "trainable_state_sha256": "3d2b9e71e83ef58aa17259fee11cbe9b47ed27728a119f7fd9db86c2e49c8191"
+      },
+      "trained_train_summary": {
+        "margin_accuracy": 1.0,
+        "margin_wins": 16,
+        "mean_margin": 0.139681,
+        "min_margin": 0.049438,
+        "train_pairs": 16
+      },
+      "training": {
+        "batch_size": 1,
+        "device": "cuda",
+        "loss_delta": -0.648616,
+        "max_steps": 20,
+        "train_last_layers": 1,
+        "trainable_params": 14913280
+      }
+    },
+    "ground_supported_collapse_corrective": {
+      "candidate_policy": "train_observed_pairs",
+      "contrast_axis": null,
+      "failure_mode": "ground_supported_collapse",
+      "focus": {
+        "focus_chosen_pairs": [
+          "flag/invalid_value"
+        ],
+        "focus_only": false,
+        "focus_repeat": 4,
+        "train_examples": 16,
+        "training_by_chosen_pair": {
+          "defer/insufficient": 4,
+          "flag/invalid_value": 16,
+          "reject/contradicted": 4,
+          "verify/insufficient": 4
+        },
+        "training_examples": 28
+      },
+      "heldout_base_summary": {
+        "heldout_pairs": 4,
+        "margin_accuracy": 0.0,
+        "margin_wins": 0,
+        "mean_margin": -0.11651,
+        "min_margin": -0.257193,
+        "violations": {
+          "chosen_not_above_rejected": 4
+        }
+      },
+      "heldout_delta_readout": [
+        {
+          "base_margin": -0.034748,
+          "case_family": "contradicted_or_mixed_endpoint_claim",
+          "case_id": "stage_a::000007",
+          "chosen_output": {
+            "action": "reject",
+            "evidence_status": "contradicted"
+          },
+          "chosen_pair": "reject/contradicted",
+          "margin_delta": 0.231255,
+          "outcome": "newly_won",
+          "rejected_output": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "rejected_pair": "ground/supported",
+          "trained_margin": 0.196507
+        },
+        {
+          "base_margin": -0.257193,
+          "case_family": "insufficient_evidence",
+          "case_id": "stage_a::000012",
+          "chosen_output": {
+            "action": "defer",
+            "evidence_status": "insufficient"
+          },
+          "chosen_pair": "defer/insufficient",
+          "margin_delta": 0.390477,
+          "outcome": "newly_won",
+          "rejected_output": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "rejected_pair": "ground/supported",
+          "trained_margin": 0.133284
+        },
+        {
+          "base_margin": -0.020147,
+          "case_family": "related_evidence_requires_verification",
+          "case_id": "stage_a::000019",
+          "chosen_output": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "chosen_pair": "verify/insufficient",
+          "margin_delta": 0.281126,
+          "outcome": "newly_won",
+          "rejected_output": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "rejected_pair": "ground/supported",
+          "trained_margin": 0.260979
+        },
+        {
+          "base_margin": -0.153953,
+          "case_family": "invalid_value_attribution_failure",
+          "case_id": "stage_a::000021",
+          "chosen_output": {
+            "action": "flag",
+            "evidence_status": "invalid_value"
+          },
+          "chosen_pair": "flag/invalid_value",
+          "margin_delta": 0.273941,
+          "outcome": "newly_won",
+          "rejected_output": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "rejected_pair": "ground/supported",
+          "trained_margin": 0.119988
+        }
+      ],
+      "heldout_delta_summary": {
+        "base_margin_wins": 0,
+        "heldout_pairs": 4,
+        "mean_base_margin": -0.11651,
+        "mean_margin_delta": 0.2942,
+        "mean_trained_margin": 0.17769,
+        "min_margin_delta": 0.231255,
+        "newly_lost": 0,
+        "newly_won": 4,
+        "outcomes": {
+          "newly_won": 4
+        },
+        "trained_margin_wins": 4
+      },
+      "heldout_trained_summary": {
+        "heldout_pairs": 4,
+        "margin_accuracy": 1.0,
+        "margin_wins": 4,
+        "mean_margin": 0.17769,
+        "min_margin": 0.119988,
+        "violations": {}
+      },
+      "run_id": "stage_a_enum_full_pairwise_margin_cayuga_2026_07_05",
+      "scientific_readout": {
+        "interpretation": "The supervised pairwise-margin objective also repairs the stricter full JSON corrective contrast against the observed ground/supported collapse.",
+        "question": "Can full action+evidence_status chosen targets beat rejected ground/supported collapse targets after supervised margin training?",
+        "result": "Yes on this slice: held-out wins improve from 0/4 base to 4/4 trained, with all four corrective families positive and no chosen-not-above-rejected violations."
+      },
+      "trace": {
+        "base_margin_report_sha256": "18baf03404a87233382910e81c7d3345ea7cae46103ff28008b982fa4375d34f",
+        "base_margins_jsonl_sha256": "512abd4a69907107575644719c3cc63084fc5a69436315522c14139d040d9e6e",
+        "heldout_margin_report_sha256": "93217c1c6d854114ba51b0212e3775854b8b85b1e283a0fd576b96b513fe0d9a",
+        "heldout_margins_jsonl_sha256": "645f7a05a433d159839333bcb494e7170e4a495a2d7a144f1f06be26f4393a5a",
+        "margin_delta_report_sha256": "ba2d0c2970470c247bf24649887172b84a2008a8dbf46743b0230c1c762d1ccf",
+        "report_sha256": "84b89c31c9edf122a872d884dedf6b664359e2250d6a0aa26fa84ddfb1a094b2",
+        "train_margin_report_sha256": "91f4cd313517d0f41a5dfda3f772e6e044aa084a02abf5935d9c454c32ad885a",
+        "train_margins_jsonl_sha256": "8914d579933593068dd4721a0460b51c550cfab80ed9d6e26735c3fbde32b201",
+        "trainable_state_sha256": "7538ecd66d3c74de16cfffa54f1d680e7e3927c0a659a7aee7d7e6b9c7c6e0f8"
+      },
+      "trained_train_summary": {
+        "margin_accuracy": 1.0,
+        "margin_wins": 16,
+        "mean_margin": 0.189835,
+        "min_margin": 0.09167,
+        "train_pairs": 16
+      },
+      "training": {
+        "batch_size": 1,
+        "device": "cuda",
+        "loss_delta": -0.507895,
+        "max_steps": 20,
+        "train_last_layers": 1,
+        "trainable_params": 14913280
+      }
+    }
+  },
+  "scientific_readout": {
+    "interpretation": "Full-target supervised pairwise-margin SFT repairs both same-status action contrasts and the broader ground/supported collapse contrast on this 4-case held-out enum slice. This is still a teacher-forced component-margin result, not a free-generation, tool-query, routing-after-loop, or trajectory-level pass.",
+    "next_decision": "Keep DPO/RLVR gated. The next Stage A decision is to add a finite-candidate enum selection readout for the pairwise-margin-trained state or proceed to the next component slice only after preserving this result in compact public artifacts.",
+    "question": "Does the deterministic pairwise-margin repair survive the full action+evidence_status target?",
+    "result": "Yes on these two enum component slices: same-status action-contrast full scoring improves from 1/4 to 4/4 wins, and ground/supported corrective full scoring improves from 0/4 to 4/4 wins."
+  },
+  "target_format": "full"
+}

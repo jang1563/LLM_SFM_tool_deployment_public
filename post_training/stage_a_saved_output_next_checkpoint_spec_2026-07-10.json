@@ -1,0 +1,125 @@
+{
+  "acceptance_gate": {
+    "candidate_or_model_policy_exact_min": 4,
+    "hidden_labels_used_by_arbitration": false,
+    "interpretation_rule": "Only compact policy summaries that meet or beat runtime evidence arbitration reopen the downstream DPO/RLVR or release decision.",
+    "raw_predictions_remain_uncommitted": true,
+    "trusted_candidate_incorrect_max": 0
+  },
+  "current_thesis": "Biology tool-use agents need trainable trajectories plus runtime evidence arbitration; RLVR/DPO escalation is not justified until compact held-out checkpoint policies beat deterministic runtime baselines.",
+  "dataset": "negbiodb_ct_stage_a_saved_output_next_checkpoint_spec_v1",
+  "input_artifacts": {
+    "candidate_field": {
+      "path": "post_training/stage_a_saved_output_candidate_field_qwen05b_cayuga_summary_2026-07-10.json",
+      "role": "field-wise candidate-rank compact summary",
+      "sha256": "6cfb00fb39fee21780733fb5e6ac09cc91d79f2db26950369d39748a7dcda480"
+    },
+    "checkpoint_diagnosis": {
+      "path": "post_training/stage_a_saved_output_checkpoint_diagnosis_2026-07-10.json",
+      "role": "current saved-output compact diagnosis",
+      "sha256": "ccd52d056b3f749bb34cd2214d471f1f26aec7b59f30cc31ba9a2e2fb2bd7b51"
+    },
+    "train_candidate": {
+      "path": "post_training/stage_a_saved_output_train_candidate_qwen05b_cayuga_summary_2026-07-10.json",
+      "role": "train and held-out candidate-bias compact summary",
+      "sha256": "01685b44f68d4455bbe9f142fb496baeec77c9ecb9f4c5f4efca1a02ff3257a2"
+    }
+  },
+  "keep_gated": [
+    "tool_query",
+    "DPO/RLVR",
+    "Hugging Face publication",
+    "release tagging",
+    "broad retraining"
+  ],
+  "next_checkpoint": {
+    "curation_commands_after_manifest_registration": [
+      "python post_training/build_stage_a_saved_output_policy_summary.py --source post_training/<curated_nonflag_candidate_arbitration>.json --source-kind candidate-arbitration-policy --policy calibrated_candidate_top1 --out /tmp/stage_a_saved_output_nonflag_policy_summary.json",
+      "python post_training/evaluate_stage_a_saved_output_meet_or_beat_gate.py --model-policy-summary /tmp/stage_a_saved_output_nonflag_policy_summary.json --out-json /tmp/stage_a_saved_output_nonflag_meet_or_beat_gate.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_NONFLAG_MEET_OR_BEAT_GATE.md"
+    ],
+    "env": {
+      "ALLOW_DOWNLOAD": "0",
+      "BATCH_SIZE": "1",
+      "CANDIDATE_POLICY": "train_observed_plus_rejected",
+      "CANDIDATE_TARGET_FORMAT": "full",
+      "FOCUS_CHOSEN_PAIRS": "defer/insufficient,reject/contradicted,verify/insufficient",
+      "FOCUS_ONLY": "0",
+      "FOCUS_REPEAT": "4",
+      "LR": "1e-5",
+      "MAX_STEPS": "40",
+      "MODEL_ID": "Qwen/Qwen2.5-0.5B-Instruct",
+      "PAIRWISE_MARGIN": "0.05",
+      "PAIRWISE_MARGIN_WEIGHT": "1",
+      "RUN_ID": "stage_a_saved_output_nonflag_candidate_rank_qwen05b_cayuga_${JOB_ID}",
+      "SCORE_BASE_CANDIDATES": "1",
+      "SCORE_BASE_MARGINS": "1",
+      "SCORE_TARGET_FORMATS": "full,action_status_only,action_only,status_only",
+      "SCORE_TRAINED_CANDIDATES": "1",
+      "SCORE_TRAIN_CANDIDATES": "1",
+      "SCORE_TRAIN_MARGINS": "1",
+      "TARGET_FORMAT": "full",
+      "TRAIN_LAST_LAYERS": "1"
+    },
+    "name": "balanced_nonflag_candidate_rank_readout",
+    "post_run_compact_commands": [
+      "python post_training/analyze_stage_a_saved_output_candidate_calibration.py --train-candidates ${OUT_DIR}/train_candidates.jsonl --heldout-candidates ${OUT_DIR}/candidates.jsonl --out-json /tmp/stage_a_saved_output_nonflag_candidate_calibration.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_NONFLAG_CANDIDATE_CALIBRATION.md",
+      "python post_training/analyze_stage_a_saved_output_candidate_fields.py --candidates ${OUT_DIR}/candidates.jsonl --out-json /tmp/stage_a_saved_output_nonflag_candidate_fields.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_NONFLAG_CANDIDATE_FIELDS.md",
+      "python post_training/evaluate_stage_a_saved_output_candidate_arbitration.py --calibration-report /tmp/stage_a_saved_output_nonflag_candidate_calibration.json --out-json /tmp/stage_a_saved_output_nonflag_candidate_arbitration.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_NONFLAG_CANDIDATE_ARBITRATION.md"
+    ],
+    "question": "Does balancing non-flag target pairs reduce the learned global flag/invalid_value candidate prior while preserving the repaired full-target teacher-forced margins?",
+    "runner": "post_training/run_stage_a_saved_output_calibration_margin_sft_cayuga.sbatch",
+    "submit_template": "sbatch --account=<allocation> --partition=<gpu-partition> --gres=gpu:1 --export=ALL,WORK=$PWD,<env-overrides> post_training/run_stage_a_saved_output_calibration_margin_sft_cayuga.sbatch"
+  },
+  "observed_failure": {
+    "bottleneck": "candidate_selection_bias_flag_invalid_value_overselection",
+    "heldout_candidate_summary": {
+      "exact_top1": 1,
+      "rows": 4,
+      "top_pair_counts": {
+        "flag/invalid_value": 4
+      }
+    },
+    "heldout_candidate_top1": {
+      "exact": 1,
+      "rows": 4,
+      "top_pair_counts": {
+        "flag/invalid_value": 4
+      }
+    },
+    "heldout_field_diagnostic": {
+      "action_top1": 1,
+      "evidence_status_top1": 1,
+      "exact_top1": 1,
+      "field_rank_patterns": {
+        "both_field_failure": 3,
+        "pair_top1": 1
+      },
+      "top_pair_counts": {
+        "flag/invalid_value": 4
+      }
+    },
+    "runtime_baseline": {
+      "best_policy_names": [
+        "evidence_gate_override",
+        "hybrid_evidence_then_train_gate"
+      ],
+      "hidden_labels_used_by_arbitration": false
+    },
+    "teacher_forced_margin_repaired": true,
+    "train_candidate_bias": {
+      "exact_top1": 4,
+      "rows": 16,
+      "top_pair_counts": {
+        "flag/invalid_value": 16
+      }
+    }
+  },
+  "public_safety_contract": {
+    "ignored_run_folder_read": false,
+    "model_state_read": false,
+    "raw_artifacts_committed": false,
+    "raw_candidate_score_jsonl_read": false,
+    "raw_prediction_jsonl_read": false,
+    "scheduler_logs_read": false
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "artifact_policy": {
+    "committed": "compact_counterfactual_summary_only",
+    "raw_predictions_committed": false,
+    "source_raw_artifact": "Cayuga full-rank enum_action predictions retained under ignored post_training/runs/"
+  },
+  "candidate_outputs": [
+    {
+      "action": "ground",
+      "evidence_status": "supported"
+    },
+    {
+      "action": "reject",
+      "evidence_status": "contradicted"
+    },
+    {
+      "action": "defer",
+      "evidence_status": "insufficient"
+    },
+    {
+      "action": "verify",
+      "evidence_status": "insufficient"
+    },
+    {
+      "action": "flag",
+      "evidence_status": "invalid_value"
+    }
+  ],
+  "candidate_policy": "train_observed_pairs",
+  "candidate_space_size": 5,
+  "component": "enum_action",
+  "counterfactual_result": {
+    "all_candidates_retained_cases": 5,
+    "cases": 5,
+    "exact_top1": 1,
+    "gold_rank_histogram": {
+      "1": 1,
+      "2": 2,
+      "4": 1,
+      "5": 1
+    },
+    "mean_gold_rank_observed": 2.8,
+    "mean_top_gold_margin_observed": 0.115158,
+    "retained_candidate_count_histogram": {
+      "5": 5
+    },
+    "top_action_counts": {
+      "ground": 5
+    },
+    "top_evidence_status_counts": {
+      "supported": 5
+    }
+  },
+  "dataset": "negbiodb_ct_stage_a_enum_candidate_rank_diagnostic_v1",
+  "heldout_counterfactual_readout": [
+    {
+      "case_family": "supported_negative_evidence",
+      "exact_top1": true,
+      "expected": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "gold_rank": 1,
+      "top_candidate": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_gold_margin": 0.0
+    },
+    {
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "exact_top1": false,
+      "expected": {
+        "action": "reject",
+        "evidence_status": "contradicted"
+      },
+      "gold_rank": 2,
+      "top_candidate": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_gold_margin": 0.121863
+    },
+    {
+      "case_family": "insufficient_evidence",
+      "exact_top1": false,
+      "expected": {
+        "action": "defer",
+        "evidence_status": "insufficient"
+      },
+      "gold_rank": 4,
+      "top_candidate": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_gold_margin": 0.171361
+    },
+    {
+      "case_family": "related_evidence_requires_verification",
+      "exact_top1": false,
+      "expected": {
+        "action": "verify",
+        "evidence_status": "insufficient"
+      },
+      "gold_rank": 2,
+      "top_candidate": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_gold_margin": 0.052566
+    },
+    {
+      "case_family": "invalid_value_attribution_failure",
+      "exact_top1": false,
+      "expected": {
+        "action": "flag",
+        "evidence_status": "invalid_value"
+      },
+      "gold_rank": 5,
+      "top_candidate": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_gold_margin": 0.229999
+    }
+  ],
+  "run_id": "stage_a_component_enum_action_candidate_fullrank_cayuga_2026_07_05",
+  "scientific_readout": {
+    "interpretation": "The 30-way Cartesian candidate space was not the primary bottleneck. The current model needs evidence-conditioned enum supervision, not merely target-space pruning.",
+    "next_decision": "Keep DPO/RLVR and tool_query gated. Add enum-specific corrective examples or contrastive/pairwise pressure against ground/supported collapse first.",
+    "question": "If enum_action decoding is restricted to train-observed valid target pairs, does held-out enum routing improve?",
+    "result": "No. Exact top-1 remains 1/5 and every held-out case selects ground/supported under the observed-pair policy."
+  },
+  "source_dataset": "negbiodb_ct_stage_a_strict_component_sft_smoke_v1",
+  "trace": {
+    "counterfactual_report_sha256": "18328db2f998715165d467042954e5dfd00c25f47aa003d1c6a75f27a464428d",
+    "source_predictions_sha256": "bacc78cb74c91b01f3a70e3b7d02f85ef5d6c719949bc735e2853ed189eae28f"
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_outputs_committed": false,
+    "raw_outputs_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "cluster": "Cayuga Slurm GPU",
+  "component": "enum_action",
+  "dataset": "negbiodb_ct_stage_a_enum_corrective_sft_smoke_v1",
+  "failure_mode": "ground_supported_collapse",
+  "heldout_margin_readout": [
+    {
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "chosen_pair": "reject/contradicted",
+      "chosen_score": -0.35764,
+      "margin": 0.014703,
+      "passed": true,
+      "rejected_pair": "ground/supported",
+      "rejected_score": -0.372343
+    },
+    {
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "chosen_pair": "defer/insufficient",
+      "chosen_score": -0.431467,
+      "margin": -0.052623,
+      "passed": false,
+      "rejected_pair": "ground/supported",
+      "rejected_score": -0.378844
+    },
+    {
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "chosen_pair": "verify/insufficient",
+      "chosen_score": -0.348829,
+      "margin": 0.061328,
+      "passed": true,
+      "rejected_pair": "ground/supported",
+      "rejected_score": -0.410157
+    },
+    {
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "chosen_pair": "flag/invalid_value",
+      "chosen_score": -0.50819,
+      "margin": -0.106149,
+      "passed": false,
+      "rejected_pair": "ground/supported",
+      "rejected_score": -0.402041
+    }
+  ],
+  "heldout_margin_result": {
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "margin_wins": 0,
+        "mean_margin": -0.052623,
+        "min_margin": -0.052623,
+        "pairs": 1
+      },
+      "flag/invalid_value": {
+        "margin_wins": 0,
+        "mean_margin": -0.106149,
+        "min_margin": -0.106149,
+        "pairs": 1
+      },
+      "reject/contradicted": {
+        "margin_wins": 1,
+        "mean_margin": 0.014703,
+        "min_margin": 0.014703,
+        "pairs": 1
+      },
+      "verify/insufficient": {
+        "margin_wins": 1,
+        "mean_margin": 0.061328,
+        "min_margin": 0.061328,
+        "pairs": 1
+      }
+    },
+    "heldout_pairs": 4,
+    "margin_accuracy": 0.5,
+    "margin_wins": 2,
+    "mean_chosen_score": -0.411532,
+    "mean_margin": -0.020685,
+    "mean_rejected_score": -0.390846,
+    "min_margin": -0.106149,
+    "violations": {
+      "chosen_not_above_rejected": 2
+    }
+  },
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "prompt_contract": "stage_a_v2_strict",
+  "run_id": "stage_a_enum_corrective_sft_cayuga_2026_07_05",
+  "runner": "post_training/run_stage_a_enum_corrective_sft_smoke.py",
+  "scientific_readout": {
+    "interpretation": "Tiny chosen-only enum corrective SFT creates partial contrast signal but does not solve the ground/supported collapse. Contradicted and verification-needed held-out pairs beat the collapse target; insufficient and invalid-value cases still lose to ground/supported.",
+    "next_decision": "Keep DPO/RLVR and broad tool_query progression gated. Add or diagnose enum-specific corrective supervision for insufficient and invalid-value cases before interpreting this as a stable component repair.",
+    "question": "Does enum corrective SFT make held-out oracle enum/action pairs score above the observed ground/supported collapse target?",
+    "result": "Partial. Held-out contrast margin wins are 2/4, with mean margin -0.020685."
+  },
+  "split": {
+    "heldout": "post_training/stage_a_enum_corrective_pairs_heldout_v1.jsonl",
+    "train": "post_training/stage_a_enum_corrective_pairs_train_v1.jsonl"
+  },
+  "trace": {
+    "margin_report_sha256": "65a4f8ae840ef277faed74b8362a89b9b7ec4a9b44d370c9407472915eab1e15",
+    "margins_jsonl_sha256": "a308b1fd341352445bb7e897740a4e36851b93f096b7a495d12c79f100dae37b",
+    "report_sha256": "a9cf5e537b9457d42a6a7c9e922419b9466ae3a3c1e3612e9c224caddb6533ef",
+    "trainable_state_sha256": "6893d3a6d7c7d8f69c87ac554e4b69cb86f6ee423a881071d43825418ba023df"
+  },
+  "training": {
+    "batch_size": 1,
+    "device": "cuda",
+    "heldout_examples": 4,
+    "loss_delta": -0.74327,
+    "loss_first": 1.0532307624816895,
+    "loss_last": 0.3099605441093445,
+    "max_steps": 20,
+    "train_examples": 16,
+    "train_last_layers": 1,
+    "trainable_params": 14913280
+  }
+}

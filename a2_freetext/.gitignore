@@ -1,0 +1,13 @@
+# Generated / downloaded artifacts (regenerable by the scripts; too large for git)
+__pycache__/
+*.log
+*.npy
+*.obo
+adapter_*/
+band_train.jsonl
+band_eval.jsonl
+mondo_hierarchy.json
+conditions_mondo_crosswalk.json
+chembl_aliases.json
+rxnorm_tier.json
+# kept in-repo: *.py scripts, *.md docs, band_cases.json (the frozen 200-case eval set)

@@ -1,0 +1,184 @@
+{
+  "boundary": "Pair-mean centering is estimated from train candidate scores only and applied once to held-out candidates. The optional score-gap gate threshold is selected on calibrated train rows only. This is a diagnostic, not held-out tuning, DPO/RLVR, or a deployment-readiness claim.",
+  "calibrated_heldout_summary": {
+    "cases": 4,
+    "exact_top1": 2,
+    "exact_top1_accuracy": 0.5,
+    "mean_target_rank": 2.5,
+    "mean_top_second_gap": 0.007827,
+    "mean_top_target_margin": 0.008849,
+    "target_pair_counts": {
+      "defer/insufficient": 1,
+      "flag/invalid_value": 1,
+      "reject/contradicted": 1,
+      "verify/insufficient": 1
+    },
+    "top_pair_counts": {
+      "defer/insufficient": 2,
+      "ground/supported": 1,
+      "verify/insufficient": 1
+    }
+  },
+  "calibrated_train_summary": {
+    "cases": 16,
+    "exact_top1": 1,
+    "exact_top1_accuracy": 0.062,
+    "mean_target_rank": 3.125,
+    "mean_top_second_gap": 0.007227,
+    "mean_top_target_margin": 0.009497,
+    "target_pair_counts": {
+      "defer/insufficient": 4,
+      "flag/invalid_value": 4,
+      "reject/contradicted": 4,
+      "verify/insufficient": 4
+    },
+    "top_pair_counts": {
+      "defer/insufficient": 4,
+      "flag/invalid_value": 2,
+      "ground/supported": 4,
+      "reject/contradicted": 5,
+      "verify/insufficient": 1
+    }
+  },
+  "calibration_mode": "pair_mean_center",
+  "candidate_policy": "train_observed_plus_rejected",
+  "candidate_target_format": "full",
+  "dataset": "negbiodb_ct_stage_a_saved_output_candidate_calibration_v1",
+  "heldout_score_label": "trained_heldout",
+  "input_heldout_candidates_sha256": "918f8dff5321ebcf37f08aa97f34a6b21e56d590b2b821ef3244e006389ffb50",
+  "input_train_candidates_sha256": "785a996a90fdb276b98ea51672072e0ff22e612167686988c78a8d566139b0e6",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "pair_mean_scores": {
+    "defer/insufficient": {
+      "count": 16,
+      "mean_score": -0.505145
+    },
+    "flag/invalid_value": {
+      "count": 16,
+      "mean_score": -0.447466
+    },
+    "ground/supported": {
+      "count": 16,
+      "mean_score": -0.507258
+    },
+    "reject/contradicted": {
+      "count": 16,
+      "mean_score": -0.510962
+    },
+    "verify/insufficient": {
+      "count": 16,
+      "mean_score": -0.487164
+    }
+  },
+  "raw_heldout_summary": {
+    "cases": 4,
+    "exact_top1": 1,
+    "exact_top1_accuracy": 0.25,
+    "mean_target_rank": 2.5,
+    "mean_top_second_gap": 0.035761,
+    "mean_top_target_margin": 0.039652,
+    "target_pair_counts": {
+      "defer/insufficient": 1,
+      "flag/invalid_value": 1,
+      "reject/contradicted": 1,
+      "verify/insufficient": 1
+    },
+    "top_pair_counts": {
+      "flag/invalid_value": 4
+    }
+  },
+  "rows": [
+    {
+      "calibrated_exact_top1": false,
+      "calibrated_target_rank": 4,
+      "calibrated_top_pair_label": "defer/insufficient",
+      "calibrated_top_second_gap": 0.000689,
+      "calibrated_top_target_margin": 0.001572,
+      "case_id": "stage_a::000007",
+      "raw_target_rank": 4,
+      "raw_top_pair_label": "flag/invalid_value",
+      "raw_top_target_margin": 0.063905,
+      "target_pair_label": "reject/contradicted"
+    },
+    {
+      "calibrated_exact_top1": true,
+      "calibrated_target_rank": 1,
+      "calibrated_top_pair_label": "defer/insufficient",
+      "calibrated_top_second_gap": 0.001128,
+      "calibrated_top_target_margin": 0.0,
+      "case_id": "stage_a::000012",
+      "raw_target_rank": 3,
+      "raw_top_pair_label": "flag/invalid_value",
+      "raw_top_target_margin": 0.055107,
+      "target_pair_label": "defer/insufficient"
+    },
+    {
+      "calibrated_exact_top1": true,
+      "calibrated_target_rank": 1,
+      "calibrated_top_pair_label": "verify/insufficient",
+      "calibrated_top_second_gap": 0.000102,
+      "calibrated_top_target_margin": 0.0,
+      "case_id": "stage_a::000019",
+      "raw_target_rank": 2,
+      "raw_top_pair_label": "flag/invalid_value",
+      "raw_top_target_margin": 0.039596,
+      "target_pair_label": "verify/insufficient"
+    },
+    {
+      "calibrated_exact_top1": false,
+      "calibrated_target_rank": 4,
+      "calibrated_top_pair_label": "ground/supported",
+      "calibrated_top_second_gap": 0.029388,
+      "calibrated_top_target_margin": 0.033824,
+      "case_id": "stage_a::000021",
+      "raw_target_rank": 1,
+      "raw_top_pair_label": "flag/invalid_value",
+      "raw_top_target_margin": 0.0,
+      "target_pair_label": "flag/invalid_value"
+    }
+  ],
+  "run_id": "stage_a_saved_output_flag_full_train_candidates_qwen05b_cayuga_20260710",
+  "train_score_label": "trained_train",
+  "train_selected_gate_report": {
+    "coverage": 0.0,
+    "fail_closed": 4,
+    "fail_closed_case_ids": [
+      "stage_a::000007",
+      "stage_a::000012",
+      "stage_a::000019",
+      "stage_a::000021"
+    ],
+    "fail_closed_exact_correct": 1,
+    "fail_closed_pair": {
+      "action": "defer",
+      "evidence_status": "insufficient"
+    },
+    "strict_final_accuracy": 0.25,
+    "strict_final_correct": 1,
+    "threshold": 0.045521,
+    "trusted": 0,
+    "trusted_case_ids": [],
+    "trusted_correct": 0,
+    "trusted_incorrect": 0,
+    "trusted_precision": null,
+    "unsafe_trust_case_ids": []
+  },
+  "train_selected_zero_unsafe_threshold": 0.045521,
+  "train_summary": {
+    "cases": 16,
+    "exact_top1": 4,
+    "exact_top1_accuracy": 0.25,
+    "mean_target_rank": 2.5,
+    "mean_top_second_gap": 0.037728,
+    "mean_top_target_margin": 0.040533,
+    "target_pair_counts": {
+      "defer/insufficient": 4,
+      "flag/invalid_value": 4,
+      "reject/contradicted": 4,
+      "verify/insufficient": 4
+    },
+    "top_pair_counts": {
+      "flag/invalid_value": 16
+    }
+  }
+}

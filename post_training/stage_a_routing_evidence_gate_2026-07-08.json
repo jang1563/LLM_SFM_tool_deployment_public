@@ -1,0 +1,1144 @@
+{
+  "component": "routing_after_loop",
+  "dataset": "negbiodb_ct_stage_a_routing_evidence_gate_v1",
+  "fail_closed_default": {
+    "action": "defer",
+    "cited_source_ids": [],
+    "evidence_status": "insufficient"
+  },
+  "gate": "deterministic_model_visible_evidence_routing_gate",
+  "heldout_rows": [
+    {
+      "action_status_exact": true,
+      "case_family": "supported_negative_evidence",
+      "case_id": "stage_a::000001",
+      "exact": true,
+      "expected": {
+        "action": "ground",
+        "cited_source_ids": [
+          "NCT00588770"
+        ],
+        "evidence_status": "supported"
+      },
+      "expected_pair": "ground/supported",
+      "features": {
+        "citation_candidates": [
+          "NCT00588770"
+        ],
+        "completeness_signal": "same_indication_failure_record_found",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000001::routing_after_loop",
+      "predicted": {
+        "action": "ground",
+        "cited_source_ids": [
+          "NCT00588770"
+        ],
+        "evidence_status": "supported"
+      },
+      "predicted_pair": "ground/supported",
+      "reason": "same_indication_failure_record_found",
+      "split_label": "heldout"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "exact": true,
+      "expected": {
+        "action": "reject",
+        "cited_source_ids": [],
+        "evidence_status": "contradicted"
+      },
+      "expected_pair": "reject/contradicted",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "mixed_endpoint_records_for_same_claim",
+        "observed_tool_loop_present": true,
+        "records_considered": 2,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 2,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000007::routing_after_loop",
+      "predicted": {
+        "action": "reject",
+        "cited_source_ids": [],
+        "evidence_status": "contradicted"
+      },
+      "predicted_pair": "reject/contradicted",
+      "reason": "mixed_endpoint_records_for_same_claim",
+      "split_label": "heldout"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "exact": true,
+      "expected": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "defer/insufficient",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000012::routing_after_loop",
+      "predicted": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "defer/insufficient",
+      "reason": "no_same_indication_or_related_failure_record",
+      "split_label": "heldout"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "exact": true,
+      "expected": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "verify/insufficient",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000019::routing_after_loop",
+      "predicted": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "verify/insufficient",
+      "reason": "related_evidence_without_same_indication_record",
+      "split_label": "heldout"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "exact": true,
+      "expected": {
+        "action": "flag",
+        "cited_source_ids": [
+          "NCT00828178"
+        ],
+        "evidence_status": "invalid_value"
+      },
+      "expected_pair": "flag/invalid_value",
+      "features": {
+        "citation_candidates": [
+          "NCT00828178"
+        ],
+        "completeness_signal": "same_indication_record_has_invalid_numeric_value",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings": [
+          {
+            "field": "p_value",
+            "source_id": "NCT00828178",
+            "valid_range": [
+              0.0,
+              1.0
+            ],
+            "value": 14.73
+          }
+        ]
+      },
+      "id": "stage_a_evidence_component::stage_a::000021::routing_after_loop",
+      "predicted": {
+        "action": "flag",
+        "cited_source_ids": [
+          "NCT00828178"
+        ],
+        "evidence_status": "invalid_value"
+      },
+      "predicted_pair": "flag/invalid_value",
+      "reason": "invalid_numeric_value_in_same_indication_record",
+      "split_label": "heldout"
+    }
+  ],
+  "hidden_labels_used_by_gate": false,
+  "input_targets": "post_training/stage_a_evidence_conditioned_component_targets_v1.jsonl",
+  "model_visible_fields_only": true,
+  "prompt_contract": "stage_a_v2_evidence_conditioned_component",
+  "rows": [
+    {
+      "action_status_exact": true,
+      "case_family": "supported_negative_evidence",
+      "case_id": "stage_a::000000",
+      "exact": true,
+      "expected": {
+        "action": "ground",
+        "cited_source_ids": [
+          "NCT00474903"
+        ],
+        "evidence_status": "supported"
+      },
+      "expected_pair": "ground/supported",
+      "features": {
+        "citation_candidates": [
+          "NCT00474903"
+        ],
+        "completeness_signal": "same_indication_failure_record_found",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000000::routing_after_loop",
+      "predicted": {
+        "action": "ground",
+        "cited_source_ids": [
+          "NCT00474903"
+        ],
+        "evidence_status": "supported"
+      },
+      "predicted_pair": "ground/supported",
+      "reason": "same_indication_failure_record_found",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "supported_negative_evidence",
+      "case_id": "stage_a::000001",
+      "exact": true,
+      "expected": {
+        "action": "ground",
+        "cited_source_ids": [
+          "NCT00588770"
+        ],
+        "evidence_status": "supported"
+      },
+      "expected_pair": "ground/supported",
+      "features": {
+        "citation_candidates": [
+          "NCT00588770"
+        ],
+        "completeness_signal": "same_indication_failure_record_found",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000001::routing_after_loop",
+      "predicted": {
+        "action": "ground",
+        "cited_source_ids": [
+          "NCT00588770"
+        ],
+        "evidence_status": "supported"
+      },
+      "predicted_pair": "ground/supported",
+      "reason": "same_indication_failure_record_found",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "supported_negative_evidence",
+      "case_id": "stage_a::000002",
+      "exact": true,
+      "expected": {
+        "action": "ground",
+        "cited_source_ids": [
+          "NCT00183729"
+        ],
+        "evidence_status": "supported"
+      },
+      "expected_pair": "ground/supported",
+      "features": {
+        "citation_candidates": [
+          "NCT00183729"
+        ],
+        "completeness_signal": "same_indication_failure_record_found",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000002::routing_after_loop",
+      "predicted": {
+        "action": "ground",
+        "cited_source_ids": [
+          "NCT00183729"
+        ],
+        "evidence_status": "supported"
+      },
+      "predicted_pair": "ground/supported",
+      "reason": "same_indication_failure_record_found",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "supported_negative_evidence",
+      "case_id": "stage_a::000003",
+      "exact": true,
+      "expected": {
+        "action": "ground",
+        "cited_source_ids": [
+          "NCT00895245"
+        ],
+        "evidence_status": "supported"
+      },
+      "expected_pair": "ground/supported",
+      "features": {
+        "citation_candidates": [
+          "NCT00895245"
+        ],
+        "completeness_signal": "same_indication_failure_record_found",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000003::routing_after_loop",
+      "predicted": {
+        "action": "ground",
+        "cited_source_ids": [
+          "NCT00895245"
+        ],
+        "evidence_status": "supported"
+      },
+      "predicted_pair": "ground/supported",
+      "reason": "same_indication_failure_record_found",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "supported_negative_evidence",
+      "case_id": "stage_a::000004",
+      "exact": true,
+      "expected": {
+        "action": "ground",
+        "cited_source_ids": [
+          "NCT03036800"
+        ],
+        "evidence_status": "supported"
+      },
+      "expected_pair": "ground/supported",
+      "features": {
+        "citation_candidates": [
+          "NCT03036800"
+        ],
+        "completeness_signal": "same_indication_failure_record_found",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000004::routing_after_loop",
+      "predicted": {
+        "action": "ground",
+        "cited_source_ids": [
+          "NCT03036800"
+        ],
+        "evidence_status": "supported"
+      },
+      "predicted_pair": "ground/supported",
+      "reason": "same_indication_failure_record_found",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000005",
+      "exact": true,
+      "expected": {
+        "action": "reject",
+        "cited_source_ids": [],
+        "evidence_status": "contradicted"
+      },
+      "expected_pair": "reject/contradicted",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "mixed_endpoint_records_for_same_claim",
+        "observed_tool_loop_present": true,
+        "records_considered": 2,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 2,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000005::routing_after_loop",
+      "predicted": {
+        "action": "reject",
+        "cited_source_ids": [],
+        "evidence_status": "contradicted"
+      },
+      "predicted_pair": "reject/contradicted",
+      "reason": "mixed_endpoint_records_for_same_claim",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000006",
+      "exact": true,
+      "expected": {
+        "action": "reject",
+        "cited_source_ids": [],
+        "evidence_status": "contradicted"
+      },
+      "expected_pair": "reject/contradicted",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "mixed_endpoint_records_for_same_claim",
+        "observed_tool_loop_present": true,
+        "records_considered": 2,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 2,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000006::routing_after_loop",
+      "predicted": {
+        "action": "reject",
+        "cited_source_ids": [],
+        "evidence_status": "contradicted"
+      },
+      "predicted_pair": "reject/contradicted",
+      "reason": "mixed_endpoint_records_for_same_claim",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "exact": true,
+      "expected": {
+        "action": "reject",
+        "cited_source_ids": [],
+        "evidence_status": "contradicted"
+      },
+      "expected_pair": "reject/contradicted",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "mixed_endpoint_records_for_same_claim",
+        "observed_tool_loop_present": true,
+        "records_considered": 2,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 2,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000007::routing_after_loop",
+      "predicted": {
+        "action": "reject",
+        "cited_source_ids": [],
+        "evidence_status": "contradicted"
+      },
+      "predicted_pair": "reject/contradicted",
+      "reason": "mixed_endpoint_records_for_same_claim",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000008",
+      "exact": true,
+      "expected": {
+        "action": "reject",
+        "cited_source_ids": [],
+        "evidence_status": "contradicted"
+      },
+      "expected_pair": "reject/contradicted",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "mixed_endpoint_records_for_same_claim",
+        "observed_tool_loop_present": true,
+        "records_considered": 2,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 2,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000008::routing_after_loop",
+      "predicted": {
+        "action": "reject",
+        "cited_source_ids": [],
+        "evidence_status": "contradicted"
+      },
+      "predicted_pair": "reject/contradicted",
+      "reason": "mixed_endpoint_records_for_same_claim",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000009",
+      "exact": true,
+      "expected": {
+        "action": "reject",
+        "cited_source_ids": [],
+        "evidence_status": "contradicted"
+      },
+      "expected_pair": "reject/contradicted",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "mixed_endpoint_records_for_same_claim",
+        "observed_tool_loop_present": true,
+        "records_considered": 2,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 2,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000009::routing_after_loop",
+      "predicted": {
+        "action": "reject",
+        "cited_source_ids": [],
+        "evidence_status": "contradicted"
+      },
+      "predicted_pair": "reject/contradicted",
+      "reason": "mixed_endpoint_records_for_same_claim",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000010",
+      "exact": true,
+      "expected": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "defer/insufficient",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000010::routing_after_loop",
+      "predicted": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "defer/insufficient",
+      "reason": "no_same_indication_or_related_failure_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000011",
+      "exact": true,
+      "expected": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "defer/insufficient",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000011::routing_after_loop",
+      "predicted": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "defer/insufficient",
+      "reason": "no_same_indication_or_related_failure_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "exact": true,
+      "expected": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "defer/insufficient",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000012::routing_after_loop",
+      "predicted": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "defer/insufficient",
+      "reason": "no_same_indication_or_related_failure_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000013",
+      "exact": true,
+      "expected": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "defer/insufficient",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000013::routing_after_loop",
+      "predicted": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "defer/insufficient",
+      "reason": "no_same_indication_or_related_failure_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000014",
+      "exact": true,
+      "expected": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "defer/insufficient",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000014::routing_after_loop",
+      "predicted": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "defer/insufficient",
+      "reason": "no_same_indication_or_related_failure_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000015",
+      "exact": true,
+      "expected": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "verify/insufficient",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000015::routing_after_loop",
+      "predicted": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "verify/insufficient",
+      "reason": "related_evidence_without_same_indication_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000016",
+      "exact": true,
+      "expected": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "verify/insufficient",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000016::routing_after_loop",
+      "predicted": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "verify/insufficient",
+      "reason": "related_evidence_without_same_indication_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000017",
+      "exact": true,
+      "expected": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "verify/insufficient",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000017::routing_after_loop",
+      "predicted": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "verify/insufficient",
+      "reason": "related_evidence_without_same_indication_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000018",
+      "exact": true,
+      "expected": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "verify/insufficient",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000018::routing_after_loop",
+      "predicted": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "verify/insufficient",
+      "reason": "related_evidence_without_same_indication_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "exact": true,
+      "expected": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "verify/insufficient",
+      "features": {
+        "citation_candidates": [],
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0,
+        "value_validity_findings": []
+      },
+      "id": "stage_a_evidence_component::stage_a::000019::routing_after_loop",
+      "predicted": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "verify/insufficient",
+      "reason": "related_evidence_without_same_indication_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000020",
+      "exact": true,
+      "expected": {
+        "action": "flag",
+        "cited_source_ids": [
+          "NCT00875017"
+        ],
+        "evidence_status": "invalid_value"
+      },
+      "expected_pair": "flag/invalid_value",
+      "features": {
+        "citation_candidates": [
+          "NCT00875017"
+        ],
+        "completeness_signal": "same_indication_record_has_invalid_numeric_value",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings": [
+          {
+            "field": "p_value",
+            "source_id": "NCT00875017",
+            "valid_range": [
+              0.0,
+              1.0
+            ],
+            "value": 14.73
+          }
+        ]
+      },
+      "id": "stage_a_evidence_component::stage_a::000020::routing_after_loop",
+      "predicted": {
+        "action": "flag",
+        "cited_source_ids": [
+          "NCT00875017"
+        ],
+        "evidence_status": "invalid_value"
+      },
+      "predicted_pair": "flag/invalid_value",
+      "reason": "invalid_numeric_value_in_same_indication_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "exact": true,
+      "expected": {
+        "action": "flag",
+        "cited_source_ids": [
+          "NCT00828178"
+        ],
+        "evidence_status": "invalid_value"
+      },
+      "expected_pair": "flag/invalid_value",
+      "features": {
+        "citation_candidates": [
+          "NCT00828178"
+        ],
+        "completeness_signal": "same_indication_record_has_invalid_numeric_value",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings": [
+          {
+            "field": "p_value",
+            "source_id": "NCT00828178",
+            "valid_range": [
+              0.0,
+              1.0
+            ],
+            "value": 14.73
+          }
+        ]
+      },
+      "id": "stage_a_evidence_component::stage_a::000021::routing_after_loop",
+      "predicted": {
+        "action": "flag",
+        "cited_source_ids": [
+          "NCT00828178"
+        ],
+        "evidence_status": "invalid_value"
+      },
+      "predicted_pair": "flag/invalid_value",
+      "reason": "invalid_numeric_value_in_same_indication_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000022",
+      "exact": true,
+      "expected": {
+        "action": "flag",
+        "cited_source_ids": [
+          "NCT01949337"
+        ],
+        "evidence_status": "invalid_value"
+      },
+      "expected_pair": "flag/invalid_value",
+      "features": {
+        "citation_candidates": [
+          "NCT01949337"
+        ],
+        "completeness_signal": "same_indication_record_has_invalid_numeric_value",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings": [
+          {
+            "field": "p_value",
+            "source_id": "NCT01949337",
+            "valid_range": [
+              0.0,
+              1.0
+            ],
+            "value": 14.73
+          }
+        ]
+      },
+      "id": "stage_a_evidence_component::stage_a::000022::routing_after_loop",
+      "predicted": {
+        "action": "flag",
+        "cited_source_ids": [
+          "NCT01949337"
+        ],
+        "evidence_status": "invalid_value"
+      },
+      "predicted_pair": "flag/invalid_value",
+      "reason": "invalid_numeric_value_in_same_indication_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000023",
+      "exact": true,
+      "expected": {
+        "action": "flag",
+        "cited_source_ids": [
+          "NCT01869764"
+        ],
+        "evidence_status": "invalid_value"
+      },
+      "expected_pair": "flag/invalid_value",
+      "features": {
+        "citation_candidates": [
+          "NCT01869764"
+        ],
+        "completeness_signal": "same_indication_record_has_invalid_numeric_value",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings": [
+          {
+            "field": "p_value",
+            "source_id": "NCT01869764",
+            "valid_range": [
+              0.0,
+              1.0
+            ],
+            "value": 14.73
+          }
+        ]
+      },
+      "id": "stage_a_evidence_component::stage_a::000023::routing_after_loop",
+      "predicted": {
+        "action": "flag",
+        "cited_source_ids": [
+          "NCT01869764"
+        ],
+        "evidence_status": "invalid_value"
+      },
+      "predicted_pair": "flag/invalid_value",
+      "reason": "invalid_numeric_value_in_same_indication_record",
+      "split_label": "all"
+    },
+    {
+      "action_status_exact": true,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000024",
+      "exact": true,
+      "expected": {
+        "action": "flag",
+        "cited_source_ids": [
+          "NCT01233869"
+        ],
+        "evidence_status": "invalid_value"
+      },
+      "expected_pair": "flag/invalid_value",
+      "features": {
+        "citation_candidates": [
+          "NCT01233869"
+        ],
+        "completeness_signal": "same_indication_record_has_invalid_numeric_value",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings": [
+          {
+            "field": "p_value",
+            "source_id": "NCT01233869",
+            "valid_range": [
+              0.0,
+              1.0
+            ],
+            "value": 14.73
+          }
+        ]
+      },
+      "id": "stage_a_evidence_component::stage_a::000024::routing_after_loop",
+      "predicted": {
+        "action": "flag",
+        "cited_source_ids": [
+          "NCT01233869"
+        ],
+        "evidence_status": "invalid_value"
+      },
+      "predicted_pair": "flag/invalid_value",
+      "reason": "invalid_numeric_value_in_same_indication_record",
+      "split_label": "all"
+    }
+  ],
+  "scientific_readout": {
+    "diagnostic_question": "Can deterministic runtime enforcement route all Stage A evidence-conditioned routing rows from model-visible tool results?",
+    "interpretation_rule": "A passing no-model gate is a runtime baseline to beat. It does not prove model competence, and should not be used as a reason to start DPO/RLVR.",
+    "next_decision": "Compare model outputs against this gate and keep tool_query, DPO/RLVR, and Hugging Face publication gated until model-heavy experiments beat the runtime baseline on broader held-out slices."
+  },
+  "summary": {
+    "all": {
+      "accuracy": 1.0,
+      "action_status_accuracy": 1.0,
+      "action_status_exact": 25,
+      "by_expected_pair": {
+        "defer/insufficient": 5,
+        "flag/invalid_value": 5,
+        "ground/supported": 5,
+        "reject/contradicted": 5,
+        "verify/insufficient": 5
+      },
+      "by_predicted_pair": {
+        "defer/insufficient": 5,
+        "flag/invalid_value": 5,
+        "ground/supported": 5,
+        "reject/contradicted": 5,
+        "verify/insufficient": 5
+      },
+      "by_reason": {
+        "invalid_numeric_value_in_same_indication_record": 5,
+        "mixed_endpoint_records_for_same_claim": 5,
+        "no_same_indication_or_related_failure_record": 5,
+        "related_evidence_without_same_indication_record": 5,
+        "same_indication_failure_record_found": 5
+      },
+      "error_case_ids": [],
+      "exact": 25,
+      "rows": 25
+    },
+    "heldout": {
+      "accuracy": 1.0,
+      "action_status_accuracy": 1.0,
+      "action_status_exact": 5,
+      "by_expected_pair": {
+        "defer/insufficient": 1,
+        "flag/invalid_value": 1,
+        "ground/supported": 1,
+        "reject/contradicted": 1,
+        "verify/insufficient": 1
+      },
+      "by_predicted_pair": {
+        "defer/insufficient": 1,
+        "flag/invalid_value": 1,
+        "ground/supported": 1,
+        "reject/contradicted": 1,
+        "verify/insufficient": 1
+      },
+      "by_reason": {
+        "invalid_numeric_value_in_same_indication_record": 1,
+        "mixed_endpoint_records_for_same_claim": 1,
+        "no_same_indication_or_related_failure_record": 1,
+        "related_evidence_without_same_indication_record": 1,
+        "same_indication_failure_record_found": 1
+      },
+      "error_case_ids": [],
+      "exact": 5,
+      "rows": 5
+    },
+    "train": {
+      "accuracy": 1.0,
+      "action_status_accuracy": 1.0,
+      "action_status_exact": 20,
+      "by_expected_pair": {
+        "defer/insufficient": 4,
+        "flag/invalid_value": 4,
+        "ground/supported": 4,
+        "reject/contradicted": 4,
+        "verify/insufficient": 4
+      },
+      "by_predicted_pair": {
+        "defer/insufficient": 4,
+        "flag/invalid_value": 4,
+        "ground/supported": 4,
+        "reject/contradicted": 4,
+        "verify/insufficient": 4
+      },
+      "by_reason": {
+        "invalid_numeric_value_in_same_indication_record": 4,
+        "mixed_endpoint_records_for_same_claim": 4,
+        "no_same_indication_or_related_failure_record": 4,
+        "related_evidence_without_same_indication_record": 4,
+        "same_indication_failure_record_found": 4
+      },
+      "error_case_ids": [],
+      "exact": 20,
+      "rows": 20
+    }
+  }
+}

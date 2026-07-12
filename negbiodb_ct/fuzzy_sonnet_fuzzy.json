@@ -1,0 +1,1120 @@
+{
+  "summary": {
+    "model": "claude-sonnet-4-6",
+    "tier": "fuzzy",
+    "n": 100,
+    "action_accuracy": 0.45,
+    "mean_reward": 0.44,
+    "generic_mean_score": 0.73,
+    "false_deprioritization_rate": 0.8,
+    "by_class": {
+      "defer": "18/20",
+      "flag": "7/20",
+      "ground": "1/20",
+      "reject": "5/20",
+      "verify": "14/20"
+    }
+  },
+  "rows": [
+    {
+      "packet_id": "fz::defer::CHEMBL1234270::7236",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL3039540::79",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03639987"
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL1201438::9653",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL4778760::49624",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL90555::4607",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT02883049"
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL3707403::25541",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL1738797::35880",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL1201583::5701",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL4802266::53094",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL2105750::35071",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL25::274",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00637468"
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL3039543::24407",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL1614701::33183",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL449721::39587",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL154111::481",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL1112::26865",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL838::42988",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL483158::1930",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT01466881"
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL888::9350",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL4297577::8466",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL635::633",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL451887::1555",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL180971::32946",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL790::8769",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL2135460::1601",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL1138::489",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL1201581::55859",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL428647::11044",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL185::5037",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL1201554::27591",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL1351::2063",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL1201583::573",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL1762621::45799",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL92::6486",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL1647::25203",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL1314751::31376",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL2109491::21075",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL3977543::17624",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL1473::32523",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL2108061::401",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL3301609::7898",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL307697::29561",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL553::13701",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL940::14571",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL1200751::5368",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL80::43371",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL2095212::11325",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL1072::30050",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL6068109::36447",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL4802251::13360",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL3301612::220",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT03898908"
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL4297181::1754",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL1456::474",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL43064::26112",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL1863513::5461",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL1201668::2520",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL1200986::12407",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL3137343::54310",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL196::97",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL1059::18106",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT05053126"
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL635::50511",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL4297611::7080",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL4582651::9350",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL4297944::11484",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL314854::7851",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL566::20237",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL2005186::1905",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL3786896::54394",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL1568::12170",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL3833346::7979",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03070119"
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL3634561::79",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL1773::5699",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT02873195"
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL2443262::1112",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL414357::2182",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL1568::4667",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL3137332::45531",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL90555::3034",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT00336024"
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL575060::35970",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL160::52920",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL3989526::17381",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL607400::8420",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL2105704::50949",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL2107383::38948",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL2012520::211",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL4297862::17435",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL192::633",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL1614725::615",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL4297851::45289",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL885::5189",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL6068577::45811",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL4297855::23781",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL3545110::5701",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL1200374::3451",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL4446357::5192",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::flag::CHEMBL2403318::265",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT01525628"
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::defer::CHEMBL4594464::5551",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL1513::4521",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::ground::CHEMBL1201764::8",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::reject::CHEMBL1269025::43985",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": false,
+      "is_cross_form": true
+    },
+    {
+      "packet_id": "fz::verify::CHEMBL6068291::50691",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "correct": true,
+      "is_cross_form": true
+    }
+  ]
+}

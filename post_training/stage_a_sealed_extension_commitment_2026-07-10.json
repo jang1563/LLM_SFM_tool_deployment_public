@@ -1,0 +1,88 @@
+{
+  "aggregate_balance": {
+    "action_class_counts": {
+      "defer": 5,
+      "flag": 5,
+      "ground": 5,
+      "reject": 5,
+      "verify": 5
+    },
+    "case_family_counts": {
+      "contradicted_or_mixed_endpoint_claim": 5,
+      "insufficient_evidence": 5,
+      "invalid_value_attribution_failure": 5,
+      "related_evidence_requires_verification": 5,
+      "supported_negative_evidence": 5
+    },
+    "evidence_status_counts": {
+      "contradicted": 5,
+      "insufficient": 10,
+      "invalid_value": 5,
+      "supported": 5
+    }
+  },
+  "dataset": "negbiodb_ct_stage_a_sealed_extension_commitment_v1",
+  "decision": {
+    "interpretation": "The sealed extension is source-disjoint from all declared public task and manifest exclusions. Keep its rows private and use it once for model evaluation after the missing tool_query diagnostic.",
+    "ready_for_dpo_rlvr": false,
+    "ready_for_hugging_face_publication": false,
+    "ready_for_one_time_sealed_evaluation": true,
+    "ready_for_training_on_sealed_rows": false,
+    "selected_next_step": "complete_tool_query_diagnostic_then_run_one_time_sealed_evaluation"
+  },
+  "input_artifacts": {
+    "private_candidate_pool": {
+      "path": "external_private_input::stage_a_sealed_candidates_seed20260710.jsonl",
+      "records": 400,
+      "role": "private source candidate pool",
+      "sha256": "17b3409880ce7487018b49ac1b410a0f80330d277d9b15a2daef5ec6c7c5daeb"
+    },
+    "private_sealed_manifest": {
+      "path": "external_private_input::stage_a_sealed_extension_v1.jsonl",
+      "records": 25,
+      "role": "private sealed Stage A manifest",
+      "sha256": "0f58843d69f4fac7ba3e34b18ab3914a6470b7fdf703423cc746ce8d3459a193"
+    },
+    "public_exclusions": [
+      {
+        "path": "negbiodb_ct/tasks_pilot.jsonl",
+        "records": 400,
+        "role": "public exposed task exclusion",
+        "sha256": "4f9e27e5c7f319eb94f80a4435e0f3e8233c8261feee55b3dc7b31c963f7c9fd"
+      },
+      {
+        "path": "negbiodb_ct/tasks_fuzzy.jsonl",
+        "records": 400,
+        "role": "public exposed task exclusion",
+        "sha256": "c7f338a2f50421fae068cb560d21f9f197dda4df8248295b79f2af7546c1af94"
+      },
+      {
+        "path": "negbiodb_ct/stage_a_mini_manifest.jsonl",
+        "records": 25,
+        "role": "public Stage A manifest exclusion",
+        "sha256": "681dcb1e8f5a1de5460a52112f62e41a6e0b6508650d38d045f0c54fe99bd807"
+      }
+    ]
+  },
+  "overlap_checks": {
+    "normalized_claim_overlap": 0,
+    "source_task_id_overlap": 0,
+    "split_group_overlap": 0
+  },
+  "public_safety_contract": {
+    "candidate_pool_committed": false,
+    "private_manifest_committed": false,
+    "private_paths_redacted": true,
+    "row_level_case_ids_published": false,
+    "row_level_hidden_labels_published": false,
+    "row_level_source_ids_published": false
+  },
+  "sealed_dataset": "negbiodb_ct_stage_a_sealed_extension_v1",
+  "selection": {
+    "candidate_pool_rows": 400,
+    "per_action": 5,
+    "rows": 25,
+    "seed": 20260710,
+    "selection_commitment_sha256": "fd7f2ec478b3d3bc02d53a32dc2301a11cef7e65874d8de13160f10aa2621e24"
+  }
+}

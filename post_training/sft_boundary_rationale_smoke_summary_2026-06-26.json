@@ -1,0 +1,146 @@
+{
+  "created_at": "2026-06-26",
+  "dataset": "negbiodb_ct_native_sft_boundary_rationale_v1",
+  "strategy": "paired_boundary_rationale_v1",
+  "source_manifest": "post_training/negbiodb_ct_native_sft_v1.jsonl",
+  "source_cv_manifest": "post_training/negbiodb_ct_native_sft_cv4_manifest.json",
+  "manifest": "post_training/negbiodb_ct_native_sft_cv4_boundary_rationale_manifest.json",
+  "fold_summary": [
+    {
+      "fold": 0,
+      "train_examples": 60,
+      "train_by_class": {
+        "defer": 12,
+        "flag": 12,
+        "ground": 12,
+        "reject": 12,
+        "verify": 12
+      },
+      "train_by_role": {
+        "base": 30,
+        "rationale": 30
+      }
+    },
+    {
+      "fold": 1,
+      "train_examples": 60,
+      "train_by_class": {
+        "defer": 12,
+        "flag": 12,
+        "ground": 12,
+        "reject": 12,
+        "verify": 12
+      },
+      "train_by_role": {
+        "base": 30,
+        "rationale": 30
+      }
+    },
+    {
+      "fold": 2,
+      "train_examples": 60,
+      "train_by_class": {
+        "defer": 12,
+        "flag": 12,
+        "ground": 12,
+        "reject": 12,
+        "verify": 12
+      },
+      "train_by_role": {
+        "base": 30,
+        "rationale": 30
+      }
+    },
+    {
+      "fold": 3,
+      "train_examples": 60,
+      "train_by_class": {
+        "defer": 12,
+        "flag": 12,
+        "ground": 12,
+        "reject": 12,
+        "verify": 12
+      },
+      "train_by_role": {
+        "base": 30,
+        "rationale": 30
+      }
+    }
+  ],
+  "boundary_negative_actions": {
+    "defer": [
+      "verify"
+    ],
+    "flag": [
+      "ground",
+      "reject"
+    ],
+    "ground": [
+      "flag",
+      "reject"
+    ],
+    "reject": [
+      "ground",
+      "flag"
+    ],
+    "verify": [
+      "defer"
+    ]
+  },
+  "encoding_dry_run": {
+    "examples": 60,
+    "max_length": 512,
+    "encoded_lengths_min": 341,
+    "encoded_lengths_max": 512,
+    "encoded_lengths_count_512": 2
+  },
+  "one_step_smoke": {
+    "device": "mps",
+    "examples": 60,
+    "max_steps": 1,
+    "batch_size": 2,
+    "max_length": 512,
+    "train_last_layers": 1,
+    "trainable_params": 14913280,
+    "losses": [
+      3.9745163917541504
+    ]
+  },
+  "fold0_evalfast": {
+    "max_steps": 80,
+    "batch_size": 2,
+    "max_length": 512,
+    "train_last_layers": 2,
+    "lr": 5e-05,
+    "train_first_loss": 3.982125997543335,
+    "train_last_loss": 0.027240442112088203,
+    "train_loss_delta": -3.9548855554312468,
+    "heldout_teacher_forced_loaded_loss": 0.11637734215873391,
+    "strict": {
+      "action_accuracy": 0.5,
+      "parse_failures": 0,
+      "by_class": {
+        "defer": "0/2",
+        "flag": "1/2",
+        "ground": "0/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      }
+    },
+    "constrained_loaded": {
+      "action_accuracy": 0.5,
+      "by_class": {
+        "defer": "0/2",
+        "flag": "1/2",
+        "ground": "1/2",
+        "reject": "1/2",
+        "verify": "2/2"
+      }
+    }
+  },
+  "interpretation": [
+    "Prompt-side boundary rationales are compatible with the current final-decision SFT target.",
+    "Fold0 sanity is parse-stable and trainable but not a full CV result.",
+    "The next safe claim requires a full 4-fold boundary-rationale CV rerun."
+  ]
+}

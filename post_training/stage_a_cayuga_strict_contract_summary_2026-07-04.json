@@ -1,0 +1,80 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_predictions_committed": false,
+    "raw_predictions_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "baseline_comparison": {
+    "basic_contract_mean_score": 0.114,
+    "basic_contract_parse_errors": 4,
+    "strict_contract_mean_score": 0.372,
+    "strict_contract_parse_errors": 0
+  },
+  "cases_expected": 5,
+  "cluster": "Cayuga Slurm GPU",
+  "dataset": "negbiodb_ct_stage_a_prediction_eval_v1",
+  "eval_report_sha256": "d804cad64b56d56e0eb32a8f9deff19f2cdb77500c55431f550111d73524e57f",
+  "generation_mode": "hf_chat",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "predictions_received": 5,
+  "predictions_sha256": "8e602700e2cdb0a580f35ae86831b29e8f8308fab3e4b1f791346796d9c00c75",
+  "prompt_contract": "stage_a_v2_strict",
+  "result": {
+    "by_case_family": {
+      "contradicted_or_mixed_endpoint_claim": {
+        "cases": 1,
+        "mean_score": 0.286,
+        "passed": 0
+      },
+      "insufficient_evidence": {
+        "cases": 1,
+        "mean_score": 0.429,
+        "passed": 0
+      },
+      "invalid_value_attribution_failure": {
+        "cases": 1,
+        "mean_score": 0.143,
+        "passed": 0
+      },
+      "related_evidence_requires_verification": {
+        "cases": 1,
+        "mean_score": 0.571,
+        "passed": 0
+      },
+      "supported_negative_evidence": {
+        "cases": 1,
+        "mean_score": 0.429,
+        "passed": 0
+      }
+    },
+    "cases": 5,
+    "gate_accuracy": {
+      "action_allowed": 1.0,
+      "attribution": 0.6,
+      "evidence_status": 0.2,
+      "policy_compliance": 0.6,
+      "query_filter_completeness": 0.0,
+      "required_tool_sequence": 0.0,
+      "terminal_action": 0.2
+    },
+    "mean_score": 0.372,
+    "parse_errors": {},
+    "passed": 0,
+    "violations": {
+      "contradicted_claim_requires_reject_or_flag": 1,
+      "evidence_status_mismatch": 4,
+      "invalid_value_requires_reject_or_flag": 1,
+      "missing_required_attribution": 2,
+      "missing_required_tool_sequence": 5,
+      "query_filter_missing_required_field": 5,
+      "terminal_action_mismatch": 4
+    }
+  },
+  "run_id": "stage_a_cayuga_qwen15b_strict_heldout_2026-07-04",
+  "scientific_readout": {
+    "remaining_failure": "Tool-loop completion and evidence/action routing remain unsolved.",
+    "resolved_failure": "Strict prompt contract removed unsupported evidence_status parse errors.",
+    "training_implication": "Next data target should teach ordered tool-use and status/action routing, not only JSON formatting."
+  },
+  "split": "post_training/stage_a_sft_heldout_v1.jsonl"
+}

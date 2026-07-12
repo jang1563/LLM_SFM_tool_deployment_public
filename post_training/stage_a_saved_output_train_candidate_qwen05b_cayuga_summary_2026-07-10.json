@@ -1,0 +1,124 @@
+{
+  "artifact_policy": {
+    "candidate_jsonl_committed": false,
+    "margin_jsonl_committed": false,
+    "model_state_committed": false,
+    "raw_model_text_committed": false,
+    "raw_prompt_messages_committed": false,
+    "scheduler_logs_committed": false
+  },
+  "base_candidate_summary": {
+    "candidate_count_histogram": {
+      "5": 4
+    },
+    "exact_top1": 0,
+    "exact_top1_accuracy": 0.0,
+    "mean_target_rank": 3.5,
+    "mean_top_target_margin": 0.081001,
+    "pairs": 4,
+    "target_pair_counts": {
+      "defer/insufficient": 1,
+      "flag/invalid_value": 1,
+      "reject/contradicted": 1,
+      "verify/insufficient": 1
+    },
+    "top_pair_counts": {
+      "ground/supported": 4
+    },
+    "violations": {
+      "target_not_top1": 4
+    }
+  },
+  "boundary": "Train-side candidate scoring diagnoses candidate-score bias from train rows only. It is not held-out tuning, DPO/RLVR, free-form generation, or deployment readiness.",
+  "candidate_policy": "train_observed_plus_rejected",
+  "candidate_space_size": 5,
+  "candidate_target_format": "full",
+  "cluster": {
+    "site": "cayuga"
+  },
+  "dataset": "negbiodb_ct_stage_a_saved_output_train_candidate_diagnostic_v1",
+  "decision": {
+    "dpo_rlvr_gate": "closed",
+    "hf_release_gate": "closed",
+    "next_step": "Use train-side candidate scores to design a candidate calibration or routing objective; do not escalate to tool_query, DPO, RLVR, or release tagging from this result.",
+    "tool_query_gate": "closed"
+  },
+  "focus": {
+    "focus_chosen_pairs": [
+      "flag/invalid_value"
+    ],
+    "focus_only": true,
+    "focus_repeat": 4,
+    "training_by_chosen_pair": {
+      "flag/invalid_value": 16
+    }
+  },
+  "heldout_candidate_summary": {
+    "candidate_count_histogram": {
+      "5": 4
+    },
+    "exact_top1": 1,
+    "exact_top1_accuracy": 0.25,
+    "mean_target_rank": 2.5,
+    "mean_top_target_margin": 0.039652,
+    "pairs": 4,
+    "target_pair_counts": {
+      "defer/insufficient": 1,
+      "flag/invalid_value": 1,
+      "reject/contradicted": 1,
+      "verify/insufficient": 1
+    },
+    "top_pair_counts": {
+      "flag/invalid_value": 4
+    },
+    "violations": {
+      "target_not_top1": 3
+    }
+  },
+  "heldout_margin_summary": {
+    "base_margin_wins": 0,
+    "mean_base_margin": -0.081001,
+    "mean_margin_delta": 0.099087,
+    "mean_trained_margin": 0.018087,
+    "pairs": 4,
+    "trained_margin_wins": 4
+  },
+  "interpretation": [
+    "The same flag-focused SFT run repairs the teacher-forced full-output held-out margin from 0/4 to 4/4.",
+    "Finite-candidate readout remains weak: held-out exact top-1 is 1/4 and all held-out rows top-rank flag/invalid_value.",
+    "Train-side candidate scoring shows the same bias: exact top-1 is 4/16 and top_pair_counts is flag/invalid_value in 16/16 train rows.",
+    "The failure is therefore not only held-out candidate noise; the trained scorer learned a global flag/invalid_value candidate prior under this focused objective."
+  ],
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "repo_commit": "f3530e9",
+  "run_id": "stage_a_saved_output_flag_full_train_candidates_qwen05b_cayuga_20260710",
+  "score_target_formats": [
+    "full",
+    "action_only",
+    "action_status_only",
+    "status_only"
+  ],
+  "target_format": "full",
+  "train_candidate_summary": {
+    "candidate_count_histogram": {
+      "5": 16
+    },
+    "exact_top1": 4,
+    "exact_top1_accuracy": 0.25,
+    "mean_target_rank": 2.5,
+    "mean_top_target_margin": 0.040533,
+    "pairs": 16,
+    "target_pair_counts": {
+      "defer/insufficient": 4,
+      "flag/invalid_value": 4,
+      "reject/contradicted": 4,
+      "verify/insufficient": 4
+    },
+    "top_pair_counts": {
+      "flag/invalid_value": 16
+    },
+    "violations": {
+      "target_not_top1": 12
+    }
+  }
+}

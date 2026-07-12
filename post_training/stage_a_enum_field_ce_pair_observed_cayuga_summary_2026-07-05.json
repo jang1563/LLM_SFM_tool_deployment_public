@@ -1,0 +1,148 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_outputs_committed": false,
+    "raw_outputs_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "artifact_sha256": {
+    "base_enum_candidate_report": "2b6702e45b4d48a9cd116f012a39f95ed6fbe213e0a123d627b628e4cc83639e",
+    "base_margin_report": "1c4d7f7fd750cf44ec1649b623aedad1d075f6fe68805d95bf6e745dfc85e5f3",
+    "gate_report": "f1d1ec39cc8f06296ff8f8f8644d788d7d3a87995a2c6740ccc6f020d979bef0",
+    "margin_delta_report": "149f33b8be35310a0054b2fb59803de0e2609efbf8b1ffeea84ee5bb5d8921e4",
+    "report": "af207c2881a4cc15cc573d3fd611dd1fdd0750d856651c0397a0cd062172c04e",
+    "trained_enum_candidate_report": "6c9f199f9cb2cad301ddaf991147d39fa2b5107bcd56655cbf87e9b46dd0ff15",
+    "trained_enum_candidates_jsonl": "c8f2fd886cae89ff365f36cdf928278bf775c0891153cf3a96703b0f573809b3",
+    "trained_margin_report": "1b0bc2dd69ec02c65be994d605968993cd727e592fe7f3d3f2a2eb9e401577d2"
+  },
+  "cluster": "Cayuga Slurm GPU",
+  "commit": "cd66540",
+  "component": "enum_action",
+  "dataset": "negbiodb_ct_stage_a_enum_field_ce_pair_observed_cayuga_v1",
+  "decision": "keep_tool_query_dpo_rlvr_gated; field CE does not repair candidate top1 or useful fail-closed trust coverage",
+  "heldout_examples": 4,
+  "interpretation": "negative_partial_field_ce_result",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "objective": {
+    "candidate_ce_loss_first_last": [
+      1.5,
+      1.6953125
+    ],
+    "candidate_ce_mode": "field",
+    "candidate_ce_train_rank_first_last": [
+      1.0,
+      4.0
+    ],
+    "candidate_ce_train_top1_first_last": [
+      1.0,
+      0.0
+    ],
+    "candidate_ce_weight": 1.0,
+    "candidate_field_ce_loss_first_last": [
+      1.5,
+      1.6953125
+    ],
+    "candidate_pair_ce_loss_first_last": [
+      0.0,
+      0.0
+    ],
+    "enum_candidate_policy": "pair_observed_outputs",
+    "enum_candidate_space_size": 5,
+    "loss_delta": -0.221388,
+    "pairwise_margin": 0.05,
+    "pairwise_margin_weight": 1.0,
+    "target_format": "full",
+    "training_examples": 28
+  },
+  "prompt_contract": "stage_a_v2_strict",
+  "results": {
+    "candidate_gate": {
+      "adaptive_zero_false_report": {
+        "coverage": 0.0,
+        "fail_closed": 4,
+        "fail_closed_gold_top1": 1,
+        "threshold": 0.042486,
+        "trusted": 0,
+        "trusted_correct": 0,
+        "trusted_incorrect": 0,
+        "trusted_precision": null
+      },
+      "adaptive_zero_false_threshold": 0.042486,
+      "summary": {
+        "candidate_accuracy": 0.25,
+        "exact_top1": 1,
+        "field_rank_patterns": {
+          "both_field_failure": 3,
+          "pair_top1": 1
+        },
+        "max_top_second_gap": 0.042485,
+        "mean_gold_rank": 2.5,
+        "mean_top_gold_margin": 0.092369,
+        "mean_top_second_gap": 0.03648,
+        "min_top_second_gap": 0.030035,
+        "top_pair_counts": {
+          "reject/contradicted": 4
+        }
+      }
+    },
+    "candidate_selection": {
+      "base": {
+        "candidate_accuracy": 0.0,
+        "exact_top1": 0,
+        "gold_in_candidates": 4,
+        "heldout_pairs": 4,
+        "mean_gold_rank": 3.5,
+        "mean_top_gold_margin": 0.133635,
+        "top_pair_counts": {
+          "ground/supported": 2,
+          "reject/contradicted": 2
+        },
+        "violations": {
+          "gold_not_top_candidate": 4
+        }
+      },
+      "trained": {
+        "candidate_accuracy": 0.25,
+        "exact_top1": 1,
+        "gold_in_candidates": 4,
+        "heldout_pairs": 4,
+        "mean_gold_rank": 2.5,
+        "mean_top_gold_margin": 0.092369,
+        "top_pair_counts": {
+          "reject/contradicted": 4
+        },
+        "violations": {
+          "gold_not_top_candidate": 3
+        }
+      }
+    },
+    "margin_delta": {
+      "base_margin_wins": 0,
+      "mean_base_margin": -0.11651,
+      "mean_margin_delta": 0.295057,
+      "mean_trained_margin": 0.178547,
+      "newly_lost": 0,
+      "newly_won": 4,
+      "pairs": 4,
+      "trained_margin_wins": 4
+    },
+    "teacher_forced_margin": {
+      "base": {
+        "heldout_pairs": 4,
+        "margin_accuracy": 0.0,
+        "margin_wins": 0,
+        "mean_margin": -0.11651,
+        "violations": {
+          "chosen_not_above_rejected": 4
+        }
+      },
+      "trained": {
+        "heldout_pairs": 4,
+        "margin_accuracy": 1.0,
+        "margin_wins": 4,
+        "mean_margin": 0.178547,
+        "violations": {}
+      }
+    }
+  },
+  "run_id": "stage_a_enum_field_ce_pair_observed_cayuga_2026_07_05"
+}

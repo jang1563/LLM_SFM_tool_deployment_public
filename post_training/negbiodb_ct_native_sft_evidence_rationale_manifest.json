@@ -1,0 +1,27 @@
+{
+  "by_action_class": {
+    "defer": 8,
+    "flag": 8,
+    "ground": 8,
+    "reject": 8,
+    "verify": 8
+  },
+  "by_evidence_action": {
+    "defer": 8,
+    "flag": 8,
+    "ground": 8,
+    "reject": 8,
+    "verify": 8
+  },
+  "by_role": {
+    "evidence_rationale": 40
+  },
+  "dataset": "negbiodb_ct_native_sft_evidence_rationale_v1",
+  "evidence_action_matches": 40,
+  "evidence_action_mismatches": 0,
+  "evidence_action_unlabeled": 0,
+  "examples": 40,
+  "out": "post_training/negbiodb_ct_native_sft_evidence_rationale_v1.jsonl",
+  "source": "post_training/negbiodb_ct_native_sft_v1.jsonl",
+  "strategy": "deployable_evidence_boundary_rationale_v1"
+}

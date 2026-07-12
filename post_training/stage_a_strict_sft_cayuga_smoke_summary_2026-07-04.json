@@ -1,0 +1,85 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_predictions_committed": false,
+    "raw_predictions_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "cases_expected": 5,
+  "cluster": "Cayuga Slurm GPU",
+  "dataset": "negbiodb_ct_stage_a_strict_contract_sft_smoke_v1",
+  "prompt_contract": "stage_a_v2_strict",
+  "runs": [
+    {
+      "eval_report_sha256": "c07570a355ca5844f74b47ac26b6cbb207286ea8787ff75cbb1399bb19ab1110",
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "predictions_sha256": "971507bb9950c1169101c6c8e1ac3d89c98b4c00e609a276c2c7df11e4cb2fd0",
+      "report_sha256": "ec8bea321001cebcce6675cf267b9429688ec342b25f8f6d960aebcce63d4ea6",
+      "result": {
+        "cases": 5,
+        "gate_accuracy": {},
+        "mean_score": 0.0,
+        "parse_errors": {
+          "Unknown evidence_status: 'verified'": 5
+        },
+        "passed": 0,
+        "violations": {
+          "prediction_parse_error": 5
+        }
+      },
+      "run_id": "stage_a_strict_sft_cayuga_qwen05b_2026_07_04",
+      "train_loss": {
+        "delta": -0.1352030634880066,
+        "first": 0.9682179093360901,
+        "last": 0.8330148458480835
+      },
+      "trainable_params": 14913280
+    },
+    {
+      "eval_report_sha256": "ffa47bd751fdd601b62d411368ff828c2302f066e7ce6f1711b100b81f064769",
+      "model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "predictions_sha256": "e191d23d9a0900dc75a750575defe4e724a71a0fcb66d1830861a84e29fa6f5a",
+      "report_sha256": "b29b43ce1bd8883e22aa371c4ab208bc1a047873d31c484dd6b33aa9671c13af",
+      "result": {
+        "cases": 5,
+        "gate_accuracy": {
+          "action_allowed": 1.0,
+          "attribution": 0.6,
+          "evidence_status": 0.2,
+          "policy_compliance": 0.6,
+          "query_filter_completeness": 0.0,
+          "required_tool_sequence": 0.0,
+          "terminal_action": 0.2
+        },
+        "mean_score": 0.372,
+        "parse_errors": {},
+        "passed": 0,
+        "violations": {
+          "contradicted_claim_requires_reject_or_flag": 1,
+          "evidence_status_mismatch": 4,
+          "invalid_value_requires_reject_or_flag": 1,
+          "missing_required_attribution": 2,
+          "missing_required_tool_sequence": 5,
+          "query_filter_missing_required_field": 5,
+          "terminal_action_mismatch": 4
+        }
+      },
+      "run_id": "stage_a_strict_sft_cayuga_qwen15b_2026_07_04",
+      "train_loss": {
+        "delta": -0.07934463024139404,
+        "first": 0.8417247533798218,
+        "last": 0.7623801231384277
+      },
+      "trainable_params": 46799360
+    }
+  ],
+  "scientific_readout": {
+    "negative_result": "Tiny last-layer strict-contract SFT reduced teacher-forced train loss but did not improve held-out Stage A pass rate.",
+    "qwen05b_failure": "The 0.5B run generated JSON-shaped outputs but used the disallowed evidence_status value 'verified' in all five held-out cases.",
+    "qwen15b_failure": "The 1.5B run produced parseable outputs but remained at 0/5 pass and mean score 0.372, with missing required tool sequence and missing query fields in all held-out cases.",
+    "training_implication": "Stage A needs stronger trajectory/process supervision or constrained action/status decoding diagnostics before DPO or RLVR claims."
+  },
+  "split": {
+    "heldout": "post_training/stage_a_strict_contract_sft_heldout_v1.jsonl",
+    "train": "post_training/stage_a_strict_contract_sft_train_v1.jsonl"
+  }
+}

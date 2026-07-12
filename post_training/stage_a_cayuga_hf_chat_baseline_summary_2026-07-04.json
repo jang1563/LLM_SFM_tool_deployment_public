@@ -1,0 +1,67 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_predictions_committed": false,
+    "raw_predictions_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "cases_expected": 5,
+  "cluster": "Cayuga Slurm GPU",
+  "dataset": "negbiodb_ct_stage_a_prediction_eval_v1",
+  "eval_report_sha256": "0da4ec34491e3d2077633a841371cac89fae5d0527bdc1ff227a226280dec31f",
+  "generation_mode": "hf_chat",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "predictions_received": 5,
+  "predictions_sha256": "6c6857c7d0d3cec622ab0d3d93a73af041a7bded1d6343128eaaff71b9e17a13",
+  "result": {
+    "by_case_family": {
+      "contradicted_or_mixed_endpoint_claim": {
+        "cases": 1,
+        "mean_score": 0.0,
+        "passed": 0
+      },
+      "insufficient_evidence": {
+        "cases": 1,
+        "mean_score": 0.571,
+        "passed": 0
+      },
+      "invalid_value_attribution_failure": {
+        "cases": 1,
+        "mean_score": 0.0,
+        "passed": 0
+      },
+      "related_evidence_requires_verification": {
+        "cases": 1,
+        "mean_score": 0.0,
+        "passed": 0
+      },
+      "supported_negative_evidence": {
+        "cases": 1,
+        "mean_score": 0.0,
+        "passed": 0
+      }
+    },
+    "cases": 5,
+    "gate_accuracy": {
+      "action_allowed": 0.2,
+      "attribution": 0.2,
+      "evidence_status": 0.2,
+      "policy_compliance": 0.2,
+      "query_filter_completeness": 0.0,
+      "required_tool_sequence": 0.0,
+      "terminal_action": 0.0
+    },
+    "mean_score": 0.114,
+    "parse_errors": {
+      "Unknown evidence_status: 'sourced'": 4
+    },
+    "passed": 0,
+    "violations": {
+      "missing_required_tool_sequence": 1,
+      "prediction_parse_error": 4,
+      "query_filter_missing_required_field": 1,
+      "terminal_action_mismatch": 1
+    }
+  },
+  "run_id": "stage_a_cayuga_qwen15b_heldout_2026-07-04_r2",
+  "split": "post_training/stage_a_sft_heldout_v1.jsonl"
+}

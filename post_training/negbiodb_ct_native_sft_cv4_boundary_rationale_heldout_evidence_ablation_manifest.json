@@ -1,0 +1,100 @@
+{
+  "boundary_negative_actions": {
+    "defer": [
+      "verify"
+    ],
+    "flag": [
+      "ground",
+      "reject"
+    ],
+    "ground": [
+      "flag",
+      "reject"
+    ],
+    "reject": [
+      "ground",
+      "flag"
+    ],
+    "verify": [
+      "defer"
+    ]
+  },
+  "dataset": "negbiodb_ct_native_sft_boundary_rationale_heldout_evidence_v1",
+  "fold_manifests": [
+    {
+      "evidence_action_mismatches": 0,
+      "fold": 0,
+      "heldout": "post_training/boundary_rationale_heldout_evidence_ablation/negbiodb_ct_native_sft_cv4_boundary_rationale_heldout_evidence_v1_fold0_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_by_role": {
+        "evidence_rationale": 10
+      },
+      "heldout_examples": 10,
+      "source_heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_heldout.jsonl"
+    },
+    {
+      "evidence_action_mismatches": 0,
+      "fold": 1,
+      "heldout": "post_training/boundary_rationale_heldout_evidence_ablation/negbiodb_ct_native_sft_cv4_boundary_rationale_heldout_evidence_v1_fold1_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_by_role": {
+        "evidence_rationale": 10
+      },
+      "heldout_examples": 10,
+      "source_heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold1_heldout.jsonl"
+    },
+    {
+      "evidence_action_mismatches": 0,
+      "fold": 2,
+      "heldout": "post_training/boundary_rationale_heldout_evidence_ablation/negbiodb_ct_native_sft_cv4_boundary_rationale_heldout_evidence_v1_fold2_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_by_role": {
+        "evidence_rationale": 10
+      },
+      "heldout_examples": 10,
+      "source_heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold2_heldout.jsonl"
+    },
+    {
+      "evidence_action_mismatches": 0,
+      "fold": 3,
+      "heldout": "post_training/boundary_rationale_heldout_evidence_ablation/negbiodb_ct_native_sft_cv4_boundary_rationale_heldout_evidence_v1_fold3_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_by_role": {
+        "evidence_rationale": 10
+      },
+      "heldout_examples": 10,
+      "source_heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold3_heldout.jsonl"
+    }
+  ],
+  "out_dir": "post_training/boundary_rationale_heldout_evidence_ablation",
+  "prefix": "negbiodb_ct_native_sft_cv4_boundary_rationale_heldout_evidence_v1",
+  "rationale_mode": "evidence",
+  "source_boundary_manifest": "post_training/negbiodb_ct_native_sft_cv4_boundary_rationale_manifest.json",
+  "source_boundary_manifest_strategy": "paired_boundary_rationale_v1",
+  "source_cv_manifest": "post_training/negbiodb_ct_native_sft_cv4_manifest.json",
+  "strategy": "heldout_evidence_boundary_rationale_ablation_v1"
+}

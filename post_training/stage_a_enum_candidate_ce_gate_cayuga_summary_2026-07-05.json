@@ -1,0 +1,125 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_outputs_committed": false,
+    "raw_outputs_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "candidate_policy": "pair_observed_outputs",
+  "cases": 4,
+  "component": "enum_action",
+  "dataset": "negbiodb_ct_stage_a_enum_candidate_gate_diagnostic_v1",
+  "decision": "keep_tool_query_dpo_rlvr_gated; current score-gap gate must fail closed because useful zero-false-trust coverage is 0/4",
+  "input_candidates_sha256": "dbe528f66a2ec0bbd420c63847ffa43c10258b596f0a2ccb249335e29cf90517",
+  "interpretation": "score_gap_is_not_calibrated_for_trusting_enum_top1",
+  "row_readout": [
+    {
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "exact_top1": true,
+      "field_rank_pattern": "pair_top1",
+      "gold_rank": 1,
+      "target_pair": "reject/contradicted",
+      "top_pair": "reject/contradicted",
+      "top_second_gap": 0.028695
+    },
+    {
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "exact_top1": false,
+      "field_rank_pattern": "both_field_failure",
+      "gold_rank": 3,
+      "target_pair": "defer/insufficient",
+      "top_pair": "reject/contradicted",
+      "top_second_gap": 0.024171
+    },
+    {
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "exact_top1": false,
+      "field_rank_pattern": "both_field_failure",
+      "gold_rank": 2,
+      "target_pair": "verify/insufficient",
+      "top_pair": "reject/contradicted",
+      "top_second_gap": 0.050026
+    },
+    {
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "exact_top1": false,
+      "field_rank_pattern": "both_field_failure",
+      "gold_rank": 4,
+      "target_pair": "flag/invalid_value",
+      "top_pair": "reject/contradicted",
+      "top_second_gap": 0.025494
+    }
+  ],
+  "run_id": "stage_a_enum_candidate_ce_pair_observed_gate_cayuga_2026_07_05",
+  "score_label": "trained_candidate_heldout",
+  "summary": {
+    "action_rank_histogram": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1
+    },
+    "adaptive_zero_false_threshold": 0.050027,
+    "adaptive_zero_false_trusted_correct": 0,
+    "adaptive_zero_false_trusted_incorrect": 0,
+    "candidate_accuracy": 0.25,
+    "candidate_count_histogram": {
+      "5": 4
+    },
+    "evidence_status_rank_histogram": {
+      "1": 1,
+      "2": 2,
+      "3": 1
+    },
+    "exact_top1": 1,
+    "field_rank_patterns": {
+      "both_field_failure": 3,
+      "pair_top1": 1
+    },
+    "max_top_second_gap": 0.050026,
+    "mean_gold_rank": 2.5,
+    "mean_top_gold_margin": 0.090254,
+    "mean_top_second_gap": 0.032097,
+    "min_top_second_gap": 0.024171,
+    "top_pair_counts": {
+      "reject/contradicted": 4
+    }
+  },
+  "threshold_reports": [
+    {
+      "coverage": 1.0,
+      "threshold": 0.0,
+      "trusted": 4,
+      "trusted_correct": 1,
+      "trusted_incorrect": 3,
+      "trusted_precision": 0.25
+    },
+    {
+      "coverage": 0.75,
+      "threshold": 0.025,
+      "trusted": 3,
+      "trusted_correct": 1,
+      "trusted_incorrect": 2,
+      "trusted_precision": 0.333333
+    },
+    {
+      "coverage": 0.25,
+      "threshold": 0.05,
+      "trusted": 1,
+      "trusted_correct": 0,
+      "trusted_incorrect": 1,
+      "trusted_precision": 0.0
+    },
+    {
+      "coverage": 0.0,
+      "threshold": 0.075,
+      "trusted": 0,
+      "trusted_correct": 0,
+      "trusted_incorrect": 0,
+      "trusted_precision": null
+    }
+  ]
+}

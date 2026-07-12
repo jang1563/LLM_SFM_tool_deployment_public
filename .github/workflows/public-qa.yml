@@ -1,0 +1,253 @@
+name: Public QA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  public-qa:
+    name: Public-safe checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install lightweight test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-public.txt
+
+      - name: Validate public release surface
+        run: python scripts/check_public_release.py
+
+      - name: Validate clean public history
+        run: python scripts/check_public_git_history.py
+
+      - name: Validate research plan drift gates
+        run: python scripts/check_research_plan.py
+
+      - name: Validate post-training artifacts
+        run: python post_training/validate_post_training_data.py
+
+      - name: Run synthetic public demo
+        run: python examples/run_public_demo.py
+
+      - name: Run Stage A SFT smoke/eval harness
+        run: python post_training/run_stage_a_sft_smoke_eval.py --json
+
+      - name: Run Stage A strict component diagnostics
+        run: python post_training/run_stage_a_strict_component_diagnostics.py --compact
+
+      - name: Run Stage A strict component SFT dry-run
+        run: python post_training/run_stage_a_strict_component_sft_smoke.py --dry-run --component enum_action --decode-mode enum_observed_pair_score
+
+      - name: Regenerate Stage A enum corrective pairs
+        run: python post_training/export_stage_a_enum_corrective_pairs.py
+
+      - name: Regenerate Stage A enum action-contrast pairs
+        run: python post_training/export_stage_a_enum_action_contrast_pairs.py
+
+      - name: Regenerate Stage A routing defer-verify contrast pairs
+        run: python post_training/export_stage_a_routing_defer_verify_contrast_pairs.py
+
+      - name: Run Stage A enum corrective SFT dry-run
+        run: python post_training/run_stage_a_enum_corrective_sft_smoke.py --dry-run
+
+      - name: Run Stage A routing contrast SFT dry-run
+        run: python post_training/run_stage_a_routing_contrast_sft_smoke.py --dry-run --pairwise-margin-weight 1 --pairwise-margin 0.05 --score-base-routing-candidates --score-trained-routing-candidates
+
+      - name: Run Stage A routing defer-verify SFT dry-run
+        run: python post_training/run_stage_a_routing_contrast_sft_smoke.py --dry-run --pairs post_training/stage_a_routing_defer_verify_contrast_pairs_v1.jsonl --train-pairs post_training/stage_a_routing_defer_verify_contrast_pairs_train_v1.jsonl --heldout-pairs post_training/stage_a_routing_defer_verify_contrast_pairs_heldout_v1.jsonl --manifest post_training/stage_a_routing_defer_verify_contrast_pairs_manifest.json --pairwise-margin-weight 1 --pairwise-margin 0.05 --score-base-routing-candidates --score-trained-routing-candidates
+
+      - name: Run Stage A routing evidence-boundary gate
+        run: python post_training/evaluate_stage_a_routing_evidence_boundary_gate.py --out-json /tmp/stage_a_routing_evidence_boundary_gate.json --out-md /tmp/STAGE_A_ROUTING_EVIDENCE_BOUNDARY_GATE.md
+
+      - name: Run Stage A routing evidence gate
+        run: python post_training/evaluate_stage_a_routing_evidence_gate.py --out-json /tmp/stage_a_routing_evidence_gate.json --out-md /tmp/STAGE_A_ROUTING_EVIDENCE_GATE.md
+
+      - name: Compare Stage A routing gate baselines
+        run: python post_training/evaluate_stage_a_routing_gate_baseline_comparison.py --out-json /tmp/stage_a_routing_gate_baseline_comparison.json --out-md /tmp/STAGE_A_ROUTING_GATE_BASELINE_COMPARISON.md
+
+      - name: Evaluate Stage A routing model readiness
+        run: python post_training/evaluate_stage_a_routing_model_readiness.py --out-json /tmp/stage_a_routing_model_readiness.json --out-md /tmp/STAGE_A_ROUTING_MODEL_READINESS.md
+
+      - name: Evaluate Stage A full-trajectory arbitration
+        run: python post_training/evaluate_stage_a_full_trajectory_arbitration.py --out-json /tmp/stage_a_full_trajectory_arbitration.json --out-md /tmp/STAGE_A_FULL_TRAJECTORY_ARBITRATION.md
+
+      - name: Evaluate Stage A saved-prediction readiness
+        run: python post_training/evaluate_stage_a_saved_prediction_readiness.py --out-json /tmp/stage_a_saved_prediction_readiness.json --out-md /tmp/STAGE_A_SAVED_PREDICTION_READINESS.md
+
+      - name: Evaluate Stage A saved-output next decision
+        run: python post_training/evaluate_stage_a_saved_output_next_decision.py --out-json /tmp/stage_a_saved_output_next_decision.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_NEXT_DECISION.md
+
+      - name: Regenerate Stage A saved-output calibration probe
+        run: python post_training/export_stage_a_saved_output_calibration_probe.py --pairs-out /tmp/stage_a_saved_output_calibration_probe_v1.jsonl --train-out /tmp/stage_a_saved_output_calibration_probe_train_v1.jsonl --heldout-out /tmp/stage_a_saved_output_calibration_probe_heldout_v1.jsonl --manifest-out /tmp/stage_a_saved_output_calibration_probe_manifest.json
+
+      - name: Run Stage A saved-output calibration probe readout dry-run
+        run: python post_training/run_stage_a_saved_output_calibration_probe_readout.py --dry-run --out-dir /tmp/stage_a_saved_output_calibration_probe_readout --run-id stage_a_saved_output_calibration_probe_readout_dry
+
+      - name: Run Stage A saved-output calibration margin SFT dry-run
+        run: python post_training/run_stage_a_saved_output_calibration_margin_sft.py --dry-run --out-dir /tmp/stage_a_saved_output_calibration_margin_sft --run-id stage_a_saved_output_calibration_margin_sft_dry --pairwise-margin-weight 1 --pairwise-margin 0.05 --score-base-margins --score-train-margins --score-base-candidates --score-train-candidates --score-trained-candidates
+
+      - name: Run Stage A saved-output candidate arbitration
+        run: python post_training/evaluate_stage_a_saved_output_candidate_arbitration.py --out-json /tmp/stage_a_saved_output_candidate_arbitration.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_CANDIDATE_ARBITRATION.md
+
+      - name: Run Stage A saved-output meet-or-beat gate
+        run: python post_training/evaluate_stage_a_saved_output_meet_or_beat_gate.py --out-json /tmp/stage_a_saved_output_meet_or_beat_gate.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_MEET_OR_BEAT_GATE.md
+
+      - name: Build Stage A saved-output policy-summary adapter smoke
+        run: |
+          python post_training/build_stage_a_saved_output_policy_summary.py \
+            --source post_training/stage_a_saved_output_candidate_arbitration_2026-07-10.json \
+            --source-kind candidate-arbitration-policy \
+            --policy train_selected_score_gap_gate \
+            --out /tmp/stage_a_saved_output_train_selected_policy_summary.json
+          python post_training/evaluate_stage_a_saved_output_meet_or_beat_gate.py \
+            --model-policy-summary /tmp/stage_a_saved_output_train_selected_policy_summary.json \
+            --out-json /tmp/stage_a_saved_output_policy_summary_gate.json \
+            --out-md /tmp/STAGE_A_SAVED_OUTPUT_POLICY_SUMMARY_GATE.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path("/tmp/stage_a_saved_output_policy_summary_gate.json").read_text())
+          policy = report["model_policies_under_test"][-1]
+          assert policy["policy"] == "train_selected_score_gap_gate"
+          assert policy["violations"] == ["below_runtime_arbitration_exact_min"]
+          assert report["gate_violations"] == ["no_model_policy_meets_runtime_baseline"]
+          PY
+
+      - name: Evaluate Stage A saved-output intake contract
+        run: python post_training/evaluate_stage_a_saved_output_intake_contract.py --out-json /tmp/stage_a_saved_output_intake_contract.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_INTAKE_CONTRACT.md
+
+      - name: Evaluate Stage A saved-output checkpoint diagnosis
+        run: python post_training/evaluate_stage_a_saved_output_checkpoint_diagnosis.py --out-json /tmp/stage_a_saved_output_checkpoint_diagnosis.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_CHECKPOINT_DIAGNOSIS.md
+
+      - name: Evaluate Stage A saved-output next checkpoint spec
+        run: python post_training/evaluate_stage_a_saved_output_next_checkpoint_spec.py --out-json /tmp/stage_a_saved_output_next_checkpoint_spec.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_NEXT_CHECKPOINT_SPEC.md
+
+      - name: Evaluate Stage A saved-output candidate-CE checkpoint spec
+        run: python post_training/evaluate_stage_a_saved_output_candidate_ce_checkpoint_spec.py --out-json /tmp/stage_a_saved_output_candidate_ce_checkpoint_spec.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_CANDIDATE_CE_CHECKPOINT_SPEC.md
+
+      - name: Evaluate Stage A saved-output post-candidate-CE next decision
+        run: python post_training/evaluate_stage_a_saved_output_post_candidate_ce_next_decision.py --out-json /tmp/stage_a_saved_output_post_candidate_ce_next_decision.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_POST_CANDIDATE_CE_NEXT_DECISION.md
+
+      - name: Evaluate Stage A saved-output evidence bridge
+        run: python post_training/evaluate_stage_a_saved_output_evidence_bridge.py --out-json /tmp/stage_a_saved_output_evidence_bridge.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_EVIDENCE_BRIDGE.md
+
+      - name: Regenerate Stage A saved-output evidence candidate-routing rows
+        run: python post_training/export_stage_a_saved_output_evidence_candidate_routing_rows.py --rows-out /tmp/stage_a_saved_output_evidence_candidate_routing_rows_v1.jsonl --train-out /tmp/stage_a_saved_output_evidence_candidate_routing_train_v1.jsonl --heldout-out /tmp/stage_a_saved_output_evidence_candidate_routing_heldout_v1.jsonl --manifest-out /tmp/stage_a_saved_output_evidence_candidate_routing_manifest.json
+
+      - name: Evaluate Stage A saved-output evidence candidate-routing readout
+        run: python post_training/evaluate_stage_a_saved_output_evidence_candidate_routing_readout.py --out-json /tmp/stage_a_saved_output_evidence_candidate_routing_readout.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_EVIDENCE_CANDIDATE_ROUTING_READOUT.md
+
+      - name: Evaluate Stage A saved-output evidence candidate-routing smoke spec
+        run: python post_training/evaluate_stage_a_saved_output_evidence_candidate_routing_smoke_spec.py --out-json /tmp/stage_a_saved_output_evidence_candidate_routing_smoke_spec.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_EVIDENCE_CANDIDATE_ROUTING_SMOKE_SPEC.md
+
+      - name: Run Stage A saved-output evidence candidate-routing smoke dry-run
+        run: python post_training/run_stage_a_saved_output_evidence_candidate_routing_smoke.py --dry-run --out-dir /tmp/stage_a_saved_output_evidence_candidate_routing_smoke --run-id stage_a_saved_output_evidence_candidate_routing_smoke_dry
+
+      - name: Evaluate Stage A saved-output evidence candidate-routing dry-run checkpoint
+        run: python post_training/evaluate_stage_a_saved_output_evidence_candidate_routing_dry_run_checkpoint.py --dry-run-report /tmp/stage_a_saved_output_evidence_candidate_routing_smoke/report.json --execution-surface github_actions --mirror-commit $GITHUB_SHA --public-release-check-passed --out-json /tmp/stage_a_saved_output_evidence_candidate_routing_dry_run_checkpoint.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_EVIDENCE_CANDIDATE_ROUTING_DRY_RUN_CHECKPOINT.md
+
+      - name: Run Stage A routing gate arbitration
+        run: python post_training/evaluate_stage_a_routing_gate_arbitration.py --out-json /tmp/stage_a_routing_gate_arbitration.json --out-md /tmp/STAGE_A_ROUTING_GATE_ARBITRATION.md
+
+      - name: Run Stage A saved-prediction producer smoke test
+        run: |
+          python post_training/generate_stage_a_predictions.py \
+            --mode self_answer \
+            --prompt-contract stage_a_v4_canonical_json \
+            --sft post_training/stage_a_sft_heldout_v1.jsonl \
+            --out /tmp/stage_a_self_answer_predictions.jsonl \
+            --run-id self_answer_saved_prediction_smoke
+          python post_training/evaluate_stage_a_predictions.py \
+            --predictions /tmp/stage_a_self_answer_predictions.jsonl \
+            --expected-sft post_training/stage_a_sft_heldout_v1.jsonl \
+            --run-id self_answer_saved_prediction_smoke \
+            --json
+
+      - name: Run Stage A saved-prediction candidate readout dry-run
+        run: python post_training/run_stage_a_saved_prediction_candidate_readout.py --dry-run --out-dir /tmp/stage_a_saved_candidate_readout --run-id stage_a_saved_candidate_readout_dry
+
+      - name: Run Stage A prediction-output scorer smoke test
+        run: |
+          python post_training/evaluate_stage_a_predictions.py \
+            --predictions post_training/stage_a_sft_heldout_v1.jsonl \
+            --expected-sft post_training/stage_a_sft_heldout_v1.jsonl \
+            --run-id heldout_oracle_adapter_smoke \
+            --json
+
+      - name: Run public-safe test subset
+        run: |
+          python -m pytest -q \
+            tests/test_trajectory_evaluator.py \
+            tests/test_public_demo.py \
+            tests/test_public_release_checker.py \
+            tests/test_research_plan_checker.py \
+            tests/test_stage_a_manifest.py \
+            tests/test_stage_a_manifest_eval_script.py \
+            tests/test_stage_a_export.py \
+            tests/test_stage_a_strict_contract_export.py \
+            tests/test_stage_a_strict_contract_sft_smoke.py \
+            tests/test_stage_a_strict_component_diagnostics.py \
+            tests/test_stage_a_strict_component_targets.py \
+            tests/test_stage_a_strict_component_sft_smoke.py \
+            tests/test_stage_a_enum_corrective_pairs.py \
+            tests/test_stage_a_enum_action_contrast_pairs.py \
+            tests/test_stage_a_enum_corrective_sft_smoke.py \
+            tests/test_stage_a_routing_action_status_contrast_pairs.py \
+            tests/test_stage_a_routing_defer_verify_contrast_pairs.py \
+            tests/test_stage_a_routing_contrast_sft_smoke.py \
+            tests/test_stage_a_routing_candidate_gate.py \
+            tests/test_stage_a_routing_evidence_boundary_gate.py \
+            tests/test_stage_a_routing_evidence_gate.py \
+            tests/test_stage_a_routing_gate_baseline_comparison.py \
+            tests/test_stage_a_routing_model_readiness.py \
+            tests/test_stage_a_full_trajectory_arbitration.py \
+            tests/test_stage_a_saved_prediction_readiness.py \
+            tests/test_stage_a_saved_output_next_decision.py \
+            tests/test_stage_a_saved_output_calibration_probe.py \
+            tests/test_stage_a_saved_output_calibration_probe_readout.py \
+            tests/test_stage_a_saved_output_calibration_margin_sft.py \
+            tests/test_stage_a_saved_output_candidate_fields.py \
+            tests/test_stage_a_saved_output_candidate_calibration.py \
+            tests/test_stage_a_saved_output_candidate_arbitration.py \
+            tests/test_stage_a_saved_output_policy_summary.py \
+            tests/test_stage_a_saved_output_meet_or_beat_gate.py \
+            tests/test_stage_a_saved_output_intake_contract.py \
+            tests/test_stage_a_saved_output_checkpoint_diagnosis.py \
+            tests/test_stage_a_saved_output_next_checkpoint_spec.py \
+            tests/test_stage_a_saved_output_nonflag_checkpoint_result.py \
+            tests/test_stage_a_saved_output_candidate_ce_checkpoint_spec.py \
+            tests/test_stage_a_saved_output_candidate_ce_checkpoint_result.py \
+            tests/test_stage_a_saved_output_post_candidate_ce_next_decision.py \
+            tests/test_stage_a_saved_output_evidence_bridge.py \
+            tests/test_stage_a_saved_output_evidence_candidate_routing_rows.py \
+            tests/test_stage_a_saved_output_evidence_candidate_routing_readout.py \
+            tests/test_stage_a_saved_output_evidence_candidate_routing_smoke_spec.py \
+            tests/test_stage_a_saved_output_evidence_candidate_routing_smoke.py \
+            tests/test_stage_a_saved_output_evidence_candidate_routing_smoke_result.py \
+            tests/test_stage_a_saved_output_evidence_candidate_routing_dry_run_checkpoint.py \
+            tests/test_stage_a_sealed_extension.py \
+            tests/test_stage_a_routing_gate_arbitration.py \
+            tests/test_stage_a_split.py \
+            tests/test_stage_a_sft_smoke_eval.py \
+            tests/test_stage_a_prediction_eval.py \
+            tests/test_stage_a_prediction_generator.py \
+            tests/test_stage_a_saved_prediction_candidate_readout.py \
+            tests/test_stage_a_saved_candidate_gate.py \
+            tests/test_post_training_data_validator.py

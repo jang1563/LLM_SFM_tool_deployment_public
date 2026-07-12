@@ -1,0 +1,238 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_outputs_committed": false,
+    "raw_outputs_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "cluster": "Cayuga Slurm GPU",
+  "component": "enum_action",
+  "contrast_axis": "action",
+  "dataset": "negbiodb_ct_stage_a_enum_pairwise_margin_cayuga_v1",
+  "failure_mode": "same_status_wrong_action_contrast",
+  "focus": {
+    "focus_chosen_pairs": [
+      "flag/invalid_value"
+    ],
+    "focus_only": false,
+    "focus_repeat": 4,
+    "train_examples": 16,
+    "training_by_chosen_pair": {
+      "defer/insufficient": 4,
+      "flag/invalid_value": 16,
+      "reject/contradicted": 4,
+      "verify/insufficient": 4
+    },
+    "training_examples": 28
+  },
+  "heldout_base_summary": {
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "margin_wins": 0,
+        "mean_margin": -0.427937,
+        "pairs": 1
+      },
+      "flag/invalid_value": {
+        "margin_wins": 0,
+        "mean_margin": -0.269291,
+        "pairs": 1
+      },
+      "reject/contradicted": {
+        "margin_wins": 0,
+        "mean_margin": -0.358202,
+        "pairs": 1
+      },
+      "verify/insufficient": {
+        "margin_wins": 1,
+        "mean_margin": 0.210202,
+        "pairs": 1
+      }
+    },
+    "heldout_pairs": 4,
+    "margin_accuracy": 0.25,
+    "margin_wins": 1,
+    "mean_margin": -0.211307,
+    "min_margin": -0.427937,
+    "violations": {
+      "chosen_not_above_rejected": 3
+    }
+  },
+  "heldout_delta_readout": [
+    {
+      "base_margin": -0.358202,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "chosen_output": {
+        "action": "reject"
+      },
+      "chosen_pair": "reject/contradicted",
+      "margin_delta": 0.548039,
+      "outcome": "newly_won",
+      "rejected_output": {
+        "action": "ground"
+      },
+      "rejected_pair": "ground/contradicted",
+      "trained_margin": 0.189837,
+      "trained_passed": true
+    },
+    {
+      "base_margin": -0.427937,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "chosen_output": {
+        "action": "defer"
+      },
+      "chosen_pair": "defer/insufficient",
+      "margin_delta": 0.644894,
+      "outcome": "newly_won",
+      "rejected_output": {
+        "action": "ground"
+      },
+      "rejected_pair": "ground/insufficient",
+      "trained_margin": 0.216957,
+      "trained_passed": true
+    },
+    {
+      "base_margin": 0.210202,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "chosen_output": {
+        "action": "verify"
+      },
+      "chosen_pair": "verify/insufficient",
+      "margin_delta": 0.23686,
+      "outcome": "remained_won",
+      "rejected_output": {
+        "action": "ground"
+      },
+      "rejected_pair": "ground/insufficient",
+      "trained_margin": 0.447062,
+      "trained_passed": true
+    },
+    {
+      "base_margin": -0.269291,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "chosen_output": {
+        "action": "flag"
+      },
+      "chosen_pair": "flag/invalid_value",
+      "margin_delta": 0.461498,
+      "outcome": "newly_won",
+      "rejected_output": {
+        "action": "ground"
+      },
+      "rejected_pair": "ground/invalid_value",
+      "trained_margin": 0.192207,
+      "trained_passed": true
+    }
+  ],
+  "heldout_delta_summary": {
+    "base_margin_wins": 1,
+    "heldout_pairs": 4,
+    "mean_base_margin": -0.211307,
+    "mean_margin_delta": 0.472823,
+    "mean_trained_margin": 0.261516,
+    "min_margin_delta": 0.23686,
+    "newly_lost": 0,
+    "newly_won": 3,
+    "outcomes": {
+      "newly_won": 3,
+      "remained_won": 1
+    },
+    "trained_margin_wins": 4
+  },
+  "heldout_trained_summary": {
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "margin_wins": 1,
+        "mean_margin": 0.216957,
+        "pairs": 1
+      },
+      "flag/invalid_value": {
+        "margin_wins": 1,
+        "mean_margin": 0.192207,
+        "pairs": 1
+      },
+      "reject/contradicted": {
+        "margin_wins": 1,
+        "mean_margin": 0.189837,
+        "pairs": 1
+      },
+      "verify/insufficient": {
+        "margin_wins": 1,
+        "mean_margin": 0.447062,
+        "pairs": 1
+      }
+    },
+    "heldout_pairs": 4,
+    "margin_accuracy": 1.0,
+    "margin_wins": 4,
+    "mean_margin": 0.261516,
+    "min_margin": 0.189837,
+    "violations": {}
+  },
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "objective": {
+    "margin_logprob_mode": "mean",
+    "pairwise_margin": 0.05,
+    "pairwise_margin_weight": 1.0,
+    "target_format": "action_only"
+  },
+  "prompt_contract": "stage_a_v2_strict",
+  "run_id": "stage_a_enum_pairwise_margin_cayuga_2026_07_05",
+  "runner": "post_training/run_stage_a_enum_corrective_sft_smoke.py",
+  "scientific_readout": {
+    "interpretation": "A deterministic supervised pairwise-margin objective repairs the action-only chosen-over-ground contrast on this 4-case held-out slice. This is a component-level margin result, not a full trajectory or full JSON enum_action repair.",
+    "next_decision": "Keep DPO/RLVR gated. The next gate is to test whether the pairwise-margin-trained model also improves full action+evidence_status enum scoring or component-level candidate selection without collapsing other fields.",
+    "question": "Can supervised pairwise-margin SFT make weak action-only targets beat rejected ground targets?",
+    "result": "Yes on this slice: held-out wins improve from 1/4 base to 4/4 trained, train margins are 16/16, and all weak action families become positive in action-only margin scoring."
+  },
+  "target_format": "action_only",
+  "trace": {
+    "base_margin_report_sha256": "24f6a699dc4dc96ac34b468c3e109db27106c3a97df7261cd8c06d0e8791636f",
+    "base_margins_jsonl_sha256": "6314e7b73b4b998630876d2c0e187ab2066c51dbd749d231a447cea9e79eb958",
+    "heldout_margin_report_sha256": "38eae50c0e55e9f0ab6945c3f87f8867c217dea6dd79758a09a436fcc2d586c6",
+    "heldout_margins_jsonl_sha256": "7e7a8df5585d5601c24cd941729f9618b97db0e9ffc3c1327c3ccad8f3ce7278",
+    "margin_delta_report_sha256": "59e0ae87398db4ed2863457fc510f7da8200669e27168cd27ca4c4ad30c1d647",
+    "report_sha256": "ca3d07cd6e69be25f465d41fae7142a1fc4359ee8f9d711066b03932e06f727b",
+    "train_margin_report_sha256": "bcd06495f69bb0c4d5541852b1b7f74f384faf3823bc0bfdce2bb33655213bfc",
+    "train_margins_jsonl_sha256": "757386bc900b07d677f478da9edfc222509c927a8de6c26f841034cb272e1ba0",
+    "trainable_state_sha256": "cf758f31e3f8c67bd233a2102405c2ef8d771b55af4f74e1b27846d8815a76ff"
+  },
+  "trained_train_summary": {
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "margin_wins": 4,
+        "mean_margin": 0.197116,
+        "pairs": 4
+      },
+      "flag/invalid_value": {
+        "margin_wins": 4,
+        "mean_margin": 0.160434,
+        "pairs": 4
+      },
+      "reject/contradicted": {
+        "margin_wins": 4,
+        "mean_margin": 0.297119,
+        "pairs": 4
+      },
+      "verify/insufficient": {
+        "margin_wins": 4,
+        "mean_margin": 0.369597,
+        "pairs": 4
+      }
+    },
+    "margin_accuracy": 1.0,
+    "margin_wins": 16,
+    "mean_margin": 0.256066,
+    "train_pairs": 16
+  },
+  "training": {
+    "batch_size": 1,
+    "device": "cuda",
+    "loss_delta": -1.721041,
+    "max_steps": 20,
+    "train_last_layers": 1,
+    "trainable_params": 14913280
+  }
+}

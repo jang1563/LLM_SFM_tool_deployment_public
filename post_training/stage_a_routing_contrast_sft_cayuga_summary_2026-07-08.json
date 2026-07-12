@@ -1,0 +1,186 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_outputs_committed": false,
+    "raw_outputs_location": "ignored post_training/runs/ on the Cayuga working copy"
+  },
+  "cluster": "Cayuga Slurm GPU",
+  "component": "routing_after_loop",
+  "contrast_axis": "action_status",
+  "dataset": "negbiodb_ct_stage_a_routing_contrast_sft_smoke_v1",
+  "failure_mode": "routing_action_status_confusion",
+  "heldout_base_summary": {
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "margin_wins": 0,
+        "mean_margin": -0.234553,
+        "min_margin": -0.234553,
+        "pairs": 1
+      },
+      "flag/invalid_value": {
+        "margin_wins": 0,
+        "mean_margin": -0.02023,
+        "min_margin": -0.02023,
+        "pairs": 1
+      },
+      "verify/insufficient": {
+        "margin_wins": 0,
+        "mean_margin": -0.095973,
+        "min_margin": -0.095973,
+        "pairs": 1
+      }
+    },
+    "heldout_pairs": 3,
+    "margin_accuracy": 0.0,
+    "margin_wins": 0,
+    "mean_margin": -0.116919,
+    "min_margin": -0.234553,
+    "violations": {
+      "chosen_not_above_rejected": 3
+    }
+  },
+  "heldout_delta_readout": [
+    {
+      "base_margin": -0.234553,
+      "case_family": "insufficient_evidence",
+      "chosen_pair": "defer/insufficient",
+      "margin_delta": 0.36104,
+      "outcome": "newly_won",
+      "rejected_pair": "reject/contradicted",
+      "trained_margin": 0.126487,
+      "trained_passed": true
+    },
+    {
+      "base_margin": -0.095973,
+      "case_family": "related_evidence_requires_verification",
+      "chosen_pair": "verify/insufficient",
+      "margin_delta": 0.265897,
+      "outcome": "newly_won",
+      "rejected_pair": "reject/contradicted",
+      "trained_margin": 0.169924,
+      "trained_passed": true
+    },
+    {
+      "base_margin": -0.02023,
+      "case_family": "invalid_value_attribution_failure",
+      "chosen_pair": "flag/invalid_value",
+      "margin_delta": 0.068518,
+      "outcome": "newly_won",
+      "rejected_pair": "ground/supported",
+      "trained_margin": 0.048288,
+      "trained_passed": true
+    }
+  ],
+  "heldout_delta_summary": {
+    "base_margin_wins": 0,
+    "heldout_pairs": 3,
+    "mean_base_margin": -0.116919,
+    "mean_margin_delta": 0.231818,
+    "mean_trained_margin": 0.1149,
+    "min_margin_delta": 0.068518,
+    "newly_lost": 0,
+    "newly_won": 3,
+    "outcomes": {
+      "newly_won": 3
+    },
+    "trained_margin_wins": 3
+  },
+  "heldout_trained_summary": {
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "margin_wins": 1,
+        "mean_margin": 0.126487,
+        "min_margin": 0.126487,
+        "pairs": 1
+      },
+      "flag/invalid_value": {
+        "margin_wins": 1,
+        "mean_margin": 0.048288,
+        "min_margin": 0.048288,
+        "pairs": 1
+      },
+      "verify/insufficient": {
+        "margin_wins": 1,
+        "mean_margin": 0.169924,
+        "min_margin": 0.169924,
+        "pairs": 1
+      }
+    },
+    "heldout_pairs": 3,
+    "margin_accuracy": 1.0,
+    "margin_wins": 3,
+    "mean_margin": 0.1149,
+    "min_margin": 0.048288,
+    "violations": {}
+  },
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "objective": {
+    "margin_logprob_mode": "mean",
+    "pairwise_margin": 0.05,
+    "pairwise_margin_weight": 1.0,
+    "target_format": "routing_action_status_json"
+  },
+  "prompt_contract": "stage_a_v2_evidence_conditioned_component",
+  "run_id": "stage_a_routing_contrast_sft_cayuga_2026_07_08",
+  "runner": "post_training/run_stage_a_routing_contrast_sft_smoke.py",
+  "scientific_readout": {
+    "interpretation": "A deterministic supervised pairwise-margin objective repairs the teacher-forced routing action/status contrast on this 3-case held-out slice. This is not a full trajectory result, not free-form generation, and not DPO/RLVR.",
+    "next_decision": "Do not start DPO/RLVR from this alone. The next gate is a finite-candidate or saved-prediction routing readout using the same evidence-conditioned schema, then revisit tool_query only if routing action/status remains stable.",
+    "question": "Can targeted SFT plus pairwise margin pressure make unresolved routing actions beat their observed wrong action/status alternatives?",
+    "result": "Yes on this held-out slice: base margins are 0/3 wins with mean -0.116919; trained margins are 3/3 wins with mean 0.1149 and mean delta 0.231818."
+  },
+  "source_pairs": {
+    "heldout_examples": 3,
+    "train_by_chosen_pair": {
+      "defer/insufficient": 4,
+      "flag/invalid_value": 4,
+      "verify/insufficient": 4
+    },
+    "train_examples": 12
+  },
+  "trace": {
+    "base_margin_report_sha256": "2d62ea410f078492a03a9ec8624a341936edda4b713ef50936150219ec3d6b49",
+    "base_margins_jsonl_sha256": "8ce9b2a01d743f8ca407de3e514a2cc5e29c776988c4509ce1edd61e47e81da8",
+    "heldout_margin_report_sha256": "c28b60f4454f19132809438e3e7b38821191b7f2c3b709d4f3a3cd84c9a7fdbf",
+    "heldout_margins_jsonl_sha256": "e4d109257b3961c56d20f2d15c4335b17298e334a7201400e4ee5dceabb050df",
+    "margin_delta_report_sha256": "d80f151c46e7696e84d6a86732cbdb5d578e5e827f82980eca2136d8937fc6b9",
+    "report_sha256": "0681c390445d78ca07c3970d850ec384299b40059984f970fc9203d3abe63dea",
+    "train_margin_report_sha256": "6b274548b6a482e617bcdbffd62e4b79e1dfcd5f98229d7f21382098d798fb6a",
+    "train_margins_jsonl_sha256": "9d8fef42c403b0b7ec21e6daf4bf4e391b1978e066975d41db5fd2eaf9baf858",
+    "trainable_state_sha256": "3097f2860b74bc2be533fa85467a439466101f61253507b03f608989a0d66e1b"
+  },
+  "trained_train_summary": {
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "margin_wins": 4,
+        "mean_margin": 0.102002,
+        "min_margin": 0.095493,
+        "pairs": 4
+      },
+      "flag/invalid_value": {
+        "margin_wins": 4,
+        "mean_margin": 0.039961,
+        "min_margin": 0.034792,
+        "pairs": 4
+      },
+      "verify/insufficient": {
+        "margin_wins": 4,
+        "mean_margin": 0.152987,
+        "min_margin": 0.134062,
+        "pairs": 4
+      }
+    },
+    "margin_accuracy": 1.0,
+    "margin_wins": 12,
+    "mean_margin": 0.098317,
+    "train_pairs": 12
+  },
+  "training": {
+    "batch_size": 1,
+    "device": "cuda",
+    "loss_delta": -1.323916,
+    "max_steps": 20,
+    "train_last_layers": 1,
+    "trainable_params": 14913280
+  }
+}

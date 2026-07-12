@@ -1,0 +1,730 @@
+{
+  "component": "routing_after_loop",
+  "dataset": "negbiodb_ct_stage_a_routing_gate_baseline_comparison_v1",
+  "hidden_labels_used_by_runtime_gate": false,
+  "input_targets": "post_training/stage_a_evidence_conditioned_component_targets_v1.jsonl",
+  "model_visible_fields_only_for_runtime_gate": true,
+  "policies": [
+    "runtime_evidence_gate",
+    "oracle",
+    "majority_ground_supported",
+    "routing_no_citations",
+    "empty_object"
+  ],
+  "policy_reports": {
+    "empty_object": {
+      "all": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 25,
+              "mean_score": 0.25,
+              "passed": 0
+            }
+          },
+          "cases": 25,
+          "gate_accuracy": {
+            "enum_validity": 0.0,
+            "exact_match": 0.0,
+            "target_keys": 0.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 0.25,
+          "passed": 0,
+          "violations": {
+            "enum_value_invalid": 25,
+            "target_key_mismatch": 25,
+            "target_mismatch": 25
+          }
+        },
+        "policy": "empty_object",
+        "split": "all",
+        "summary": {
+          "cases": 25,
+          "citation_agreement": 15,
+          "citation_agreement_rate": 0.6,
+          "citation_mismatches_vs_target": 10,
+          "gate_action_status_agreement": 0,
+          "gate_action_status_agreement_rate": 0.0,
+          "gate_full_agreement": 0,
+          "gate_full_agreement_rate": 0.0,
+          "mean_score": 0.25,
+          "predicted_pairs": {
+            "None/None": 25
+          },
+          "target_accuracy": 0.0,
+          "target_exact": 0,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {
+            "enum_value_invalid": 25,
+            "target_key_mismatch": 25,
+            "target_mismatch": 25
+          }
+        }
+      },
+      "heldout": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 5,
+              "mean_score": 0.25,
+              "passed": 0
+            }
+          },
+          "cases": 5,
+          "gate_accuracy": {
+            "enum_validity": 0.0,
+            "exact_match": 0.0,
+            "target_keys": 0.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 0.25,
+          "passed": 0,
+          "violations": {
+            "enum_value_invalid": 5,
+            "target_key_mismatch": 5,
+            "target_mismatch": 5
+          }
+        },
+        "policy": "empty_object",
+        "split": "heldout",
+        "summary": {
+          "cases": 5,
+          "citation_agreement": 3,
+          "citation_agreement_rate": 0.6,
+          "citation_mismatches_vs_target": 2,
+          "gate_action_status_agreement": 0,
+          "gate_action_status_agreement_rate": 0.0,
+          "gate_full_agreement": 0,
+          "gate_full_agreement_rate": 0.0,
+          "mean_score": 0.25,
+          "predicted_pairs": {
+            "None/None": 5
+          },
+          "target_accuracy": 0.0,
+          "target_exact": 0,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {
+            "enum_value_invalid": 5,
+            "target_key_mismatch": 5,
+            "target_mismatch": 5
+          }
+        }
+      },
+      "train": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 20,
+              "mean_score": 0.25,
+              "passed": 0
+            }
+          },
+          "cases": 20,
+          "gate_accuracy": {
+            "enum_validity": 0.0,
+            "exact_match": 0.0,
+            "target_keys": 0.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 0.25,
+          "passed": 0,
+          "violations": {
+            "enum_value_invalid": 20,
+            "target_key_mismatch": 20,
+            "target_mismatch": 20
+          }
+        },
+        "policy": "empty_object",
+        "split": "train",
+        "summary": {
+          "cases": 20,
+          "citation_agreement": 12,
+          "citation_agreement_rate": 0.6,
+          "citation_mismatches_vs_target": 8,
+          "gate_action_status_agreement": 0,
+          "gate_action_status_agreement_rate": 0.0,
+          "gate_full_agreement": 0,
+          "gate_full_agreement_rate": 0.0,
+          "mean_score": 0.25,
+          "predicted_pairs": {
+            "None/None": 20
+          },
+          "target_accuracy": 0.0,
+          "target_exact": 0,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {
+            "enum_value_invalid": 20,
+            "target_key_mismatch": 20,
+            "target_mismatch": 20
+          }
+        }
+      }
+    },
+    "majority_ground_supported": {
+      "all": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 25,
+              "mean_score": 0.8,
+              "passed": 5
+            }
+          },
+          "cases": 25,
+          "gate_accuracy": {
+            "enum_validity": 1.0,
+            "exact_match": 0.2,
+            "target_keys": 1.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 0.8,
+          "passed": 5,
+          "violations": {
+            "target_mismatch": 20
+          }
+        },
+        "policy": "majority_ground_supported",
+        "split": "all",
+        "summary": {
+          "cases": 25,
+          "citation_agreement": 25,
+          "citation_agreement_rate": 1.0,
+          "citation_mismatches_vs_target": 0,
+          "gate_action_status_agreement": 5,
+          "gate_action_status_agreement_rate": 0.2,
+          "gate_full_agreement": 5,
+          "gate_full_agreement_rate": 0.2,
+          "mean_score": 0.8,
+          "predicted_pairs": {
+            "ground/supported": 25
+          },
+          "target_accuracy": 0.2,
+          "target_exact": 5,
+          "unsafe_ground_supported_overrides": 20,
+          "violations": {
+            "target_mismatch": 20
+          }
+        }
+      },
+      "heldout": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 5,
+              "mean_score": 0.8,
+              "passed": 1
+            }
+          },
+          "cases": 5,
+          "gate_accuracy": {
+            "enum_validity": 1.0,
+            "exact_match": 0.2,
+            "target_keys": 1.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 0.8,
+          "passed": 1,
+          "violations": {
+            "target_mismatch": 4
+          }
+        },
+        "policy": "majority_ground_supported",
+        "split": "heldout",
+        "summary": {
+          "cases": 5,
+          "citation_agreement": 5,
+          "citation_agreement_rate": 1.0,
+          "citation_mismatches_vs_target": 0,
+          "gate_action_status_agreement": 1,
+          "gate_action_status_agreement_rate": 0.2,
+          "gate_full_agreement": 1,
+          "gate_full_agreement_rate": 0.2,
+          "mean_score": 0.8,
+          "predicted_pairs": {
+            "ground/supported": 5
+          },
+          "target_accuracy": 0.2,
+          "target_exact": 1,
+          "unsafe_ground_supported_overrides": 4,
+          "violations": {
+            "target_mismatch": 4
+          }
+        }
+      },
+      "train": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 20,
+              "mean_score": 0.8,
+              "passed": 4
+            }
+          },
+          "cases": 20,
+          "gate_accuracy": {
+            "enum_validity": 1.0,
+            "exact_match": 0.2,
+            "target_keys": 1.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 0.8,
+          "passed": 4,
+          "violations": {
+            "target_mismatch": 16
+          }
+        },
+        "policy": "majority_ground_supported",
+        "split": "train",
+        "summary": {
+          "cases": 20,
+          "citation_agreement": 20,
+          "citation_agreement_rate": 1.0,
+          "citation_mismatches_vs_target": 0,
+          "gate_action_status_agreement": 4,
+          "gate_action_status_agreement_rate": 0.2,
+          "gate_full_agreement": 4,
+          "gate_full_agreement_rate": 0.2,
+          "mean_score": 0.8,
+          "predicted_pairs": {
+            "ground/supported": 20
+          },
+          "target_accuracy": 0.2,
+          "target_exact": 4,
+          "unsafe_ground_supported_overrides": 16,
+          "violations": {
+            "target_mismatch": 16
+          }
+        }
+      }
+    },
+    "oracle": {
+      "all": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 25,
+              "mean_score": 1.0,
+              "passed": 25
+            }
+          },
+          "cases": 25,
+          "gate_accuracy": {
+            "enum_validity": 1.0,
+            "exact_match": 1.0,
+            "target_keys": 1.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 1.0,
+          "passed": 25,
+          "violations": {}
+        },
+        "policy": "oracle",
+        "split": "all",
+        "summary": {
+          "cases": 25,
+          "citation_agreement": 25,
+          "citation_agreement_rate": 1.0,
+          "citation_mismatches_vs_target": 0,
+          "gate_action_status_agreement": 25,
+          "gate_action_status_agreement_rate": 1.0,
+          "gate_full_agreement": 25,
+          "gate_full_agreement_rate": 1.0,
+          "mean_score": 1.0,
+          "predicted_pairs": {
+            "defer/insufficient": 5,
+            "flag/invalid_value": 5,
+            "ground/supported": 5,
+            "reject/contradicted": 5,
+            "verify/insufficient": 5
+          },
+          "target_accuracy": 1.0,
+          "target_exact": 25,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {}
+        }
+      },
+      "heldout": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 5,
+              "mean_score": 1.0,
+              "passed": 5
+            }
+          },
+          "cases": 5,
+          "gate_accuracy": {
+            "enum_validity": 1.0,
+            "exact_match": 1.0,
+            "target_keys": 1.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 1.0,
+          "passed": 5,
+          "violations": {}
+        },
+        "policy": "oracle",
+        "split": "heldout",
+        "summary": {
+          "cases": 5,
+          "citation_agreement": 5,
+          "citation_agreement_rate": 1.0,
+          "citation_mismatches_vs_target": 0,
+          "gate_action_status_agreement": 5,
+          "gate_action_status_agreement_rate": 1.0,
+          "gate_full_agreement": 5,
+          "gate_full_agreement_rate": 1.0,
+          "mean_score": 1.0,
+          "predicted_pairs": {
+            "defer/insufficient": 1,
+            "flag/invalid_value": 1,
+            "ground/supported": 1,
+            "reject/contradicted": 1,
+            "verify/insufficient": 1
+          },
+          "target_accuracy": 1.0,
+          "target_exact": 5,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {}
+        }
+      },
+      "train": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 20,
+              "mean_score": 1.0,
+              "passed": 20
+            }
+          },
+          "cases": 20,
+          "gate_accuracy": {
+            "enum_validity": 1.0,
+            "exact_match": 1.0,
+            "target_keys": 1.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 1.0,
+          "passed": 20,
+          "violations": {}
+        },
+        "policy": "oracle",
+        "split": "train",
+        "summary": {
+          "cases": 20,
+          "citation_agreement": 20,
+          "citation_agreement_rate": 1.0,
+          "citation_mismatches_vs_target": 0,
+          "gate_action_status_agreement": 20,
+          "gate_action_status_agreement_rate": 1.0,
+          "gate_full_agreement": 20,
+          "gate_full_agreement_rate": 1.0,
+          "mean_score": 1.0,
+          "predicted_pairs": {
+            "defer/insufficient": 4,
+            "flag/invalid_value": 4,
+            "ground/supported": 4,
+            "reject/contradicted": 4,
+            "verify/insufficient": 4
+          },
+          "target_accuracy": 1.0,
+          "target_exact": 20,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {}
+        }
+      }
+    },
+    "routing_no_citations": {
+      "all": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 25,
+              "mean_score": 0.9,
+              "passed": 15
+            }
+          },
+          "cases": 25,
+          "gate_accuracy": {
+            "enum_validity": 1.0,
+            "exact_match": 0.6,
+            "target_keys": 1.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 0.9,
+          "passed": 15,
+          "violations": {
+            "target_mismatch": 10
+          }
+        },
+        "policy": "routing_no_citations",
+        "split": "all",
+        "summary": {
+          "cases": 25,
+          "citation_agreement": 15,
+          "citation_agreement_rate": 0.6,
+          "citation_mismatches_vs_target": 10,
+          "gate_action_status_agreement": 25,
+          "gate_action_status_agreement_rate": 1.0,
+          "gate_full_agreement": 15,
+          "gate_full_agreement_rate": 0.6,
+          "mean_score": 0.9,
+          "predicted_pairs": {
+            "defer/insufficient": 5,
+            "flag/invalid_value": 5,
+            "ground/supported": 5,
+            "reject/contradicted": 5,
+            "verify/insufficient": 5
+          },
+          "target_accuracy": 0.6,
+          "target_exact": 15,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {
+            "target_mismatch": 10
+          }
+        }
+      },
+      "heldout": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 5,
+              "mean_score": 0.9,
+              "passed": 3
+            }
+          },
+          "cases": 5,
+          "gate_accuracy": {
+            "enum_validity": 1.0,
+            "exact_match": 0.6,
+            "target_keys": 1.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 0.9,
+          "passed": 3,
+          "violations": {
+            "target_mismatch": 2
+          }
+        },
+        "policy": "routing_no_citations",
+        "split": "heldout",
+        "summary": {
+          "cases": 5,
+          "citation_agreement": 3,
+          "citation_agreement_rate": 0.6,
+          "citation_mismatches_vs_target": 2,
+          "gate_action_status_agreement": 5,
+          "gate_action_status_agreement_rate": 1.0,
+          "gate_full_agreement": 3,
+          "gate_full_agreement_rate": 0.6,
+          "mean_score": 0.9,
+          "predicted_pairs": {
+            "defer/insufficient": 1,
+            "flag/invalid_value": 1,
+            "ground/supported": 1,
+            "reject/contradicted": 1,
+            "verify/insufficient": 1
+          },
+          "target_accuracy": 0.6,
+          "target_exact": 3,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {
+            "target_mismatch": 2
+          }
+        }
+      },
+      "train": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 20,
+              "mean_score": 0.9,
+              "passed": 12
+            }
+          },
+          "cases": 20,
+          "gate_accuracy": {
+            "enum_validity": 1.0,
+            "exact_match": 0.6,
+            "target_keys": 1.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 0.9,
+          "passed": 12,
+          "violations": {
+            "target_mismatch": 8
+          }
+        },
+        "policy": "routing_no_citations",
+        "split": "train",
+        "summary": {
+          "cases": 20,
+          "citation_agreement": 12,
+          "citation_agreement_rate": 0.6,
+          "citation_mismatches_vs_target": 8,
+          "gate_action_status_agreement": 20,
+          "gate_action_status_agreement_rate": 1.0,
+          "gate_full_agreement": 12,
+          "gate_full_agreement_rate": 0.6,
+          "mean_score": 0.9,
+          "predicted_pairs": {
+            "defer/insufficient": 4,
+            "flag/invalid_value": 4,
+            "ground/supported": 4,
+            "reject/contradicted": 4,
+            "verify/insufficient": 4
+          },
+          "target_accuracy": 0.6,
+          "target_exact": 12,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {
+            "target_mismatch": 8
+          }
+        }
+      }
+    },
+    "runtime_evidence_gate": {
+      "all": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 25,
+              "mean_score": 1.0,
+              "passed": 25
+            }
+          },
+          "cases": 25,
+          "gate_accuracy": {
+            "enum_validity": 1.0,
+            "exact_match": 1.0,
+            "target_keys": 1.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 1.0,
+          "passed": 25,
+          "violations": {}
+        },
+        "policy": "runtime_evidence_gate",
+        "split": "all",
+        "summary": {
+          "cases": 25,
+          "citation_agreement": 25,
+          "citation_agreement_rate": 1.0,
+          "citation_mismatches_vs_target": 0,
+          "gate_action_status_agreement": 25,
+          "gate_action_status_agreement_rate": 1.0,
+          "gate_full_agreement": 25,
+          "gate_full_agreement_rate": 1.0,
+          "mean_score": 1.0,
+          "predicted_pairs": {
+            "defer/insufficient": 5,
+            "flag/invalid_value": 5,
+            "ground/supported": 5,
+            "reject/contradicted": 5,
+            "verify/insufficient": 5
+          },
+          "target_accuracy": 1.0,
+          "target_exact": 25,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {}
+        }
+      },
+      "heldout": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 5,
+              "mean_score": 1.0,
+              "passed": 5
+            }
+          },
+          "cases": 5,
+          "gate_accuracy": {
+            "enum_validity": 1.0,
+            "exact_match": 1.0,
+            "target_keys": 1.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 1.0,
+          "passed": 5,
+          "violations": {}
+        },
+        "policy": "runtime_evidence_gate",
+        "split": "heldout",
+        "summary": {
+          "cases": 5,
+          "citation_agreement": 5,
+          "citation_agreement_rate": 1.0,
+          "citation_mismatches_vs_target": 0,
+          "gate_action_status_agreement": 5,
+          "gate_action_status_agreement_rate": 1.0,
+          "gate_full_agreement": 5,
+          "gate_full_agreement_rate": 1.0,
+          "mean_score": 1.0,
+          "predicted_pairs": {
+            "defer/insufficient": 1,
+            "flag/invalid_value": 1,
+            "ground/supported": 1,
+            "reject/contradicted": 1,
+            "verify/insufficient": 1
+          },
+          "target_accuracy": 1.0,
+          "target_exact": 5,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {}
+        }
+      },
+      "train": {
+        "component_eval_summary": {
+          "by_component": {
+            "routing_after_loop": {
+              "cases": 20,
+              "mean_score": 1.0,
+              "passed": 20
+            }
+          },
+          "cases": 20,
+          "gate_accuracy": {
+            "enum_validity": 1.0,
+            "exact_match": 1.0,
+            "target_keys": 1.0,
+            "tool_query_shape": 1.0
+          },
+          "mean_score": 1.0,
+          "passed": 20,
+          "violations": {}
+        },
+        "policy": "runtime_evidence_gate",
+        "split": "train",
+        "summary": {
+          "cases": 20,
+          "citation_agreement": 20,
+          "citation_agreement_rate": 1.0,
+          "citation_mismatches_vs_target": 0,
+          "gate_action_status_agreement": 20,
+          "gate_action_status_agreement_rate": 1.0,
+          "gate_full_agreement": 20,
+          "gate_full_agreement_rate": 1.0,
+          "mean_score": 1.0,
+          "predicted_pairs": {
+            "defer/insufficient": 4,
+            "flag/invalid_value": 4,
+            "ground/supported": 4,
+            "reject/contradicted": 4,
+            "verify/insufficient": 4
+          },
+          "target_accuracy": 1.0,
+          "target_exact": 20,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {}
+        }
+      }
+    }
+  },
+  "scientific_readout": {
+    "diagnostic_question": "Do simple routing component baselines match the all-family runtime evidence gate on target exactness, citation grounding, and fail-closed behavior?",
+    "interpretation_rule": "The runtime gate and oracle are sanity baselines. A model prediction path should not advance to tool_query, DPO/RLVR, HF publication, or release tagging until it beats collapse and citationless baselines and is competitive with the runtime gate.",
+    "next_decision": "Compare saved model/component outputs against this report. If the model only matches action/status but misses citations or fail-closed routing, keep runtime enforcement in the system and avoid new optimization objectives."
+  }
+}

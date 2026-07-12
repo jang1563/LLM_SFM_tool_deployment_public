@@ -1,0 +1,431 @@
+{
+  "dataset": "negbiodb_ct_native_sft_curriculum_v2_targeted",
+  "fold_manifests": [
+    {
+      "fold": 0,
+      "heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_examples": 10,
+      "persistent_failures_heldout_excluded": [
+        "ct::defer::6426::28490",
+        "ct::ground::47205::44830",
+        "ct::ground::5768::4152",
+        "ct::reject::155::6192",
+        "ct::verify::24969::44875",
+        "ct::verify::69004::7330"
+      ],
+      "persistent_failures_in_train": [
+        "ct::defer::134453::3090",
+        "ct::defer::158039::15870",
+        "ct::defer::166731::7134",
+        "ct::defer::26670::54004",
+        "ct::flag::148::1617",
+        "ct::ground::1716::17720",
+        "ct::ground::22::300",
+        "ct::ground::24736::209",
+        "ct::reject::1060::12635",
+        "ct::reject::22104::5857",
+        "ct::reject::22::97",
+        "ct::verify::42767::3541",
+        "ct::verify::5277::29636",
+        "ct::verify::65190::9649"
+      ],
+      "source_train": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_train.jsonl",
+      "source_train_by_class": {
+        "defer": 6,
+        "flag": 6,
+        "ground": 6,
+        "reject": 6,
+        "verify": 6
+      },
+      "source_train_examples": 30,
+      "targeted_by_class": {
+        "defer": 8,
+        "flag": 1,
+        "ground": 6,
+        "reject": 9,
+        "verify": 6
+      },
+      "targeted_by_failure_pair": {
+        "defer->verify": 8,
+        "flag->reject": 1,
+        "ground->flag": 4,
+        "ground->reject": 2,
+        "reject->flag": 9,
+        "verify->defer": 6
+      },
+      "targeted_by_family": {
+        "target_clean_ground": 6,
+        "target_defer_verify": 14,
+        "target_flag_preserve": 1,
+        "target_reject_override": 9
+      },
+      "targeted_examples": 30,
+      "targeted_task_ids": [
+        "ct::defer::134453::3090",
+        "ct::defer::158039::15870",
+        "ct::defer::166731::7134",
+        "ct::defer::26670::54004",
+        "ct::flag::148::1617",
+        "ct::ground::1716::17720",
+        "ct::ground::22::300",
+        "ct::ground::24736::209",
+        "ct::reject::1060::12635",
+        "ct::reject::22104::5857",
+        "ct::reject::22::97",
+        "ct::verify::42767::3541",
+        "ct::verify::5277::29636",
+        "ct::verify::65190::9649"
+      ],
+      "train": "post_training/curriculum_v2/negbiodb_ct_native_sft_cv4_curriculum_v2_targeted_fold0_train.jsonl",
+      "train_by_class": {
+        "defer": 20,
+        "flag": 19,
+        "ground": 24,
+        "reject": 21,
+        "verify": 18
+      },
+      "train_by_family": {
+        "base": 30,
+        "ground_flag": 12,
+        "reject_override": 18,
+        "target_clean_ground": 6,
+        "target_defer_verify": 14,
+        "target_flag_preserve": 1,
+        "target_reject_override": 9,
+        "verify_defer": 12
+      },
+      "train_examples": 102,
+      "v1_curriculum_examples": 72
+    },
+    {
+      "fold": 1,
+      "heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold1_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_examples": 10,
+      "persistent_failures_heldout_excluded": [
+        "ct::defer::134453::3090",
+        "ct::defer::158039::15870",
+        "ct::verify::42767::3541"
+      ],
+      "persistent_failures_in_train": [
+        "ct::defer::166731::7134",
+        "ct::defer::26670::54004",
+        "ct::defer::6426::28490",
+        "ct::flag::148::1617",
+        "ct::ground::1716::17720",
+        "ct::ground::22::300",
+        "ct::ground::24736::209",
+        "ct::ground::47205::44830",
+        "ct::ground::5768::4152",
+        "ct::reject::1060::12635",
+        "ct::reject::155::6192",
+        "ct::reject::22104::5857",
+        "ct::reject::22::97",
+        "ct::verify::24969::44875",
+        "ct::verify::5277::29636",
+        "ct::verify::65190::9649",
+        "ct::verify::69004::7330"
+      ],
+      "source_train": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold1_train.jsonl",
+      "source_train_by_class": {
+        "defer": 6,
+        "flag": 6,
+        "ground": 6,
+        "reject": 6,
+        "verify": 6
+      },
+      "source_train_examples": 30,
+      "targeted_by_class": {
+        "defer": 6,
+        "flag": 1,
+        "ground": 10,
+        "reject": 12,
+        "verify": 8
+      },
+      "targeted_by_failure_pair": {
+        "defer->verify": 6,
+        "flag->reject": 1,
+        "ground->flag": 8,
+        "ground->reject": 2,
+        "reject->flag": 12,
+        "verify->defer": 8
+      },
+      "targeted_by_family": {
+        "target_clean_ground": 10,
+        "target_defer_verify": 14,
+        "target_flag_preserve": 1,
+        "target_reject_override": 12
+      },
+      "targeted_examples": 37,
+      "targeted_task_ids": [
+        "ct::defer::166731::7134",
+        "ct::defer::26670::54004",
+        "ct::defer::6426::28490",
+        "ct::flag::148::1617",
+        "ct::ground::1716::17720",
+        "ct::ground::22::300",
+        "ct::ground::24736::209",
+        "ct::ground::47205::44830",
+        "ct::ground::5768::4152",
+        "ct::reject::1060::12635",
+        "ct::reject::155::6192",
+        "ct::reject::22104::5857",
+        "ct::reject::22::97",
+        "ct::verify::24969::44875",
+        "ct::verify::5277::29636",
+        "ct::verify::65190::9649",
+        "ct::verify::69004::7330"
+      ],
+      "train": "post_training/curriculum_v2/negbiodb_ct_native_sft_cv4_curriculum_v2_targeted_fold1_train.jsonl",
+      "train_by_class": {
+        "defer": 18,
+        "flag": 19,
+        "ground": 28,
+        "reject": 24,
+        "verify": 20
+      },
+      "train_by_family": {
+        "base": 30,
+        "ground_flag": 12,
+        "reject_override": 18,
+        "target_clean_ground": 10,
+        "target_defer_verify": 14,
+        "target_flag_preserve": 1,
+        "target_reject_override": 12,
+        "verify_defer": 12
+      },
+      "train_examples": 109,
+      "v1_curriculum_examples": 72
+    },
+    {
+      "fold": 2,
+      "heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold2_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_examples": 10,
+      "persistent_failures_heldout_excluded": [
+        "ct::defer::166731::7134",
+        "ct::defer::26670::54004",
+        "ct::ground::24736::209",
+        "ct::reject::1060::12635",
+        "ct::reject::22104::5857"
+      ],
+      "persistent_failures_in_train": [
+        "ct::defer::134453::3090",
+        "ct::defer::158039::15870",
+        "ct::defer::6426::28490",
+        "ct::flag::148::1617",
+        "ct::ground::1716::17720",
+        "ct::ground::22::300",
+        "ct::ground::47205::44830",
+        "ct::ground::5768::4152",
+        "ct::reject::155::6192",
+        "ct::reject::22::97",
+        "ct::verify::24969::44875",
+        "ct::verify::42767::3541",
+        "ct::verify::5277::29636",
+        "ct::verify::65190::9649",
+        "ct::verify::69004::7330"
+      ],
+      "source_train": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold2_train.jsonl",
+      "source_train_by_class": {
+        "defer": 6,
+        "flag": 6,
+        "ground": 6,
+        "reject": 6,
+        "verify": 6
+      },
+      "source_train_examples": 30,
+      "targeted_by_class": {
+        "defer": 6,
+        "flag": 1,
+        "ground": 8,
+        "reject": 6,
+        "verify": 10
+      },
+      "targeted_by_failure_pair": {
+        "defer->verify": 6,
+        "flag->reject": 1,
+        "ground->flag": 6,
+        "ground->reject": 2,
+        "reject->flag": 6,
+        "verify->defer": 10
+      },
+      "targeted_by_family": {
+        "target_clean_ground": 8,
+        "target_defer_verify": 16,
+        "target_flag_preserve": 1,
+        "target_reject_override": 6
+      },
+      "targeted_examples": 31,
+      "targeted_task_ids": [
+        "ct::defer::134453::3090",
+        "ct::defer::158039::15870",
+        "ct::defer::6426::28490",
+        "ct::flag::148::1617",
+        "ct::ground::1716::17720",
+        "ct::ground::22::300",
+        "ct::ground::47205::44830",
+        "ct::ground::5768::4152",
+        "ct::reject::155::6192",
+        "ct::reject::22::97",
+        "ct::verify::24969::44875",
+        "ct::verify::42767::3541",
+        "ct::verify::5277::29636",
+        "ct::verify::65190::9649",
+        "ct::verify::69004::7330"
+      ],
+      "train": "post_training/curriculum_v2/negbiodb_ct_native_sft_cv4_curriculum_v2_targeted_fold2_train.jsonl",
+      "train_by_class": {
+        "defer": 18,
+        "flag": 19,
+        "ground": 26,
+        "reject": 18,
+        "verify": 22
+      },
+      "train_by_family": {
+        "base": 30,
+        "ground_flag": 12,
+        "reject_override": 18,
+        "target_clean_ground": 8,
+        "target_defer_verify": 16,
+        "target_flag_preserve": 1,
+        "target_reject_override": 6,
+        "verify_defer": 12
+      },
+      "train_examples": 103,
+      "v1_curriculum_examples": 72
+    },
+    {
+      "fold": 3,
+      "heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold3_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_examples": 10,
+      "persistent_failures_heldout_excluded": [
+        "ct::flag::148::1617",
+        "ct::ground::1716::17720",
+        "ct::ground::22::300",
+        "ct::reject::22::97",
+        "ct::verify::5277::29636",
+        "ct::verify::65190::9649"
+      ],
+      "persistent_failures_in_train": [
+        "ct::defer::134453::3090",
+        "ct::defer::158039::15870",
+        "ct::defer::166731::7134",
+        "ct::defer::26670::54004",
+        "ct::defer::6426::28490",
+        "ct::ground::24736::209",
+        "ct::ground::47205::44830",
+        "ct::ground::5768::4152",
+        "ct::reject::1060::12635",
+        "ct::reject::155::6192",
+        "ct::reject::22104::5857",
+        "ct::verify::24969::44875",
+        "ct::verify::42767::3541",
+        "ct::verify::69004::7330"
+      ],
+      "source_train": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold3_train.jsonl",
+      "source_train_by_class": {
+        "defer": 6,
+        "flag": 6,
+        "ground": 6,
+        "reject": 6,
+        "verify": 6
+      },
+      "source_train_examples": 30,
+      "targeted_by_class": {
+        "defer": 10,
+        "ground": 6,
+        "reject": 9,
+        "verify": 6
+      },
+      "targeted_by_failure_pair": {
+        "defer->verify": 10,
+        "ground->flag": 6,
+        "reject->flag": 9,
+        "verify->defer": 6
+      },
+      "targeted_by_family": {
+        "target_clean_ground": 6,
+        "target_defer_verify": 16,
+        "target_reject_override": 9
+      },
+      "targeted_examples": 31,
+      "targeted_task_ids": [
+        "ct::defer::134453::3090",
+        "ct::defer::158039::15870",
+        "ct::defer::166731::7134",
+        "ct::defer::26670::54004",
+        "ct::defer::6426::28490",
+        "ct::ground::24736::209",
+        "ct::ground::47205::44830",
+        "ct::ground::5768::4152",
+        "ct::reject::1060::12635",
+        "ct::reject::155::6192",
+        "ct::reject::22104::5857",
+        "ct::verify::24969::44875",
+        "ct::verify::42767::3541",
+        "ct::verify::69004::7330"
+      ],
+      "train": "post_training/curriculum_v2/negbiodb_ct_native_sft_cv4_curriculum_v2_targeted_fold3_train.jsonl",
+      "train_by_class": {
+        "defer": 22,
+        "flag": 18,
+        "ground": 24,
+        "reject": 21,
+        "verify": 18
+      },
+      "train_by_family": {
+        "base": 30,
+        "ground_flag": 12,
+        "reject_override": 18,
+        "target_clean_ground": 6,
+        "target_defer_verify": 16,
+        "target_reject_override": 9,
+        "verify_defer": 12
+      },
+      "train_examples": 103,
+      "v1_curriculum_examples": 72
+    }
+  ],
+  "out_dir": "post_training/curriculum_v2",
+  "persistent_failure_count": 20,
+  "prefix": "negbiodb_ct_native_sft_cv4_curriculum_v2_targeted",
+  "source_cv_manifest": "post_training/negbiodb_ct_native_sft_cv4_manifest.json",
+  "source_cv_manifest_folds": 4,
+  "source_failure_analysis": "post_training/sft_curriculum_failure_analysis_2026-06-26.json",
+  "source_manifest": "post_training/negbiodb_ct_native_sft_v1.jsonl",
+  "strategy": "contrast_family_interleave_plus_persistent_failure_targeted_v2",
+  "target_weights": {
+    "defer": 2,
+    "flag": 1,
+    "ground": 2,
+    "reject": 3,
+    "verify": 2
+  }
+}

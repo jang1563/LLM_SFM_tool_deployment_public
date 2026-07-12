@@ -1,0 +1,74 @@
+{
+  "anchor": "post_training/BOUNDARY_PREFERENCE_HARD_MODE_ARTIFACTS_2026-06-27.md",
+  "hard_mode_artifact": {
+    "source": "post_training/negbiodb_ct_oracle_boundary_preferences_v1.jsonl",
+    "out": "post_training/negbiodb_ct_oracle_boundary_preferences_hard_v1.jsonl",
+    "manifest": "post_training/negbiodb_ct_oracle_boundary_preferences_hard_manifest.json",
+    "dataset": "negbiodb_ct_oracle_boundary_preferences_hard_v1",
+    "strategy": "base_negative_margin_hard_modes_v1",
+    "selection_source": "post_training/boundary_preference_margin_base_summary_2026-06-27.json",
+    "source_preference_pairs": 620,
+    "preference_pairs": 240,
+    "chosen_passed": 240,
+    "rejected_passed": 0,
+    "pairs_by_failure_mode": {
+      "boundary_defer_over_verify": 120,
+      "boundary_flag_over_ground": 40,
+      "boundary_reject_over_flag": 40,
+      "boundary_reject_over_ground": 40
+    },
+    "pairs_by_chosen_action": {
+      "defer": 120,
+      "flag": 40,
+      "reject": 80
+    },
+    "pairs_by_rejected_action": {
+      "flag": 40,
+      "ground": 80,
+      "verify": 120
+    }
+  },
+  "dry_run": {
+    "command": "python post_training/run_boundary_preference_dpo_smoke.py --dry-run --limit 8 --max-length 768 --out-dir post_training/runs/qwen_boundary_preference_dpo_hard_dry",
+    "selected_pairs": 8,
+    "chosen_lengths": [407, 450, 450, 364, 345, 346, 447, 447],
+    "rejected_lengths": [407, 466, 466, 364, 345, 346, 463, 463]
+  },
+  "dpo_smoke_limit8_steps16": {
+    "command": "python post_training/run_boundary_preference_dpo_smoke.py --limit 8 --max-steps 16 --batch-size 1 --max-length 768 --train-last-layers 2 --lr 5e-5 --beta 0.1 --logprob-mode mean --device auto --out-dir post_training/runs/qwen_boundary_preference_dpo_hard_smoke_limit8_steps16",
+    "raw_report": "post_training/runs/qwen_boundary_preference_dpo_hard_smoke_limit8_steps16/report.json",
+    "condition": "boundary_preference_reference_free_dpo_smoke",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "selected_pairs": 8,
+    "max_steps": 16,
+    "batch_size": 1,
+    "train_last_layers": 2,
+    "trainable_params": 29825664,
+    "lr": 5e-5,
+    "beta": 0.1,
+    "logprob_mode": "mean",
+    "loss_delta": -0.259765625,
+    "step_margin_delta": 6.0625,
+    "pre_train": {
+      "win_rate": 0.0,
+      "margin": {
+        "mean": -1.4004,
+        "median": -1.375,
+        "min": -2.75,
+        "max": -0.125
+      }
+    },
+    "post_train": {
+      "win_rate": 1.0,
+      "margin": {
+        "mean": 6.9414,
+        "median": 7.9844,
+        "min": 1.375,
+        "max": 8.3125
+      }
+    },
+    "trainable_state": "post_training/runs/qwen_boundary_preference_dpo_hard_smoke_limit8_steps16/trainable_state.pt"
+  },
+  "boundary": "This is a reference-free DPO-style overfit/plumbing smoke over 8 hard pairs, not a held-out DPO improvement claim.",
+  "next_safe_action": "Scale from limit8 overfit smoke to a full hard-subset run with held-out or at least pre/post margin evaluation by failure mode."
+}

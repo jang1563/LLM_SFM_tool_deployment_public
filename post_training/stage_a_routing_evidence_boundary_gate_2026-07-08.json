@@ -1,0 +1,353 @@
+{
+  "component": "routing_after_loop",
+  "dataset": "negbiodb_ct_stage_a_routing_evidence_boundary_gate_v1",
+  "fail_closed_default": {
+    "action": "defer",
+    "cited_source_ids": [],
+    "evidence_status": "insufficient"
+  },
+  "gate": "deterministic_model_visible_evidence_boundary",
+  "hidden_labels_used_by_gate": false,
+  "input_pairs": "post_training/stage_a_routing_defer_verify_contrast_pairs_v1.jsonl",
+  "model_visible_fields_only": true,
+  "rows": [
+    {
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000010",
+      "exact": true,
+      "expected": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "defer/insufficient",
+      "features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0
+      },
+      "id": "stage_a_routing_defer_verify_contrast::stage_a_evidence_component::stage_a::000010::routing_after_loop::routing_defer_verify_boundary_confusion",
+      "predicted": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "defer/insufficient",
+      "reason": "no_same_indication_or_related_failure_record",
+      "split_label": "all"
+    },
+    {
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000011",
+      "exact": true,
+      "expected": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "defer/insufficient",
+      "features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0
+      },
+      "id": "stage_a_routing_defer_verify_contrast::stage_a_evidence_component::stage_a::000011::routing_after_loop::routing_defer_verify_boundary_confusion",
+      "predicted": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "defer/insufficient",
+      "reason": "no_same_indication_or_related_failure_record",
+      "split_label": "all"
+    },
+    {
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "exact": true,
+      "expected": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "defer/insufficient",
+      "features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0
+      },
+      "id": "stage_a_routing_defer_verify_contrast::stage_a_evidence_component::stage_a::000012::routing_after_loop::routing_defer_verify_boundary_confusion",
+      "predicted": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "defer/insufficient",
+      "reason": "no_same_indication_or_related_failure_record",
+      "split_label": "all"
+    },
+    {
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000013",
+      "exact": true,
+      "expected": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "defer/insufficient",
+      "features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0
+      },
+      "id": "stage_a_routing_defer_verify_contrast::stage_a_evidence_component::stage_a::000013::routing_after_loop::routing_defer_verify_boundary_confusion",
+      "predicted": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "defer/insufficient",
+      "reason": "no_same_indication_or_related_failure_record",
+      "split_label": "all"
+    },
+    {
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000014",
+      "exact": true,
+      "expected": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "defer/insufficient",
+      "features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0
+      },
+      "id": "stage_a_routing_defer_verify_contrast::stage_a_evidence_component::stage_a::000014::routing_after_loop::routing_defer_verify_boundary_confusion",
+      "predicted": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "defer/insufficient",
+      "reason": "no_same_indication_or_related_failure_record",
+      "split_label": "all"
+    },
+    {
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000015",
+      "exact": true,
+      "expected": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "verify/insufficient",
+      "features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0
+      },
+      "id": "stage_a_routing_defer_verify_contrast::stage_a_evidence_component::stage_a::000015::routing_after_loop::routing_defer_verify_boundary_confusion",
+      "predicted": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "verify/insufficient",
+      "reason": "related_evidence_without_same_indication_record",
+      "split_label": "all"
+    },
+    {
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000016",
+      "exact": true,
+      "expected": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "verify/insufficient",
+      "features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0
+      },
+      "id": "stage_a_routing_defer_verify_contrast::stage_a_evidence_component::stage_a::000016::routing_after_loop::routing_defer_verify_boundary_confusion",
+      "predicted": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "verify/insufficient",
+      "reason": "related_evidence_without_same_indication_record",
+      "split_label": "all"
+    },
+    {
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000017",
+      "exact": true,
+      "expected": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "verify/insufficient",
+      "features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0
+      },
+      "id": "stage_a_routing_defer_verify_contrast::stage_a_evidence_component::stage_a::000017::routing_after_loop::routing_defer_verify_boundary_confusion",
+      "predicted": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "verify/insufficient",
+      "reason": "related_evidence_without_same_indication_record",
+      "split_label": "all"
+    },
+    {
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000018",
+      "exact": true,
+      "expected": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "verify/insufficient",
+      "features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0
+      },
+      "id": "stage_a_routing_defer_verify_contrast::stage_a_evidence_component::stage_a::000018::routing_after_loop::routing_defer_verify_boundary_confusion",
+      "predicted": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "verify/insufficient",
+      "reason": "related_evidence_without_same_indication_record",
+      "split_label": "all"
+    },
+    {
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "exact": true,
+      "expected": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "expected_pair": "verify/insufficient",
+      "features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0
+      },
+      "id": "stage_a_routing_defer_verify_contrast::stage_a_evidence_component::stage_a::000019::routing_after_loop::routing_defer_verify_boundary_confusion",
+      "predicted": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "predicted_pair": "verify/insufficient",
+      "reason": "related_evidence_without_same_indication_record",
+      "split_label": "all"
+    }
+  ],
+  "scientific_readout": {
+    "diagnostic_question": "Can a deterministic runtime gate recover the defer-vs-verify boundary from model-visible evidence state without trusting model confidence?",
+    "interpretation_rule": "This is a no-model baseline over a narrow boundary slice. A pass supports runtime enforcement as a useful system component, not a claim that model routing or calibration is solved.",
+    "next_decision": "Use this as the baseline to beat before new training. Keep tool_query, DPO/RLVR, and Hugging Face publication gated."
+  },
+  "summary": {
+    "all": {
+      "accuracy": 1.0,
+      "by_expected_pair": {
+        "defer/insufficient": 5,
+        "verify/insufficient": 5
+      },
+      "by_predicted_pair": {
+        "defer/insufficient": 5,
+        "verify/insufficient": 5
+      },
+      "by_reason": {
+        "no_same_indication_or_related_failure_record": 5,
+        "related_evidence_without_same_indication_record": 5
+      },
+      "exact": 10,
+      "rows": 10
+    },
+    "heldout": {
+      "accuracy": 1.0,
+      "by_expected_pair": {
+        "defer/insufficient": 1,
+        "verify/insufficient": 1
+      },
+      "by_predicted_pair": {
+        "defer/insufficient": 1,
+        "verify/insufficient": 1
+      },
+      "by_reason": {
+        "no_same_indication_or_related_failure_record": 1,
+        "related_evidence_without_same_indication_record": 1
+      },
+      "exact": 2,
+      "rows": 2
+    },
+    "train": {
+      "accuracy": 1.0,
+      "by_expected_pair": {
+        "defer/insufficient": 4,
+        "verify/insufficient": 4
+      },
+      "by_predicted_pair": {
+        "defer/insufficient": 4,
+        "verify/insufficient": 4
+      },
+      "by_reason": {
+        "no_same_indication_or_related_failure_record": 4,
+        "related_evidence_without_same_indication_record": 4
+      },
+      "exact": 8,
+      "rows": 8
+    }
+  }
+}

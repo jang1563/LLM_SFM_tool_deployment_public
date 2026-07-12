@@ -1,0 +1,96 @@
+{
+  "artifact_policy": {
+    "candidate_score_jsonl_committed": false,
+    "full_field_reports_committed": false,
+    "model_state_committed": false,
+    "raw_model_text_committed": false,
+    "raw_prompt_messages_committed": false,
+    "scheduler_logs_committed": false
+  },
+  "cluster": "Cayuga Slurm GPU",
+  "dataset": "negbiodb_ct_stage_a_saved_output_candidate_field_summary_v1",
+  "decision": {
+    "interpretation": "The candidate-rank failure is not a single isolated field miss. After full-target SFT, the trained model over-selects the combined flag/invalid_value pair; non-flag targets show both action and evidence-status field failures.",
+    "next_decision": "Keep tool_query, DPO/RLVR, Hugging Face publication, release tagging, and broad retraining gated. Next work should test calibration or a field-wise/pair-wise routing objective against runtime enforcement.",
+    "status": "candidate_selection_bias_flag_invalid_value_overselection"
+  },
+  "heldout_examples": 4,
+  "input_run_id": "stage_a_saved_output_flag_full_candidate_rank_qwen05b_cayuga_20260710",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "raw_outputs_location": "ignored Cayuga post_training/runs directory",
+  "candidate_policy": "train_observed_plus_rejected",
+  "candidate_target_format": "full",
+  "base_field_diagnostic": {
+    "exact_top1": 0,
+    "field_rank_patterns": {
+      "both_field_failure": 4
+    },
+    "mean_action_rank": 3.5,
+    "mean_evidence_status_rank": 2.75,
+    "mean_target_rank": 3.5,
+    "top_pair_counts": {
+      "ground/supported": 4
+    }
+  },
+  "trained_field_diagnostic": {
+    "action_top1": 1,
+    "evidence_status_top1": 1,
+    "exact_top1": 1,
+    "field_rank_patterns": {
+      "both_field_failure": 3,
+      "pair_top1": 1
+    },
+    "mean_action_rank": 2.5,
+    "mean_evidence_status_rank": 2.0,
+    "mean_target_rank": 2.5,
+    "top_pair_counts": {
+      "flag/invalid_value": 4
+    }
+  },
+  "trained_rows": [
+    {
+      "action_rank": 4,
+      "action_top": "flag",
+      "case_id": "stage_a::000007",
+      "evidence_status_rank": 3,
+      "evidence_status_top": "invalid_value",
+      "field_rank_pattern": "both_field_failure",
+      "target_pair": "reject/contradicted",
+      "target_rank": 4,
+      "top_pair": "flag/invalid_value"
+    },
+    {
+      "action_rank": 3,
+      "action_top": "flag",
+      "case_id": "stage_a::000012",
+      "evidence_status_rank": 2,
+      "evidence_status_top": "invalid_value",
+      "field_rank_pattern": "both_field_failure",
+      "target_pair": "defer/insufficient",
+      "target_rank": 3,
+      "top_pair": "flag/invalid_value"
+    },
+    {
+      "action_rank": 2,
+      "action_top": "flag",
+      "case_id": "stage_a::000019",
+      "evidence_status_rank": 2,
+      "evidence_status_top": "invalid_value",
+      "field_rank_pattern": "both_field_failure",
+      "target_pair": "verify/insufficient",
+      "target_rank": 2,
+      "top_pair": "flag/invalid_value"
+    },
+    {
+      "action_rank": 1,
+      "action_top": "flag",
+      "case_id": "stage_a::000021",
+      "evidence_status_rank": 1,
+      "evidence_status_top": "invalid_value",
+      "field_rank_pattern": "pair_top1",
+      "target_pair": "flag/invalid_value",
+      "target_rank": 1,
+      "top_pair": "flag/invalid_value"
+    }
+  ]
+}

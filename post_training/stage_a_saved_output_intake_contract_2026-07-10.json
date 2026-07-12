@@ -1,0 +1,170 @@
+{
+  "criteria_match": true,
+  "dataset": "negbiodb_ct_stage_a_saved_output_intake_contract_v1",
+  "expected_next_artifacts_required": [
+    "compact saved-output summary",
+    "compact candidate calibration summary",
+    "compact candidate arbitration summary",
+    "updated saved-output next-decision report"
+  ],
+  "future_policy_adapter_contract": {
+    "complete": true,
+    "missing_required_fields": [],
+    "missing_source_kinds": [],
+    "missing_source_provenance_rules": [],
+    "observed_required_dataset": "negbiodb_ct_stage_a_saved_output_policy_summary_v1",
+    "observed_required_fields": [
+      "dataset",
+      "policy",
+      "source_kind",
+      "source_report",
+      "source_report_sha256",
+      "exact",
+      "rows",
+      "trusted_candidate_incorrect",
+      "public_safety_contract"
+    ],
+    "observed_source_kinds": [
+      "prediction-summary",
+      "candidate-gate-summary",
+      "candidate-arbitration-policy"
+    ],
+    "observed_source_provenance_rules": [
+      "source_report must be a repo-relative public manifest path",
+      "source_report_sha256 must match the source_report contents",
+      "release/public_release_manifest.json must mark source_report safe_to_publish with the same SHA-256"
+    ],
+    "required_dataset": "negbiodb_ct_stage_a_saved_output_policy_summary_v1",
+    "required_dataset_matches": true,
+    "required_fields": [
+      "dataset",
+      "policy",
+      "source_kind",
+      "source_report",
+      "source_report_sha256",
+      "exact",
+      "rows",
+      "trusted_candidate_incorrect",
+      "public_safety_contract"
+    ],
+    "required_source_kinds": [
+      "prediction-summary",
+      "candidate-gate-summary",
+      "candidate-arbitration-policy"
+    ],
+    "required_source_provenance_rules": [
+      "source_report must be a repo-relative public manifest path",
+      "source_report_sha256 must match the source_report contents",
+      "release/public_release_manifest.json must mark source_report safe_to_publish with the same SHA-256"
+    ]
+  },
+  "future_policy_public_safe_contract": {
+    "complete": true,
+    "missing_required_flags": [],
+    "observed_flags": [
+      "raw_model_outputs_used=false",
+      "raw_run_folders_used=false",
+      "raw_predictions_committed=false",
+      "raw_candidate_scores_committed=false",
+      "raw_eval_report_committed=false",
+      "raw_scheduler_logs_committed=false",
+      "model_state_committed=false"
+    ],
+    "required_flags": [
+      "raw_model_outputs_used=false",
+      "raw_run_folders_used=false",
+      "raw_predictions_committed=false",
+      "raw_candidate_scores_committed=false",
+      "raw_eval_report_committed=false",
+      "raw_scheduler_logs_committed=false",
+      "model_state_committed=false"
+    ]
+  },
+  "ignored_run_folder_read": false,
+  "input_artifacts": {
+    "meet_or_beat_gate": {
+      "path": "post_training/stage_a_saved_output_meet_or_beat_gate_2026-07-10.json",
+      "sha256": "ba34e5f91001aee94eaec1b5e6aa2b35300a19d053979df217be0336ed456e4f"
+    },
+    "next_decision": {
+      "path": "post_training/stage_a_saved_output_next_decision_2026-07-10.json",
+      "sha256": "69ff03a337ba3171191690a65f4a51389f8e49e42e436c0a39d2adfcf20d0a13"
+    }
+  },
+  "meet_or_beat_input_artifacts": {
+    "candidate_arbitration": {
+      "actual_sha256": "3cc6678d43e4f21b2a83d1ba5f48021c41ee86d19eb4d3c41c0ea29809772b92",
+      "exists": true,
+      "expected_sha256": "3cc6678d43e4f21b2a83d1ba5f48021c41ee86d19eb4d3c41c0ea29809772b92",
+      "path": "post_training/stage_a_saved_output_candidate_arbitration_2026-07-10.json",
+      "sha256_matches": true
+    },
+    "next_decision": {
+      "actual_sha256": "69ff03a337ba3171191690a65f4a51389f8e49e42e436c0a39d2adfcf20d0a13",
+      "exists": true,
+      "expected_sha256": "69ff03a337ba3171191690a65f4a51389f8e49e42e436c0a39d2adfcf20d0a13",
+      "path": "post_training/stage_a_saved_output_next_decision_2026-07-10.json",
+      "sha256_matches": true
+    },
+    "next_decision_points_to_current_file": true
+  },
+  "model_state_read": false,
+  "next_artifacts_required": [
+    "compact saved-output summary",
+    "compact candidate calibration summary",
+    "compact candidate arbitration summary",
+    "updated saved-output next-decision report"
+  ],
+  "next_decision_input_artifacts": {
+    "candidate_arbitration": {
+      "actual_sha256": "3cc6678d43e4f21b2a83d1ba5f48021c41ee86d19eb4d3c41c0ea29809772b92",
+      "exists": true,
+      "expected_sha256": "3cc6678d43e4f21b2a83d1ba5f48021c41ee86d19eb4d3c41c0ea29809772b92",
+      "path": "post_training/stage_a_saved_output_candidate_arbitration_2026-07-10.json",
+      "sha256_matches": true
+    },
+    "candidate_calibration": {
+      "actual_sha256": "a170b3dd66869cae832675d2397ad5a0aa6450f3d59f96e50d87534290e5167e",
+      "exists": true,
+      "expected_sha256": "a170b3dd66869cae832675d2397ad5a0aa6450f3d59f96e50d87534290e5167e",
+      "path": "post_training/stage_a_saved_output_candidate_calibration_qwen05b_cayuga_summary_2026-07-10.json",
+      "sha256_matches": true
+    },
+    "candidate_gates": [
+      {
+        "actual_sha256": "81395ab2eca2b9b5f44bd88325df81f2093dcafe9e83f2b775c80485d3ab02c8",
+        "exists": true,
+        "expected_sha256": "81395ab2eca2b9b5f44bd88325df81f2093dcafe9e83f2b775c80485d3ab02c8",
+        "path": "post_training/stage_a_saved_candidate_gate_train_observed_qwen05b_2026-07-09.json",
+        "sha256_matches": true
+      },
+      {
+        "actual_sha256": "11927398f530e9b0d61a7a28e427ea2a1a7ad69c4666b56c01ab15441caa4916",
+        "exists": true,
+        "expected_sha256": "11927398f530e9b0d61a7a28e427ea2a1a7ad69c4666b56c01ab15441caa4916",
+        "path": "post_training/stage_a_saved_candidate_gate_all_valid_qwen05b_2026-07-09.json",
+        "sha256_matches": true
+      }
+    ],
+    "readiness": {
+      "actual_sha256": "18b1b5d2724477e2740c966e5906f91f0a51faec1360916f70786119b9a31b41",
+      "exists": true,
+      "expected_sha256": "18b1b5d2724477e2740c966e5906f91f0a51faec1360916f70786119b9a31b41",
+      "path": "post_training/stage_a_saved_prediction_readiness_2026-07-09.json",
+      "sha256_matches": true
+    }
+  },
+  "next_decision_selected_step": "meet_or_beat_runtime_evidence_arbitration_baseline",
+  "passes_contract": true,
+  "raw_candidate_score_jsonl_read": false,
+  "raw_model_outputs_used": false,
+  "raw_prediction_jsonl_read": false,
+  "raw_run_folders_used": false,
+  "scheduler_logs_read": false,
+  "scientific_readout": {
+    "diagnostic_question": "Is the compact saved-output checkpoint bundle internally consistent and ready to accept a future Cayuga policy summary without raw artifacts?",
+    "interpretation_rule": "Only compact reports and hashes are checked here. Passing this contract means the intake surface is reproducible; it does not mean the current model policy meets the runtime baseline.",
+    "next_decision": "Use build_stage_a_saved_output_policy_summary.py for the next compact Cayuga policy summary, then pass it to the meet-or-beat gate before reopening tool_query, DPO/RLVR, HF publication, or release tagging."
+  },
+  "violations": []
+}

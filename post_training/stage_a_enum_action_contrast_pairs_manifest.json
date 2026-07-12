@@ -1,0 +1,141 @@
+{
+  "boundary": "Enum action-contrast pairs preserve evidence_status and force only the rejected action to ground. They diagnose action-field learning, not explanation quality or DPO/RLVR reward quality.",
+  "by_case_family": {
+    "contradicted_or_mixed_endpoint_claim": 5,
+    "insufficient_evidence": 5,
+    "invalid_value_attribution_failure": 5,
+    "related_evidence_requires_verification": 5
+  },
+  "by_chosen_pair": {
+    "defer/insufficient": 5,
+    "flag/invalid_value": 5,
+    "reject/contradicted": 5,
+    "verify/insufficient": 5
+  },
+  "by_rejected_pair": {
+    "ground/contradicted": 5,
+    "ground/insufficient": 10,
+    "ground/invalid_value": 5
+  },
+  "candidate_policy": "same_status_action_contrast",
+  "component": "enum_action",
+  "contrast_axis": "action",
+  "dataset": "negbiodb_ct_stage_a_enum_action_contrast_pairs_manifest_v1",
+  "failure_mode": "same_status_wrong_action_contrast",
+  "field_rank_source": "post_training/STAGE_A_COMPONENT_ENUM_ACTION_FIELD_RANK_CAYUGA_2026-07-05.md",
+  "heldout_by_chosen_pair": {
+    "defer/insufficient": 1,
+    "flag/invalid_value": 1,
+    "reject/contradicted": 1,
+    "verify/insufficient": 1
+  },
+  "heldout_case_ids": [
+    "stage_a::000007",
+    "stage_a::000012",
+    "stage_a::000019",
+    "stage_a::000021"
+  ],
+  "heldout_pairs": 4,
+  "heldout_pairs_path": "post_training/stage_a_enum_action_contrast_pairs_heldout_v1.jsonl",
+  "heldout_source_task_ids": [
+    "ct::defer::83207::959",
+    "ct::flag::13976::643",
+    "ct::reject::13964::481",
+    "ct::verify::80618::12955"
+  ],
+  "heldout_split_groups": [
+    "drug_condition::13964::481",
+    "drug_condition::80618::12955",
+    "drug_condition::83207::959",
+    "source::NCT00828178"
+  ],
+  "next_decision": "Run a Cayuga action-contrast margin smoke focused on flag/invalid_value before moving to tool_query, DPO, or RLVR.",
+  "overlap_case_ids": [],
+  "overlap_source_task_ids": [],
+  "overlap_split_groups": [],
+  "pair_dataset": "negbiodb_ct_stage_a_enum_action_contrast_pairs_v1",
+  "pair_examples": 20,
+  "pairs": "post_training/stage_a_enum_action_contrast_pairs_v1.jsonl",
+  "priority": {
+    "chosen_pair": "flag/invalid_value",
+    "reason": "field-rank diagnostic found action rank 6 while status rank is 2"
+  },
+  "prompt_contract": "stage_a_v2_strict",
+  "rejected_action": "ground",
+  "rejected_evidence_status_policy": "same_as_chosen",
+  "skipped_case_ids": [
+    "stage_a::000000",
+    "stage_a::000001",
+    "stage_a::000002",
+    "stage_a::000003",
+    "stage_a::000004"
+  ],
+  "skipped_examples": 5,
+  "skipped_reason": "target_action_already_ground",
+  "source_component_dataset": "negbiodb_ct_stage_a_strict_component_targets_v1",
+  "source_heldout_targets": "post_training/stage_a_strict_component_targets_heldout_v1.jsonl",
+  "source_targets": "post_training/stage_a_strict_component_targets_v1.jsonl",
+  "source_train_targets": "post_training/stage_a_strict_component_targets_train_v1.jsonl",
+  "train_by_chosen_pair": {
+    "defer/insufficient": 4,
+    "flag/invalid_value": 4,
+    "reject/contradicted": 4,
+    "verify/insufficient": 4
+  },
+  "train_case_ids": [
+    "stage_a::000005",
+    "stage_a::000006",
+    "stage_a::000008",
+    "stage_a::000009",
+    "stage_a::000010",
+    "stage_a::000011",
+    "stage_a::000013",
+    "stage_a::000014",
+    "stage_a::000015",
+    "stage_a::000016",
+    "stage_a::000017",
+    "stage_a::000018",
+    "stage_a::000020",
+    "stage_a::000022",
+    "stage_a::000023",
+    "stage_a::000024"
+  ],
+  "train_pairs": 16,
+  "train_pairs_path": "post_training/stage_a_enum_action_contrast_pairs_train_v1.jsonl",
+  "train_source_task_ids": [
+    "ct::defer::135357::32219",
+    "ct::defer::21866::4057",
+    "ct::defer::29653::30882",
+    "ct::defer::74096::41728",
+    "ct::flag::3423::1396",
+    "ct::flag::41960::16080",
+    "ct::flag::4483::7080",
+    "ct::flag::4675::2550",
+    "ct::reject::167892::281",
+    "ct::reject::22104::5857",
+    "ct::reject::32409::40584",
+    "ct::reject::5513::2346",
+    "ct::verify::1216::3958",
+    "ct::verify::169043::7393",
+    "ct::verify::38487::47651",
+    "ct::verify::70114::48582"
+  ],
+  "train_split_groups": [
+    "drug_condition::1216::3958",
+    "drug_condition::135357::32219",
+    "drug_condition::167892::281",
+    "drug_condition::169043::7393",
+    "drug_condition::21866::4057",
+    "drug_condition::22104::5857",
+    "drug_condition::29653::30882",
+    "drug_condition::32409::40584",
+    "drug_condition::38487::47651",
+    "drug_condition::5513::2346",
+    "drug_condition::70114::48582",
+    "drug_condition::74096::41728",
+    "source::NCT00875017",
+    "source::NCT01233869",
+    "source::NCT01869764",
+    "source::NCT01949337"
+  ]
+}

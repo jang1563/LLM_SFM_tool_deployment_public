@@ -1,0 +1,132 @@
+{
+  "artifact_policy": {
+    "full_margin_jsonl_committed": false,
+    "model_state_committed": false,
+    "raw_model_text_committed": false,
+    "raw_prompt_messages_committed": false,
+    "scheduler_logs_committed": false
+  },
+  "base_heldout_summary": {
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "margin_wins": 0,
+        "mean_margin": -0.057455
+      },
+      "flag/invalid_value": {
+        "margin_wins": 0,
+        "mean_margin": -0.175447
+      },
+      "reject/contradicted": {
+        "margin_wins": 0,
+        "mean_margin": -0.057818
+      },
+      "verify/insufficient": {
+        "margin_wins": 0,
+        "mean_margin": -0.033282
+      }
+    },
+    "margin_wins": 0,
+    "mean_margin": -0.081001,
+    "pairs": 4,
+    "violations": {
+      "chosen_not_above_rejected": 4
+    }
+  },
+  "cluster": "Cayuga Slurm GPU",
+  "dataset": "negbiodb_ct_stage_a_saved_output_calibration_margin_sft_summary_v1",
+  "decision": {
+    "interpretation": "Targeted margin SFT produced small positive movement but did not repair the saved-output collapse: held-out target-vs-ground/supported wins moved from 0/4 to 1/4 only.",
+    "next_decision": "Keep tool_query, DPO/RLVR, Hugging Face publication, release tagging, and broad retraining gated. Continue with narrower supervision or runtime fail-closed enforcement before any escalation.",
+    "status": "partial_negative"
+  },
+  "heldout_examples": 4,
+  "input_probe": {
+    "heldout_pairs": "post_training/stage_a_saved_output_calibration_probe_heldout_v1.jsonl",
+    "pairs": "post_training/stage_a_saved_output_calibration_probe_v1.jsonl",
+    "prompt_contract": "stage_a_v4_canonical_json",
+    "train_pairs": "post_training/stage_a_saved_output_calibration_probe_train_v1.jsonl"
+  },
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "raw_outputs_location": "ignored Cayuga post_training/runs directory",
+  "run_id": "stage_a_saved_output_calibration_margin_sft_qwen05b_cayuga_20260710",
+  "trained_heldout_delta_summary": {
+    "base_margin_wins": 0,
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "base_margin_wins": 0,
+        "mean_margin_delta": 0.044333,
+        "trained_margin_wins": 0
+      },
+      "flag/invalid_value": {
+        "base_margin_wins": 0,
+        "mean_margin_delta": 0.022366,
+        "trained_margin_wins": 0
+      },
+      "reject/contradicted": {
+        "base_margin_wins": 0,
+        "mean_margin_delta": 0.037846,
+        "trained_margin_wins": 0
+      },
+      "verify/insufficient": {
+        "base_margin_wins": 0,
+        "mean_margin_delta": 0.036981,
+        "trained_margin_wins": 1
+      }
+    },
+    "mean_base_margin": -0.081001,
+    "mean_margin_delta": 0.035382,
+    "mean_trained_margin": -0.045619,
+    "newly_won": 1,
+    "outcomes": {
+      "newly_won": 1,
+      "remained_lost": 3
+    },
+    "pairs": 4,
+    "trained_margin_wins": 1
+  },
+  "trained_heldout_summary": {
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "margin_wins": 0,
+        "mean_margin": -0.013122
+      },
+      "flag/invalid_value": {
+        "margin_wins": 0,
+        "mean_margin": -0.153081
+      },
+      "reject/contradicted": {
+        "margin_wins": 0,
+        "mean_margin": -0.019972
+      },
+      "verify/insufficient": {
+        "margin_wins": 1,
+        "mean_margin": 0.003699
+      }
+    },
+    "margin_wins": 1,
+    "mean_margin": -0.045619,
+    "pairs": 4,
+    "violations": {
+      "chosen_not_above_rejected": 3
+    }
+  },
+  "trained_train_summary": {
+    "margin_wins": 4,
+    "mean_margin": -0.044366,
+    "pairs": 16,
+    "violations": {
+      "chosen_not_above_rejected": 12
+    }
+  },
+  "training": {
+    "batch_size": 1,
+    "heldout_used_for_training": false,
+    "loss_delta": -0.276756,
+    "max_steps": 20,
+    "pairwise_margin": 0.05,
+    "pairwise_margin_weight": 1.0,
+    "train_examples": 16,
+    "train_last_layers": 1,
+    "trainable_params": 14913280
+  }
+}

@@ -1,0 +1,567 @@
+{
+  "candidate_outputs": null,
+  "candidate_policy": "all_retained",
+  "candidate_space_size": 30,
+  "cases_expected": 5,
+  "component": "enum_action",
+  "dataset": "negbiodb_ct_stage_a_enum_candidate_rank_diagnostic_v1",
+  "input_predictions_sha256": "bacc78cb74c91b01f3a70e3b7d02f85ef5d6c719949bc735e2853ed189eae28f",
+  "predictions_received": 5,
+  "rows": [
+    {
+      "all_candidates_retained": true,
+      "best_matching_candidates": {
+        "action": {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "score": -0.286797
+        },
+        "evidence_status": {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "score": -0.286797
+        }
+      },
+      "candidate_scores_present": true,
+      "candidate_space_size": 30,
+      "case_family": "supported_negative_evidence",
+      "case_id": "stage_a::000001",
+      "exact_top1": true,
+      "expected": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "field_rank_pattern": "pair_top1",
+      "field_ranks": {
+        "action": {
+          "target_rank": 1,
+          "target_score": -0.286797,
+          "target_top1": true,
+          "target_value": "ground",
+          "top_score": -0.286797,
+          "top_target_margin": 0.0,
+          "top_value": "ground",
+          "value_count": 6
+        },
+        "evidence_status": {
+          "target_rank": 1,
+          "target_score": -0.286797,
+          "target_top1": true,
+          "target_value": "supported",
+          "top_score": -0.286797,
+          "top_target_margin": 0.0,
+          "top_value": "supported",
+          "value_count": 5
+        }
+      },
+      "gold_in_retained_candidates": true,
+      "gold_rank": 1,
+      "gold_score": -0.286797,
+      "predicted": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "raw_retained_candidate_count": 30,
+      "retained_candidate_count": 30,
+      "source_component_target_id": "stage_a_strict_component::stage_a::000001::enum_action",
+      "top_candidate": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_candidates": [
+        {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "score": -0.286797
+        },
+        {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "supported"
+          },
+          "score": -0.332276
+        },
+        {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "contradicted"
+          },
+          "score": -0.337403
+        }
+      ],
+      "top_gold_margin": 0.0,
+      "top_score": -0.286797
+    },
+    {
+      "all_candidates_retained": true,
+      "best_matching_candidates": {
+        "action": {
+          "candidate": {
+            "action": "reject",
+            "evidence_status": "contradicted"
+          },
+          "score": -0.402487
+        },
+        "evidence_status": {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "contradicted"
+          },
+          "score": -0.368464
+        }
+      },
+      "candidate_scores_present": true,
+      "candidate_space_size": 30,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "exact_top1": false,
+      "expected": {
+        "action": "reject",
+        "evidence_status": "contradicted"
+      },
+      "field_rank_pattern": "action_field_failure",
+      "field_ranks": {
+        "action": {
+          "target_rank": 3,
+          "target_score": -0.402487,
+          "target_top1": false,
+          "target_value": "reject",
+          "top_score": -0.280624,
+          "top_target_margin": 0.121863,
+          "top_value": "ground",
+          "value_count": 6
+        },
+        "evidence_status": {
+          "target_rank": 2,
+          "target_score": -0.368464,
+          "target_top1": false,
+          "target_value": "contradicted",
+          "top_score": -0.280624,
+          "top_target_margin": 0.08784,
+          "top_value": "supported",
+          "value_count": 5
+        }
+      },
+      "gold_in_retained_candidates": true,
+      "gold_rank": 5,
+      "gold_score": -0.402487,
+      "predicted": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "raw_retained_candidate_count": 30,
+      "retained_candidate_count": 30,
+      "source_component_target_id": "stage_a_strict_component::stage_a::000007::enum_action",
+      "top_candidate": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_candidates": [
+        {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "score": -0.280624
+        },
+        {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "supported"
+          },
+          "score": -0.326405
+        },
+        {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "contradicted"
+          },
+          "score": -0.368464
+        }
+      ],
+      "top_gold_margin": 0.121863,
+      "top_score": -0.280624
+    },
+    {
+      "all_candidates_retained": true,
+      "best_matching_candidates": {
+        "action": {
+          "candidate": {
+            "action": "defer",
+            "evidence_status": "insufficient"
+          },
+          "score": -0.461078
+        },
+        "evidence_status": {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "score": -0.380378
+        }
+      },
+      "candidate_scores_present": true,
+      "candidate_space_size": 30,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "exact_top1": false,
+      "expected": {
+        "action": "defer",
+        "evidence_status": "insufficient"
+      },
+      "field_rank_pattern": "both_field_failure",
+      "field_ranks": {
+        "action": {
+          "target_rank": 5,
+          "target_score": -0.461078,
+          "target_top1": false,
+          "target_value": "defer",
+          "top_score": -0.289717,
+          "top_target_margin": 0.171361,
+          "top_value": "ground",
+          "value_count": 6
+        },
+        "evidence_status": {
+          "target_rank": 4,
+          "target_score": -0.380378,
+          "target_top1": false,
+          "target_value": "insufficient",
+          "top_score": -0.289717,
+          "top_target_margin": 0.090661,
+          "top_value": "supported",
+          "value_count": 5
+        }
+      },
+      "gold_in_retained_candidates": true,
+      "gold_rank": 13,
+      "gold_score": -0.461078,
+      "predicted": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "raw_retained_candidate_count": 30,
+      "retained_candidate_count": 30,
+      "source_component_target_id": "stage_a_strict_component::stage_a::000012::enum_action",
+      "top_candidate": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_candidates": [
+        {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "score": -0.289717
+        },
+        {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "supported"
+          },
+          "score": -0.333892
+        },
+        {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "invalid_value"
+          },
+          "score": -0.35193
+        }
+      ],
+      "top_gold_margin": 0.171361,
+      "top_score": -0.289717
+    },
+    {
+      "all_candidates_retained": true,
+      "best_matching_candidates": {
+        "action": {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "invalid_value"
+          },
+          "score": -0.318325
+        },
+        "evidence_status": {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "score": -0.371157
+        }
+      },
+      "candidate_scores_present": true,
+      "candidate_space_size": 30,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "exact_top1": false,
+      "expected": {
+        "action": "verify",
+        "evidence_status": "insufficient"
+      },
+      "field_rank_pattern": "evidence_status_field_failure",
+      "field_ranks": {
+        "action": {
+          "target_rank": 1,
+          "target_score": -0.318325,
+          "target_top1": true,
+          "target_value": "verify",
+          "top_score": -0.318325,
+          "top_target_margin": 0.0,
+          "top_value": "verify",
+          "value_count": 6
+        },
+        "evidence_status": {
+          "target_rank": 4,
+          "target_score": -0.371157,
+          "target_top1": false,
+          "target_value": "insufficient",
+          "top_score": -0.318325,
+          "top_target_margin": 0.052832,
+          "top_value": "invalid_value",
+          "value_count": 5
+        }
+      },
+      "gold_in_retained_candidates": true,
+      "gold_rank": 4,
+      "gold_score": -0.371157,
+      "predicted": {
+        "action": "verify",
+        "evidence_status": "invalid_value"
+      },
+      "raw_retained_candidate_count": 30,
+      "retained_candidate_count": 30,
+      "source_component_target_id": "stage_a_strict_component::stage_a::000019::enum_action",
+      "top_candidate": {
+        "action": "verify",
+        "evidence_status": "invalid_value"
+      },
+      "top_candidates": [
+        {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "invalid_value"
+          },
+          "score": -0.318325
+        },
+        {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "score": -0.318591
+        },
+        {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "contradicted"
+          },
+          "score": -0.349151
+        }
+      ],
+      "top_gold_margin": 0.052832,
+      "top_score": -0.318325
+    },
+    {
+      "all_candidates_retained": true,
+      "best_matching_candidates": {
+        "action": {
+          "candidate": {
+            "action": "flag",
+            "evidence_status": "insufficient"
+          },
+          "score": -0.512036
+        },
+        "evidence_status": {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "invalid_value"
+          },
+          "score": -0.350722
+        }
+      },
+      "candidate_scores_present": true,
+      "candidate_space_size": 30,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "exact_top1": false,
+      "expected": {
+        "action": "flag",
+        "evidence_status": "invalid_value"
+      },
+      "field_rank_pattern": "action_field_failure",
+      "field_ranks": {
+        "action": {
+          "target_rank": 6,
+          "target_score": -0.512036,
+          "target_top1": false,
+          "target_value": "flag",
+          "top_score": -0.307702,
+          "top_target_margin": 0.204334,
+          "top_value": "ground",
+          "value_count": 6
+        },
+        "evidence_status": {
+          "target_rank": 2,
+          "target_score": -0.350722,
+          "target_top1": false,
+          "target_value": "invalid_value",
+          "top_score": -0.307702,
+          "top_target_margin": 0.04302,
+          "top_value": "supported",
+          "value_count": 5
+        }
+      },
+      "gold_in_retained_candidates": true,
+      "gold_rank": 24,
+      "gold_score": -0.537701,
+      "predicted": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "raw_retained_candidate_count": 30,
+      "retained_candidate_count": 30,
+      "source_component_target_id": "stage_a_strict_component::stage_a::000021::enum_action",
+      "top_candidate": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_candidates": [
+        {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "score": -0.307702
+        },
+        {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "supported"
+          },
+          "score": -0.334709
+        },
+        {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "invalid_value"
+          },
+          "score": -0.350722
+        }
+      ],
+      "top_gold_margin": 0.229999,
+      "top_score": -0.307702
+    }
+  ],
+  "run_id": "stage_a_component_enum_action_candidate_fullrank_cayuga_2026_07_05",
+  "scientific_readout": {
+    "diagnostic_question": "After schema/enum validity is fixed, where does the gold action/evidence-status pair rank among finite candidates, and is the miss driven by the action field, evidence-status field, or joint pair representation?",
+    "interpretation_rule": "If the gold pair ranks low and the target action/status fields also rank low, the enum_action target needs field-level supervision. If fields rank near the top but the gold pair remains low, prefer joint-pair contrastive data before tool_query, DPO, or RLVR.",
+    "retention_note": "Reports from older runs may contain only retained top-k candidates; rerun the component after the full-score patch for exact ranks. Counterfactual candidate policies are exact only when the raw prediction row retained every candidate in that policy."
+  },
+  "source_dataset": "negbiodb_ct_stage_a_strict_component_sft_smoke_v1",
+  "summary": {
+    "all_candidates_retained_cases": 5,
+    "cases": 5,
+    "exact_top1": 1,
+    "field_diagnostic": {
+      "action_rank_histogram": {
+        "1": 2,
+        "3": 1,
+        "5": 1,
+        "6": 1
+      },
+      "action_top1": 2,
+      "by_case_family": {
+        "contradicted_or_mixed_endpoint_claim": {
+          "action_top1": 0,
+          "cases": 1,
+          "evidence_status_top1": 0,
+          "field_rank_patterns": {
+            "action_field_failure": 1
+          },
+          "pair_top1": 0
+        },
+        "insufficient_evidence": {
+          "action_top1": 0,
+          "cases": 1,
+          "evidence_status_top1": 0,
+          "field_rank_patterns": {
+            "both_field_failure": 1
+          },
+          "pair_top1": 0
+        },
+        "invalid_value_attribution_failure": {
+          "action_top1": 0,
+          "cases": 1,
+          "evidence_status_top1": 0,
+          "field_rank_patterns": {
+            "action_field_failure": 1
+          },
+          "pair_top1": 0
+        },
+        "related_evidence_requires_verification": {
+          "action_top1": 1,
+          "cases": 1,
+          "evidence_status_top1": 0,
+          "field_rank_patterns": {
+            "evidence_status_field_failure": 1
+          },
+          "pair_top1": 0
+        },
+        "supported_negative_evidence": {
+          "action_top1": 1,
+          "cases": 1,
+          "evidence_status_top1": 1,
+          "field_rank_patterns": {
+            "pair_top1": 1
+          },
+          "pair_top1": 1
+        }
+      },
+      "evidence_status_rank_histogram": {
+        "1": 1,
+        "2": 2,
+        "4": 2
+      },
+      "evidence_status_top1": 1,
+      "field_rank_patterns": {
+        "action_field_failure": 2,
+        "both_field_failure": 1,
+        "evidence_status_field_failure": 1,
+        "pair_top1": 1
+      },
+      "mean_action_rank_observed": 3.2,
+      "mean_evidence_status_rank_observed": 2.6,
+      "near_top_rank": 2
+    },
+    "gold_in_retained_candidates": 5,
+    "gold_rank_histogram": {
+      "1": 1,
+      "4": 1,
+      "5": 1,
+      "13": 1,
+      "24": 1
+    },
+    "mean_gold_rank_observed": 9.4,
+    "mean_top_gold_margin_observed": 0.115211,
+    "missing_candidate_scores": 0,
+    "retained_candidate_count_histogram": {
+      "30": 5
+    },
+    "top_action_counts": {
+      "ground": 4,
+      "verify": 1
+    },
+    "top_evidence_status_counts": {
+      "invalid_value": 1,
+      "supported": 4
+    }
+  }
+}

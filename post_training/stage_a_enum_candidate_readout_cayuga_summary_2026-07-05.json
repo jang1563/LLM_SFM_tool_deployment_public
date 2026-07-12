@@ -1,0 +1,260 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_outputs_committed": false,
+    "raw_outputs_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "cluster": "Cayuga Slurm GPU",
+  "component": "enum_action",
+  "dataset": "negbiodb_ct_stage_a_enum_candidate_readout_cayuga_v1",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "objective": {
+    "margin_logprob_mode": "mean",
+    "pairwise_margin": 0.05,
+    "pairwise_margin_weight": 1.0,
+    "target_format": "full"
+  },
+  "prompt_contract": "stage_a_v2_strict",
+  "runs": {
+    "all_valid_pairs": {
+      "enum_candidate_policy": "all_valid_pairs",
+      "enum_candidate_space_size": 30,
+      "heldout_base_summary": {
+        "candidate_accuracy": 0.0,
+        "exact_top1": 0,
+        "gold_in_candidates": 4,
+        "heldout_pairs": 4,
+        "mean_gold_rank": 15.0,
+        "mean_top_gold_margin": 0.209262,
+        "top_pair_counts": {
+          "verify/invalid_value": 4
+        },
+        "violations": {
+          "gold_not_top_candidate": 4
+        }
+      },
+      "heldout_trained_summary": {
+        "candidate_accuracy": 0.0,
+        "exact_top1": 0,
+        "gold_in_candidates": 4,
+        "heldout_pairs": 4,
+        "mean_gold_rank": 7.0,
+        "mean_top_gold_margin": 0.108421,
+        "top_pair_counts": {
+          "verify/invalid_value": 4
+        },
+        "violations": {
+          "gold_not_top_candidate": 4
+        }
+      },
+      "margin_summary": {
+        "base_margin_wins": 0,
+        "mean_base_margin": -0.11651,
+        "mean_margin_delta": 0.2942,
+        "mean_trained_margin": 0.17769,
+        "trained_margin_wins": 4
+      },
+      "readout_rows": [
+        {
+          "base_gold_rank": 7,
+          "case_family": "contradicted_or_mixed_endpoint_claim",
+          "case_id": "stage_a::000007",
+          "chosen_pair": "reject/contradicted",
+          "target_output": {
+            "action": "reject",
+            "evidence_status": "contradicted"
+          },
+          "trained_gold_rank": 3,
+          "trained_prediction": {
+            "action": "verify",
+            "evidence_status": "invalid_value"
+          },
+          "trained_top_gold_margin": 0.046163
+        },
+        {
+          "base_gold_rank": 24,
+          "case_family": "insufficient_evidence",
+          "case_id": "stage_a::000012",
+          "chosen_pair": "defer/insufficient",
+          "target_output": {
+            "action": "defer",
+            "evidence_status": "insufficient"
+          },
+          "trained_gold_rank": 7,
+          "trained_prediction": {
+            "action": "verify",
+            "evidence_status": "invalid_value"
+          },
+          "trained_top_gold_margin": 0.143517
+        },
+        {
+          "base_gold_rank": 9,
+          "case_family": "related_evidence_requires_verification",
+          "case_id": "stage_a::000019",
+          "chosen_pair": "verify/insufficient",
+          "target_output": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "trained_gold_rank": 3,
+          "trained_prediction": {
+            "action": "verify",
+            "evidence_status": "invalid_value"
+          },
+          "trained_top_gold_margin": 0.060237
+        },
+        {
+          "base_gold_rank": 20,
+          "case_family": "invalid_value_attribution_failure",
+          "case_id": "stage_a::000021",
+          "chosen_pair": "flag/invalid_value",
+          "target_output": {
+            "action": "flag",
+            "evidence_status": "invalid_value"
+          },
+          "trained_gold_rank": 15,
+          "trained_prediction": {
+            "action": "verify",
+            "evidence_status": "invalid_value"
+          },
+          "trained_top_gold_margin": 0.183768
+        }
+      ],
+      "run_id": "stage_a_enum_candidate_readout_cayuga_2026_07_05",
+      "trace": {
+        "base_candidate_report_sha256": "4cd3e38581980c659b5bf526db0ec570c4531e64318dd5b636557735333df3a5",
+        "base_candidates_jsonl_sha256": "f2aa4d0d47aa51c9c56e3e91c7fed416295d03e6d4b0cbe959920336003f1087",
+        "candidate_report_sha256": "4f10c38a84f2c771046d549bbc55b963c4ade7e72a8b8c6d420bff6fd3996a47",
+        "candidates_jsonl_sha256": "b67916112cacf604b1839264b686bedf5cc00f00c3ef5c9ce93f45102cb8fe2e",
+        "margin_delta_report_sha256": "907561a5fb41bda1b6e412c03e2ddc69a79701dca503d247da711d149cf9e8db",
+        "margin_report_sha256": "836538322ae2f396d4def9c2df8670cd1a3f0b83d762775048ff6bda8dfdc39a",
+        "report_sha256": "c43258c744a6f8fe49176ea10f63432b5ba3301ab01e649effeab8887ed22ec3",
+        "trainable_state_sha256": "7538ecd66d3c74de16cfffa54f1d680e7e3927c0a659a7aee7d7e6b9c7c6e0f8"
+      }
+    },
+    "pair_observed_outputs": {
+      "enum_candidate_policy": "pair_observed_outputs",
+      "enum_candidate_space_size": 5,
+      "heldout_base_summary": {
+        "candidate_accuracy": 0.0,
+        "exact_top1": 0,
+        "gold_in_candidates": 4,
+        "heldout_pairs": 4,
+        "mean_gold_rank": 3.5,
+        "mean_top_gold_margin": 0.133635,
+        "top_pair_counts": {
+          "ground/supported": 2,
+          "reject/contradicted": 2
+        },
+        "violations": {
+          "gold_not_top_candidate": 4
+        }
+      },
+      "heldout_trained_summary": {
+        "candidate_accuracy": 0.0,
+        "exact_top1": 0,
+        "gold_in_candidates": 4,
+        "heldout_pairs": 4,
+        "mean_gold_rank": 2.75,
+        "mean_top_gold_margin": 0.067083,
+        "top_pair_counts": {
+          "reject/contradicted": 1,
+          "verify/insufficient": 3
+        },
+        "violations": {
+          "gold_not_top_candidate": 4
+        }
+      },
+      "margin_summary": {
+        "base_margin_wins": 0,
+        "mean_base_margin": -0.11651,
+        "mean_margin_delta": 0.2942,
+        "mean_trained_margin": 0.17769,
+        "trained_margin_wins": 4
+      },
+      "readout_rows": [
+        {
+          "base_gold_rank": 2,
+          "case_family": "contradicted_or_mixed_endpoint_claim",
+          "case_id": "stage_a::000007",
+          "chosen_pair": "reject/contradicted",
+          "target_output": {
+            "action": "reject",
+            "evidence_status": "contradicted"
+          },
+          "trained_gold_rank": 2,
+          "trained_prediction": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "trained_top_gold_margin": 0.008031
+        },
+        {
+          "base_gold_rank": 5,
+          "case_family": "insufficient_evidence",
+          "case_id": "stage_a::000012",
+          "chosen_pair": "defer/insufficient",
+          "target_output": {
+            "action": "defer",
+            "evidence_status": "insufficient"
+          },
+          "trained_gold_rank": 3,
+          "trained_prediction": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "trained_top_gold_margin": 0.112909
+        },
+        {
+          "base_gold_rank": 3,
+          "case_family": "related_evidence_requires_verification",
+          "case_id": "stage_a::000019",
+          "chosen_pair": "verify/insufficient",
+          "target_output": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "trained_gold_rank": 2,
+          "trained_prediction": {
+            "action": "reject",
+            "evidence_status": "contradicted"
+          },
+          "trained_top_gold_margin": 0.001932
+        },
+        {
+          "base_gold_rank": 4,
+          "case_family": "invalid_value_attribution_failure",
+          "case_id": "stage_a::000021",
+          "chosen_pair": "flag/invalid_value",
+          "target_output": {
+            "action": "flag",
+            "evidence_status": "invalid_value"
+          },
+          "trained_gold_rank": 4,
+          "trained_prediction": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "trained_top_gold_margin": 0.14546
+        }
+      ],
+      "run_id": "stage_a_enum_candidate_pair_observed_cayuga_2026_07_05",
+      "trace": {
+        "base_candidate_report_sha256": "b12d7e8f3a219564460f2fc48bcf6d3729bbaa799461e83bd6f5b4d68cae1654",
+        "base_candidates_jsonl_sha256": "b11d4dc23587c682a71aef4e22829bf47929b9ff725951ed54a1a547b2458538",
+        "candidate_report_sha256": "d9f7c211086f2bde11ae104cb61b577837b7467283432f75f1ff9f936dcf697b",
+        "candidates_jsonl_sha256": "d5bcadbf402ec7884b1a7eeecd49cadd08496cffdb0d311ae6d6b185e7c131bf",
+        "margin_delta_report_sha256": "c6b309bece76228723f95619feb6b9823322c9dd25fceff433aa6f5305efea06",
+        "margin_report_sha256": "5c4aa7bb5a54c72273ffb0532eef0385f360a61117611a93cdaa4ea48a081917",
+        "report_sha256": "f16b43a0cde0ca6e5affda2a41e8fe280fc4995b6246680c7d5abcb84b91fd64",
+        "trainable_state_sha256": "7538ecd66d3c74de16cfffa54f1d680e7e3927c0a659a7aee7d7e6b9c7c6e0f8"
+      }
+    }
+  },
+  "scientific_readout": {
+    "interpretation": "Pairwise-margin SFT fixes teacher-forced chosen-vs-rejected margins but does not yet fix finite-candidate enum top-1 selection. It improves ranking and reduces top-gold margin, especially under the 5-way pair-observed policy, but all held-out cases still select the wrong candidate.",
+    "next_decision": "Keep tool_query, DPO, and RLVR gated. The next enum repair should add an explicit finite-candidate selection objective or calibration/gating readout before leaving enum_action.",
+    "question": "Does the full-target pairwise-margin repair transfer from binary chosen-vs-rejected scoring to finite-candidate enum selection?",
+    "result": "No top-1 repair yet: all-valid 30-way and pair-observed 5-way candidate accuracy are both 0/4 after training, although mean gold rank improves from 15.0 to 7.0 for all-valid and from 3.5 to 2.75 for pair-observed."
+  }
+}

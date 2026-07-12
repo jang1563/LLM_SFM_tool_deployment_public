@@ -1,0 +1,4506 @@
+{
+  "summary": {
+    "model": "qwen32b",
+    "n": 300,
+    "action_accuracy": 0.89,
+    "mean_reward": 0.84,
+    "generic_mean_score": 0.943,
+    "tool_call_rate": 1.0,
+    "by_class": {
+      "defer": "80/80",
+      "flag": "14/40",
+      "ground": "76/80",
+      "reject": "37/40",
+      "verify": "60/60"
+    }
+  },
+  "rows": [
+    {
+      "packet_id": "ct::flag::7878::23684",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT01403389"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::581::10834",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03692325"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::defer::139084::26879",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::206::697",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::65190::9649",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::163684::24740",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::49936::16986",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::22655::10856",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::63373::36117",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::69556::3675",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::13976::643",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00828178"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::flag::28::5785",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00433511"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::reject::581::19556",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::70114::48582",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::565::53824",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01096368"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::2533::4929",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::383::5105",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00844805"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::verify::41051::1981",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::167687::18491",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::6693::5",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01644331"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::reject::5801::32522",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::1333::9632",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::3120::23867",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::63453::1357",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT03621982"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::147507::53253",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::54146::2166",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::45816::1358",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT02952989"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::167034::12904",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::5763::479",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT02587962"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::1451::399",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::defer::53821::6040",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::147488::15820",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::41709::26441",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::6693::5",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01644331"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::13728::18519",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::2055::2823",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT02413489"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::400::4667",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00308087"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::flag::34112::1070",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00958880"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::ground::3632::60",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01079962"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::913::23479",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::913::39750",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::14342::19612",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::16708::10797",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::126104::49",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::58118::7990",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00244374"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::1060::12635",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::23280::6755",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::8660::1421",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03975647"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 0.833
+    },
+    {
+      "packet_id": "ct::verify::176230::2392",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::30590::2063",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::64988::29361",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::45589::11871",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::60442::4342",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::503::26139",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01892189"
+      },
+      "called": [
+        "search_failures"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::141035::607",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::565::43108",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00667342"
+      },
+      "called": [
+        "search_failures"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::42288::31041",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::2364::627",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::44700::13717",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::21989::2004",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::4693::3070",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT01804777"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::131333::30129",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::18::633",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::45816::1358",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT02952989"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::2919::7265",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT00001962"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::93705::16086",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::27910::14964",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03346057"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::3738::4713",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::291::22264",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01464827"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::ground::7272::227",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00895245"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::68625::24537",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::1451::399",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT01368536"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::124647::38194",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::2192::30929",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::21866::4057",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::24854::20833",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::89209::7352",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::148::1617",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01196390"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::129263::7808",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT01240827"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 0.833
+    },
+    {
+      "packet_id": "ct::defer::145259::10378",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::37324::23590",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::134453::3090",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::6570::8629",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::93018::1177",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00719563"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::25255::35855",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::50845::834",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::2459::2147",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::447::22209",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03364491"
+      },
+      "called": [
+        "search_failures"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::15086::33510",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::41090::27993",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::291::22264",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01464827"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::95260::13671",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::24736::209",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03664232"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::1408::13522",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT05070247"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::7729::5799",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::155::6192",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::78679::41793",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::14735::5696",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::4675::2550",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01949337"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::reject::22042::247",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00744471"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::defer::59555::4101",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::3423::1396",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00875017"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::ground::32::10427",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00946712"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::22746::10391",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::166731::7134",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::5768::4152",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT04345913"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::38487::47651",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::8266::633",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01185353"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::1126::643",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00626197"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::114377::18969",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::148::24406",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00588770"
+      },
+      "called": [
+        "search_failures"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::22::300",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01001325"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::16377::32132",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::29049::8889",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::122::13091",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT04234113"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::1196::14942",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT00068692"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::101138::24392",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::284::3362",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01598090"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::368::38316",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00134030"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::ground::2384::4300",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01642251"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::55195::758",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::148::8017",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03371017"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::ground::6984::1287",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT05028569"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::1016::5488",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::26334::39901",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::17767::1570",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03649711"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::3279::14541",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::3501::1341",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00977080"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::122985::13533",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::16857::1642",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00112437"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::1694::3932",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT02601209"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::22365::2518",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::29653::30882",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::126219::38389",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::2765::1653",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01286038"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::907::484",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::defer::45938::7848",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::126800::46938",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::62315::23532",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::5696::22126",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::74096::41728",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::125454::72",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01147744"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::83207::959",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::32::108",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00460317"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::defer::166620::2309",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::5513::2346",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::1196::14942",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00068692"
+      },
+      "called": [
+        "search_failures"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::41960::16080",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01869764"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::ground::418::537",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT02788279"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::38778::19134",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::13313::32331",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT05253209"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::3793::25222",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::84873::6074",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::80618::12955",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::174456::48",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT01059344"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::72077::52725",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::743::18522",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00105001"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::10085::27010",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::7992::1834",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT01337154"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::42767::3541",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::744::540",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00075478"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::ground::9583::1213",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00708123"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::168166::4683",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00697619"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::503::1052",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03861988"
+      },
+      "called": [
+        "search_failures"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::41549::2208",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03829657"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::ground::564::2857",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT04778410"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::47489::31688",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::744::16105",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::67875::44263",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::86903::64",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00439634"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::98353::408",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::12441::38873",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT02535312"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::368::798",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01000480"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::1002::1670",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00767806"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::99583::26165",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::32409::40584",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::1413::20487",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03504644"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::verify::98583::38562",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::421::33403",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01837823"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::defer::22435::15334",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::5410::17239",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::69004::7330",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::4230::1130",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::24736::209",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03664232"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::ground::47205::44830",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01562548"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::4483::7080",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01233869"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::18170::3656",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00070707"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::1158::3271",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00728481"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::verify::143457::15070",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::5003::705",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT02366728"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::12595::911",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT05139030"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::2026::2346",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01758523"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::2784::22",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::92237::11779",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::152524::31221",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::311::29484",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::60674::29579",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::1878::54",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03135028"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::31::8682",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00033293"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::verify::78051::6264",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::208::31158",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03365882"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::22::1591",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::138899::28237",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::743::2160",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00105001"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::578::16999",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT02585713"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::92663::9082",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::153049::33064",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::298::565",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01149434"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::135898::17622",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::170381::21960",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::37620::7601",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::41549::2208",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03829657"
+      },
+      "called": [
+        "search_failures"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::233::20056",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::46675::21819",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::55195::5318",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::87868::2122",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::16555::1564",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::122395::52655",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::57163::6258",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::24969::44875",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::105232::37336",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::149787::2368",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::32::6699",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03894007"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::1216::3958",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::22::97",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::813::19836",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::148::1617",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT01196390"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::481::446",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00740051"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::1716::5248",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03493854"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::4073::424",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00183729"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::ground::4213::4114",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00141037"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::72165::12054",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::31::4607",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT02883049"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::64056::12191",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::368::798",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01000480"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::ground::6225::2185",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01133704"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::163292::13171",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::84853::32175",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::133985::1359",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00440947"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::147::5326",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::156072::27566",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::59738::24148",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::1072::1972",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::1072::54783",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::115537::33946",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::1716::17720",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT05218499"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::13445::3246",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT02737501"
+      },
+      "called": [
+        "search_failures"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::158039::15870",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::169043::7393",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::60882::10163",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::150486::4850",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::28988::9989",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT01095094"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::19048::508",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::verify::92230::8523",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::19479::6366",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::31::9814",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00557193"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::139408::52242",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::43282::666",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::1672::238",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::62168::1905",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::3301::1644",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01150461"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::reject::961::5997",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::150517::21713",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::48428::49338",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::27374::7582",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::129263::7808",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01230827"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::167892::281",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::1333::54023",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT03452137"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::3197::7293",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::581::1359",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::3985::441",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01281501"
+      },
+      "called": [
+        "search_failures"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::75828::434",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT02524106"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::1002::1670",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.333
+    },
+    {
+      "packet_id": "ct::ground::41825::10748",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT02237196"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::120873::30972",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::67854::22181",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::4483::7080",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01233869"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::defer::53501::5618",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::8524::22123",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::95592::20690",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::90690::196",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01097707"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::29062::16796",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::51970::16518",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::368::38316",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00134030"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::66293::7979",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::3634::1796",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT00474903"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::368::3511",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "flag",
+        "cited_nct": "NCT00588770"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::22104::5857",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::12441::38873",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT02535312"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::ground::4675::2550",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT01949337"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::27114::17341",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::144881::9282",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::628::10337",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::684::47758",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::defer::97218::23526",
+      "class": "defer",
+      "gold": "defer",
+      "pred": {
+        "action": "defer",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::reject::13964::481",
+      "class": "reject",
+      "gold": "reject",
+      "pred": {
+        "action": "reject",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::verify::114838::5099",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::ground::4693::3070",
+      "class": "ground",
+      "gold": "ground",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    },
+    {
+      "packet_id": "ct::verify::5277::29636",
+      "class": "verify",
+      "gold": "verify",
+      "pred": {
+        "action": "verify",
+        "cited_nct": null
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": true,
+      "generic_score": 1.0
+    },
+    {
+      "packet_id": "ct::flag::6984::1287",
+      "class": "flag",
+      "gold": "flag",
+      "pred": {
+        "action": "ground",
+        "cited_nct": "NCT05028569"
+      },
+      "called": [
+        "search_failures",
+        "check_other_indications"
+      ],
+      "correct": false,
+      "generic_score": 0.5
+    }
+  ]
+}

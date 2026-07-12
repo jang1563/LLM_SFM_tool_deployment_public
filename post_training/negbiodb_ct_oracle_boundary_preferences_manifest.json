@@ -1,0 +1,43 @@
+{
+  "boundary": "Evidence-derived boundary preference pairs. Chosen and rejected responses share the same visible native CT tool observations and differ only in the terminal submit_decision action.",
+  "chosen_passed": 620,
+  "dataset": "negbiodb_ct_oracle_boundary_preferences_v1",
+  "out": "post_training/negbiodb_ct_oracle_boundary_preferences_v1.jsonl",
+  "pairs_by_chosen_action": {
+    "defer": 120,
+    "flag": 80,
+    "ground": 280,
+    "reject": 80,
+    "verify": 60
+  },
+  "pairs_by_failure_mode": {
+    "boundary_defer_over_verify": 120,
+    "boundary_flag_over_ground": 40,
+    "boundary_flag_over_reject": 40,
+    "boundary_ground_over_flag": 140,
+    "boundary_ground_over_reject": 140,
+    "boundary_reject_over_flag": 40,
+    "boundary_reject_over_ground": 40,
+    "boundary_verify_over_defer": 60
+  },
+  "pairs_by_rejected_action": {
+    "defer": 60,
+    "flag": 180,
+    "ground": 80,
+    "reject": 180,
+    "verify": 120
+  },
+  "preference_pairs": 620,
+  "rejected_passed": 0,
+  "source_by_action_class": {
+    "defer": 120,
+    "flag": 40,
+    "ground": 140,
+    "reject": 40,
+    "verify": 60
+  },
+  "source_examples": 400,
+  "source_sft": "post_training/negbiodb_ct_oracle_sft_v1.jsonl",
+  "strategy": "evidence_boundary_contrast_v1",
+  "tasks": "negbiodb_ct/tasks_pilot.jsonl"
+}

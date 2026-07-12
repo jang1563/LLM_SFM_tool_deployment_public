@@ -1,0 +1,36 @@
+{
+  "boundary": "Hard-mode subset of evidence-derived boundary preference pairs. Chosen and rejected responses share the same visible native CT tool observations and differ only in terminal submit_decision action.",
+  "chosen_passed": 240,
+  "dataset": "negbiodb_ct_oracle_boundary_preferences_hard_v1",
+  "missing_selected_failure_modes": [],
+  "out": "post_training/negbiodb_ct_oracle_boundary_preferences_hard_v1.jsonl",
+  "pairs_by_chosen_action": {
+    "defer": 120,
+    "flag": 40,
+    "reject": 80
+  },
+  "pairs_by_failure_mode": {
+    "boundary_defer_over_verify": 120,
+    "boundary_flag_over_ground": 40,
+    "boundary_reject_over_flag": 40,
+    "boundary_reject_over_ground": 40
+  },
+  "pairs_by_rejected_action": {
+    "flag": 40,
+    "ground": 80,
+    "verify": 120
+  },
+  "preference_pairs": 240,
+  "rejected_passed": 0,
+  "selected_failure_modes": [
+    "boundary_defer_over_verify",
+    "boundary_flag_over_ground",
+    "boundary_reject_over_ground",
+    "boundary_reject_over_flag"
+  ],
+  "selection_rule": "Failure modes with negative or near-zero base-model chosen margins in the 2026-06-27 boundary preference base-margin diagnostic.",
+  "selection_source": "post_training/boundary_preference_margin_base_summary_2026-06-27.json",
+  "source": "post_training/negbiodb_ct_oracle_boundary_preferences_v1.jsonl",
+  "source_preference_pairs": 620,
+  "strategy": "base_negative_margin_hard_modes_v1"
+}

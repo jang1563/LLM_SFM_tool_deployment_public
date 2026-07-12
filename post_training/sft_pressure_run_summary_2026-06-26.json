@@ -1,0 +1,274 @@
+{
+  "conditions": {
+    "native_pressure_cv": {
+      "aggregate": {
+        "constrained_base_accuracy_mean": 0.275,
+        "constrained_loaded_accuracy_mean": 0.45,
+        "constrained_loaded_accuracy_range": "0.300..0.700",
+        "constrained_loaded_class_accuracy": {
+          "defer": "0/8",
+          "flag": "6/8",
+          "ground": "1/8",
+          "reject": "3/8",
+          "verify": "8/8"
+        },
+        "heldout_loss_mean": 0.1336,
+        "strict_action_accuracy_mean": 0.4,
+        "strict_action_accuracy_range": "0.400..0.400",
+        "strict_class_accuracy": {
+          "defer": "0/8",
+          "flag": "4/8",
+          "ground": "0/8",
+          "reject": "4/8",
+          "verify": "8/8"
+        },
+        "strict_parse_failures_total": 0
+      },
+      "condition": "native_pressure_cv",
+      "folds": [
+        {
+          "constrained_base_action_accuracy": 0.3,
+          "constrained_loaded_action_accuracy": 0.3,
+          "constrained_loaded_by_class": {
+            "defer": "0/2",
+            "flag": "1/2",
+            "ground": "0/2",
+            "reject": "0/2",
+            "verify": "2/2"
+          },
+          "fold": 0,
+          "heldout_examples": 10,
+          "heldout_teacher_forced_loaded_loss": 0.1729,
+          "strict_action_accuracy": 0.4,
+          "strict_by_class": {
+            "defer": "0/2",
+            "flag": "1/2",
+            "ground": "0/2",
+            "reject": "1/2",
+            "verify": "2/2"
+          },
+          "strict_parse_failures": 0,
+          "train_examples": 54,
+          "train_first_loss": 2.3547,
+          "train_last_loss": 0.0767,
+          "train_teacher_forced_loaded_loss": 0.0739
+        },
+        {
+          "constrained_base_action_accuracy": 0.2,
+          "constrained_loaded_action_accuracy": 0.7,
+          "constrained_loaded_by_class": {
+            "defer": "0/2",
+            "flag": "2/2",
+            "ground": "1/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "fold": 1,
+          "heldout_examples": 10,
+          "heldout_teacher_forced_loaded_loss": 0.1073,
+          "strict_action_accuracy": 0.4,
+          "strict_by_class": {
+            "defer": "0/2",
+            "flag": "0/2",
+            "ground": "0/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "strict_parse_failures": 0,
+          "train_examples": 54,
+          "train_first_loss": 2.2059,
+          "train_last_loss": 0.0074,
+          "train_teacher_forced_loaded_loss": 0.0844
+        },
+        {
+          "constrained_base_action_accuracy": 0.3,
+          "constrained_loaded_action_accuracy": 0.4,
+          "constrained_loaded_by_class": {
+            "defer": "0/2",
+            "flag": "2/2",
+            "ground": "0/2",
+            "reject": "0/2",
+            "verify": "2/2"
+          },
+          "fold": 2,
+          "heldout_examples": 10,
+          "heldout_teacher_forced_loaded_loss": 0.1127,
+          "strict_action_accuracy": 0.4,
+          "strict_by_class": {
+            "defer": "0/2",
+            "flag": "2/2",
+            "ground": "0/2",
+            "reject": "0/2",
+            "verify": "2/2"
+          },
+          "strict_parse_failures": 0,
+          "train_examples": 54,
+          "train_first_loss": 2.2059,
+          "train_last_loss": 0.365,
+          "train_teacher_forced_loaded_loss": 0.058
+        },
+        {
+          "constrained_base_action_accuracy": 0.3,
+          "constrained_loaded_action_accuracy": 0.4,
+          "constrained_loaded_by_class": {
+            "defer": "0/2",
+            "flag": "1/2",
+            "ground": "0/2",
+            "reject": "1/2",
+            "verify": "2/2"
+          },
+          "fold": 3,
+          "heldout_examples": 10,
+          "heldout_teacher_forced_loaded_loss": 0.1415,
+          "strict_action_accuracy": 0.4,
+          "strict_by_class": {
+            "defer": "0/2",
+            "flag": "1/2",
+            "ground": "0/2",
+            "reject": "1/2",
+            "verify": "2/2"
+          },
+          "strict_parse_failures": 0,
+          "train_examples": 54,
+          "train_first_loss": 1.6316,
+          "train_last_loss": 0.091,
+          "train_teacher_forced_loaded_loss": 0.0644
+        }
+      ],
+      "manifest": "post_training/negbiodb_ct_native_sft_cv4_pressure_manifest.json",
+      "root": "post_training/runs/qwen_sft_cv4_pressure_schema_action_80",
+      "train_examples_per_fold": 54
+    },
+    "oracle_balanced_warmstart": {
+      "aggregate": {
+        "constrained_base_accuracy_mean": 0.275,
+        "constrained_loaded_accuracy_mean": 0.2,
+        "constrained_loaded_accuracy_range": "0.200..0.200",
+        "constrained_loaded_class_accuracy": {
+          "defer": "0/8",
+          "flag": "0/8",
+          "ground": "8/8",
+          "reject": "0/8",
+          "verify": "0/8"
+        },
+        "heldout_loss_mean": 1.9408,
+        "strict_action_accuracy_mean": 0.2,
+        "strict_action_accuracy_range": "0.200..0.200",
+        "strict_class_accuracy": {
+          "defer": "0/8",
+          "flag": "0/8",
+          "ground": "8/8",
+          "reject": "0/8",
+          "verify": "0/8"
+        },
+        "strict_parse_failures_total": 12
+      },
+      "condition": "oracle_balanced_warmstart",
+      "evals": [
+        {
+          "constrained_base_action_accuracy": 0.3,
+          "constrained_loaded_action_accuracy": 0.2,
+          "constrained_loaded_by_class": {
+            "defer": "0/2",
+            "flag": "0/2",
+            "ground": "2/2",
+            "reject": "0/2",
+            "verify": "0/2"
+          },
+          "heldout_examples": 10,
+          "heldout_teacher_forced_loaded_loss": 1.9398,
+          "name": "fold0_heldout",
+          "strict_action_accuracy": 0.2,
+          "strict_by_class": {
+            "defer": "0/2",
+            "flag": "0/2",
+            "ground": "2/2",
+            "reject": "0/2",
+            "verify": "0/2"
+          },
+          "strict_parse_failures": 3
+        },
+        {
+          "constrained_base_action_accuracy": 0.2,
+          "constrained_loaded_action_accuracy": 0.2,
+          "constrained_loaded_by_class": {
+            "defer": "0/2",
+            "flag": "0/2",
+            "ground": "2/2",
+            "reject": "0/2",
+            "verify": "0/2"
+          },
+          "heldout_examples": 10,
+          "heldout_teacher_forced_loaded_loss": 1.9516,
+          "name": "fold1_heldout",
+          "strict_action_accuracy": 0.2,
+          "strict_by_class": {
+            "defer": "0/2",
+            "flag": "0/2",
+            "ground": "2/2",
+            "reject": "0/2",
+            "verify": "0/2"
+          },
+          "strict_parse_failures": 3
+        },
+        {
+          "constrained_base_action_accuracy": 0.3,
+          "constrained_loaded_action_accuracy": 0.2,
+          "constrained_loaded_by_class": {
+            "defer": "0/2",
+            "flag": "0/2",
+            "ground": "2/2",
+            "reject": "0/2",
+            "verify": "0/2"
+          },
+          "heldout_examples": 10,
+          "heldout_teacher_forced_loaded_loss": 1.9449,
+          "name": "fold2_heldout",
+          "strict_action_accuracy": 0.2,
+          "strict_by_class": {
+            "defer": "0/2",
+            "flag": "0/2",
+            "ground": "2/2",
+            "reject": "0/2",
+            "verify": "0/2"
+          },
+          "strict_parse_failures": 3
+        },
+        {
+          "constrained_base_action_accuracy": 0.3,
+          "constrained_loaded_action_accuracy": 0.2,
+          "constrained_loaded_by_class": {
+            "defer": "0/2",
+            "flag": "0/2",
+            "ground": "2/2",
+            "reject": "0/2",
+            "verify": "0/2"
+          },
+          "heldout_examples": 10,
+          "heldout_teacher_forced_loaded_loss": 1.9268,
+          "name": "fold3_heldout",
+          "strict_action_accuracy": 0.2,
+          "strict_by_class": {
+            "defer": "0/2",
+            "flag": "0/2",
+            "ground": "2/2",
+            "reject": "0/2",
+            "verify": "0/2"
+          },
+          "strict_parse_failures": 3
+        }
+      ],
+      "root": "post_training/runs/qwen_oracle_balanced_warmstart_cvheldout",
+      "train_first_loss": 4.3628,
+      "train_last_loss": 0.0021,
+      "train_limit": 700,
+      "train_loss_delta": -4.3607,
+      "train_sft": "post_training/negbiodb_ct_oracle_sft_balanced_v1.jsonl"
+    }
+  },
+  "interpretation": {
+    "native_pressure": "slight constrained improvement but strict action-class tradeoff",
+    "next": "row-level pressure-failure analysis before DPO/RLVR",
+    "oracle_balanced": "negative result; ground collapse and parse failures on native heldout"
+  }
+}

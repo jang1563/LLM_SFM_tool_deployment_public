@@ -1,0 +1,344 @@
+{
+  "adaptive_zero_unsafe_report": {
+    "action_status_final_accuracy": 1.0,
+    "action_status_final_correct": 2,
+    "coverage": 0.5,
+    "fail_closed": 1,
+    "fail_closed_action_status_correct": 1,
+    "fail_closed_case_ids": [
+      "stage_a::000012"
+    ],
+    "fail_closed_exact_correct": 1,
+    "strict_final_accuracy": 1.0,
+    "strict_final_correct": 2,
+    "threshold": 0.023558,
+    "trusted": 1,
+    "trusted_correct": 1,
+    "trusted_incorrect": 0,
+    "trusted_precision": 1.0,
+    "unsafe_trust_case_ids": []
+  },
+  "adaptive_zero_unsafe_threshold": 0.023558,
+  "best_default_zero_unsafe_report": {
+    "action_status_final_accuracy": 1.0,
+    "action_status_final_correct": 2,
+    "coverage": 0.5,
+    "fail_closed": 1,
+    "fail_closed_action_status_correct": 1,
+    "fail_closed_case_ids": [
+      "stage_a::000012"
+    ],
+    "fail_closed_exact_correct": 1,
+    "strict_final_accuracy": 1.0,
+    "strict_final_correct": 2,
+    "threshold": 0.025,
+    "trusted": 1,
+    "trusted_correct": 1,
+    "trusted_incorrect": 0,
+    "trusted_precision": 1.0,
+    "unsafe_trust_case_ids": []
+  },
+  "candidate_policy": "insufficient_defer_vs_verify_boundary",
+  "cases": 2,
+  "component": "routing_after_loop",
+  "dataset": "negbiodb_ct_stage_a_routing_candidate_gate_diagnostic_v1",
+  "fail_closed_output": {
+    "action": "defer",
+    "cited_source_ids": [],
+    "evidence_status": "insufficient"
+  },
+  "failure_mode": "routing_defer_verify_boundary_confusion",
+  "input_candidates_sha256": "6e4e7a09b7c537ba492ce5753ad3ad99578b8e4403fc2d2bd47cf521ea44beb0",
+  "rows": [
+    {
+      "action_status_top1": false,
+      "candidate_count": 2,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "chosen_pair": "defer/insufficient",
+      "exact_top1": false,
+      "fail_closed_action_status": true,
+      "fail_closed_exact": true,
+      "fail_closed_output": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "fail_closed_pair": "defer/insufficient",
+      "gold_rank": 2,
+      "gold_score": -0.868183,
+      "id": "stage_a_routing_defer_verify_cayuga_2026_07_08::trained_candidate_heldout::stage_a_routing_defer_verify_contrast::stage_a_evidence_component::stage_a::000012::routing_after_loop::routing_defer_verify_boundary_confusion",
+      "target_output": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "target_pair": "defer/insufficient",
+      "top_candidate": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "top_candidates": [
+        {
+          "candidate": {
+            "action": "verify",
+            "cited_source_ids": [],
+            "evidence_status": "insufficient"
+          },
+          "score": -0.844626
+        },
+        {
+          "candidate": {
+            "action": "defer",
+            "cited_source_ids": [],
+            "evidence_status": "insufficient"
+          },
+          "score": -0.868183
+        }
+      ],
+      "top_gold_margin": 0.023557,
+      "top_pair": "verify/insufficient",
+      "top_score": -0.844626,
+      "top_second_gap": 0.023557
+    },
+    {
+      "action_status_top1": true,
+      "candidate_count": 2,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "chosen_pair": "verify/insufficient",
+      "exact_top1": true,
+      "fail_closed_action_status": false,
+      "fail_closed_exact": false,
+      "fail_closed_output": {
+        "action": "defer",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "fail_closed_pair": "defer/insufficient",
+      "gold_rank": 1,
+      "gold_score": -0.833706,
+      "id": "stage_a_routing_defer_verify_cayuga_2026_07_08::trained_candidate_heldout::stage_a_routing_defer_verify_contrast::stage_a_evidence_component::stage_a::000019::routing_after_loop::routing_defer_verify_boundary_confusion",
+      "target_output": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "target_pair": "verify/insufficient",
+      "top_candidate": {
+        "action": "verify",
+        "cited_source_ids": [],
+        "evidence_status": "insufficient"
+      },
+      "top_candidates": [
+        {
+          "candidate": {
+            "action": "verify",
+            "cited_source_ids": [],
+            "evidence_status": "insufficient"
+          },
+          "score": -0.833706
+        },
+        {
+          "candidate": {
+            "action": "defer",
+            "cited_source_ids": [],
+            "evidence_status": "insufficient"
+          },
+          "score": -0.87019
+        }
+      ],
+      "top_gold_margin": 0.0,
+      "top_pair": "verify/insufficient",
+      "top_score": -0.833706,
+      "top_second_gap": 0.036484
+    }
+  ],
+  "run_id": "stage_a_routing_defer_verify_gate_trained_2026_07_08",
+  "scientific_readout": {
+    "decision_boundary": "This post-hoc diagnostic uses saved candidate scores only. It is not new training, not explanation-quality scoring, and not a full trajectory result.",
+    "diagnostic_question": "Can a routing top-vs-second score gap identify candidate top-1 decisions that are safe to trust, while failing closed to defer/insufficient otherwise?",
+    "interpretation_rule": "A useful boundary gate should avoid unsafe trust and improve or preserve strict final correctness after fail-closed routing. On tiny held-out slices this is only a diagnostic, not deployment calibration or a reason to start DPO/RLVR."
+  },
+  "score_label": "trained_candidate_heldout",
+  "summary": {
+    "action_status_top1": 1,
+    "candidate_count_histogram": {
+      "2": 2
+    },
+    "exact_top1": 1,
+    "fail_closed_exact_correct": 1,
+    "max_top_second_gap": 0.036484,
+    "mean_gold_rank": 1.5,
+    "mean_top_gold_margin": 0.011779,
+    "mean_top_second_gap": 0.030021,
+    "min_top_second_gap": 0.023557,
+    "target_pair_counts": {
+      "defer/insufficient": 1,
+      "verify/insufficient": 1
+    },
+    "top_pair_counts": {
+      "verify/insufficient": 2
+    }
+  },
+  "threshold_reports": [
+    {
+      "action_status_final_accuracy": 0.5,
+      "action_status_final_correct": 1,
+      "coverage": 1.0,
+      "fail_closed": 0,
+      "fail_closed_action_status_correct": 0,
+      "fail_closed_case_ids": [],
+      "fail_closed_exact_correct": 0,
+      "strict_final_accuracy": 0.5,
+      "strict_final_correct": 1,
+      "threshold": 0.0,
+      "trusted": 2,
+      "trusted_correct": 1,
+      "trusted_incorrect": 1,
+      "trusted_precision": 0.5,
+      "unsafe_trust_case_ids": [
+        "stage_a::000012"
+      ]
+    },
+    {
+      "action_status_final_accuracy": 0.5,
+      "action_status_final_correct": 1,
+      "coverage": 1.0,
+      "fail_closed": 0,
+      "fail_closed_action_status_correct": 0,
+      "fail_closed_case_ids": [],
+      "fail_closed_exact_correct": 0,
+      "strict_final_accuracy": 0.5,
+      "strict_final_correct": 1,
+      "threshold": 0.01,
+      "trusted": 2,
+      "trusted_correct": 1,
+      "trusted_incorrect": 1,
+      "trusted_precision": 0.5,
+      "unsafe_trust_case_ids": [
+        "stage_a::000012"
+      ]
+    },
+    {
+      "action_status_final_accuracy": 1.0,
+      "action_status_final_correct": 2,
+      "coverage": 0.5,
+      "fail_closed": 1,
+      "fail_closed_action_status_correct": 1,
+      "fail_closed_case_ids": [
+        "stage_a::000012"
+      ],
+      "fail_closed_exact_correct": 1,
+      "strict_final_accuracy": 1.0,
+      "strict_final_correct": 2,
+      "threshold": 0.025,
+      "trusted": 1,
+      "trusted_correct": 1,
+      "trusted_incorrect": 0,
+      "trusted_precision": 1.0,
+      "unsafe_trust_case_ids": []
+    },
+    {
+      "action_status_final_accuracy": 0.5,
+      "action_status_final_correct": 1,
+      "coverage": 0.0,
+      "fail_closed": 2,
+      "fail_closed_action_status_correct": 1,
+      "fail_closed_case_ids": [
+        "stage_a::000012",
+        "stage_a::000019"
+      ],
+      "fail_closed_exact_correct": 1,
+      "strict_final_accuracy": 0.5,
+      "strict_final_correct": 1,
+      "threshold": 0.05,
+      "trusted": 0,
+      "trusted_correct": 0,
+      "trusted_incorrect": 0,
+      "trusted_precision": null,
+      "unsafe_trust_case_ids": []
+    },
+    {
+      "action_status_final_accuracy": 0.5,
+      "action_status_final_correct": 1,
+      "coverage": 0.0,
+      "fail_closed": 2,
+      "fail_closed_action_status_correct": 1,
+      "fail_closed_case_ids": [
+        "stage_a::000012",
+        "stage_a::000019"
+      ],
+      "fail_closed_exact_correct": 1,
+      "strict_final_accuracy": 0.5,
+      "strict_final_correct": 1,
+      "threshold": 0.075,
+      "trusted": 0,
+      "trusted_correct": 0,
+      "trusted_incorrect": 0,
+      "trusted_precision": null,
+      "unsafe_trust_case_ids": []
+    },
+    {
+      "action_status_final_accuracy": 0.5,
+      "action_status_final_correct": 1,
+      "coverage": 0.0,
+      "fail_closed": 2,
+      "fail_closed_action_status_correct": 1,
+      "fail_closed_case_ids": [
+        "stage_a::000012",
+        "stage_a::000019"
+      ],
+      "fail_closed_exact_correct": 1,
+      "strict_final_accuracy": 0.5,
+      "strict_final_correct": 1,
+      "threshold": 0.1,
+      "trusted": 0,
+      "trusted_correct": 0,
+      "trusted_incorrect": 0,
+      "trusted_precision": null,
+      "unsafe_trust_case_ids": []
+    },
+    {
+      "action_status_final_accuracy": 0.5,
+      "action_status_final_correct": 1,
+      "coverage": 0.0,
+      "fail_closed": 2,
+      "fail_closed_action_status_correct": 1,
+      "fail_closed_case_ids": [
+        "stage_a::000012",
+        "stage_a::000019"
+      ],
+      "fail_closed_exact_correct": 1,
+      "strict_final_accuracy": 0.5,
+      "strict_final_correct": 1,
+      "threshold": 0.15,
+      "trusted": 0,
+      "trusted_correct": 0,
+      "trusted_incorrect": 0,
+      "trusted_precision": null,
+      "unsafe_trust_case_ids": []
+    },
+    {
+      "action_status_final_accuracy": 0.5,
+      "action_status_final_correct": 1,
+      "coverage": 0.0,
+      "fail_closed": 2,
+      "fail_closed_action_status_correct": 1,
+      "fail_closed_case_ids": [
+        "stage_a::000012",
+        "stage_a::000019"
+      ],
+      "fail_closed_exact_correct": 1,
+      "strict_final_accuracy": 0.5,
+      "strict_final_correct": 1,
+      "threshold": 0.2,
+      "trusted": 0,
+      "trusted_correct": 0,
+      "trusted_incorrect": 0,
+      "trusted_precision": null,
+      "unsafe_trust_case_ids": []
+    }
+  ]
+}

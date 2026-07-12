@@ -1,0 +1,1389 @@
+{
+  "manifest_version": "0.1",
+  "project": "LLM-SFM Tool Deployment",
+  "release_profile": "benchmark_public_surface",
+  "status": "validated_clean_snapshot_release_surface",
+  "last_updated": "2026-07-12",
+  "benchmark_scope": {
+    "primary_release_object": "Stage A biology tool-use trajectory benchmark substrate",
+    "primary_claim": "Agents should be evaluated on tool -> evidence packet -> terminal action trajectories with hidden labels separated from model-visible prompts.",
+    "non_claims": [
+      "No clinical decision support claim",
+      "No claim that RLVR alone solves scientific reasoning",
+      "No claim that oracle-derived trajectories are live model discoveries"
+    ]
+  },
+  "visibility": {
+    "github": {
+      "repo": "jang1563/LLM_SFM_tool_deployment_public",
+      "target_visibility": "public",
+      "status": "external_live_check_required"
+    },
+    "hugging_face": {
+      "status": "not_published",
+      "planned_repos": [
+        "jang1563/llm-sfm-stage-a-trajectories",
+        "jang1563/llm-sfm-tool-deployment-a2-band",
+        "jang1563/a2-mondo-band-reranker-qwen2p5-1p5b-lora",
+        "jang1563/llm-sfm-negative-evidence-demo"
+      ]
+    }
+  },
+  "public_surfaces": [
+    {
+      "path": "README.md",
+      "role": "primary public entrypoint",
+      "required": true
+    },
+    {
+      "path": "STATUS.md",
+      "role": "current research thesis, result, source-change, and next-decision checkpoint",
+      "required": true
+    },
+    {
+      "path": "BENCHMARK_CARD.md",
+      "role": "benchmark definition and evaluator gate summary",
+      "required": true
+    },
+    {
+      "path": "BENCHMARK_VERIFIER_MAP.md",
+      "role": "verifier ladder and escalation gate map",
+      "required": true
+    },
+    {
+      "path": "REVIEWER_GUIDE.md",
+      "role": "external reviewer navigation and claim-boundary guide",
+      "required": true
+    },
+    {
+      "path": "REPRODUCIBILITY.md",
+      "role": "public-safe and full local reproducibility guide",
+      "required": true
+    },
+    {
+      "path": "ROADMAP.md",
+      "role": "public roadmap and milestone boundary",
+      "required": true
+    },
+    {
+      "path": "research/2026-06-25_posttrain_tool_use_landscape/LONG_TERM_RESEARCH_PLAN_2026-07-04.md",
+      "role": "active long-term scientific research execution plan",
+      "required": true
+    },
+    {
+      "path": "CHANGELOG.md",
+      "role": "public-facing release history",
+      "required": true
+    },
+    {
+      "path": "RESEARCH_SUMMARY.md",
+      "role": "concise research summary and claim boundary",
+      "required": true
+    },
+    {
+      "path": "MODEL_CARD.md",
+      "role": "draft model-card surface for future HF model repo",
+      "required": true
+    },
+    {
+      "path": "DATASET_CARD.md",
+      "role": "draft dataset-card surface for future HF dataset repo",
+      "required": true
+    },
+    {
+      "path": "RELEASE_CHECKLIST.md",
+      "role": "human release gate",
+      "required": true
+    },
+    {
+      "path": "PUBLIC_RELEASE_AUDIT.md",
+      "role": "privacy and public-safety audit",
+      "required": true
+    },
+    {
+      "path": "release/README.md",
+      "role": "machine-readable release gate explainer",
+      "required": true
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "role": "contribution guide and benchmark boundary",
+      "required": true
+    },
+    {
+      "path": "SECURITY.md",
+      "role": "sensitive-data and leakage reporting policy",
+      "required": true
+    },
+    {
+      "path": ".github/workflows/public-qa.yml",
+      "role": "public-safe continuous integration workflow",
+      "required": true
+    },
+    {
+      "path": "requirements-public.txt",
+      "role": "minimal public-safe validation dependencies",
+      "required": true
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/benchmark_issue.yml",
+      "role": "structured benchmark issue template",
+      "required": true
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "role": "benchmark and public-surface pull request checklist",
+      "required": true
+    },
+    {
+      "path": "CITATION.cff",
+      "role": "citation metadata",
+      "required": true
+    },
+    {
+      "path": "LICENSE",
+      "role": "current conservative license placeholder",
+      "required": true
+    }
+  ],
+  "public_artifacts": [
+    {
+      "path": "demo/public_trajectory_cases.jsonl",
+      "kind": "synthetic_jsonl",
+      "records": 5,
+      "sha256": "7eedf89b924339ab9fec24e6df83e414b99fe2268160bd15ed1952770cabbd09",
+      "safe_to_publish": true
+    },
+    {
+      "path": "figures/results_snapshot.csv",
+      "kind": "public_results_snapshot",
+      "sha256": "c32124d297c8834f71e9e68e08d0428aa63ee606a1d73d30a2c889999671a07e",
+      "safe_to_publish": true
+    },
+    {
+      "path": "figures/architecture.mmd",
+      "kind": "public_architecture_diagram_source",
+      "sha256": "925dd7ee7f370f6c8289b719cd33a050371a4a31a326573821b98221053cd644",
+      "safe_to_publish": true
+    },
+    {
+      "path": "negbiodb_ct/stage_a_mini_manifest.jsonl",
+      "kind": "stage_a_public_manifest_jsonl",
+      "records": 25,
+      "sha256": "681dcb1e8f5a1de5460a52112f62e41a6e0b6508650d38d045f0c54fe99bd807",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_sft_v1.jsonl",
+      "kind": "stage_a_oracle_sft_jsonl",
+      "records": 25,
+      "sha256": "7b2e5c9ab03a6eec9ae2fb71b9b00b9e986261a848b8be7b37110acb18b9dc67",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_preferences_v1.jsonl",
+      "kind": "stage_a_preference_pairs_jsonl",
+      "records": 150,
+      "sha256": "6ab8d3550abf6fb6e053949b8296021b68f1025f32c41893599b91ab127184d1",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_process_supervision_v1.jsonl",
+      "kind": "stage_a_process_supervision_jsonl",
+      "records": 25,
+      "sha256": "37cf3964208d65d928a64adc39793968e571a9ccf10641395ba0b482a227d1b5",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_export_manifest.json",
+      "kind": "stage_a_export_manifest",
+      "sha256": "437dce7bcdfe57ba9fd193a2ed345778e0588bf0779a3d74858ee970f3797db9",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_sft_train_v1.jsonl",
+      "kind": "stage_a_train_sft_jsonl",
+      "records": 20,
+      "sha256": "9bbc8fe62f78ae3d7d05578605a37976efb7cc0afacfecebc7193a6aa033eabd",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_sft_heldout_v1.jsonl",
+      "kind": "stage_a_heldout_sft_jsonl",
+      "records": 5,
+      "sha256": "c3e60ffaaeb890f83781f4c70a34f348736916bbde5241935a2520fd712f491c",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_preferences_train_v1.jsonl",
+      "kind": "stage_a_train_preference_pairs_jsonl",
+      "records": 120,
+      "sha256": "7cbc382514e1b28f7e2c134773eabeae0230f614caafc7ae078953ad744cfa95",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_preferences_heldout_v1.jsonl",
+      "kind": "stage_a_heldout_preference_pairs_jsonl",
+      "records": 30,
+      "sha256": "ef9ebb74a1e9d75487adc2588e3e299aa3a839da2356f094e491de25dfe9aceb",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_process_train_v1.jsonl",
+      "kind": "stage_a_train_process_supervision_jsonl",
+      "records": 20,
+      "sha256": "c5a79c7d143d3a9f35ac9fda4eadd6cd0b3200879a8b9268a602ebf52bc033d1",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_process_heldout_v1.jsonl",
+      "kind": "stage_a_heldout_process_supervision_jsonl",
+      "records": 5,
+      "sha256": "a2ae2ede7fc77dc5438bf6a2aa701039e3272ce00936c6cb2589979a2a8a5f52",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_split_manifest.json",
+      "kind": "stage_a_split_manifest",
+      "sha256": "a0ff51bb5431704ec88a5db47697ff92b0388e733114108bffdc39d1ee0205db",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_contract_sft_v1.jsonl",
+      "kind": "stage_a_strict_contract_sft_jsonl",
+      "records": 25,
+      "sha256": "e4dd353f8b4fdfe98789764b4709586420ba8cfec99a96b9c50fadf45992eb7c",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_contract_preferences_v1.jsonl",
+      "kind": "stage_a_strict_contract_preference_pairs_jsonl",
+      "records": 50,
+      "sha256": "79350c4ebe5ae794af4f364afef359d8b410e5380e1fe3eaeafcc27686812460",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_contract_process_v1.jsonl",
+      "kind": "stage_a_strict_contract_process_supervision_jsonl",
+      "records": 25,
+      "sha256": "382494e4f2bad8a0906b7b8621d84ad7e30adc3b629dd206ea69dd2fc891a5df",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_contract_manifest.json",
+      "kind": "stage_a_strict_contract_export_manifest",
+      "sha256": "d26d77ca84c008c7391c2212d0bf74a7e603082652b5f02e9ff1455f9b576edd",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_contract_sft_train_v1.jsonl",
+      "kind": "stage_a_strict_contract_train_sft_jsonl",
+      "records": 20,
+      "sha256": "d8b3315bfb90c47ec71dd7331deb42cd74cd24f16cb048a465eeb19ef81f51c2",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_contract_sft_heldout_v1.jsonl",
+      "kind": "stage_a_strict_contract_heldout_sft_jsonl",
+      "records": 5,
+      "sha256": "95c3d64ce67d062e33c07195fa9a470cdb89510805a599ea780ee0fdedd73d93",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_contract_preferences_train_v1.jsonl",
+      "kind": "stage_a_strict_contract_train_preference_pairs_jsonl",
+      "records": 40,
+      "sha256": "13207d5c46e65e24568f910e29e62310924846e899853bd41e8bd64100b62457",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_contract_preferences_heldout_v1.jsonl",
+      "kind": "stage_a_strict_contract_heldout_preference_pairs_jsonl",
+      "records": 10,
+      "sha256": "cece630b34c581c2746d7735f3580e533e6d1685f560f3b32b4095cd0ecc11b5",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_contract_process_train_v1.jsonl",
+      "kind": "stage_a_strict_contract_train_process_supervision_jsonl",
+      "records": 20,
+      "sha256": "fb615fdae0d6ba34a54457c592d52006f3e16ddd2d1f8bf5a9e5e2bb6d36e1c0",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_contract_process_heldout_v1.jsonl",
+      "kind": "stage_a_strict_contract_heldout_process_supervision_jsonl",
+      "records": 5,
+      "sha256": "b810c2c1acb71c09e529658f48207c869e431450324acd07b460fc38400857be",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_component_targets_v1.jsonl",
+      "kind": "stage_a_strict_component_targets_jsonl",
+      "records": 75,
+      "sha256": "8a51b7dbc6da75639a864d6f366415caa9af14bf30cb3fece87d3e42573d8136",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_component_targets_train_v1.jsonl",
+      "kind": "stage_a_strict_component_train_targets_jsonl",
+      "records": 60,
+      "sha256": "e4edc15041c2e088d03635a31fe6c9e1e3340fac9d39e9495e6795b5f1616844",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_component_targets_heldout_v1.jsonl",
+      "kind": "stage_a_strict_component_heldout_targets_jsonl",
+      "records": 15,
+      "sha256": "0ea7d5967a16c3dea2dbe7c92e599c55b370bcf53c334ccc3b1bd440cab901f3",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_component_targets_manifest.json",
+      "kind": "stage_a_strict_component_targets_manifest",
+      "sha256": "64f59f2e9117e3354649e318b4f79b4d5de2d40302d08e78e8ece1df8aafef4b",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_sft_smoke_eval_summary_2026-07-04.json",
+      "kind": "stage_a_sft_smoke_eval_summary",
+      "sha256": "32fc986dab9b0dbec93ae16ab18edc8733b6967b4410e484b94653f5ebca4547",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SFT_SMOKE_EVAL_2026-07-04.md",
+      "kind": "stage_a_sft_smoke_eval_report",
+      "sha256": "3658c38680795dc7dcf1be44ddcb57ea1e55d4f41f0f9570c419c96308c04d6c",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_sft_cayuga_smoke_summary_2026-07-04.json",
+      "kind": "stage_a_strict_sft_cayuga_smoke_summary",
+      "sha256": "a35281e0891c41e65f8d9d1922b48fbe87873a55e14b8f8f7fde228b90279a1e",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_STRICT_SFT_CAYUGA_SMOKE_2026-07-04.md",
+      "kind": "stage_a_strict_sft_cayuga_smoke_report",
+      "sha256": "aa256b848b81a12adb571ab145f9713b504845a2c39dd87987e2ccab66578f18",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_strict_component_diagnostics_summary_2026-07-04.json",
+      "kind": "stage_a_strict_component_diagnostics_summary",
+      "sha256": "f040748e7f53a100634f1b27d9fcc849b866e0819edbe2e8b109c4a490e5219a",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_STRICT_COMPONENT_DIAGNOSTICS_2026-07-04.md",
+      "kind": "stage_a_strict_component_diagnostics_report",
+      "sha256": "245a1b6a7ad7a9b03174d2824e198e2604f113d21dbe66fb99cb6b0120a2bfd6",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_component_enum_action_sft_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_component_enum_action_sft_cayuga_summary",
+      "sha256": "6fd9a22494c54e47388fd9d197e084de93faa1ada047e20e012e22da445a695c",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_COMPONENT_ENUM_ACTION_SFT_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_component_enum_action_sft_cayuga_report",
+      "sha256": "10cff0364dbb9a6311b460849ec82fed8fac56e9350dbd22a03c408a0119e6c0",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_component_enum_action_candidate_sft_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_component_enum_action_candidate_sft_cayuga_summary",
+      "sha256": "abcdca9df793fd4854b5d32fd45578c42971236c8c5000324cbf6988744cf48d",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_COMPONENT_ENUM_ACTION_CANDIDATE_SFT_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_component_enum_action_candidate_sft_cayuga_report",
+      "sha256": "00ae47c187bb7ab0918032607928038850831a44720fdb1a0321b04d1fb6f94c",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_component_enum_action_candidate_fullrank_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_component_enum_action_candidate_fullrank_cayuga_summary",
+      "sha256": "a42e140645723f15f66569aa9cb98749a44a07d0869da6c37f10859edef62329",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_COMPONENT_ENUM_ACTION_CANDIDATE_FULLRANK_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_component_enum_action_candidate_fullrank_cayuga_report",
+      "sha256": "676d6f0a5afffcd2d9f78b9c57c9f329540aa925e7b0790570b092b38dd347b6",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_component_enum_action_field_rank_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_component_enum_action_field_rank_cayuga_summary",
+      "sha256": "8d7040d5b0e8a902cef565180d8e707bd31416807147c45c947d5d45a77fafaa",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_COMPONENT_ENUM_ACTION_FIELD_RANK_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_component_enum_action_field_rank_cayuga_report",
+      "sha256": "423e41768db3a1dd249a68da928546ed6e469f78ba4517f14758239fce83f4cf",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_component_enum_action_observed_pair_counterfactual_2026-07-05.json",
+      "kind": "stage_a_component_enum_action_observed_pair_counterfactual_summary",
+      "sha256": "e570463f3be907e9e8811dc219496649c2c401be6659cc6378309eac813d0fc2",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_COMPONENT_ENUM_ACTION_OBSERVED_PAIR_COUNTERFACTUAL_2026-07-05.md",
+      "kind": "stage_a_component_enum_action_observed_pair_counterfactual_report",
+      "sha256": "64ed336cf92d25a77d6974f035f46f78407738d2eb6ae3dd6b817d2a54050b57",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_corrective_pairs_v1.jsonl",
+      "kind": "stage_a_enum_corrective_pairs",
+      "records": 20,
+      "sha256": "30730a8a4c752e64540905276fa76a46959d0a4022e47ed05cad6f9e1d4b1f9a",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_corrective_pairs_train_v1.jsonl",
+      "kind": "stage_a_enum_corrective_pairs_train",
+      "records": 16,
+      "sha256": "41dad5b946d80c9cb6a0c077a48d392886a137070e4e438e10b1b2a1e67158c8",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_corrective_pairs_heldout_v1.jsonl",
+      "kind": "stage_a_enum_corrective_pairs_heldout",
+      "records": 4,
+      "sha256": "15ec48e12f6d5c61ac12fde8250f84715a8d9e71e1f0860aca00a67b16b20f30",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_corrective_pairs_manifest.json",
+      "kind": "stage_a_enum_corrective_pairs_manifest",
+      "sha256": "ce9aeab856d921f4b0c8829cb9531895cc372d5f4c3947902bc43064b8d6cce4",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_action_contrast_pairs_v1.jsonl",
+      "kind": "stage_a_enum_action_contrast_pairs",
+      "records": 20,
+      "sha256": "a121d675fd2c435efca4cb2c4039cc97606325fb18231df4213a7a4274a2aef9",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_action_contrast_pairs_train_v1.jsonl",
+      "kind": "stage_a_enum_action_contrast_pairs_train",
+      "records": 16,
+      "sha256": "61c1cfa01f76bf2e9cac1290b35b9ab6e1482a0b5e2055dab908de357c96b69d",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_action_contrast_pairs_heldout_v1.jsonl",
+      "kind": "stage_a_enum_action_contrast_pairs_heldout",
+      "records": 4,
+      "sha256": "71b85f8271e07b9290d850160db77839eca268e8748f88d9bcaa98f49d648820",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_action_contrast_pairs_manifest.json",
+      "kind": "stage_a_enum_action_contrast_pairs_manifest",
+      "sha256": "3d54797acf363beb987942f2662259573838f736c0c3415ce7152300ffec7d38",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_corrective_sft_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_enum_corrective_sft_cayuga_summary",
+      "sha256": "a44e5054cfcdc10c0c09b74370087b36552b238b91253b76160fb6070c8070a4",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ENUM_CORRECTIVE_SFT_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_enum_corrective_sft_cayuga_report",
+      "sha256": "adbcdb6c85c6f8f7fcc5d873b7214bd4b57cb184e46b7df949d6102c7f2f8b49",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_corrective_margin_delta_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_enum_corrective_margin_delta_cayuga_summary",
+      "sha256": "2c8980463bf8e34f3f7e8c08b651dff393fa358e072fddec0477a34415a9ad70",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ENUM_CORRECTIVE_MARGIN_DELTA_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_enum_corrective_margin_delta_cayuga_report",
+      "sha256": "93235cbdcf284f80ffc44f753f1e8b068ab0fc7151f7fc522ac866ff9113ed9c",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_corrective_targeted_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_enum_corrective_targeted_cayuga_summary",
+      "sha256": "92b655d5e8dd200b8d342947b9d520fe33117567cb63b5963f2ec1e8459a3107",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ENUM_CORRECTIVE_TARGETED_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_enum_corrective_targeted_cayuga_report",
+      "sha256": "62a115bba6c12b36fe8e702a9b65212e08798bb02d28abfeb5e4e9e390ce7122",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_action_contrast_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_enum_action_contrast_cayuga_summary",
+      "sha256": "5a809f28f2a25c1e23787d50ab2b5fb3dbb407cf028fbde0de0dd20e2f65e3bf",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ENUM_ACTION_CONTRAST_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_enum_action_contrast_cayuga_report",
+      "sha256": "6849f1e52c6e6345b3e5c2687e45877ba88ecc3eede0511a84c37eb5a7fe56a4",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_action_only_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_enum_action_only_cayuga_summary",
+      "sha256": "82b422f181e1579c81df2235c1af93ef735fb5b6266f5d02503ae43f27ec7e96",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ENUM_ACTION_ONLY_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_enum_action_only_cayuga_report",
+      "sha256": "f605a5418d9cf33c31efea25f2b08e5b6aa6da8f709ef6023f611aa5ab0a2c78",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_pairwise_margin_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_enum_pairwise_margin_cayuga_summary",
+      "sha256": "7983b1ed8aa169403d736ed461366214dfa27a37072554b0d471c1e3680fadc9",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ENUM_PAIRWISE_MARGIN_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_enum_pairwise_margin_cayuga_report",
+      "sha256": "b56be2f604cf9ea1c26e39da6173efc1cf720f7dd26f23bb37c4f4100e2a34b9",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_full_pairwise_margin_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_enum_full_pairwise_margin_cayuga_summary",
+      "sha256": "f29bd4ccab50ac08cb16dc01c3538e007c0ac03a3285a69c3244cfc57b1e956e",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ENUM_FULL_PAIRWISE_MARGIN_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_enum_full_pairwise_margin_cayuga_report",
+      "sha256": "6cb7c967f6d18af95a33cdf1e61ce1135f3601a45bde11a6512bd497f2685635",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_candidate_readout_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_enum_candidate_readout_cayuga_summary",
+      "sha256": "571069d214903d188bf29ba21c30e3e017c6156a8b009c2b9ec38835a434d11b",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ENUM_CANDIDATE_READOUT_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_enum_candidate_readout_cayuga_report",
+      "sha256": "52182d14f94199b746cee60c87bee3edeb256159a979e2a835c572cf3f140807",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_candidate_ce_pair_observed_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_enum_candidate_ce_pair_observed_cayuga_summary",
+      "sha256": "740d2fe4904833d42cd994a48b516423342e0a5e04e9788bad6e57ae546353bf",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ENUM_CANDIDATE_CE_PAIR_OBSERVED_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_enum_candidate_ce_pair_observed_cayuga_report",
+      "sha256": "f586a32439c19b6486b83e0c281a80edc7f110fe29feb73cd426598ccfeee5d0",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_candidate_ce_gate_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_enum_candidate_ce_gate_cayuga_summary",
+      "sha256": "eb2b7a0763a5cf8ce1d0b8c8564b5f6774a93de3b5c6d7b2c5d1c672a1d37161",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ENUM_CANDIDATE_CE_GATE_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_enum_candidate_ce_gate_cayuga_report",
+      "sha256": "f8b2be354ee6763f913e2c0982c37496e62b01800aca3c365218c038abebed79",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_enum_field_ce_pair_observed_cayuga_summary_2026-07-05.json",
+      "kind": "stage_a_enum_field_ce_pair_observed_cayuga_summary",
+      "sha256": "e8ed812e3012c4b1a5c4f6d4ede40e9ec90a9cc208f7032dbd8b68e01b5398c7",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ENUM_FIELD_CE_PAIR_OBSERVED_CAYUGA_2026-07-05.md",
+      "kind": "stage_a_enum_field_ce_pair_observed_cayuga_report",
+      "sha256": "228a2b9bf4fbe8bcf1dc5f11b8b5392ab24584a8046123d8f7e20e726abceee7",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_component_visibility_audit_2026-07-05.json",
+      "kind": "stage_a_component_visibility_audit_summary",
+      "sha256": "ae0929682218f656da2210c3c4985d8f420e7043638705abdbe77692de417ef8",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_COMPONENT_VISIBILITY_AUDIT_2026-07-05.md",
+      "kind": "stage_a_component_visibility_audit_report",
+      "sha256": "c0c2aecf863726c0ac3d237470624da9e471a71b972e133acb469e971f004d70",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_evidence_conditioned_component_targets_v1.jsonl",
+      "kind": "stage_a_evidence_conditioned_component_targets_jsonl",
+      "records": 75,
+      "sha256": "cca947ae8525f75178ba6bae4aa2221733bf34a2587d8f6f600bcd709eb87f9a",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_evidence_conditioned_component_targets_train_v1.jsonl",
+      "kind": "stage_a_evidence_conditioned_component_train_targets_jsonl",
+      "records": 60,
+      "sha256": "f42a25ceee7348e5c5dee62d5a73a9c57cdcd1f7ec8c286dcf08228da03548ec",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_evidence_conditioned_component_targets_heldout_v1.jsonl",
+      "kind": "stage_a_evidence_conditioned_component_heldout_targets_jsonl",
+      "records": 15,
+      "sha256": "7401d134f28a413afadf382d24fa9831c01c2498ca2c69e378233f0569605b9a",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_evidence_conditioned_component_targets_manifest.json",
+      "kind": "stage_a_evidence_conditioned_component_targets_manifest",
+      "sha256": "21634852ce1bab99e62d37fa68d9f7c1f326aa66f51e01986f795894d1c8d390",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_evidence_conditioned_component_visibility_audit_2026-07-05.json",
+      "kind": "stage_a_evidence_conditioned_component_visibility_audit_summary",
+      "sha256": "d95388cbf20ccb924e1546c5a7e7111c4563dbe450462ca53f864174fd094ecb",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_EVIDENCE_CONDITIONED_COMPONENT_VISIBILITY_AUDIT_2026-07-05.md",
+      "kind": "stage_a_evidence_conditioned_component_visibility_audit_report",
+      "sha256": "ef7a9babb34129e59e03ffdefc5bcdedb596bd224943d419faf04c25de3e6170",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_evidence_enum_action_observed_pair_cayuga_summary_2026-07-06.json",
+      "kind": "stage_a_evidence_enum_action_observed_pair_cayuga_summary",
+      "sha256": "cc147fe033cd06022be8f010bd67a874c7c6f2d08729baf47eccd0804a5a6db7",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_EVIDENCE_ENUM_ACTION_OBSERVED_PAIR_CAYUGA_2026-07-06.md",
+      "kind": "stage_a_evidence_enum_action_observed_pair_cayuga_report",
+      "sha256": "d7a37c6ca59e3f0dca14f7c4c93902daa9e502169d4bbf7531981c6b5ef8452a",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_evidence_routing_after_loop_cayuga_summary_2026-07-06.json",
+      "kind": "stage_a_evidence_routing_after_loop_cayuga_summary",
+      "sha256": "637736ebba5b57db42550a8a24716305eeada0d543e3c5a552062cf316c15f69",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_EVIDENCE_ROUTING_AFTER_LOOP_CAYUGA_2026-07-06.md",
+      "kind": "stage_a_evidence_routing_after_loop_cayuga_report",
+      "sha256": "ce81c5a42de8a2e8ccd67f50784bcae677da334c9d0b49ff30b172846331fb94",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_evidence_routing_observed_pair_cayuga_summary_2026-07-08.json",
+      "kind": "stage_a_evidence_routing_observed_pair_cayuga_summary",
+      "sha256": "e1102fd02139867a0cf03c5be70733da3ceb1034ece773fc308a2bcb8f6c8c65",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_EVIDENCE_ROUTING_OBSERVED_PAIR_CAYUGA_2026-07-08.md",
+      "kind": "stage_a_evidence_routing_observed_pair_cayuga_report",
+      "sha256": "436d63e70350a86558722fbe4f9f6030c39a1b26fb8cb469b2f7ceb9abb447cb",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_action_status_contrast_pairs_v1.jsonl",
+      "kind": "stage_a_routing_action_status_contrast_pairs",
+      "records": 15,
+      "sha256": "252c5a0fdda867eb83021c839e496843e1ead1767d5efdddc7013d3125c9583d",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_action_status_contrast_pairs_train_v1.jsonl",
+      "kind": "stage_a_routing_action_status_contrast_pairs_train",
+      "records": 12,
+      "sha256": "79a431811448e8dfbefc878f29dada4d30c342a1c25265eed39c081af11f8691",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_action_status_contrast_pairs_heldout_v1.jsonl",
+      "kind": "stage_a_routing_action_status_contrast_pairs_heldout",
+      "records": 3,
+      "sha256": "ee10589683ad1d7674d19131de82ea98673373ceb538e5ab0a9dbc9fa846e21b",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_action_status_contrast_pairs_manifest.json",
+      "kind": "stage_a_routing_action_status_contrast_pairs_manifest",
+      "sha256": "e5319fb4a589df385655619f3fdf658a10f5eafc075f10764e83b858072da93b",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_contrast_sft_cayuga_summary_2026-07-08.json",
+      "kind": "stage_a_routing_contrast_sft_cayuga_summary",
+      "sha256": "289d120c8ad720e2ad149030dfa4d2c54ea780b92b56ee07ddd906ffdd7a8c18",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ROUTING_CONTRAST_SFT_CAYUGA_2026-07-08.md",
+      "kind": "stage_a_routing_contrast_sft_cayuga_report",
+      "sha256": "861ec0005b7c7b6287adb491c9c277675fa3d84ad29e353fbfc8240e2b8f4c77",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_contrast_candidate_cayuga_summary_2026-07-08.json",
+      "kind": "stage_a_routing_contrast_candidate_cayuga_summary",
+      "sha256": "c7e67587e898cfebfe6ca1fd6bfe8435e065cf8d2e6609a622394fe36af21a45",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ROUTING_CONTRAST_CANDIDATE_CAYUGA_2026-07-08.md",
+      "kind": "stage_a_routing_contrast_candidate_cayuga_report",
+      "sha256": "53eb70833a4a92c73eebe95e9c5e0d687efdaae96bbf2a013d5dab388db337e4",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_defer_verify_contrast_pairs_v1.jsonl",
+      "kind": "stage_a_routing_defer_verify_contrast_pairs",
+      "records": 10,
+      "sha256": "a219226f682f96ed79eac073c8da36d58533eac1f80ab7980a5345e2bc930c16",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_defer_verify_contrast_pairs_train_v1.jsonl",
+      "kind": "stage_a_routing_defer_verify_contrast_pairs_train",
+      "records": 8,
+      "sha256": "ecb628eb27b32312d87a9fc98436a4d5100d63e85f82b9d08ff77a8cfb3419d4",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_defer_verify_contrast_pairs_heldout_v1.jsonl",
+      "kind": "stage_a_routing_defer_verify_contrast_pairs_heldout",
+      "records": 2,
+      "sha256": "fbb7069ec890bbc3d33f3a0bbe0a488132cb281a165530b2d99fe5aa72b613e0",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_defer_verify_contrast_pairs_manifest.json",
+      "kind": "stage_a_routing_defer_verify_contrast_pairs_manifest",
+      "sha256": "d4795be4d2f1dba0bd8a0ebcf3f147ebf8fe24fb1f65f8a8ee32b3d5e6c68339",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_defer_verify_cayuga_summary_2026-07-08.json",
+      "kind": "stage_a_routing_defer_verify_cayuga_summary",
+      "sha256": "b17f259b58e95e99276572b91080db7a3db6b0aad54cae69ebdf1cb48f6b7b47",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ROUTING_DEFER_VERIFY_CAYUGA_2026-07-08.md",
+      "kind": "stage_a_routing_defer_verify_cayuga_report",
+      "sha256": "9a2ef14ef928bc38de6e33e7a92b98fa125256ea2e56f1518b638afa1e0a13ee",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_defer_verify_gate_trained_2026-07-08.json",
+      "kind": "stage_a_routing_defer_verify_gate_trained",
+      "sha256": "f4d6c2acb390bfbae53b19913199a894bca9da12f991ceb50ddec7ec6e2c21ad",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ROUTING_DEFER_VERIFY_GATE_TRAINED_2026-07-08.md",
+      "kind": "stage_a_routing_defer_verify_gate_trained_report",
+      "sha256": "11a1c83c49973c6ddca1caf3e1db68c5926bef29586dde04e969dd701878085b",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_evidence_boundary_gate_2026-07-08.json",
+      "kind": "stage_a_routing_evidence_boundary_gate",
+      "sha256": "56c8d57e8edd79269d248e3cdf736aa61ac798535be0b9a44f53439ebdf1e1d6",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ROUTING_EVIDENCE_BOUNDARY_GATE_2026-07-08.md",
+      "kind": "stage_a_routing_evidence_boundary_gate_report",
+      "sha256": "0a89bd7a5b1c19652c3f499b540b92a34e7512067c16197d29d84120a96d8fce",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_evidence_gate_2026-07-08.json",
+      "kind": "stage_a_routing_evidence_gate",
+      "sha256": "49353503c252d6549d2dc666fb83f867e3c782763599d6a5ef5e754cfea8b13f",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ROUTING_EVIDENCE_GATE_2026-07-08.md",
+      "kind": "stage_a_routing_evidence_gate_report",
+      "sha256": "cc96c5a7eac6a649f8bcb3d55ba4c70ee1d58903ca16c2f4947e53b4315559f6",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_gate_baseline_comparison_2026-07-09.json",
+      "kind": "stage_a_routing_gate_baseline_comparison",
+      "sha256": "96defe64d399de3a2dddef493a536793cef8738a99fa3d8bcf2bbff23915a4c3",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ROUTING_GATE_BASELINE_COMPARISON_2026-07-09.md",
+      "kind": "stage_a_routing_gate_baseline_comparison_report",
+      "sha256": "a540cecbe60f0c27f202634487c2c3c090a586fc41f1d9e0624e8ba5fa13cee9",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_model_readiness_2026-07-09.json",
+      "kind": "stage_a_routing_model_readiness",
+      "sha256": "f625396804276bb413e834d1ef194746c199affcc2f438c0c77f86ec971e0246",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ROUTING_MODEL_READINESS_2026-07-09.md",
+      "kind": "stage_a_routing_model_readiness_report",
+      "sha256": "1599429182af8f1999024f07f1eecb47c94b294773cabbc990f4912764c4dd9c",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_full_trajectory_arbitration_2026-07-09.json",
+      "kind": "stage_a_full_trajectory_arbitration",
+      "sha256": "272d6b402b72179a260f09db0d2cb57ac024b628a811092dd36f3161d82afdb0",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_FULL_TRAJECTORY_ARBITRATION_2026-07-09.md",
+      "kind": "stage_a_full_trajectory_arbitration_report",
+      "sha256": "b93156b9d61467d27404ccfcc3bb70bbf66be62d103663eeabb2773d8afd12a3",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_prediction_readiness_2026-07-09.json",
+      "kind": "stage_a_saved_prediction_readiness",
+      "sha256": "18b1b5d2724477e2740c966e5906f91f0a51faec1360916f70786119b9a31b41",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_PREDICTION_READINESS_2026-07-09.md",
+      "kind": "stage_a_saved_prediction_readiness_report",
+      "sha256": "01f6c09ac319be396b27e18553959eced1968d19b2ca7b6f29caccbb4d9b930d",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_v3_tool_trace_qwen05b_cayuga_summary_2026-07-09.json",
+      "kind": "stage_a_v3_tool_trace_cayuga_summary",
+      "sha256": "c7049c2b865b7a095494f739c62feb130dc3a6a0b172fdbdc7c352e6d23cc0c2",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_v4_canonical_json_qwen05b_cayuga_summary_2026-07-09.json",
+      "kind": "stage_a_v4_canonical_json_cayuga_summary",
+      "sha256": "8c9f2740729d9b7c13458ab9146a20c835791dd8aa0e1f39752567debd98426d",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_candidate_readout_qwen05b_train_observed_summary_2026-07-09.json",
+      "kind": "stage_a_saved_candidate_readout_cayuga_summary",
+      "sha256": "ceb1a0f1967e30e36f1eaff8f236d68c902004a1ffc696d16b7c16b1b5cf3e15",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_candidate_readout_qwen05b_all_valid_summary_2026-07-09.json",
+      "kind": "stage_a_saved_candidate_readout_cayuga_summary",
+      "sha256": "29cb153e0973304e4313ea8d2839ad0cb66df8cf573c947d756f2fd9b5c5ac3b",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_candidate_gate_train_observed_qwen05b_2026-07-09.json",
+      "kind": "stage_a_saved_candidate_gate_cayuga_summary",
+      "sha256": "81395ab2eca2b9b5f44bd88325df81f2093dcafe9e83f2b775c80485d3ab02c8",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_CANDIDATE_GATE_TRAIN_OBSERVED_QWEN05B_2026-07-09.md",
+      "kind": "stage_a_saved_candidate_gate_cayuga_report",
+      "sha256": "2d16b7e1c3b4508e3a6dabf68056ea79ea7e5e54179146b3b2a387b561ce0a15",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_candidate_gate_all_valid_qwen05b_2026-07-09.json",
+      "kind": "stage_a_saved_candidate_gate_cayuga_summary",
+      "sha256": "11927398f530e9b0d61a7a28e427ea2a1a7ad69c4666b56c01ab15441caa4916",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_CANDIDATE_GATE_ALL_VALID_QWEN05B_2026-07-09.md",
+      "kind": "stage_a_saved_candidate_gate_cayuga_report",
+      "sha256": "0df0a9659b44b83f16db43458acf2fe03553ac3f1ece31137ade6e1499d5f6b5",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_next_decision_2026-07-09.json",
+      "kind": "stage_a_saved_output_next_decision",
+      "sha256": "46933a0dccc0d93a719c1d35eed06b0de2c159144b0d13a2f5233a89d43f2625",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_NEXT_DECISION_2026-07-09.md",
+      "kind": "stage_a_saved_output_next_decision_report",
+      "sha256": "cd595521d5139550c25a226dc82d2df1d5fecc42b99917e43fda5c8f85f5516c",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_calibration_probe_v1.jsonl",
+      "kind": "stage_a_saved_output_calibration_probe_pairs",
+      "records": 20,
+      "sha256": "bad77bcd702f8a2a30fd5437543723f77118d7dae18a5c383f8daec5e3ed4c16",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_calibration_probe_train_v1.jsonl",
+      "kind": "stage_a_saved_output_calibration_probe_train_pairs",
+      "records": 16,
+      "sha256": "f2afc84070d4d727154fa8d443a49154eccb9a04968c4af607f9dbd6c9e88ba1",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_calibration_probe_heldout_v1.jsonl",
+      "kind": "stage_a_saved_output_calibration_probe_heldout_pairs",
+      "records": 4,
+      "sha256": "e69646f79a2285645da801039ab3174bb6848c946230869329944d310aa34062",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_calibration_probe_manifest.json",
+      "kind": "stage_a_saved_output_calibration_probe_manifest",
+      "sha256": "0741a277a2fb488a2fc86f74a169ef98d7a2c34b72dbf25e0396141548f0e385",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_calibration_probe_readout_qwen05b_cayuga_summary_2026-07-10.json",
+      "kind": "stage_a_saved_output_calibration_probe_readout_cayuga_summary",
+      "sha256": "db9387c45c59d70e2403c057f9337224dc16d0a5cebf545bb9d5a5c5544c69e0",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_CALIBRATION_PROBE_READOUT_QWEN05B_CAYUGA_2026-07-10.md",
+      "kind": "stage_a_saved_output_calibration_probe_readout_cayuga_report",
+      "sha256": "a3b9be36011466c3a0721564f709e8ef01bc791973668a3a570196e86687c12d",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_calibration_margin_sft_qwen05b_cayuga_summary_2026-07-10.json",
+      "kind": "stage_a_saved_output_calibration_margin_sft_cayuga_summary",
+      "sha256": "6bb774b75c1d456b406a06494148ed0109e66ec87565d9bf9bc5a3307bb80c26",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_CALIBRATION_MARGIN_SFT_QWEN05B_CAYUGA_2026-07-10.md",
+      "kind": "stage_a_saved_output_calibration_margin_sft_cayuga_report",
+      "sha256": "6c83711196ba8a9f438d255b9e53d4158cf3d9b26fcd035faca1b4cc28039dda",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_calibration_margin_sft_focus_nonverify3_qwen05b_cayuga_summary_2026-07-10.json",
+      "kind": "stage_a_saved_output_calibration_margin_sft_focus_nonverify3_cayuga_summary",
+      "sha256": "bb0d1c6556b43a408892b0f82fd28749ce8ff211696f73229a8691feef56cc09",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_CALIBRATION_MARGIN_SFT_FOCUS_NONVERIFY3_QWEN05B_CAYUGA_2026-07-10.md",
+      "kind": "stage_a_saved_output_calibration_margin_sft_focus_nonverify3_cayuga_report",
+      "sha256": "63dfe7b0fe5c87fa6111451facc277e3e4f6158e4ea52752d7554ef079b84542",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_target_format_flag_qwen05b_cayuga_summary_2026-07-10.json",
+      "kind": "stage_a_saved_output_target_format_flag_cayuga_summary",
+      "sha256": "271660e41bb19269bba5edfb1a13fd8eff9c0ca97544fbc7ecf4e46ea8646fc7",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_TARGET_FORMAT_FLAG_QWEN05B_CAYUGA_2026-07-10.md",
+      "kind": "stage_a_saved_output_target_format_flag_cayuga_report",
+      "sha256": "33d5252a077bac075e09c31c3a3793fe72680c83b4693750a7bc8f74b969cad8",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_same_model_target_format_qwen05b_cayuga_summary_2026-07-10.json",
+      "kind": "stage_a_saved_output_same_model_target_format_cayuga_summary",
+      "sha256": "f5c2345a12dc2b5b7f224662af7b1b93444112c79d420784bff9c3e6071ab90f",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_SAME_MODEL_TARGET_FORMAT_QWEN05B_CAYUGA_2026-07-10.md",
+      "kind": "stage_a_saved_output_same_model_target_format_cayuga_report",
+      "sha256": "71274a072547081bd7602003b523c68b6726d7ecb6314fd81196d46a8ffdc5ce",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_candidate_rank_qwen05b_cayuga_summary_2026-07-10.json",
+      "kind": "stage_a_saved_output_candidate_rank_cayuga_summary",
+      "sha256": "a563630cd21a53e7222a7ff9a79f3037c0fdbe68ce771299c2cb2cfb6f47641b",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_CANDIDATE_RANK_QWEN05B_CAYUGA_2026-07-10.md",
+      "kind": "stage_a_saved_output_candidate_rank_cayuga_report",
+      "sha256": "ea981cd087ff5f594113a3a54e0d0b8c52b11c77abf9eff1078af990ad1d548b",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_candidate_field_qwen05b_cayuga_summary_2026-07-10.json",
+      "kind": "stage_a_saved_output_candidate_field_cayuga_summary",
+      "sha256": "cf6c7dc0e39695dc9259425edf4e4d4efeb61ded04d5e9987d7bc442b19865e0",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_CANDIDATE_FIELD_QWEN05B_CAYUGA_2026-07-10.md",
+      "kind": "stage_a_saved_output_candidate_field_cayuga_report",
+      "sha256": "eeb11a0df2e2b46df4af4f3f726a421970d949743dded51d85619b657d9b2a8f",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_train_candidate_qwen05b_cayuga_summary_2026-07-10.json",
+      "kind": "stage_a_saved_output_train_candidate_cayuga_summary",
+      "sha256": "3a858b8277c0daefd03cd0f8a9316f07a5d9a4f8143fbb403a6630d51b3d601d",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_TRAIN_CANDIDATE_QWEN05B_CAYUGA_2026-07-10.md",
+      "kind": "stage_a_saved_output_train_candidate_cayuga_report",
+      "sha256": "84a744c1c4fbbb9da2178376e0ebc74cea3c0f67788b5710ee05be11cd982dd4",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_candidate_calibration_qwen05b_cayuga_summary_2026-07-10.json",
+      "kind": "stage_a_saved_output_candidate_calibration_cayuga_summary",
+      "sha256": "a170b3dd66869cae832675d2397ad5a0aa6450f3d59f96e50d87534290e5167e",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_CANDIDATE_CALIBRATION_QWEN05B_CAYUGA_2026-07-10.md",
+      "kind": "stage_a_saved_output_candidate_calibration_cayuga_report",
+      "sha256": "00ef6ebeb12e6513bb830f09106d469c8fae2181f255307152f6e777ac1d5579",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_candidate_arbitration_2026-07-10.json",
+      "kind": "stage_a_saved_output_candidate_arbitration",
+      "sha256": "3cc6678d43e4f21b2a83d1ba5f48021c41ee86d19eb4d3c41c0ea29809772b92",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_CANDIDATE_ARBITRATION_2026-07-10.md",
+      "kind": "stage_a_saved_output_candidate_arbitration_report",
+      "sha256": "8d817ced15d725d2f2a08a6137faeae15f07ba6b75b03840dd99f169ae5a626b",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_next_decision_2026-07-10.json",
+      "kind": "stage_a_saved_output_next_decision",
+      "sha256": "69ff03a337ba3171191690a65f4a51389f8e49e42e436c0a39d2adfcf20d0a13",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_NEXT_DECISION_2026-07-10.md",
+      "kind": "stage_a_saved_output_next_decision_report",
+      "sha256": "92d68d00e66a105c2f8884ab46ca5e9d642326c55e58ca0f1989fed305914088",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_meet_or_beat_gate_2026-07-10.json",
+      "kind": "stage_a_saved_output_meet_or_beat_gate",
+      "sha256": "ba34e5f91001aee94eaec1b5e6aa2b35300a19d053979df217be0336ed456e4f",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_MEET_OR_BEAT_GATE_2026-07-10.md",
+      "kind": "stage_a_saved_output_meet_or_beat_gate_report",
+      "sha256": "14c1b855737236c36c9f79c84ad289d5a8254f25fee99b1f203a6694d6b91b9d",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_intake_contract_2026-07-10.json",
+      "kind": "stage_a_saved_output_intake_contract",
+      "sha256": "73c2a43952527277fe7f669f8b5fc8a468ec60fd617e9553a7a965280f43edea",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_INTAKE_CONTRACT_2026-07-10.md",
+      "kind": "stage_a_saved_output_intake_contract_report",
+      "sha256": "17788723bb1a33ea753161dd4ceee6e14ff5d6a62cc7394f6529e585c718e0c5",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_checkpoint_diagnosis_2026-07-10.json",
+      "kind": "stage_a_saved_output_checkpoint_diagnosis",
+      "sha256": "ccd52d056b3f749bb34cd2214d471f1f26aec7b59f30cc31ba9a2e2fb2bd7b51",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_CHECKPOINT_DIAGNOSIS_2026-07-10.md",
+      "kind": "stage_a_saved_output_checkpoint_diagnosis_report",
+      "sha256": "62f8310da48c281d1f2c62912c152925cb0372a4e8a0ba2a1812791b39d4d665",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_next_checkpoint_spec_2026-07-10.json",
+      "kind": "stage_a_saved_output_next_checkpoint_spec",
+      "sha256": "f079a56980d3af7b4911da22a26f31141d3988c82a83196f23e4394f72070fb7",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_NEXT_CHECKPOINT_SPEC_2026-07-10.md",
+      "kind": "stage_a_saved_output_next_checkpoint_spec_report",
+      "sha256": "5ae87cd7c4fcf5fd9a0162f6d5fae0bd6d1cabf2f0bf032b6255e1f73588c9d5",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_nonflag_checkpoint_result_2026-07-10.json",
+      "kind": "stage_a_saved_output_nonflag_checkpoint_result",
+      "sha256": "c63c34b531de8d59e7aac2068bbd72e490b90eaf2e83a80a678c31b29fb4bd80",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_NONFLAG_CHECKPOINT_RESULT_2026-07-10.md",
+      "kind": "stage_a_saved_output_nonflag_checkpoint_result_report",
+      "sha256": "f2934d5ae537f1ec57546cae282145ba84aefd11b3210123547408cb41a8b9b7",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_candidate_ce_checkpoint_spec_2026-07-10.json",
+      "kind": "stage_a_saved_output_candidate_ce_checkpoint_spec",
+      "sha256": "8a15ab8601641591b401dd34f848525a504620ad6bf957a22d0c639bcabbd84e",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_CANDIDATE_CE_CHECKPOINT_SPEC_2026-07-10.md",
+      "kind": "stage_a_saved_output_candidate_ce_checkpoint_spec_report",
+      "sha256": "0a4de352ee6f58c820eea957befad2ab0601a16258597976e0c38358457072c2",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_candidate_ce_checkpoint_result_2026-07-10.json",
+      "kind": "stage_a_saved_output_candidate_ce_checkpoint_result",
+      "sha256": "41f27fabc76c2936ea7408b94c555709e6100af4a0a1b260eb32a5930e866ae6",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_CANDIDATE_CE_CHECKPOINT_RESULT_2026-07-10.md",
+      "kind": "stage_a_saved_output_candidate_ce_checkpoint_result_report",
+      "sha256": "1b801f1c64a95d272acbd7544fb795c405aa751bbe10ac9828c993ab6489491a",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_post_candidate_ce_next_decision_2026-07-10.json",
+      "kind": "stage_a_saved_output_post_candidate_ce_next_decision",
+      "sha256": "b7867edf14ca0e152ef9804c476fe2f49dbc287d4aad87027456f71758770add",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_POST_CANDIDATE_CE_NEXT_DECISION_2026-07-10.md",
+      "kind": "stage_a_saved_output_post_candidate_ce_next_decision_report",
+      "sha256": "493cbbfa584d3500a669980cbe101b214b48e5285866035b9ce4c0b34ccaf579",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_evidence_bridge_2026-07-10.json",
+      "kind": "stage_a_saved_output_evidence_bridge",
+      "sha256": "2b7b5dc25c8229fdd63a0a9b4d5e01db0b41540bf3ccb10e488998d9646eeb09",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_EVIDENCE_BRIDGE_2026-07-10.md",
+      "kind": "stage_a_saved_output_evidence_bridge_report",
+      "sha256": "c8b0430d1cb7d3c88d1577106f65414b359a9478077c814bbc86842d4b99820f",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_rows_v1.jsonl",
+      "kind": "stage_a_saved_output_evidence_candidate_routing_rows",
+      "records": 25,
+      "sha256": "da4d88d0ff85604097578cb3221ca5e83b8bf38eed115449db146c36d9b90b12",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_train_v1.jsonl",
+      "kind": "stage_a_saved_output_evidence_candidate_routing_train_rows",
+      "records": 20,
+      "sha256": "b85c26e6dc40d41fe79c245d893b96b9e5c99759736099e7c872ff148f0b38b4",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_heldout_v1.jsonl",
+      "kind": "stage_a_saved_output_evidence_candidate_routing_heldout_rows",
+      "records": 5,
+      "sha256": "46ba3d4f18e2920a32d81d9ea2610696b8213b997b972312d96ce8caf9ada106",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_manifest.json",
+      "kind": "stage_a_saved_output_evidence_candidate_routing_manifest",
+      "sha256": "13f88df5d7b815438b6123dcfdfd07cc611d65d967b5776a848c360d5a0734f1",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_readout_2026-07-10.json",
+      "kind": "stage_a_saved_output_evidence_candidate_routing_readout",
+      "sha256": "bd16cc3a0f85848eea7ee7b0ba69d49be16bd443e9337a1bd5b18ddc406d6550",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_EVIDENCE_CANDIDATE_ROUTING_READOUT_2026-07-10.md",
+      "kind": "stage_a_saved_output_evidence_candidate_routing_readout_report",
+      "sha256": "f4c01375b745ff8ae7a0edebec9f164472f983f6709606f3c333f6c4b46e36fc",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_smoke_spec_2026-07-10.json",
+      "kind": "stage_a_saved_output_evidence_candidate_routing_smoke_spec",
+      "sha256": "c03f69fca9960a614875dce9fd1c3a259bd952f9afe5a4843d1b5531d642086e",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_EVIDENCE_CANDIDATE_ROUTING_SMOKE_SPEC_2026-07-10.md",
+      "kind": "stage_a_saved_output_evidence_candidate_routing_smoke_spec_report",
+      "sha256": "111eb806ec7562b88e2c2213800013860a46c89d421d316cec26ce80d32f0bd7",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_cayuga_dry_run_2026-07-10.json",
+      "kind": "stage_a_saved_output_evidence_candidate_routing_cayuga_dry_run_checkpoint",
+      "sha256": "f0258aef361bbbef62c39be05bed427bb40b8dc9b065b02790c2a8b128a73c18",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_EVIDENCE_CANDIDATE_ROUTING_CAYUGA_DRY_RUN_2026-07-10.md",
+      "kind": "stage_a_saved_output_evidence_candidate_routing_cayuga_dry_run_checkpoint_report",
+      "sha256": "c40de6b86e6b776e030860f70dbd2cb21efa34c314ffeeaa5e7b2164d62fa134",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_smoke_result_qwen05b_cayuga_2026-07-10.json",
+      "kind": "stage_a_saved_output_evidence_candidate_routing_cayuga_smoke_result",
+      "sha256": "ab6d1b5f015cd2b16b53e975b610d55c1a66cb828708ad7daecdebd2783f1f38",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SAVED_OUTPUT_EVIDENCE_CANDIDATE_ROUTING_SMOKE_RESULT_QWEN05B_CAYUGA_2026-07-10.md",
+      "kind": "stage_a_saved_output_evidence_candidate_routing_cayuga_smoke_result_report",
+      "sha256": "cdb144daa9892e827df1900b835b5f7b473ec1824d6251423aa84ae489290a3d",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_sealed_extension_commitment_2026-07-10.json",
+      "kind": "stage_a_sealed_extension_commitment",
+      "sha256": "91e1a5722aac22e1c3e3b7333168aa2cfc92858db619b29c03104bec99a8655d",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SEALED_EXTENSION_COMMITMENT_2026-07-10.md",
+      "kind": "stage_a_sealed_extension_commitment_report",
+      "sha256": "69e3deb97735eac04415b56f76b52aeaa75fc397282dd037b3f194e281167f54",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_routing_gate_arbitration_2026-07-08.json",
+      "kind": "stage_a_routing_gate_arbitration",
+      "sha256": "921f8a58c60e2cf9c7208abfa22f86026ab7fbab1bd59cc77287d61a2c6527ae",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_ROUTING_GATE_ARBITRATION_2026-07-08.md",
+      "kind": "stage_a_routing_gate_arbitration_report",
+      "sha256": "79920a620e91919cd719867c8e7d0d7c17a42a166c720e0b5de6a98e84d5cce6",
+      "safe_to_publish": true
+    }
+  ],
+  "validation_commands": [
+    "python scripts/check_public_release.py",
+    "python scripts/check_public_git_history.py",
+    "python scripts/check_research_plan.py",
+    "python examples/run_public_demo.py",
+    "python post_training/run_stage_a_sft_smoke_eval.py --json",
+    "python post_training/run_stage_a_strict_component_diagnostics.py --compact",
+    "python post_training/analyze_stage_a_component_visibility.py --out-json /tmp/stage_a_component_visibility_audit.json --out-md /tmp/stage_a_component_visibility_audit.md",
+    "python post_training/export_stage_a_evidence_conditioned_component_targets.py",
+    "python post_training/export_stage_a_routing_action_status_contrast_pairs.py",
+    "python post_training/export_stage_a_routing_defer_verify_contrast_pairs.py",
+    "python post_training/run_stage_a_routing_contrast_sft_smoke.py --dry-run --pairwise-margin-weight 1 --pairwise-margin 0.05 --score-base-routing-candidates --score-trained-routing-candidates",
+    "python post_training/run_stage_a_routing_contrast_sft_smoke.py --dry-run --pairs post_training/stage_a_routing_defer_verify_contrast_pairs_v1.jsonl --train-pairs post_training/stage_a_routing_defer_verify_contrast_pairs_train_v1.jsonl --heldout-pairs post_training/stage_a_routing_defer_verify_contrast_pairs_heldout_v1.jsonl --manifest post_training/stage_a_routing_defer_verify_contrast_pairs_manifest.json --pairwise-margin-weight 1 --pairwise-margin 0.05 --score-base-routing-candidates --score-trained-routing-candidates",
+    "python post_training/evaluate_stage_a_routing_evidence_boundary_gate.py --out-json /tmp/stage_a_routing_evidence_boundary_gate.json --out-md /tmp/STAGE_A_ROUTING_EVIDENCE_BOUNDARY_GATE.md",
+    "python post_training/evaluate_stage_a_routing_evidence_gate.py --out-json /tmp/stage_a_routing_evidence_gate.json --out-md /tmp/STAGE_A_ROUTING_EVIDENCE_GATE.md",
+    "python post_training/evaluate_stage_a_routing_gate_baseline_comparison.py --out-json /tmp/stage_a_routing_gate_baseline_comparison.json --out-md /tmp/STAGE_A_ROUTING_GATE_BASELINE_COMPARISON.md",
+    "python post_training/evaluate_stage_a_routing_model_readiness.py --out-json /tmp/stage_a_routing_model_readiness.json --out-md /tmp/STAGE_A_ROUTING_MODEL_READINESS.md",
+    "python post_training/evaluate_stage_a_full_trajectory_arbitration.py --out-json /tmp/stage_a_full_trajectory_arbitration.json --out-md /tmp/STAGE_A_FULL_TRAJECTORY_ARBITRATION.md",
+    "python post_training/evaluate_stage_a_saved_prediction_readiness.py --out-json /tmp/stage_a_saved_prediction_readiness.json --out-md /tmp/STAGE_A_SAVED_PREDICTION_READINESS.md",
+    "python post_training/evaluate_stage_a_saved_output_next_decision.py --out-json /tmp/stage_a_saved_output_next_decision.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_NEXT_DECISION.md",
+    "python post_training/evaluate_stage_a_saved_output_meet_or_beat_gate.py --out-json /tmp/stage_a_saved_output_meet_or_beat_gate.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_MEET_OR_BEAT_GATE.md",
+    "python post_training/export_stage_a_saved_output_calibration_probe.py --pairs-out /tmp/stage_a_saved_output_calibration_probe_v1.jsonl --train-out /tmp/stage_a_saved_output_calibration_probe_train_v1.jsonl --heldout-out /tmp/stage_a_saved_output_calibration_probe_heldout_v1.jsonl --manifest-out /tmp/stage_a_saved_output_calibration_probe_manifest.json",
+    "python post_training/run_stage_a_saved_output_calibration_probe_readout.py --dry-run --out-dir /tmp/stage_a_saved_output_calibration_probe_readout --run-id stage_a_saved_output_calibration_probe_readout_dry",
+    "python post_training/run_stage_a_saved_output_calibration_margin_sft.py --dry-run --out-dir /tmp/stage_a_saved_output_calibration_margin_sft --run-id stage_a_saved_output_calibration_margin_sft_dry --pairwise-margin-weight 1 --pairwise-margin 0.05 --score-base-margins --score-train-margins --score-base-candidates --score-train-candidates --score-trained-candidates",
+    "python post_training/evaluate_stage_a_saved_output_candidate_arbitration.py --out-json /tmp/stage_a_saved_output_candidate_arbitration.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_CANDIDATE_ARBITRATION.md",
+    "python post_training/evaluate_stage_a_saved_output_checkpoint_diagnosis.py --out-json /tmp/stage_a_saved_output_checkpoint_diagnosis.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_CHECKPOINT_DIAGNOSIS.md",
+    "python post_training/evaluate_stage_a_saved_output_next_checkpoint_spec.py --out-json /tmp/stage_a_saved_output_next_checkpoint_spec.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_NEXT_CHECKPOINT_SPEC.md",
+    "python post_training/evaluate_stage_a_saved_output_candidate_ce_checkpoint_spec.py --out-json /tmp/stage_a_saved_output_candidate_ce_checkpoint_spec.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_CANDIDATE_CE_CHECKPOINT_SPEC.md",
+    "python post_training/evaluate_stage_a_saved_output_post_candidate_ce_next_decision.py --out-json /tmp/stage_a_saved_output_post_candidate_ce_next_decision.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_POST_CANDIDATE_CE_NEXT_DECISION.md",
+    "python post_training/evaluate_stage_a_saved_output_evidence_bridge.py --out-json /tmp/stage_a_saved_output_evidence_bridge.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_EVIDENCE_BRIDGE.md",
+    "python post_training/export_stage_a_saved_output_evidence_candidate_routing_rows.py --rows-out /tmp/stage_a_saved_output_evidence_candidate_routing_rows_v1.jsonl --train-out /tmp/stage_a_saved_output_evidence_candidate_routing_train_v1.jsonl --heldout-out /tmp/stage_a_saved_output_evidence_candidate_routing_heldout_v1.jsonl --manifest-out /tmp/stage_a_saved_output_evidence_candidate_routing_manifest.json",
+    "python post_training/evaluate_stage_a_routing_gate_arbitration.py --out-json /tmp/stage_a_routing_gate_arbitration.json --out-md /tmp/STAGE_A_ROUTING_GATE_ARBITRATION.md",
+    "python post_training/analyze_stage_a_component_visibility.py --targets post_training/stage_a_evidence_conditioned_component_targets_v1.jsonl --out-json /tmp/stage_a_evidence_conditioned_component_visibility_audit.json --out-md /tmp/stage_a_evidence_conditioned_component_visibility_audit.md",
+    "python post_training/run_stage_a_strict_component_sft_smoke.py --dry-run --component enum_action --targets post_training/stage_a_evidence_conditioned_component_targets_v1.jsonl --train-targets post_training/stage_a_evidence_conditioned_component_targets_train_v1.jsonl --heldout-targets post_training/stage_a_evidence_conditioned_component_targets_heldout_v1.jsonl",
+    "python post_training/run_stage_a_strict_component_sft_smoke.py --dry-run --component enum_action --decode-mode enum_observed_pair_score",
+    "python post_training/export_stage_a_strict_component_targets.py",
+    "python post_training/export_stage_a_enum_corrective_pairs.py",
+    "python post_training/export_stage_a_enum_action_contrast_pairs.py",
+    "python post_training/run_stage_a_enum_corrective_sft_smoke.py --dry-run",
+    "python post_training/run_stage_a_enum_corrective_sft_smoke.py --dry-run --pairs post_training/stage_a_enum_action_contrast_pairs_v1.jsonl --train-pairs post_training/stage_a_enum_action_contrast_pairs_train_v1.jsonl --heldout-pairs post_training/stage_a_enum_action_contrast_pairs_heldout_v1.jsonl --manifest post_training/stage_a_enum_action_contrast_pairs_manifest.json --focus-chosen-pairs flag/invalid_value --focus-repeat 4",
+    "python post_training/run_stage_a_enum_corrective_sft_smoke.py --dry-run --pairs post_training/stage_a_enum_action_contrast_pairs_v1.jsonl --train-pairs post_training/stage_a_enum_action_contrast_pairs_train_v1.jsonl --heldout-pairs post_training/stage_a_enum_action_contrast_pairs_heldout_v1.jsonl --manifest post_training/stage_a_enum_action_contrast_pairs_manifest.json --focus-chosen-pairs flag/invalid_value --focus-repeat 4 --target-format action_only",
+    "python post_training/run_stage_a_enum_corrective_sft_smoke.py --dry-run --pairs post_training/stage_a_enum_action_contrast_pairs_v1.jsonl --train-pairs post_training/stage_a_enum_action_contrast_pairs_train_v1.jsonl --heldout-pairs post_training/stage_a_enum_action_contrast_pairs_heldout_v1.jsonl --manifest post_training/stage_a_enum_action_contrast_pairs_manifest.json --focus-chosen-pairs flag/invalid_value --focus-repeat 4 --target-format action_only --pairwise-margin-weight 1 --pairwise-margin 0.05",
+    "python post_training/run_stage_a_enum_corrective_sft_smoke.py --dry-run --pairs post_training/stage_a_enum_action_contrast_pairs_v1.jsonl --train-pairs post_training/stage_a_enum_action_contrast_pairs_train_v1.jsonl --heldout-pairs post_training/stage_a_enum_action_contrast_pairs_heldout_v1.jsonl --manifest post_training/stage_a_enum_action_contrast_pairs_manifest.json --focus-chosen-pairs flag/invalid_value --focus-repeat 4 --target-format full --pairwise-margin-weight 1 --pairwise-margin 0.05",
+    "python post_training/run_stage_a_enum_corrective_sft_smoke.py --dry-run --focus-chosen-pairs flag/invalid_value --focus-repeat 4 --target-format full --pairwise-margin-weight 1 --pairwise-margin 0.05",
+    "python post_training/run_stage_a_enum_corrective_sft_smoke.py --dry-run --focus-chosen-pairs flag/invalid_value --focus-repeat 4 --target-format full --pairwise-margin-weight 1 --pairwise-margin 0.05 --score-base-enum-candidates --score-enum-candidates --enum-candidate-policy all_valid_pairs",
+    "python post_training/run_stage_a_enum_corrective_sft_smoke.py --dry-run --focus-chosen-pairs flag/invalid_value --focus-repeat 4 --target-format full --pairwise-margin-weight 1 --pairwise-margin 0.05 --score-base-enum-candidates --score-enum-candidates --enum-candidate-policy pair_observed_outputs",
+    "python post_training/run_stage_a_enum_corrective_sft_smoke.py --dry-run --focus-chosen-pairs flag/invalid_value --focus-repeat 4 --target-format full --pairwise-margin-weight 1 --pairwise-margin 0.05 --candidate-ce-weight 1 --score-base-enum-candidates --score-enum-candidates --enum-candidate-policy pair_observed_outputs",
+    "python post_training/run_stage_a_enum_corrective_sft_smoke.py --dry-run --focus-chosen-pairs flag/invalid_value --focus-repeat 4 --target-format full --pairwise-margin-weight 1 --pairwise-margin 0.05 --candidate-ce-weight 1 --candidate-ce-mode field --score-base-enum-candidates --score-enum-candidates --enum-candidate-policy pair_observed_outputs",
+    "python post_training/generate_stage_a_predictions.py --mode self_answer --sft post_training/stage_a_sft_heldout_v1.jsonl --out /tmp/stage_a_self_answer_predictions.jsonl --run-id self_answer_saved_prediction_smoke",
+    "python post_training/generate_stage_a_predictions.py --mode self_answer --prompt-contract stage_a_v4_canonical_json --sft post_training/stage_a_sft_heldout_v1.jsonl --out /tmp/stage_a_v4_self_answer_predictions.jsonl --run-id stage_a_v4_prompt_contract_smoke",
+    "python post_training/run_stage_a_saved_prediction_candidate_readout.py --dry-run --out-dir /tmp/stage_a_saved_candidate_readout --run-id stage_a_saved_candidate_readout_dry",
+    "python post_training/evaluate_stage_a_predictions.py --predictions /tmp/stage_a_self_answer_predictions.jsonl --expected-sft post_training/stage_a_sft_heldout_v1.jsonl --run-id self_answer_saved_prediction_smoke --json",
+    "python post_training/evaluate_stage_a_predictions.py --predictions post_training/stage_a_sft_heldout_v1.jsonl --expected-sft post_training/stage_a_sft_heldout_v1.jsonl --run-id heldout_oracle_adapter_smoke --json",
+    "python post_training/evaluate_stage_a_saved_output_evidence_candidate_routing_readout.py",
+    "python post_training/evaluate_stage_a_saved_output_evidence_candidate_routing_smoke_spec.py",
+    "python post_training/run_stage_a_saved_output_evidence_candidate_routing_smoke.py --dry-run --out-dir /tmp/stage_a_saved_output_evidence_candidate_routing_smoke --run-id stage_a_saved_output_evidence_candidate_routing_smoke_dry",
+    "python post_training/evaluate_stage_a_saved_output_evidence_candidate_routing_dry_run_checkpoint.py --dry-run-report /tmp/stage_a_saved_output_evidence_candidate_routing_smoke/report.json --execution-surface github_actions --mirror-commit $GITHUB_SHA --public-release-check-passed --out-json /tmp/stage_a_saved_output_evidence_candidate_routing_dry_run_checkpoint.json --out-md /tmp/STAGE_A_SAVED_OUTPUT_EVIDENCE_CANDIDATE_ROUTING_DRY_RUN_CHECKPOINT.md",
+    "python post_training/validate_post_training_data.py",
+    "python -m pytest -q",
+    "git diff --check"
+  ],
+  "do_not_publish": [
+    "private NegBioDB SQLite databases or raw database exports",
+    "private API keys, tokens, local key-file paths, or local model-cache paths",
+    "cluster account, allocation, partition, scheduler log, or scratch-storage identifiers",
+    "non-project career-planning folders or notes",
+    "leaked-era A2 language that claims open rerankers fully match proprietary references"
+  ],
+  "publication_path": {
+    "recommended": "publish_only_the_validated_clean_snapshot_history",
+    "reason": "The release surface is validated independently of live repository visibility."
+  }
+}

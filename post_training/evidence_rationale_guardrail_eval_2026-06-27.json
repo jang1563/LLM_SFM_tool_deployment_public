@@ -1,0 +1,1814 @@
+{
+  "condition": "evidence_guardrail_override",
+  "conditions": [
+    {
+      "aggregate": {
+        "action_changes": 20,
+        "guardrail_action_accuracy": 1.0,
+        "guardrail_by_class": {
+          "defer": "8/8",
+          "flag": "8/8",
+          "ground": "8/8",
+          "reject": "8/8",
+          "verify": "8/8"
+        },
+        "guardrail_failure_pairs": {},
+        "guardrail_mean_reward": 1.0,
+        "model_action_accuracy": 0.5,
+        "model_by_class": {
+          "defer": "0/8",
+          "flag": "3/8",
+          "ground": "3/8",
+          "reject": "6/8",
+          "verify": "8/8"
+        },
+        "model_failure_pairs": {
+          "defer->verify": 8,
+          "flag->ground": 3,
+          "flag->reject": 2,
+          "ground->flag": 3,
+          "ground->reject": 1,
+          "ground->verify": 1,
+          "reject->flag": 2
+        },
+        "model_mean_reward": 0.463,
+        "n": 40,
+        "outcome_counts": {
+          "kept_correct": 20,
+          "rescued_error": 20
+        },
+        "source_eval_filename": "heldout_decision_eval.json"
+      },
+      "folds": [
+        {
+          "action_changes": 5,
+          "fold": 0,
+          "guardrail_action_accuracy": 1.0,
+          "guardrail_by_class": {
+            "defer": "2/2",
+            "flag": "2/2",
+            "ground": "2/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "guardrail_failure_pairs": {},
+          "guardrail_mean_reward": 1.0,
+          "model_action_accuracy": 0.5,
+          "model_by_class": {
+            "defer": "0/2",
+            "flag": "1/2",
+            "ground": "0/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "model_failure_pairs": {
+            "defer->verify": 2,
+            "flag->reject": 1,
+            "ground->flag": 1,
+            "ground->verify": 1
+          },
+          "model_mean_reward": 0.5,
+          "n": 10,
+          "outcome_counts": {
+            "kept_correct": 5,
+            "rescued_error": 5
+          },
+          "source_eval_filename": "heldout_decision_eval.json"
+        },
+        {
+          "action_changes": 4,
+          "fold": 1,
+          "guardrail_action_accuracy": 1.0,
+          "guardrail_by_class": {
+            "defer": "2/2",
+            "flag": "2/2",
+            "ground": "2/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "guardrail_failure_pairs": {},
+          "guardrail_mean_reward": 1.0,
+          "model_action_accuracy": 0.6,
+          "model_by_class": {
+            "defer": "0/2",
+            "flag": "0/2",
+            "ground": "2/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "model_failure_pairs": {
+            "defer->verify": 2,
+            "flag->ground": 2
+          },
+          "model_mean_reward": 0.5,
+          "n": 10,
+          "outcome_counts": {
+            "kept_correct": 6,
+            "rescued_error": 4
+          },
+          "source_eval_filename": "heldout_decision_eval.json"
+        },
+        {
+          "action_changes": 6,
+          "fold": 2,
+          "guardrail_action_accuracy": 1.0,
+          "guardrail_by_class": {
+            "defer": "2/2",
+            "flag": "2/2",
+            "ground": "2/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "guardrail_failure_pairs": {},
+          "guardrail_mean_reward": 1.0,
+          "model_action_accuracy": 0.4,
+          "model_by_class": {
+            "defer": "0/2",
+            "flag": "2/2",
+            "ground": "0/2",
+            "reject": "0/2",
+            "verify": "2/2"
+          },
+          "model_failure_pairs": {
+            "defer->verify": 2,
+            "ground->flag": 2,
+            "reject->flag": 2
+          },
+          "model_mean_reward": 0.4,
+          "n": 10,
+          "outcome_counts": {
+            "kept_correct": 4,
+            "rescued_error": 6
+          },
+          "source_eval_filename": "heldout_decision_eval.json"
+        },
+        {
+          "action_changes": 5,
+          "fold": 3,
+          "guardrail_action_accuracy": 1.0,
+          "guardrail_by_class": {
+            "defer": "2/2",
+            "flag": "2/2",
+            "ground": "2/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "guardrail_failure_pairs": {},
+          "guardrail_mean_reward": 1.0,
+          "model_action_accuracy": 0.5,
+          "model_by_class": {
+            "defer": "0/2",
+            "flag": "0/2",
+            "ground": "1/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "model_failure_pairs": {
+            "defer->verify": 2,
+            "flag->ground": 1,
+            "flag->reject": 1,
+            "ground->reject": 1
+          },
+          "model_mean_reward": 0.45,
+          "n": 10,
+          "outcome_counts": {
+            "kept_correct": 5,
+            "rescued_error": 5
+          },
+          "source_eval_filename": "heldout_decision_eval.json"
+        }
+      ],
+      "rows": [
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::50845::834"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::6426::28490"
+        },
+        {
+          "action_changed": false,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT01095094"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT01095094"
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::flag::28988::9989"
+        },
+        {
+          "action_changed": true,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT00588770"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::flag::368::3511"
+        },
+        {
+          "action_changed": true,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01562548"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT01562548"
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::ground::47205::44830"
+        },
+        {
+          "action_changed": true,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT04345913"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::ground::5768::4152"
+        },
+        {
+          "action_changed": false,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::reject::155::6192"
+        },
+        {
+          "action_changed": false,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::reject::41090::27993"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::24969::44875"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::69004::7330"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::134453::3090"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::158039::15870"
+        },
+        {
+          "action_changed": true,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT00844805"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "ground",
+            "cited_nct": "NCT00844805"
+          },
+          "model_reward": -0.5,
+          "packet_id": "ct::flag::383::5105"
+        },
+        {
+          "action_changed": true,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT01949337"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01949337"
+          },
+          "model_reward": -0.5,
+          "packet_id": "ct::flag::4675::2550"
+        },
+        {
+          "action_changed": false,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01464827"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01464827"
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::ground::291::22264"
+        },
+        {
+          "action_changed": false,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01804777"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01804777"
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::ground::4693::3070"
+        },
+        {
+          "action_changed": false,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::reject::22::1591"
+        },
+        {
+          "action_changed": false,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::reject::913::39750"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::42767::3541"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::48428::49338"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::166731::7134"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::26670::54004"
+        },
+        {
+          "action_changed": false,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT00828178"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT00828178"
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::flag::13976::643"
+        },
+        {
+          "action_changed": false,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT03504644"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT03504644"
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::flag::1413::20487"
+        },
+        {
+          "action_changed": true,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT00068692"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT00068692"
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::ground::1196::14942"
+        },
+        {
+          "action_changed": true,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT03664232"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT03664232"
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::ground::24736::209"
+        },
+        {
+          "action_changed": true,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT00570674"
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::reject::1060::12635"
+        },
+        {
+          "action_changed": true,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT01798485"
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::reject::22104::5857"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::143457::15070"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::38487::47651"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::124533::4281"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::59110::32859"
+        },
+        {
+          "action_changed": true,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT01196390"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::flag::148::1617"
+        },
+        {
+          "action_changed": true,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT03664232"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "ground",
+            "cited_nct": "NCT03664232"
+          },
+          "model_reward": -0.5,
+          "packet_id": "ct::flag::24736::209"
+        },
+        {
+          "action_changed": false,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT05218499"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "ground",
+            "cited_nct": "NCT05218499"
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::ground::1716::17720"
+        },
+        {
+          "action_changed": true,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01001325"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::ground::22::300"
+        },
+        {
+          "action_changed": false,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::reject::18::633"
+        },
+        {
+          "action_changed": false,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::reject::22::97"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::5277::29636"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::65190::9649"
+        }
+      ],
+      "source_eval_filename": "heldout_decision_eval.json"
+    },
+    {
+      "aggregate": {
+        "action_changes": 20,
+        "guardrail_action_accuracy": 1.0,
+        "guardrail_by_class": {
+          "defer": "8/8",
+          "flag": "8/8",
+          "ground": "8/8",
+          "reject": "8/8",
+          "verify": "8/8"
+        },
+        "guardrail_failure_pairs": {},
+        "guardrail_mean_reward": 1.0,
+        "model_action_accuracy": 0.5,
+        "model_by_class": {
+          "defer": "0/8",
+          "flag": "3/8",
+          "ground": "4/8",
+          "reject": "5/8",
+          "verify": "8/8"
+        },
+        "model_failure_pairs": {
+          "defer->verify": 8,
+          "flag->ground": 3,
+          "flag->reject": 2,
+          "ground->flag": 3,
+          "ground->reject": 1,
+          "reject->flag": 3
+        },
+        "model_mean_reward": 0.463,
+        "n": 40,
+        "outcome_counts": {
+          "kept_correct": 20,
+          "rescued_error": 20
+        },
+        "source_eval_filename": "heldout_constrained_loaded.json"
+      },
+      "folds": [
+        {
+          "action_changes": 5,
+          "fold": 0,
+          "guardrail_action_accuracy": 1.0,
+          "guardrail_by_class": {
+            "defer": "2/2",
+            "flag": "2/2",
+            "ground": "2/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "guardrail_failure_pairs": {},
+          "guardrail_mean_reward": 1.0,
+          "model_action_accuracy": 0.5,
+          "model_by_class": {
+            "defer": "0/2",
+            "flag": "1/2",
+            "ground": "1/2",
+            "reject": "1/2",
+            "verify": "2/2"
+          },
+          "model_failure_pairs": {
+            "defer->verify": 2,
+            "flag->reject": 1,
+            "ground->flag": 1,
+            "reject->flag": 1
+          },
+          "model_mean_reward": 0.5,
+          "n": 10,
+          "outcome_counts": {
+            "kept_correct": 5,
+            "rescued_error": 5
+          },
+          "source_eval_filename": "heldout_constrained_loaded.json"
+        },
+        {
+          "action_changes": 4,
+          "fold": 1,
+          "guardrail_action_accuracy": 1.0,
+          "guardrail_by_class": {
+            "defer": "2/2",
+            "flag": "2/2",
+            "ground": "2/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "guardrail_failure_pairs": {},
+          "guardrail_mean_reward": 1.0,
+          "model_action_accuracy": 0.6,
+          "model_by_class": {
+            "defer": "0/2",
+            "flag": "0/2",
+            "ground": "2/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "model_failure_pairs": {
+            "defer->verify": 2,
+            "flag->ground": 2
+          },
+          "model_mean_reward": 0.5,
+          "n": 10,
+          "outcome_counts": {
+            "kept_correct": 6,
+            "rescued_error": 4
+          },
+          "source_eval_filename": "heldout_constrained_loaded.json"
+        },
+        {
+          "action_changes": 6,
+          "fold": 2,
+          "guardrail_action_accuracy": 1.0,
+          "guardrail_by_class": {
+            "defer": "2/2",
+            "flag": "2/2",
+            "ground": "2/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "guardrail_failure_pairs": {},
+          "guardrail_mean_reward": 1.0,
+          "model_action_accuracy": 0.4,
+          "model_by_class": {
+            "defer": "0/2",
+            "flag": "2/2",
+            "ground": "0/2",
+            "reject": "0/2",
+            "verify": "2/2"
+          },
+          "model_failure_pairs": {
+            "defer->verify": 2,
+            "ground->flag": 2,
+            "reject->flag": 2
+          },
+          "model_mean_reward": 0.4,
+          "n": 10,
+          "outcome_counts": {
+            "kept_correct": 4,
+            "rescued_error": 6
+          },
+          "source_eval_filename": "heldout_constrained_loaded.json"
+        },
+        {
+          "action_changes": 5,
+          "fold": 3,
+          "guardrail_action_accuracy": 1.0,
+          "guardrail_by_class": {
+            "defer": "2/2",
+            "flag": "2/2",
+            "ground": "2/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "guardrail_failure_pairs": {},
+          "guardrail_mean_reward": 1.0,
+          "model_action_accuracy": 0.5,
+          "model_by_class": {
+            "defer": "0/2",
+            "flag": "0/2",
+            "ground": "1/2",
+            "reject": "2/2",
+            "verify": "2/2"
+          },
+          "model_failure_pairs": {
+            "defer->verify": 2,
+            "flag->ground": 1,
+            "flag->reject": 1,
+            "ground->reject": 1
+          },
+          "model_mean_reward": 0.45,
+          "n": 10,
+          "outcome_counts": {
+            "kept_correct": 5,
+            "rescued_error": 5
+          },
+          "source_eval_filename": "heldout_constrained_loaded.json"
+        }
+      ],
+      "rows": [
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::50845::834"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::6426::28490"
+        },
+        {
+          "action_changed": false,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT01095094"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT01095094"
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::flag::28988::9989"
+        },
+        {
+          "action_changed": true,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT00588770"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::flag::368::3511"
+        },
+        {
+          "action_changed": true,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01562548"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT01562548"
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::ground::47205::44830"
+        },
+        {
+          "action_changed": false,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT04345913"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "ground",
+            "cited_nct": "NCT04345913"
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::ground::5768::4152"
+        },
+        {
+          "action_changed": true,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT02777190"
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::reject::155::6192"
+        },
+        {
+          "action_changed": false,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::reject::41090::27993"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::24969::44875"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::69004::7330"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::134453::3090"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::158039::15870"
+        },
+        {
+          "action_changed": true,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT00844805"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "ground",
+            "cited_nct": "NCT00844805"
+          },
+          "model_reward": -0.5,
+          "packet_id": "ct::flag::383::5105"
+        },
+        {
+          "action_changed": true,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT01949337"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01949337"
+          },
+          "model_reward": -0.5,
+          "packet_id": "ct::flag::4675::2550"
+        },
+        {
+          "action_changed": false,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01464827"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01464827"
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::ground::291::22264"
+        },
+        {
+          "action_changed": false,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01804777"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01804777"
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::ground::4693::3070"
+        },
+        {
+          "action_changed": false,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::reject::22::1591"
+        },
+        {
+          "action_changed": false,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::reject::913::39750"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::42767::3541"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::48428::49338"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::166731::7134"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::26670::54004"
+        },
+        {
+          "action_changed": false,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT00828178"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT00828178"
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::flag::13976::643"
+        },
+        {
+          "action_changed": false,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT03504644"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT03504644"
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::flag::1413::20487"
+        },
+        {
+          "action_changed": true,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT00068692"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT00068692"
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::ground::1196::14942"
+        },
+        {
+          "action_changed": true,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT03664232"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT03664232"
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::ground::24736::209"
+        },
+        {
+          "action_changed": true,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT00570674"
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::reject::1060::12635"
+        },
+        {
+          "action_changed": true,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "flag",
+            "cited_nct": "NCT01798485"
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::reject::22104::5857"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::143457::15070"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::38487::47651"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::124533::4281"
+        },
+        {
+          "action_changed": true,
+          "class": "defer",
+          "gold": "defer",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "defer",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::defer::59110::32859"
+        },
+        {
+          "action_changed": true,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT01196390"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::flag::148::1617"
+        },
+        {
+          "action_changed": true,
+          "class": "flag",
+          "gold": "flag",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "flag",
+            "cited_nct": "NCT03664232"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "ground",
+            "cited_nct": "NCT03664232"
+          },
+          "model_reward": -0.5,
+          "packet_id": "ct::flag::24736::209"
+        },
+        {
+          "action_changed": false,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT05218499"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "ground",
+            "cited_nct": "NCT05218499"
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::ground::1716::17720"
+        },
+        {
+          "action_changed": true,
+          "class": "ground",
+          "gold": "ground",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "ground",
+            "cited_nct": "NCT01001325"
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": false,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 0.0,
+          "packet_id": "ct::ground::22::300"
+        },
+        {
+          "action_changed": false,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::reject::18::633"
+        },
+        {
+          "action_changed": false,
+          "class": "reject",
+          "gold": "reject",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::reject::22::97"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::5277::29636"
+        },
+        {
+          "action_changed": false,
+          "class": "verify",
+          "gold": "verify",
+          "guardrail_correct": true,
+          "guardrail_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "guardrail_reward": 1.0,
+          "model_correct": true,
+          "model_pred": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "model_reward": 1.0,
+          "packet_id": "ct::verify::65190::9649"
+        }
+      ],
+      "source_eval_filename": "heldout_constrained_loaded.json"
+    }
+  ],
+  "eval_filenames": [
+    "heldout_decision_eval.json",
+    "heldout_constrained_loaded.json"
+  ],
+  "run_root": "post_training/runs/qwen_sft_cv4_boundary_rationale_schema_action_80_evalfast",
+  "source_manifest": "post_training/negbiodb_ct_native_sft_cv4_manifest.json",
+  "source_strategy": "paired_boundary_rationale_v1",
+  "tasks": "negbiodb_ct/tasks_pilot.jsonl"
+}

@@ -1,0 +1,147 @@
+{
+  "all_family_model_results": {
+    "constrained_routing_observed_pair": {
+      "candidate_policy": "train_observed_routing_pairs_with_visible_citations",
+      "candidate_rank_summary": {
+        "action_status_top1": 2,
+        "citation_required_cases": 2,
+        "citation_required_exact_top1": 1,
+        "exact_top1": 2,
+        "mean_gold_rank_observed": 2.0,
+        "top_pair_counts": {
+          "ground/supported": 2,
+          "reject/contradicted": 3
+        }
+      },
+      "decode_mode": "routing_observed_pair_score",
+      "heldout_summary": {
+        "cases": 5,
+        "gate_accuracy": {
+          "enum_validity": 1.0,
+          "exact_match": 0.4,
+          "target_keys": 1.0,
+          "tool_query_shape": 1.0
+        },
+        "mean_score": 0.85,
+        "passed": 2,
+        "violations": {
+          "target_mismatch": 3
+        }
+      },
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "readiness": {
+        "beats_citationless_routing": false,
+        "beats_ground_supported_collapse": true,
+        "competitive_with_runtime_gate": false,
+        "heldout_cases": 5,
+        "heldout_exact": 2,
+        "ready_for_escalation": false
+      },
+      "source": "stage_a_evidence_routing_observed_pair_cayuga_summary_2026-07-08.json"
+    },
+    "freeform_routing_after_loop": {
+      "decode_mode": "freeform",
+      "heldout_summary": {
+        "cases": 5,
+        "gate_accuracy": {
+          "enum_validity": 0.0,
+          "exact_match": 0.0,
+          "target_keys": 0.0,
+          "tool_query_shape": 0.8
+        },
+        "mean_score": 0.2,
+        "passed": 0,
+        "violations": {
+          "enum_value_invalid": 4,
+          "prediction_parse_error": 1,
+          "target_key_mismatch": 4,
+          "target_mismatch": 4
+        }
+      },
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "readiness": {
+        "beats_citationless_routing": false,
+        "beats_ground_supported_collapse": false,
+        "competitive_with_runtime_gate": false,
+        "heldout_cases": 5,
+        "heldout_exact": 0,
+        "ready_for_escalation": false
+      },
+      "source": "stage_a_evidence_routing_after_loop_cayuga_summary_2026-07-06.json"
+    }
+  },
+  "component": "routing_after_loop",
+  "dataset": "negbiodb_ct_stage_a_routing_model_readiness_v1",
+  "decision": {
+    "blockers": [
+      "best all-family model readout is 2/5, below citationless routing at 3/5",
+      "best all-family model readout is below runtime evidence gate at 5/5",
+      "free-form routing is 0/5 and does not beat collapse baseline",
+      "score-gap fail-closed result is only a two-case boundary diagnostic"
+    ],
+    "next_decision": "Keep tool_query, DPO/RLVR, Hugging Face publication, and release tagging gated. Next compare saved model/component outputs against the all-family runtime gate or wrap the gate into full trajectory arbitration before adding optimization objectives.",
+    "ready_for_dpo_rlvr": false,
+    "ready_for_hugging_face_publication": false,
+    "ready_for_release_tagging": false,
+    "ready_for_tool_query": false,
+    "runtime_enforcement_required": true
+  },
+  "inputs": {
+    "baseline_comparison": "post_training/stage_a_routing_gate_baseline_comparison_2026-07-09.json",
+    "constrained_routing": "post_training/stage_a_evidence_routing_observed_pair_cayuga_summary_2026-07-08.json",
+    "defer_verify": "post_training/stage_a_routing_defer_verify_cayuga_summary_2026-07-08.json",
+    "defer_verify_fail_closed": "post_training/stage_a_routing_defer_verify_gate_trained_2026-07-08.json",
+    "freeform_routing": "post_training/stage_a_evidence_routing_after_loop_cayuga_summary_2026-07-06.json",
+    "routing_contrast_candidate": "post_training/stage_a_routing_contrast_candidate_cayuga_summary_2026-07-08.json"
+  },
+  "raw_outputs_used": false,
+  "readiness_thresholds": {
+    "citationless_heldout_citation_mismatches": 2,
+    "citationless_heldout_exact": 3,
+    "collapse_heldout_exact": 1,
+    "minimum_all_family_model_cases_for_readiness": 5,
+    "minimum_all_family_model_exact_for_readiness": 5,
+    "runtime_gate_all_cases": 25,
+    "runtime_gate_all_exact": 25,
+    "runtime_gate_heldout_cases": 5,
+    "runtime_gate_heldout_exact": 5
+  },
+  "targeted_model_results": {
+    "defer_verify_candidate_subset": {
+      "all_family_readiness_evidence": false,
+      "base_exact_top1": 1,
+      "cases": 2,
+      "scope": "two-case defer-vs-verify boundary",
+      "source": "stage_a_routing_defer_verify_cayuga_summary_2026-07-08.json",
+      "top_pair_counts": {
+        "verify/insufficient": 2
+      },
+      "trained_exact_top1": 1
+    },
+    "defer_verify_fail_closed_gate_subset": {
+      "all_family_readiness_evidence": false,
+      "cases": 2,
+      "fail_closed": 1,
+      "scope": "two-case defer-vs-verify boundary with score-gap fail-closed routing",
+      "source": "stage_a_routing_defer_verify_gate_trained_2026-07-08.json",
+      "strict_final_accuracy": 1.0,
+      "strict_final_correct": 2,
+      "threshold": 0.025,
+      "trusted": 1,
+      "trusted_incorrect": 0
+    },
+    "routing_contrast_candidate_subset": {
+      "all_family_readiness_evidence": false,
+      "base_exact_top1": 0,
+      "cases": 3,
+      "mean_gold_rank_observed": 1.333333,
+      "scope": "three unresolved routing contrast held-out families",
+      "source": "stage_a_routing_contrast_candidate_cayuga_summary_2026-07-08.json",
+      "top_pair_counts": {
+        "flag/invalid_value": 1,
+        "verify/insufficient": 2
+      },
+      "trained_exact_top1": 2
+    }
+  }
+}

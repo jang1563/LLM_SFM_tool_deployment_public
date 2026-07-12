@@ -1,0 +1,395 @@
+{
+  "calibration_mode": "pair_mean_center",
+  "calibration_report": "post_training/stage_a_saved_output_candidate_calibration_qwen05b_cayuga_summary_2026-07-10.json",
+  "candidate_policy": "train_observed_plus_rejected",
+  "candidate_target_format": "full",
+  "cases": 4,
+  "component": "saved_output_candidate_arbitration",
+  "dataset": "negbiodb_ct_stage_a_saved_output_candidate_arbitration_v1",
+  "evidence_targets": "post_training/stage_a_evidence_conditioned_component_targets_v1.jsonl",
+  "fail_closed_pair": {
+    "action": "defer",
+    "evidence_status": "insufficient"
+  },
+  "hidden_labels_used_by_arbitration": false,
+  "input_calibration_report_sha256": "a170b3dd66869cae832675d2397ad5a0aa6450f3d59f96e50d87534290e5167e",
+  "input_evidence_targets_sha256": "cca947ae8525f75178ba6bae4aa2221733bf34a2587d8f6f600bcd709eb87f9a",
+  "model_visible_evidence_gate": true,
+  "rows": [
+    {
+      "calibrated_top_pair_label": "defer/insufficient",
+      "calibrated_top_second_gap": 0.000689,
+      "case_id": "stage_a::000007",
+      "evidence_gate_pair": "reject/contradicted",
+      "exact": false,
+      "policy": "raw_candidate_top1",
+      "predicted_pair": "flag/invalid_value",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "trust_raw_candidate_top1",
+      "target_pair_label": "reject/contradicted",
+      "trusted_candidate": true
+    },
+    {
+      "calibrated_top_pair_label": "defer/insufficient",
+      "calibrated_top_second_gap": 0.000689,
+      "case_id": "stage_a::000007",
+      "evidence_gate_pair": "reject/contradicted",
+      "exact": false,
+      "policy": "calibrated_candidate_top1",
+      "predicted_pair": "defer/insufficient",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "trust_calibrated_candidate_top1",
+      "target_pair_label": "reject/contradicted",
+      "trusted_candidate": true
+    },
+    {
+      "calibrated_top_pair_label": "defer/insufficient",
+      "calibrated_top_second_gap": 0.000689,
+      "case_id": "stage_a::000007",
+      "evidence_gate_pair": "reject/contradicted",
+      "exact": false,
+      "policy": "train_selected_score_gap_gate",
+      "predicted_pair": "defer/insufficient",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "fail_closed_train_selected_low_gap",
+      "target_pair_label": "reject/contradicted",
+      "trusted_candidate": false
+    },
+    {
+      "calibrated_top_pair_label": "defer/insufficient",
+      "calibrated_top_second_gap": 0.000689,
+      "case_id": "stage_a::000007",
+      "evidence_gate_pair": "reject/contradicted",
+      "exact": true,
+      "policy": "evidence_gate_override",
+      "predicted_pair": "reject/contradicted",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "mixed_endpoint_records_for_same_claim",
+      "target_pair_label": "reject/contradicted",
+      "trusted_candidate": false
+    },
+    {
+      "calibrated_top_pair_label": "defer/insufficient",
+      "calibrated_top_second_gap": 0.000689,
+      "case_id": "stage_a::000007",
+      "evidence_gate_pair": "reject/contradicted",
+      "exact": true,
+      "policy": "hybrid_evidence_then_train_gate",
+      "predicted_pair": "reject/contradicted",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "mixed_endpoint_records_for_same_claim",
+      "target_pair_label": "reject/contradicted",
+      "trusted_candidate": false
+    },
+    {
+      "calibrated_top_pair_label": "defer/insufficient",
+      "calibrated_top_second_gap": 0.001128,
+      "case_id": "stage_a::000012",
+      "evidence_gate_pair": "defer/insufficient",
+      "exact": false,
+      "policy": "raw_candidate_top1",
+      "predicted_pair": "flag/invalid_value",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "trust_raw_candidate_top1",
+      "target_pair_label": "defer/insufficient",
+      "trusted_candidate": true
+    },
+    {
+      "calibrated_top_pair_label": "defer/insufficient",
+      "calibrated_top_second_gap": 0.001128,
+      "case_id": "stage_a::000012",
+      "evidence_gate_pair": "defer/insufficient",
+      "exact": true,
+      "policy": "calibrated_candidate_top1",
+      "predicted_pair": "defer/insufficient",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "trust_calibrated_candidate_top1",
+      "target_pair_label": "defer/insufficient",
+      "trusted_candidate": true
+    },
+    {
+      "calibrated_top_pair_label": "defer/insufficient",
+      "calibrated_top_second_gap": 0.001128,
+      "case_id": "stage_a::000012",
+      "evidence_gate_pair": "defer/insufficient",
+      "exact": true,
+      "policy": "train_selected_score_gap_gate",
+      "predicted_pair": "defer/insufficient",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "fail_closed_train_selected_low_gap",
+      "target_pair_label": "defer/insufficient",
+      "trusted_candidate": false
+    },
+    {
+      "calibrated_top_pair_label": "defer/insufficient",
+      "calibrated_top_second_gap": 0.001128,
+      "case_id": "stage_a::000012",
+      "evidence_gate_pair": "defer/insufficient",
+      "exact": true,
+      "policy": "evidence_gate_override",
+      "predicted_pair": "defer/insufficient",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "no_same_indication_or_related_failure_record",
+      "target_pair_label": "defer/insufficient",
+      "trusted_candidate": false
+    },
+    {
+      "calibrated_top_pair_label": "defer/insufficient",
+      "calibrated_top_second_gap": 0.001128,
+      "case_id": "stage_a::000012",
+      "evidence_gate_pair": "defer/insufficient",
+      "exact": true,
+      "policy": "hybrid_evidence_then_train_gate",
+      "predicted_pair": "defer/insufficient",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "no_same_indication_or_related_failure_record",
+      "target_pair_label": "defer/insufficient",
+      "trusted_candidate": false
+    },
+    {
+      "calibrated_top_pair_label": "verify/insufficient",
+      "calibrated_top_second_gap": 0.000102,
+      "case_id": "stage_a::000019",
+      "evidence_gate_pair": "verify/insufficient",
+      "exact": false,
+      "policy": "raw_candidate_top1",
+      "predicted_pair": "flag/invalid_value",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "trust_raw_candidate_top1",
+      "target_pair_label": "verify/insufficient",
+      "trusted_candidate": true
+    },
+    {
+      "calibrated_top_pair_label": "verify/insufficient",
+      "calibrated_top_second_gap": 0.000102,
+      "case_id": "stage_a::000019",
+      "evidence_gate_pair": "verify/insufficient",
+      "exact": true,
+      "policy": "calibrated_candidate_top1",
+      "predicted_pair": "verify/insufficient",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "trust_calibrated_candidate_top1",
+      "target_pair_label": "verify/insufficient",
+      "trusted_candidate": true
+    },
+    {
+      "calibrated_top_pair_label": "verify/insufficient",
+      "calibrated_top_second_gap": 0.000102,
+      "case_id": "stage_a::000019",
+      "evidence_gate_pair": "verify/insufficient",
+      "exact": false,
+      "policy": "train_selected_score_gap_gate",
+      "predicted_pair": "defer/insufficient",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "fail_closed_train_selected_low_gap",
+      "target_pair_label": "verify/insufficient",
+      "trusted_candidate": false
+    },
+    {
+      "calibrated_top_pair_label": "verify/insufficient",
+      "calibrated_top_second_gap": 0.000102,
+      "case_id": "stage_a::000019",
+      "evidence_gate_pair": "verify/insufficient",
+      "exact": true,
+      "policy": "evidence_gate_override",
+      "predicted_pair": "verify/insufficient",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "related_evidence_without_same_indication_record",
+      "target_pair_label": "verify/insufficient",
+      "trusted_candidate": false
+    },
+    {
+      "calibrated_top_pair_label": "verify/insufficient",
+      "calibrated_top_second_gap": 0.000102,
+      "case_id": "stage_a::000019",
+      "evidence_gate_pair": "verify/insufficient",
+      "exact": true,
+      "policy": "hybrid_evidence_then_train_gate",
+      "predicted_pair": "verify/insufficient",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "related_evidence_without_same_indication_record",
+      "target_pair_label": "verify/insufficient",
+      "trusted_candidate": false
+    },
+    {
+      "calibrated_top_pair_label": "ground/supported",
+      "calibrated_top_second_gap": 0.029388,
+      "case_id": "stage_a::000021",
+      "evidence_gate_pair": "flag/invalid_value",
+      "exact": true,
+      "policy": "raw_candidate_top1",
+      "predicted_pair": "flag/invalid_value",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "trust_raw_candidate_top1",
+      "target_pair_label": "flag/invalid_value",
+      "trusted_candidate": true
+    },
+    {
+      "calibrated_top_pair_label": "ground/supported",
+      "calibrated_top_second_gap": 0.029388,
+      "case_id": "stage_a::000021",
+      "evidence_gate_pair": "flag/invalid_value",
+      "exact": false,
+      "policy": "calibrated_candidate_top1",
+      "predicted_pair": "ground/supported",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "trust_calibrated_candidate_top1",
+      "target_pair_label": "flag/invalid_value",
+      "trusted_candidate": true
+    },
+    {
+      "calibrated_top_pair_label": "ground/supported",
+      "calibrated_top_second_gap": 0.029388,
+      "case_id": "stage_a::000021",
+      "evidence_gate_pair": "flag/invalid_value",
+      "exact": false,
+      "policy": "train_selected_score_gap_gate",
+      "predicted_pair": "defer/insufficient",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "fail_closed_train_selected_low_gap",
+      "target_pair_label": "flag/invalid_value",
+      "trusted_candidate": false
+    },
+    {
+      "calibrated_top_pair_label": "ground/supported",
+      "calibrated_top_second_gap": 0.029388,
+      "case_id": "stage_a::000021",
+      "evidence_gate_pair": "flag/invalid_value",
+      "exact": true,
+      "policy": "evidence_gate_override",
+      "predicted_pair": "flag/invalid_value",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "invalid_numeric_value_in_same_indication_record",
+      "target_pair_label": "flag/invalid_value",
+      "trusted_candidate": false
+    },
+    {
+      "calibrated_top_pair_label": "ground/supported",
+      "calibrated_top_second_gap": 0.029388,
+      "case_id": "stage_a::000021",
+      "evidence_gate_pair": "flag/invalid_value",
+      "exact": true,
+      "policy": "hybrid_evidence_then_train_gate",
+      "predicted_pair": "flag/invalid_value",
+      "raw_top_pair_label": "flag/invalid_value",
+      "reason": "invalid_numeric_value_in_same_indication_record",
+      "target_pair_label": "flag/invalid_value",
+      "trusted_candidate": false
+    }
+  ],
+  "run_id": "stage_a_saved_output_flag_full_train_candidates_qwen05b_cayuga_20260710",
+  "scientific_readout": {
+    "diagnostic_question": "Can saved-output candidate calibration be safely reused when arbitrated against model-visible evidence routing?",
+    "interpretation_rule": "If evidence-gate or hybrid policies beat raw/calibrated candidate top-1, the system should keep runtime evidence arbitration as the baseline before any DPO/RLVR or release escalation.",
+    "next_decision": "Keep tool_query, DPO/RLVR, Hugging Face publication, release tagging, and broad retraining gated until model-heavy outputs beat this runtime arbitration baseline on held-out cases."
+  },
+  "summary": {
+    "best_policy_names": [
+      "evidence_gate_override",
+      "hybrid_evidence_then_train_gate"
+    ],
+    "by_policy": {
+      "calibrated_candidate_top1": {
+        "accuracy": 0.5,
+        "by_predicted_pair": {
+          "defer/insufficient": 2,
+          "ground/supported": 1,
+          "verify/insufficient": 1
+        },
+        "by_reason": {
+          "trust_calibrated_candidate_top1": 4
+        },
+        "error_case_ids": [
+          "stage_a::000007",
+          "stage_a::000021"
+        ],
+        "exact": 2,
+        "policy": "calibrated_candidate_top1",
+        "rows": 4,
+        "trusted_candidate": 4,
+        "trusted_candidate_incorrect": 2
+      },
+      "evidence_gate_override": {
+        "accuracy": 1.0,
+        "by_predicted_pair": {
+          "defer/insufficient": 1,
+          "flag/invalid_value": 1,
+          "reject/contradicted": 1,
+          "verify/insufficient": 1
+        },
+        "by_reason": {
+          "invalid_numeric_value_in_same_indication_record": 1,
+          "mixed_endpoint_records_for_same_claim": 1,
+          "no_same_indication_or_related_failure_record": 1,
+          "related_evidence_without_same_indication_record": 1
+        },
+        "error_case_ids": [],
+        "exact": 4,
+        "policy": "evidence_gate_override",
+        "rows": 4,
+        "trusted_candidate": 0,
+        "trusted_candidate_incorrect": 0
+      },
+      "hybrid_evidence_then_train_gate": {
+        "accuracy": 1.0,
+        "by_predicted_pair": {
+          "defer/insufficient": 1,
+          "flag/invalid_value": 1,
+          "reject/contradicted": 1,
+          "verify/insufficient": 1
+        },
+        "by_reason": {
+          "invalid_numeric_value_in_same_indication_record": 1,
+          "mixed_endpoint_records_for_same_claim": 1,
+          "no_same_indication_or_related_failure_record": 1,
+          "related_evidence_without_same_indication_record": 1
+        },
+        "error_case_ids": [],
+        "exact": 4,
+        "policy": "hybrid_evidence_then_train_gate",
+        "rows": 4,
+        "trusted_candidate": 0,
+        "trusted_candidate_incorrect": 0
+      },
+      "raw_candidate_top1": {
+        "accuracy": 0.25,
+        "by_predicted_pair": {
+          "flag/invalid_value": 4
+        },
+        "by_reason": {
+          "trust_raw_candidate_top1": 4
+        },
+        "error_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019"
+        ],
+        "exact": 1,
+        "policy": "raw_candidate_top1",
+        "rows": 4,
+        "trusted_candidate": 4,
+        "trusted_candidate_incorrect": 3
+      },
+      "train_selected_score_gap_gate": {
+        "accuracy": 0.25,
+        "by_predicted_pair": {
+          "defer/insufficient": 4
+        },
+        "by_reason": {
+          "fail_closed_train_selected_low_gap": 4
+        },
+        "error_case_ids": [
+          "stage_a::000007",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "exact": 1,
+        "policy": "train_selected_score_gap_gate",
+        "rows": 4,
+        "trusted_candidate": 0,
+        "trusted_candidate_incorrect": 0
+      }
+    }
+  },
+  "train_selected_zero_unsafe_threshold": 0.045521
+}

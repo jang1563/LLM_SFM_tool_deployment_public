@@ -1,0 +1,152 @@
+{
+  "fold_manifests": [
+    {
+      "fold": 0,
+      "heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_examples": 10,
+      "heldout_task_ids": [
+        "ct::ground::47205::44830",
+        "ct::flag::368::3511",
+        "ct::flag::28988::9989",
+        "ct::defer::6426::28490",
+        "ct::ground::5768::4152",
+        "ct::verify::69004::7330",
+        "ct::verify::24969::44875",
+        "ct::reject::41090::27993",
+        "ct::reject::155::6192",
+        "ct::defer::50845::834"
+      ],
+      "train": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_train.jsonl",
+      "train_by_class": {
+        "defer": 6,
+        "flag": 6,
+        "ground": 6,
+        "reject": 6,
+        "verify": 6
+      },
+      "train_examples": 30
+    },
+    {
+      "fold": 1,
+      "heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold1_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_examples": 10,
+      "heldout_task_ids": [
+        "ct::flag::383::5105",
+        "ct::verify::48428::49338",
+        "ct::defer::158039::15870",
+        "ct::verify::42767::3541",
+        "ct::ground::4693::3070",
+        "ct::flag::4675::2550",
+        "ct::defer::134453::3090",
+        "ct::reject::22::1591",
+        "ct::ground::291::22264",
+        "ct::reject::913::39750"
+      ],
+      "train": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold1_train.jsonl",
+      "train_by_class": {
+        "defer": 6,
+        "flag": 6,
+        "ground": 6,
+        "reject": 6,
+        "verify": 6
+      },
+      "train_examples": 30
+    },
+    {
+      "fold": 2,
+      "heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold2_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_examples": 10,
+      "heldout_task_ids": [
+        "ct::verify::38487::47651",
+        "ct::defer::26670::54004",
+        "ct::ground::24736::209",
+        "ct::defer::166731::7134",
+        "ct::reject::22104::5857",
+        "ct::reject::1060::12635",
+        "ct::flag::13976::643",
+        "ct::flag::1413::20487",
+        "ct::verify::143457::15070",
+        "ct::ground::1196::14942"
+      ],
+      "train": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold2_train.jsonl",
+      "train_by_class": {
+        "defer": 6,
+        "flag": 6,
+        "ground": 6,
+        "reject": 6,
+        "verify": 6
+      },
+      "train_examples": 30
+    },
+    {
+      "fold": 3,
+      "heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold3_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_examples": 10,
+      "heldout_task_ids": [
+        "ct::defer::59110::32859",
+        "ct::defer::124533::4281",
+        "ct::flag::148::1617",
+        "ct::verify::5277::29636",
+        "ct::verify::65190::9649",
+        "ct::reject::18::633",
+        "ct::flag::24736::209",
+        "ct::ground::22::300",
+        "ct::reject::22::97",
+        "ct::ground::1716::17720"
+      ],
+      "train": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold3_train.jsonl",
+      "train_by_class": {
+        "defer": 6,
+        "flag": 6,
+        "ground": 6,
+        "reject": 6,
+        "verify": 6
+      },
+      "train_examples": 30
+    }
+  ],
+  "folds": 4,
+  "heldout_coverage_max_count": 1,
+  "heldout_coverage_min_count": 1,
+  "heldout_coverage_unique_examples": 40,
+  "out_dir": "post_training/cv",
+  "prefix": "negbiodb_ct_native_sft_cv4_v1",
+  "seed": 20260626,
+  "source": "post_training/negbiodb_ct_native_sft_v1.jsonl",
+  "source_by_class": {
+    "defer": 8,
+    "flag": 8,
+    "ground": 8,
+    "reject": 8,
+    "verify": 8
+  },
+  "source_examples": 40
+}

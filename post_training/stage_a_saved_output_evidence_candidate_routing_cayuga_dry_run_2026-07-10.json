@@ -1,0 +1,38 @@
+{
+  "boundary": "This checkpoint proves dry-run readiness only. It is not a full model result and does not open DPO/RLVR, tool_query, HF publication, or release tagging.",
+  "checkpoint_violations": [],
+  "dataset": "negbiodb_ct_stage_a_saved_output_evidence_candidate_routing_dry_run_checkpoint_v1",
+  "dry_run_summary": {
+    "bridge_focus_heldout_examples": 4,
+    "candidate_space_size": 5,
+    "dataset": "negbiodb_ct_stage_a_saved_output_evidence_candidate_routing_smoke_v1",
+    "dry_run": true,
+    "heldout_examples": 5,
+    "heldout_rows": "post_training/stage_a_saved_output_evidence_candidate_routing_heldout_v1.jsonl",
+    "issues": [],
+    "manifest": "post_training/stage_a_saved_output_evidence_candidate_routing_manifest.json",
+    "ready_for_full_mode": true,
+    "rows": "post_training/stage_a_saved_output_evidence_candidate_routing_rows_v1.jsonl",
+    "train_examples": 20,
+    "train_rows": "post_training/stage_a_saved_output_evidence_candidate_routing_train_v1.jsonl"
+  },
+  "execution_surface": "cayuga_mirror",
+  "input_artifact": {
+    "path": "external_compact_input::cayuga_stage_a_evidence_candidate_routing_smoke_dry_run_report.json",
+    "role": "compact smoke dry-run report",
+    "sha256": "911c4f8c19b1348b9a31f728f57658b35fca210e43493c6d2c596dfc387adaaa",
+    "tracked_public_artifact": false
+  },
+  "mirror_commit": "6820498",
+  "next_decision": "explicitly_approve_full_cayuga_smoke_or_keep_no_submit_boundary",
+  "passes_checkpoint": true,
+  "public_release_check_passed": true,
+  "public_safety_contract": {
+    "ignored_run_folder_read": false,
+    "model_state_read": false,
+    "raw_candidate_score_jsonl_read": false,
+    "raw_fields_in_dry_run_report": false,
+    "raw_prediction_jsonl_read": false,
+    "scheduler_logs_read": false
+  }
+}

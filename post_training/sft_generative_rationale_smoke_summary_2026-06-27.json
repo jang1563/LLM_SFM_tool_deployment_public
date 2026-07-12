@@ -1,0 +1,81 @@
+{
+  "boundary": "Artifact and plumbing checkpoint only; not a held-out performance claim.",
+  "condition": "generative_evidence_rationale_sft_artifact_plumbing",
+  "fold0_encode_dry": {
+    "encoded_length_max": 570,
+    "encoded_length_min": 424,
+    "examples": 10,
+    "max_length": 768
+  },
+  "fold0_eval_artifact": {
+    "by_action_class": {
+      "defer": 2,
+      "flag": 2,
+      "ground": 2,
+      "reject": 2,
+      "verify": 2
+    },
+    "by_evidence_action": {
+      "defer": 2,
+      "flag": 2,
+      "ground": 2,
+      "reject": 2,
+      "verify": 2
+    },
+    "by_role": {
+      "generative_evidence_rationale": 10
+    },
+    "dataset": "negbiodb_ct_native_sft_generative_rationale_fold0_v1",
+    "evidence_action_matches": 10,
+    "evidence_action_mismatches": 0,
+    "evidence_action_unlabeled": 0,
+    "examples": 10,
+    "out": "post_training/generative_rationale/negbiodb_ct_native_sft_cv4_generative_rationale_v1_fold0_heldout.jsonl",
+    "source": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_heldout.jsonl",
+    "strategy": "generative_evidence_rationale_v1"
+  },
+  "oracle_encode_dry": {
+    "encoded_length_max": 751,
+    "encoded_length_min": 422,
+    "examples": 20,
+    "max_length": 768
+  },
+  "smoke": {
+    "batch_size": 1,
+    "examples": 4,
+    "loss": 2.3865199089050293,
+    "max_length": 768,
+    "max_steps": 1,
+    "sft": "post_training/negbiodb_ct_oracle_sft_generative_rationale_v1.jsonl",
+    "train_last_layers": 1,
+    "trainable_params": 14913280,
+    "trainable_state": "post_training/runs/qwen_generative_rationale_smoke/trainable_state.pt"
+  },
+  "train_artifact": {
+    "by_action_class": {
+      "defer": 120,
+      "flag": 40,
+      "ground": 140,
+      "reject": 40,
+      "verify": 60
+    },
+    "by_evidence_action": {
+      "defer": 120,
+      "flag": 40,
+      "ground": 140,
+      "reject": 40,
+      "verify": 60
+    },
+    "by_role": {
+      "generative_evidence_rationale": 400
+    },
+    "dataset": "negbiodb_ct_oracle_sft_generative_rationale_v1",
+    "evidence_action_matches": 400,
+    "evidence_action_mismatches": 0,
+    "evidence_action_unlabeled": 0,
+    "examples": 400,
+    "out": "post_training/negbiodb_ct_oracle_sft_generative_rationale_v1.jsonl",
+    "source": "post_training/negbiodb_ct_oracle_sft_v1.jsonl",
+    "strategy": "generative_evidence_rationale_v1"
+  }
+}

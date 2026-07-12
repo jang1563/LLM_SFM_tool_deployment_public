@@ -1,0 +1,143 @@
+{
+  "artifact_policy": {
+    "full_margin_jsonl_committed": false,
+    "model_state_committed": false,
+    "raw_model_text_committed": false,
+    "raw_prompt_messages_committed": false,
+    "scheduler_logs_committed": false
+  },
+  "cluster": "Cayuga Slurm GPU",
+  "dataset": "negbiodb_ct_stage_a_saved_output_same_model_target_format_summary_v1",
+  "decision": {
+    "interpretation": "Full-target flag-focused SFT crossed the held-out full JSON flag/invalid_value boundary and the same trained model also scored action/status projections positive. This is a meaningful teacher-forced repair signal, but it is not finite-candidate top-1, free generation, or full-trajectory readiness.",
+    "next_decision": "Keep tool_query, DPO/RLVR, Hugging Face publication, release tagging, and broad retraining gated. Next test whether the repaired full target survives finite-candidate ranking or a fail-closed gate.",
+    "status": "teacher_forced_full_target_repaired_candidate_readiness_unproven"
+  },
+  "heldout_examples": 4,
+  "input_probe": {
+    "heldout_pairs": "post_training/stage_a_saved_output_calibration_probe_heldout_v1.jsonl",
+    "pairs": "post_training/stage_a_saved_output_calibration_probe_v1.jsonl",
+    "prompt_contract": "stage_a_v4_canonical_json",
+    "train_pairs": "post_training/stage_a_saved_output_calibration_probe_train_v1.jsonl"
+  },
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "raw_outputs_location": "ignored Cayuga post_training/runs directory",
+  "run_id": "stage_a_saved_output_flag_full_same_model_multiformat_qwen05b_cayuga_20260710",
+  "runs": {
+    "action_only": {
+      "base_heldout": {
+        "flag_invalid_value_margin": -0.812072,
+        "margin_wins": 1,
+        "mean_margin": -0.45992,
+        "pairs": 4
+      },
+      "delta": {
+        "flag_invalid_value_delta": 1.644739,
+        "mean_margin_delta": 0.859381,
+        "newly_won": 2,
+        "trained_margin_wins": 3
+      },
+      "target_format": "action_only",
+      "train_flag_invalid_value_margin": 0.844468,
+      "trained_heldout": {
+        "flag_invalid_value_margin": 0.832667,
+        "margin_wins": 3,
+        "mean_margin": 0.399461,
+        "pairs": 4
+      }
+    },
+    "action_status_only": {
+      "base_heldout": {
+        "flag_invalid_value_margin": -0.282855,
+        "margin_wins": 1,
+        "mean_margin": -0.141241,
+        "pairs": 4
+      },
+      "delta": {
+        "flag_invalid_value_delta": 1.081942,
+        "mean_margin_delta": 0.599903,
+        "newly_won": 3,
+        "trained_margin_wins": 4
+      },
+      "target_format": "action_status_only",
+      "train_flag_invalid_value_margin": 0.829376,
+      "trained_heldout": {
+        "flag_invalid_value_margin": 0.799087,
+        "margin_wins": 4,
+        "mean_margin": 0.458662,
+        "pairs": 4
+      }
+    },
+    "full": {
+      "base_heldout": {
+        "flag_invalid_value_margin": -0.175447,
+        "margin_wins": 0,
+        "mean_margin": -0.081001,
+        "pairs": 4
+      },
+      "delta": {
+        "flag_invalid_value_delta": 0.201415,
+        "mean_margin_delta": 0.099087,
+        "newly_won": 4,
+        "trained_margin_wins": 4
+      },
+      "target_format": "full",
+      "train_flag_invalid_value_margin": 0.031397,
+      "trained_heldout": {
+        "flag_invalid_value_margin": 0.025968,
+        "margin_wins": 4,
+        "mean_margin": 0.018087,
+        "pairs": 4
+      }
+    },
+    "status_only": {
+      "base_heldout": {
+        "flag_invalid_value_margin": 0.303895,
+        "margin_wins": 1,
+        "mean_margin": 0.021075,
+        "pairs": 4
+      },
+      "delta": {
+        "flag_invalid_value_delta": 0.476593,
+        "mean_margin_delta": 0.357804,
+        "newly_won": 3,
+        "trained_margin_wins": 4
+      },
+      "target_format": "status_only",
+      "train_flag_invalid_value_margin": 0.771165,
+      "trained_heldout": {
+        "flag_invalid_value_margin": 0.780488,
+        "margin_wins": 4,
+        "mean_margin": 0.378879,
+        "pairs": 4
+      }
+    }
+  },
+  "training": {
+    "batch_size": 1,
+    "focus_chosen_pairs": [
+      "flag/invalid_value"
+    ],
+    "focus_only": true,
+    "focus_repeat": 4,
+    "heldout_used_for_training": false,
+    "loss_delta": -0.594683,
+    "max_steps": 40,
+    "pairwise_margin": 0.05,
+    "pairwise_margin_weight": 1.0,
+    "score_target_formats": [
+      "full",
+      "action_only",
+      "action_status_only",
+      "status_only"
+    ],
+    "target_format": "full",
+    "train_examples": 16,
+    "train_last_layers": 1,
+    "trainable_params": 14913280,
+    "training_by_chosen_pair": {
+      "flag/invalid_value": 16
+    },
+    "training_examples": 16
+  }
+}

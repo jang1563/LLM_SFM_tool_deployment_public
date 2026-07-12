@@ -1,0 +1,82 @@
+{
+  "dataset": "negbiodb_ct_stage_a_strict_component_sft_smoke_v1",
+  "run_id": "stage_a_evidence_routing_after_loop_cayuga_2026_07_06",
+  "date": "2026-07-06",
+  "cluster": "Cayuga",
+  "component": "routing_after_loop",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "decode_mode": "freeform",
+  "source_target_dataset": "negbiodb_ct_stage_a_evidence_conditioned_component_targets_v1",
+  "source_prompt_contract": "stage_a_v2_evidence_conditioned_component",
+  "train_examples": 20,
+  "heldout_examples": 5,
+  "training": {
+    "max_steps": 20,
+    "batch_size": 1,
+    "train_last_layers": 1,
+    "trainable_params": 14913280,
+    "loss_delta": -0.588189959526062
+  },
+  "heldout_summary": {
+    "cases": 5,
+    "passed": 0,
+    "mean_score": 0.2,
+    "gate_accuracy": {
+      "target_keys": 0.0,
+      "enum_validity": 0.0,
+      "tool_query_shape": 0.8,
+      "exact_match": 0.0
+    },
+    "violations": {
+      "enum_value_invalid": 4,
+      "prediction_parse_error": 1,
+      "target_key_mismatch": 4,
+      "target_mismatch": 4
+    }
+  },
+  "heldout_readout": [
+    {
+      "case_family": "supported_negative_evidence",
+      "expected_action_status": "ground/supported",
+      "prediction_shape": "verify/valid_with_unexpected_tool_name",
+      "passed": false,
+      "score": 0.25
+    },
+    {
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "expected_action_status": "reject/contradicted",
+      "prediction_shape": "verify/valid_with_unexpected_tool_name",
+      "passed": false,
+      "score": 0.25
+    },
+    {
+      "case_family": "insufficient_evidence",
+      "expected_action_status": "defer/insufficient",
+      "prediction_shape": "verify/valid_with_unexpected_tool_name",
+      "passed": false,
+      "score": 0.25
+    },
+    {
+      "case_family": "related_evidence_requires_verification",
+      "expected_action_status": "verify/insufficient",
+      "prediction_shape": "verify/valid_with_unexpected_tool_name",
+      "passed": false,
+      "score": 0.25
+    },
+    {
+      "case_family": "invalid_value_attribution_failure",
+      "expected_action_status": "flag/invalid_value",
+      "prediction_shape": "malformed_json_parse_error",
+      "passed": false,
+      "score": 0.0
+    }
+  ],
+  "raw_artifacts": {
+    "location": "ignored Cayuga post_training/runs directory",
+    "report_sha256": "d050a35c3d49492c73d4623fc4a35cfa7ab7f6b904b439be41372ab232ec18bb",
+    "eval_report_sha256": "b700c4e172e389c054cc54f31d5ac0c0c322902c28bf038dcc025825c27f685e",
+    "predictions_sha256": "12a1b37b80a1f878b3f95514e28f466721c861865cb9cb6cddf03f7b924ebb48"
+  },
+  "interpretation": "Evidence-conditioned routing-after-loop free-form generation fails all held-out cases. Visible tool-result content is not enough when the model still emits invalid evidence_status values, unexpected keys, missing citation keys, or malformed JSON.",
+  "next_decision": "Keep tool_query, DPO, RLVR, release tagging, and Hugging Face publication gated. Before broad training or DPO/RLVR, add a constrained routing output/readout or split routing into enum action-status selection and citation selection."
+}

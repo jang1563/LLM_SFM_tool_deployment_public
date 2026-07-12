@@ -1,0 +1,732 @@
+{
+  "dataset": "negbiodb_ct_stage_a_saved_output_evidence_candidate_routing_readout_v1",
+  "decision": {
+    "best_static_prior_heldout_exact": 1,
+    "interpretation": "The substrate has a deterministic visible-evidence baseline at 5/5 held-out and 4/4 bridge-focus exact, while every static single-pair prior is at most 1/5 held-out. The next step may be a small candidate-routing smoke spec, not DPO/RLVR or tool_query.",
+    "passes_no_model_readout": true,
+    "ready_for_dpo_rlvr": false,
+    "ready_for_hugging_face_publication": false,
+    "ready_for_model_heavy_candidate_smoke_spec": true,
+    "ready_for_release_tagging": false,
+    "ready_for_tool_query": false,
+    "runtime_evidence_gate_bridge_focus_exact": 4,
+    "runtime_evidence_gate_bridge_focus_rows": 4,
+    "runtime_evidence_gate_heldout_exact": 5,
+    "runtime_evidence_gate_heldout_rows": 5,
+    "selected_next_step": "prepare_evidence_conditioned_candidate_routing_smoke_spec"
+  },
+  "input_artifacts": {
+    "heldout_rows": {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_heldout_v1.jsonl",
+      "role": "candidate-routing held-out rows",
+      "sha256": "46ba3d4f18e2920a32d81d9ea2610696b8213b997b972312d96ce8caf9ada106"
+    },
+    "manifest": {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_manifest.json",
+      "role": "candidate-routing manifest",
+      "sha256": "13f88df5d7b815438b6123dcfdfd07cc611d65d967b5776a848c360d5a0734f1"
+    },
+    "rows": {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_rows_v1.jsonl",
+      "role": "candidate-routing rows",
+      "sha256": "da4d88d0ff85604097578cb3221ca5e83b8bf38eed115449db146c36d9b90b12"
+    },
+    "train_rows": {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_train_v1.jsonl",
+      "role": "candidate-routing train rows",
+      "sha256": "b85c26e6dc40d41fe79c245d893b96b9e5c99759736099e7c872ff148f0b38b4"
+    }
+  },
+  "policies": {
+    "runtime_evidence_gate": {
+      "all": {
+        "accuracy": 1.0,
+        "bridge_focus_accuracy": 1.0,
+        "bridge_focus_error_case_ids": [],
+        "bridge_focus_exact": 4,
+        "bridge_focus_rows": 4,
+        "by_predicted_pair": {
+          "defer/insufficient": 5,
+          "flag/invalid_value": 5,
+          "ground/supported": 5,
+          "reject/contradicted": 5,
+          "verify/insufficient": 5
+        },
+        "by_target_pair": {
+          "defer/insufficient": 5,
+          "flag/invalid_value": 5,
+          "ground/supported": 5,
+          "reject/contradicted": 5,
+          "verify/insufficient": 5
+        },
+        "error_case_ids": [],
+        "exact": 25,
+        "policy": "runtime_evidence_gate",
+        "rows": 25
+      },
+      "heldout": {
+        "accuracy": 1.0,
+        "bridge_focus_accuracy": 1.0,
+        "bridge_focus_error_case_ids": [],
+        "bridge_focus_exact": 4,
+        "bridge_focus_rows": 4,
+        "by_predicted_pair": {
+          "defer/insufficient": 1,
+          "flag/invalid_value": 1,
+          "ground/supported": 1,
+          "reject/contradicted": 1,
+          "verify/insufficient": 1
+        },
+        "by_target_pair": {
+          "defer/insufficient": 1,
+          "flag/invalid_value": 1,
+          "ground/supported": 1,
+          "reject/contradicted": 1,
+          "verify/insufficient": 1
+        },
+        "error_case_ids": [],
+        "exact": 5,
+        "policy": "runtime_evidence_gate",
+        "rows": 5
+      },
+      "train": {
+        "accuracy": 1.0,
+        "bridge_focus_accuracy": null,
+        "bridge_focus_error_case_ids": [],
+        "bridge_focus_exact": 0,
+        "bridge_focus_rows": 0,
+        "by_predicted_pair": {
+          "defer/insufficient": 4,
+          "flag/invalid_value": 4,
+          "ground/supported": 4,
+          "reject/contradicted": 4,
+          "verify/insufficient": 4
+        },
+        "by_target_pair": {
+          "defer/insufficient": 4,
+          "flag/invalid_value": 4,
+          "ground/supported": 4,
+          "reject/contradicted": 4,
+          "verify/insufficient": 4
+        },
+        "error_case_ids": [],
+        "exact": 20,
+        "policy": "runtime_evidence_gate",
+        "rows": 20
+      }
+    },
+    "static_defer_insufficient": {
+      "all": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": 0.25,
+        "bridge_focus_error_case_ids": [
+          "stage_a::000007",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "bridge_focus_exact": 1,
+        "bridge_focus_rows": 4,
+        "by_predicted_pair": {
+          "defer/insufficient": 25
+        },
+        "by_target_pair": {
+          "defer/insufficient": 5,
+          "flag/invalid_value": 5,
+          "ground/supported": 5,
+          "reject/contradicted": 5,
+          "verify/insufficient": 5
+        },
+        "error_case_ids": [
+          "stage_a::000000",
+          "stage_a::000002",
+          "stage_a::000003",
+          "stage_a::000004",
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024",
+          "stage_a::000001",
+          "stage_a::000007",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "exact": 5,
+        "policy": "static_defer_insufficient",
+        "rows": 25
+      },
+      "heldout": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": 0.25,
+        "bridge_focus_error_case_ids": [
+          "stage_a::000007",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "bridge_focus_exact": 1,
+        "bridge_focus_rows": 4,
+        "by_predicted_pair": {
+          "defer/insufficient": 5
+        },
+        "by_target_pair": {
+          "defer/insufficient": 1,
+          "flag/invalid_value": 1,
+          "ground/supported": 1,
+          "reject/contradicted": 1,
+          "verify/insufficient": 1
+        },
+        "error_case_ids": [
+          "stage_a::000001",
+          "stage_a::000007",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "exact": 1,
+        "policy": "static_defer_insufficient",
+        "rows": 5
+      },
+      "train": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": null,
+        "bridge_focus_error_case_ids": [],
+        "bridge_focus_exact": 0,
+        "bridge_focus_rows": 0,
+        "by_predicted_pair": {
+          "defer/insufficient": 20
+        },
+        "by_target_pair": {
+          "defer/insufficient": 4,
+          "flag/invalid_value": 4,
+          "ground/supported": 4,
+          "reject/contradicted": 4,
+          "verify/insufficient": 4
+        },
+        "error_case_ids": [
+          "stage_a::000000",
+          "stage_a::000002",
+          "stage_a::000003",
+          "stage_a::000004",
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ],
+        "exact": 4,
+        "policy": "static_defer_insufficient",
+        "rows": 20
+      }
+    },
+    "static_flag_invalid_value": {
+      "all": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": 0.25,
+        "bridge_focus_error_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019"
+        ],
+        "bridge_focus_exact": 1,
+        "bridge_focus_rows": 4,
+        "by_predicted_pair": {
+          "flag/invalid_value": 25
+        },
+        "by_target_pair": {
+          "defer/insufficient": 5,
+          "flag/invalid_value": 5,
+          "ground/supported": 5,
+          "reject/contradicted": 5,
+          "verify/insufficient": 5
+        },
+        "error_case_ids": [
+          "stage_a::000000",
+          "stage_a::000002",
+          "stage_a::000003",
+          "stage_a::000004",
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000001",
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019"
+        ],
+        "exact": 5,
+        "policy": "static_flag_invalid_value",
+        "rows": 25
+      },
+      "heldout": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": 0.25,
+        "bridge_focus_error_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019"
+        ],
+        "bridge_focus_exact": 1,
+        "bridge_focus_rows": 4,
+        "by_predicted_pair": {
+          "flag/invalid_value": 5
+        },
+        "by_target_pair": {
+          "defer/insufficient": 1,
+          "flag/invalid_value": 1,
+          "ground/supported": 1,
+          "reject/contradicted": 1,
+          "verify/insufficient": 1
+        },
+        "error_case_ids": [
+          "stage_a::000001",
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019"
+        ],
+        "exact": 1,
+        "policy": "static_flag_invalid_value",
+        "rows": 5
+      },
+      "train": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": null,
+        "bridge_focus_error_case_ids": [],
+        "bridge_focus_exact": 0,
+        "bridge_focus_rows": 0,
+        "by_predicted_pair": {
+          "flag/invalid_value": 20
+        },
+        "by_target_pair": {
+          "defer/insufficient": 4,
+          "flag/invalid_value": 4,
+          "ground/supported": 4,
+          "reject/contradicted": 4,
+          "verify/insufficient": 4
+        },
+        "error_case_ids": [
+          "stage_a::000000",
+          "stage_a::000002",
+          "stage_a::000003",
+          "stage_a::000004",
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018"
+        ],
+        "exact": 4,
+        "policy": "static_flag_invalid_value",
+        "rows": 20
+      }
+    },
+    "static_ground_supported": {
+      "all": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": 0.0,
+        "bridge_focus_error_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "bridge_focus_exact": 0,
+        "bridge_focus_rows": 4,
+        "by_predicted_pair": {
+          "ground/supported": 25
+        },
+        "by_target_pair": {
+          "defer/insufficient": 5,
+          "flag/invalid_value": 5,
+          "ground/supported": 5,
+          "reject/contradicted": 5,
+          "verify/insufficient": 5
+        },
+        "error_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024",
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "exact": 5,
+        "policy": "static_ground_supported",
+        "rows": 25
+      },
+      "heldout": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": 0.0,
+        "bridge_focus_error_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "bridge_focus_exact": 0,
+        "bridge_focus_rows": 4,
+        "by_predicted_pair": {
+          "ground/supported": 5
+        },
+        "by_target_pair": {
+          "defer/insufficient": 1,
+          "flag/invalid_value": 1,
+          "ground/supported": 1,
+          "reject/contradicted": 1,
+          "verify/insufficient": 1
+        },
+        "error_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "exact": 1,
+        "policy": "static_ground_supported",
+        "rows": 5
+      },
+      "train": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": null,
+        "bridge_focus_error_case_ids": [],
+        "bridge_focus_exact": 0,
+        "bridge_focus_rows": 0,
+        "by_predicted_pair": {
+          "ground/supported": 20
+        },
+        "by_target_pair": {
+          "defer/insufficient": 4,
+          "flag/invalid_value": 4,
+          "ground/supported": 4,
+          "reject/contradicted": 4,
+          "verify/insufficient": 4
+        },
+        "error_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ],
+        "exact": 4,
+        "policy": "static_ground_supported",
+        "rows": 20
+      }
+    },
+    "static_reject_contradicted": {
+      "all": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": 0.25,
+        "bridge_focus_error_case_ids": [
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "bridge_focus_exact": 1,
+        "bridge_focus_rows": 4,
+        "by_predicted_pair": {
+          "reject/contradicted": 25
+        },
+        "by_target_pair": {
+          "defer/insufficient": 5,
+          "flag/invalid_value": 5,
+          "ground/supported": 5,
+          "reject/contradicted": 5,
+          "verify/insufficient": 5
+        },
+        "error_case_ids": [
+          "stage_a::000000",
+          "stage_a::000002",
+          "stage_a::000003",
+          "stage_a::000004",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024",
+          "stage_a::000001",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "exact": 5,
+        "policy": "static_reject_contradicted",
+        "rows": 25
+      },
+      "heldout": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": 0.25,
+        "bridge_focus_error_case_ids": [
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "bridge_focus_exact": 1,
+        "bridge_focus_rows": 4,
+        "by_predicted_pair": {
+          "reject/contradicted": 5
+        },
+        "by_target_pair": {
+          "defer/insufficient": 1,
+          "flag/invalid_value": 1,
+          "ground/supported": 1,
+          "reject/contradicted": 1,
+          "verify/insufficient": 1
+        },
+        "error_case_ids": [
+          "stage_a::000001",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "exact": 1,
+        "policy": "static_reject_contradicted",
+        "rows": 5
+      },
+      "train": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": null,
+        "bridge_focus_error_case_ids": [],
+        "bridge_focus_exact": 0,
+        "bridge_focus_rows": 0,
+        "by_predicted_pair": {
+          "reject/contradicted": 20
+        },
+        "by_target_pair": {
+          "defer/insufficient": 4,
+          "flag/invalid_value": 4,
+          "ground/supported": 4,
+          "reject/contradicted": 4,
+          "verify/insufficient": 4
+        },
+        "error_case_ids": [
+          "stage_a::000000",
+          "stage_a::000002",
+          "stage_a::000003",
+          "stage_a::000004",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ],
+        "exact": 4,
+        "policy": "static_reject_contradicted",
+        "rows": 20
+      }
+    },
+    "static_verify_insufficient": {
+      "all": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": 0.25,
+        "bridge_focus_error_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000021"
+        ],
+        "bridge_focus_exact": 1,
+        "bridge_focus_rows": 4,
+        "by_predicted_pair": {
+          "verify/insufficient": 25
+        },
+        "by_target_pair": {
+          "defer/insufficient": 5,
+          "flag/invalid_value": 5,
+          "ground/supported": 5,
+          "reject/contradicted": 5,
+          "verify/insufficient": 5
+        },
+        "error_case_ids": [
+          "stage_a::000000",
+          "stage_a::000002",
+          "stage_a::000003",
+          "stage_a::000004",
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024",
+          "stage_a::000001",
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000021"
+        ],
+        "exact": 5,
+        "policy": "static_verify_insufficient",
+        "rows": 25
+      },
+      "heldout": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": 0.25,
+        "bridge_focus_error_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000021"
+        ],
+        "bridge_focus_exact": 1,
+        "bridge_focus_rows": 4,
+        "by_predicted_pair": {
+          "verify/insufficient": 5
+        },
+        "by_target_pair": {
+          "defer/insufficient": 1,
+          "flag/invalid_value": 1,
+          "ground/supported": 1,
+          "reject/contradicted": 1,
+          "verify/insufficient": 1
+        },
+        "error_case_ids": [
+          "stage_a::000001",
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000021"
+        ],
+        "exact": 1,
+        "policy": "static_verify_insufficient",
+        "rows": 5
+      },
+      "train": {
+        "accuracy": 0.2,
+        "bridge_focus_accuracy": null,
+        "bridge_focus_error_case_ids": [],
+        "bridge_focus_exact": 0,
+        "bridge_focus_rows": 0,
+        "by_predicted_pair": {
+          "verify/insufficient": 20
+        },
+        "by_target_pair": {
+          "defer/insufficient": 4,
+          "flag/invalid_value": 4,
+          "ground/supported": 4,
+          "reject/contradicted": 4,
+          "verify/insufficient": 4
+        },
+        "error_case_ids": [
+          "stage_a::000000",
+          "stage_a::000002",
+          "stage_a::000003",
+          "stage_a::000004",
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ],
+        "exact": 4,
+        "policy": "static_verify_insufficient",
+        "rows": 20
+      }
+    }
+  },
+  "public_safety_contract": {
+    "hidden_labels_used_for_readout": false,
+    "ignored_run_folder_read": false,
+    "model_state_read": false,
+    "raw_candidate_score_jsonl_read": false,
+    "raw_prediction_jsonl_read": false,
+    "scheduler_logs_read": false
+  },
+  "row_dataset": "negbiodb_ct_stage_a_saved_output_evidence_candidate_routing_v1",
+  "row_manifest_summary": {
+    "bridge_focus_by_target_pair": {
+      "defer/insufficient": 1,
+      "flag/invalid_value": 1,
+      "reject/contradicted": 1,
+      "verify/insufficient": 1
+    },
+    "bridge_focus_rows": 4,
+    "by_target_pair": {
+      "defer/insufficient": 5,
+      "flag/invalid_value": 5,
+      "ground/supported": 5,
+      "reject/contradicted": 5,
+      "verify/insufficient": 5
+    },
+    "heldout_rows": 5,
+    "overlap_case_ids": [],
+    "overlap_source_task_ids": [],
+    "overlap_split_groups": [],
+    "row_count": 25,
+    "train_rows": 20
+  }
+}

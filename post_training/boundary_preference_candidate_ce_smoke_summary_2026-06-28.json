@@ -1,0 +1,1848 @@
+{
+  "date": "2026-06-28",
+  "condition": "boundary_preference_all_candidate_ce_smoke",
+  "script": "post_training/run_boundary_preference_candidate_ce_smoke.py",
+  "inputs": {
+    "train_preferences": "post_training/negbiodb_ct_oracle_boundary_preferences_hard_train_v1.jsonl",
+    "eval_preferences": "post_training/negbiodb_ct_oracle_boundary_preferences_hard_heldout_v1.jsonl"
+  },
+  "balanced_dry_run": {
+    "source_train_pairs": 208,
+    "selected_train_sets": 24,
+    "train_by_expected_action": {
+      "defer": 8,
+      "flag": 8,
+      "reject": 8
+    },
+    "source_eval_pairs": 32,
+    "selected_eval_sets": 12,
+    "eval_by_expected_action": {
+      "defer": 4,
+      "flag": 4,
+      "reject": 4
+    },
+    "train_missing_expected_candidates": 0,
+    "eval_missing_expected_candidates": 0
+  },
+  "round_robin_dry_run": {
+    "training_schedule": "boundary_round_robin",
+    "phase_order": [
+      "defer",
+      "flag",
+      "reject"
+    ],
+    "selected_train_sets": 24,
+    "selected_eval_sets": 12,
+    "train_by_curriculum_phase": {
+      "defer": 8,
+      "flag": 8,
+      "reject": 8
+    },
+    "eval_by_curriculum_phase": {
+      "defer": 4,
+      "flag": 4,
+      "reject": 4
+    },
+    "train_missing_expected_candidates": 0,
+    "eval_missing_expected_candidates": 0
+  },
+  "flag_rehearsal_dry_run": {
+    "training_schedule": "boundary_round_robin",
+    "phase_order": [
+      "defer",
+      "flag",
+      "reject",
+      "flag"
+    ],
+    "selected_train_sets": 24,
+    "selected_eval_sets": 12,
+    "train_by_expected_action": {
+      "defer": 8,
+      "flag": 8,
+      "reject": 8
+    },
+    "eval_by_expected_action": {
+      "defer": 4,
+      "flag": 4,
+      "reject": 4
+    },
+    "train_by_curriculum_phase": {
+      "defer": 8,
+      "flag": 8,
+      "reject": 8
+    },
+    "eval_by_curriculum_phase": {
+      "defer": 4,
+      "flag": 4,
+      "reject": 4
+    },
+    "train_missing_expected_candidates": 0,
+    "eval_missing_expected_candidates": 0
+  },
+  "phase_batch_dry_run": {
+    "training_schedule": "boundary_phase_batch",
+    "phase_order": [
+      "defer",
+      "flag",
+      "reject"
+    ],
+    "selected_train_sets": 6,
+    "selected_eval_sets": 6,
+    "train_by_curriculum_phase": {
+      "defer": 2,
+      "flag": 2,
+      "reject": 2
+    },
+    "eval_by_curriculum_phase": {
+      "defer": 2,
+      "flag": 2,
+      "reject": 2
+    },
+    "train_missing_expected_candidates": 0,
+    "eval_missing_expected_candidates": 0
+  },
+  "runs": {
+    "unbalanced_limit16_eval8_steps12": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_smoke_limit16_eval8_steps12/report.json",
+      "selected_train_sets": 16,
+      "selected_eval_sets": 8,
+      "max_steps": 12,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "loss_delta": -0.78076171875,
+      "pre_train_action_accuracy": 0.0,
+      "post_train_action_accuracy": 0.688,
+      "pre_eval_action_accuracy": 0.0,
+      "post_eval_action_accuracy": 0.0,
+      "post_train_by_expected_action": {
+        "defer": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "defer": 11
+          }
+        },
+        "flag": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "defer": 1
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "defer": 4
+          }
+        }
+      },
+      "post_eval_by_expected_action": {
+        "flag": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "defer": 2
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "defer": 6
+          }
+        }
+      },
+      "interpretation": "Unbalanced first slice overfits defer and collapses eval flag/reject prompts to defer."
+    },
+    "balanced_a8_eval4_steps24": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_balanced_a8_eval4_steps24/report.json",
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_expected_action": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_expected_action": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 24,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "loss_delta": 0.12109375,
+      "pre_train_action_accuracy": 0.0,
+      "post_train_action_accuracy": 0.333,
+      "pre_eval_action_accuracy": 0.0,
+      "post_eval_action_accuracy": 0.333,
+      "post_train_by_expected_action": {
+        "defer": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "reject": 8
+          }
+        },
+        "flag": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "flag": 8
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "flag": 8
+          }
+        }
+      },
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "reject": 4
+          }
+        },
+        "flag": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        }
+      },
+      "interpretation": "Balanced all-candidate CE moves held-out flag top-1 from 0/4 to 4/4, but defer and reject boundaries still collapse."
+    },
+    "round_robin_a8_eval4_steps24": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_round_robin_a8_eval4_steps24/report.json",
+      "training_schedule": "boundary_round_robin",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject"
+      ],
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_curriculum_phase": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 24,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "loss_delta": -0.2421875,
+      "pre_train_action_accuracy": 0.0,
+      "post_train_action_accuracy": 0.708,
+      "pre_eval_action_accuracy": 0.0,
+      "post_eval_action_accuracy": 0.583,
+      "post_train_by_expected_action": {
+        "defer": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "defer": 8
+          }
+        },
+        "flag": {
+          "action_accuracy": 0.125,
+          "pred_actions": {
+            "flag": 1,
+            "reject": 7
+          }
+        },
+        "reject": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "reject": 8
+          }
+        }
+      },
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 0.75,
+          "pred_actions": {
+            "defer": 3,
+            "reject": 1
+          }
+        },
+        "flag": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "reject": 4
+          }
+        },
+        "reject": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "reject": 4
+          }
+        }
+      },
+      "interpretation": "Boundary round-robin all-candidate CE improves held-out top-1 to 0.583 by recovering defer 3/4 and reject 4/4, but loses flag 0/4 to reject."
+    },
+    "flag_rehearsal_a8_eval4_steps24": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_flag_rehearsal_a8_eval4_steps24/report.json",
+      "training_schedule": "boundary_round_robin",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject",
+        "flag"
+      ],
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_curriculum_phase": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 24,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "loss_delta": -0.58984375,
+      "pre_train_action_accuracy": 0.0,
+      "post_train_action_accuracy": 0.458,
+      "pre_eval_action_accuracy": 0.0,
+      "post_eval_action_accuracy": 0.333,
+      "post_train_by_expected_action": {
+        "defer": {
+          "action_accuracy": 0.375,
+          "pred_actions": {
+            "defer": 3,
+            "reject": 5
+          }
+        },
+        "flag": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "flag": 8
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "flag": 8
+          }
+        }
+      },
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "reject": 4
+          }
+        },
+        "flag": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        }
+      },
+      "interpretation": "Repeating the flag phase recovers held-out flag 4/4, but reverts to the source-order failure mode: defer collapses to reject and reject collapses to flag."
+    },
+    "flag_rehearsal_a8_eval4_steps23": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_flag_rehearsal_a8_eval4_steps23/report.json",
+      "training_schedule": "boundary_round_robin",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject",
+        "flag"
+      ],
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_curriculum_phase": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 23,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "loss_delta": 0.296875,
+      "pre_train_action_accuracy": 0.0,
+      "post_train_action_accuracy": 0.5,
+      "pre_eval_action_accuracy": 0.0,
+      "post_eval_action_accuracy": 0.417,
+      "post_train_by_expected_action": {
+        "defer": {
+          "action_accuracy": 0.5,
+          "pred_actions": {
+            "defer": 4,
+            "reject": 4
+          }
+        },
+        "flag": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "flag": 8
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "flag": 8
+          }
+        }
+      },
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 0.25,
+          "pred_actions": {
+            "defer": 1,
+            "reject": 3
+          }
+        },
+        "flag": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        }
+      },
+      "interpretation": "Stopping after the reject update recovers one held-out defer item but still loses reject 0/4; it remains worse than the three-phase round-robin checkpoint."
+    },
+    "eval_gated_plumbing_a2_eval2_steps6": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_eval_gated_plumbing_a2_eval2_steps6/report.json",
+      "training_schedule": "boundary_round_robin",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject"
+      ],
+      "selected_train_sets": 6,
+      "selected_eval_sets": 6,
+      "train_by_curriculum_phase": {
+        "defer": 2,
+        "flag": 2,
+        "reject": 2
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 2,
+        "flag": 2,
+        "reject": 2
+      },
+      "max_steps": 6,
+      "train_last_layers": 1,
+      "trainable_params": 14913280,
+      "eval_checkpoint_every": 1,
+      "checkpoint_selection": "min_action_accuracy",
+      "post_evaluation_state": "selected_checkpoint",
+      "selected_checkpoint": {
+        "step": 6,
+        "phase": "reject",
+        "selection_score": [
+          0.0,
+          0.667,
+          0.667,
+          -0.7161
+        ]
+      },
+      "loss_delta": 2.3046875,
+      "pre_train_action_accuracy": 0.0,
+      "post_train_action_accuracy": 0.667,
+      "pre_eval_action_accuracy": 0.0,
+      "post_eval_action_accuracy": 0.667,
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "defer": 2
+          }
+        },
+        "flag": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "flag": 2
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "flag": 2
+          }
+        }
+      },
+      "interpretation": "Eval-gated selector plumbing works and restores the selected checkpoint, but the tiny 2/action run still loses reject 0/2 to flag."
+    },
+    "eval_gated_a8_eval4_steps24_every3": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_eval_gated_a8_eval4_steps24_every3/report.json",
+      "training_schedule": "boundary_round_robin",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject"
+      ],
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_curriculum_phase": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 24,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "eval_checkpoint_every": 3,
+      "checkpoint_selection": "min_action_accuracy",
+      "post_evaluation_state": "selected_checkpoint",
+      "selected_checkpoint": {
+        "step": 15,
+        "phase": "reject",
+        "selection_score": [
+          0.0,
+          0.667,
+          0.667,
+          -0.0176
+        ]
+      },
+      "loss_delta": -0.2421875,
+      "pre_train_action_accuracy": 0.0,
+      "post_train_action_accuracy": 0.708,
+      "pre_eval_action_accuracy": 0.0,
+      "post_eval_action_accuracy": 0.667,
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "defer": 4
+          }
+        },
+        "flag": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "defer": 1,
+            "reject": 3
+          }
+        },
+        "reject": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "reject": 4
+          }
+        }
+      },
+      "checkpoint_path_summary": [
+        {
+          "step": 3,
+          "post_eval_action_accuracy": 0.667,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 1.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 15,
+          "post_eval_action_accuracy": 0.667,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 1.0
+          }
+        },
+        {
+          "step": 24,
+          "post_eval_action_accuracy": 0.583,
+          "by_action": {
+            "defer": 0.75,
+            "flag": 0.0,
+            "reject": 1.0
+          }
+        }
+      ],
+      "interpretation": "Eval-gated selection improves the small balanced held-out action accuracy to 0.667 by selecting step 15, but every checkpoint still has one zero-accuracy action family."
+    },
+    "phase_batch_plumbing_a2_eval2_steps3": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_phase_batch_plumbing_a2_eval2_steps3/report.json",
+      "training_schedule": "boundary_phase_batch",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject"
+      ],
+      "selected_train_sets": 6,
+      "selected_eval_sets": 6,
+      "train_by_curriculum_phase": {
+        "defer": 2,
+        "flag": 2,
+        "reject": 2
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 2,
+        "flag": 2,
+        "reject": 2
+      },
+      "max_steps": 3,
+      "train_last_layers": 1,
+      "trainable_params": 14913280,
+      "eval_checkpoint_every": 1,
+      "checkpoint_selection": "min_action_accuracy",
+      "post_evaluation_state": "selected_checkpoint",
+      "selected_checkpoint": {
+        "step": 3,
+        "phase": "phase_batch:defer+flag+reject",
+        "selection_score": [
+          0.0,
+          0.333,
+          0.333,
+          -0.069
+        ]
+      },
+      "loss_delta": -0.5703125,
+      "pre_train_action_accuracy": 0.0,
+      "post_train_action_accuracy": 0.333,
+      "pre_eval_action_accuracy": 0.0,
+      "post_eval_action_accuracy": 0.333,
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "defer": 2
+          }
+        },
+        "flag": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "defer": 2
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "defer": 2
+          }
+        }
+      },
+      "loss_trace_phase_counts": [
+        {
+          "step": 1,
+          "defer": 1,
+          "flag": 1,
+          "reject": 1
+        },
+        {
+          "step": 2,
+          "defer": 1,
+          "flag": 1,
+          "reject": 1
+        },
+        {
+          "step": 3,
+          "defer": 1,
+          "flag": 1,
+          "reject": 1
+        }
+      ],
+      "interpretation": "Phase-batch plumbing works: every optimizer step contains one defer, one flag, and one reject example. The tiny run still collapses flag/reject to defer."
+    },
+    "phase_batch_a8_eval4_steps8_every1": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_phase_batch_a8_eval4_steps8_every1/report.json",
+      "training_schedule": "boundary_phase_batch",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject"
+      ],
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_curriculum_phase": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 8,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "eval_checkpoint_every": 1,
+      "checkpoint_selection": "min_action_accuracy",
+      "post_evaluation_state": "selected_checkpoint",
+      "selected_checkpoint": {
+        "step": 7,
+        "phase": "phase_batch:defer+flag+reject",
+        "selection_score": [
+          0.75,
+          0.917,
+          0.917,
+          -0.0007
+        ]
+      },
+      "loss_delta": -0.96484375,
+      "pre_train_action_accuracy": 0.0,
+      "post_train_action_accuracy": 0.833,
+      "pre_eval_action_accuracy": 0.0,
+      "post_eval_action_accuracy": 0.917,
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "defer": 4
+          }
+        },
+        "flag": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.75,
+          "pred_actions": {
+            "flag": 1,
+            "reject": 3
+          }
+        }
+      },
+      "checkpoint_path_summary": [
+        {
+          "step": 1,
+          "post_eval_action_accuracy": 0.333,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 4,
+          "post_eval_action_accuracy": 0.667,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 1.0
+          }
+        },
+        {
+          "step": 7,
+          "post_eval_action_accuracy": 0.917,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 1.0,
+            "reject": 0.75
+          }
+        },
+        {
+          "step": 8,
+          "post_eval_action_accuracy": 0.667,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 1.0,
+            "reject": 0.0
+          }
+        }
+      ],
+      "interpretation": "Phase-batch updates plus eval-gated selection find the first small-slice checkpoint without a zero-accuracy action family: step 7 reaches held-out action accuracy 0.917 with defer 4/4, flag 4/4, reject 3/4. This is still a small a8/eval4 result and step 8 regresses reject to 0/4, so the next claim requires replication or robustness checks before full hard-split scaling."
+    },
+    "phase_batch_seed11_a8_eval4_steps8_every1": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_phase_batch_seed11_a8_eval4_steps8_every1/report.json",
+      "training_schedule": "boundary_phase_batch",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject"
+      ],
+      "selection_seed": 11,
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_curriculum_phase": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 8,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "eval_checkpoint_every": 1,
+      "checkpoint_selection": "min_action_accuracy",
+      "post_evaluation_state": "selected_checkpoint",
+      "selected_checkpoint": {
+        "step": 8,
+        "phase": "phase_batch:defer+flag+reject",
+        "selection_score": [
+          0.25,
+          0.75,
+          0.75,
+          -0.0059
+        ]
+      },
+      "pre_train_action_accuracy": 0.0,
+      "post_train_action_accuracy": 0.75,
+      "pre_eval_action_accuracy": 0.0,
+      "post_eval_action_accuracy": 0.75,
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "defer": 4
+          }
+        },
+        "flag": {
+          "action_accuracy": 0.25,
+          "pred_actions": {
+            "defer": 1,
+            "flag": 1,
+            "reject": 2
+          }
+        },
+        "reject": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "reject": 4
+          }
+        }
+      },
+      "checkpoint_path_summary": [
+        {
+          "step": 1,
+          "post_eval_action_accuracy": 0.333,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 6,
+          "post_eval_action_accuracy": 0.5,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.5
+          }
+        },
+        {
+          "step": 7,
+          "post_eval_action_accuracy": 0.667,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 1.0
+          }
+        },
+        {
+          "step": 8,
+          "post_eval_action_accuracy": 0.75,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.25,
+            "reject": 1.0
+          }
+        }
+      ],
+      "interpretation": "Seeded candidate-set selection gives a harder replicate than the first-N a8/eval4 slice. Phase-batch still avoids zero-family collapse at the selected checkpoint, but the high 0.917 result does not replicate: flag remains weak at 1/4 while defer and reject are 4/4."
+    },
+    "phase_batch_flagw2_seed11_a8_eval4_steps8_every1": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_phase_batch_flagw2_seed11_a8_eval4_steps8_every1/report.json",
+      "training_schedule": "boundary_phase_batch",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject"
+      ],
+      "selection_seed": 11,
+      "action_loss_weights": {
+        "flag": 2.0
+      },
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_curriculum_phase": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 8,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "eval_checkpoint_every": 1,
+      "checkpoint_selection": "min_action_accuracy",
+      "post_evaluation_state": "selected_checkpoint",
+      "selected_checkpoint": {
+        "step": 2,
+        "phase": "phase_batch:defer+flag+reject",
+        "selection_score": [
+          0.0,
+          0.667,
+          0.667,
+          -0.069
+        ]
+      },
+      "pre_train_action_accuracy": 0.0,
+      "post_train_action_accuracy": 0.667,
+      "pre_eval_action_accuracy": 0.0,
+      "post_eval_action_accuracy": 0.667,
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "defer": 4
+          }
+        },
+        "flag": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        }
+      },
+      "checkpoint_path_summary": [
+        {
+          "step": 1,
+          "post_eval_action_accuracy": 0.667,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 1.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 2,
+          "post_eval_action_accuracy": 0.667,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 1.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 8,
+          "post_eval_action_accuracy": 0.667,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 1.0,
+            "reject": 0.0
+          }
+        }
+      ],
+      "interpretation": "A simple flag loss weight of 2.0 over-rotates the phase-batch objective. It fixes held-out flag 4/4 but collapses every held-out reject item to flag, so it is a negative robustness result rather than an improvement."
+    },
+    "phase_batch_flagw125_seed11_a8_eval4_steps8_every1": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_phase_batch_flagw125_seed11_a8_eval4_steps8_every1/report.json",
+      "training_schedule": "boundary_phase_batch",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject"
+      ],
+      "selection_seed": 11,
+      "action_loss_weights": {
+        "flag": 1.25
+      },
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_curriculum_phase": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 8,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "eval_checkpoint_every": 1,
+      "checkpoint_selection": "min_action_accuracy",
+      "post_evaluation_state": "selected_checkpoint",
+      "selected_checkpoint": {
+        "step": 7,
+        "phase": "phase_batch:defer+flag+reject",
+        "selection_score": [
+          0.0,
+          0.667,
+          0.667,
+          -0.0723
+        ]
+      },
+      "pre_train_action_accuracy": 0.0,
+      "post_train_action_accuracy": 0.667,
+      "pre_eval_action_accuracy": 0.0,
+      "post_eval_action_accuracy": 0.667,
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "defer": 4
+          }
+        },
+        "flag": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        }
+      },
+      "checkpoint_path_summary": [
+        {
+          "step": 1,
+          "post_eval_action_accuracy": 0.333,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 6,
+          "post_eval_action_accuracy": 0.667,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 1.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 7,
+          "post_eval_action_accuracy": 0.667,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 1.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 8,
+          "post_eval_action_accuracy": 0.667,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 1.0,
+            "reject": 0.0
+          }
+        }
+      ],
+      "interpretation": "Even a low flag loss weight of 1.25 over-rotates once flag activates. It fixes held-out flag 4/4 but collapses every held-out reject item to flag, so the failure is not only an excessive-weight artifact from flag=2.0."
+    },
+    "phase_batch_flagw125_rejectw125_seed11_light_steps6_every2": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_phase_batch_flagw125_rejectw125_seed11_light_steps6_every2/report.json",
+      "checkpoint_report": "post_training/runs/qwen_boundary_preference_candidate_ce_phase_batch_flagw125_rejectw125_seed11_light_steps6_every2/checkpoint_report.json",
+      "training_schedule": "boundary_phase_batch",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject"
+      ],
+      "selection_seed": 11,
+      "action_loss_weights": {
+        "flag": 1.25,
+        "reject": 1.25
+      },
+      "skip_train_eval": true,
+      "skip_pre_eval": true,
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_curriculum_phase": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 6,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "eval_checkpoint_every": 2,
+      "checkpoint_selection": "min_action_accuracy",
+      "post_evaluation_state": "selected_checkpoint",
+      "selected_checkpoint": {
+        "step": 6,
+        "phase": "phase_batch:defer+flag+reject",
+        "selection_score": [
+          0.0,
+          0.5,
+          0.5,
+          -0.1074
+        ]
+      },
+      "pre_train_action_accuracy": null,
+      "post_train_action_accuracy": null,
+      "pre_eval_action_accuracy": null,
+      "post_eval_action_accuracy": 0.5,
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 0.5,
+          "pred_actions": {
+            "defer": 2,
+            "reject": 2
+          }
+        },
+        "flag": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "reject": 4
+          }
+        },
+        "reject": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "reject": 4
+          }
+        }
+      },
+      "checkpoint_path_summary": [
+        {
+          "step": 2,
+          "post_eval_action_accuracy": 0.333,
+          "by_action": {
+            "defer": 0.0,
+            "flag": 0.0,
+            "reject": 1.0
+          }
+        },
+        {
+          "step": 4,
+          "post_eval_action_accuracy": 0.333,
+          "by_action": {
+            "defer": 0.0,
+            "flag": 0.0,
+            "reject": 1.0
+          }
+        },
+        {
+          "step": 6,
+          "post_eval_action_accuracy": 0.5,
+          "by_action": {
+            "defer": 0.5,
+            "flag": 0.0,
+            "reject": 1.0
+          }
+        }
+      ],
+      "interpretation": "Joint low weights flag=1.25,reject=1.25 preserve held-out reject 4/4 but collapse held-out flag to reject 4/4 and only recover defer 2/4. This shifts the collapse direction rather than solving the flag/reject tradeoff."
+    },
+    "phase_batch_action_ce_seed11_light_steps6_every2": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_action_ce_phase_batch_seed11_light_steps6_every2/report.json",
+      "checkpoint_report": "post_training/runs/qwen_boundary_preference_action_ce_phase_batch_seed11_light_steps6_every2/checkpoint_report.json",
+      "training_schedule": "boundary_phase_batch",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject"
+      ],
+      "selection_seed": 11,
+      "loss_target": "action",
+      "action_loss_weights": {},
+      "skip_train_eval": true,
+      "skip_pre_eval": true,
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_curriculum_phase": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 6,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "eval_checkpoint_every": 2,
+      "checkpoint_selection": "min_action_accuracy",
+      "post_evaluation_state": "selected_checkpoint",
+      "selected_checkpoint": {
+        "step": 6,
+        "phase": "phase_batch:defer+flag+reject",
+        "selection_score": [
+          0.0,
+          0.667,
+          0.667,
+          -0.0182
+        ]
+      },
+      "pre_train_action_accuracy": null,
+      "post_train_action_accuracy": null,
+      "pre_eval_action_accuracy": null,
+      "post_eval_action_accuracy": 0.667,
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "defer": 4
+          }
+        },
+        "flag": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        }
+      },
+      "checkpoint_path_summary": [
+        {
+          "step": 2,
+          "post_eval_action_accuracy": 0.333,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 4,
+          "post_eval_action_accuracy": 0.417,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.25
+          }
+        },
+        {
+          "step": 6,
+          "post_eval_action_accuracy": 0.667,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 1.0,
+            "reject": 0.0
+          }
+        }
+      ],
+      "interpretation": "Action-level CE over max candidate scores recovers held-out defer 4/4 and flag 4/4 by step 6, but collapses held-out reject 0/4 to flag. Changing the CE target from exact candidate to action is not sufficient to solve the flag/reject tradeoff."
+    },
+    "phase_batch_action_floor_seed11_a8_eval4_steps8_every1": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_action_floor_seed11_a8_eval4_steps8_every1/report.json",
+      "checkpoint_report": "post_training/runs/qwen_boundary_preference_candidate_ce_action_floor_seed11_a8_eval4_steps8_every1/checkpoint_report.json",
+      "training_schedule": "boundary_phase_batch",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject"
+      ],
+      "selection_seed": 11,
+      "loss_target": "candidate",
+      "action_loss_weights": {},
+      "checkpoint_action_floors": {
+        "flag": 0.25,
+        "reject": 0.25
+      },
+      "skip_train_eval": true,
+      "skip_pre_eval": true,
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_curriculum_phase": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 8,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "eval_checkpoint_every": 1,
+      "checkpoint_selection": "action_floor",
+      "post_evaluation_state": "selected_checkpoint",
+      "selected_checkpoint": {
+        "step": 8,
+        "phase": "phase_batch:defer+flag+reject",
+        "selection_score": [
+          1.0,
+          -0.0,
+          0.25,
+          0.25,
+          0.75,
+          0.75,
+          -0.0059
+        ],
+        "selection_action_floor": {
+          "action_accuracies": {
+            "flag": 0.25,
+            "reject": 1.0
+          },
+          "action_floors": {
+            "flag": 0.25,
+            "reject": 0.25
+          },
+          "deficits": {
+            "flag": 0.0,
+            "reject": 0.0
+          },
+          "floor_satisfied": true,
+          "min_required_action_accuracy": 0.25,
+          "total_deficit": 0.0
+        }
+      },
+      "pre_train_action_accuracy": null,
+      "post_train_action_accuracy": null,
+      "pre_eval_action_accuracy": null,
+      "post_eval_action_accuracy": 0.75,
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "defer": 4
+          }
+        },
+        "flag": {
+          "action_accuracy": 0.25,
+          "pred_actions": {
+            "defer": 1,
+            "flag": 1,
+            "reject": 2
+          }
+        },
+        "reject": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "reject": 4
+          }
+        }
+      },
+      "checkpoint_path_summary": [
+        {
+          "step": 1,
+          "post_eval_action_accuracy": 0.333,
+          "floor_satisfied": false,
+          "floor_deficit": 0.5,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 2,
+          "post_eval_action_accuracy": 0.333,
+          "floor_satisfied": false,
+          "floor_deficit": 0.5,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 3,
+          "post_eval_action_accuracy": 0.333,
+          "floor_satisfied": false,
+          "floor_deficit": 0.5,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 4,
+          "post_eval_action_accuracy": 0.333,
+          "floor_satisfied": false,
+          "floor_deficit": 0.5,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 5,
+          "post_eval_action_accuracy": 0.333,
+          "floor_satisfied": false,
+          "floor_deficit": 0.5,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 6,
+          "post_eval_action_accuracy": 0.5,
+          "floor_satisfied": false,
+          "floor_deficit": 0.25,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.5
+          }
+        },
+        {
+          "step": 7,
+          "post_eval_action_accuracy": 0.667,
+          "floor_satisfied": false,
+          "floor_deficit": 0.25,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 1.0
+          }
+        },
+        {
+          "step": 8,
+          "post_eval_action_accuracy": 0.75,
+          "floor_satisfied": true,
+          "floor_deficit": 0.0,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.25,
+            "reject": 1.0
+          }
+        }
+      ],
+      "interpretation": "The action-floor selector explicitly requires nonzero held-out flag and reject accuracy. On the seed 11 phase-batch slice it first satisfies flag>=0.25 and reject>=0.25 at step 8, selecting a checkpoint with defer 4/4, flag 1/4, reject 4/4, and action accuracy 0.750. This is selector hardening, not a robust behavioral solve: flag remains weak at 1/4."
+    },
+    "phase_batch_flag_reject_margin_seed11_a8_eval4_steps8_every2": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_flag_reject_margin_seed11_a8_eval4_steps8_every2/report.json",
+      "checkpoint_report": "post_training/runs/qwen_boundary_preference_candidate_ce_flag_reject_margin_seed11_a8_eval4_steps8_every2/checkpoint_report.json",
+      "training_schedule": "boundary_phase_batch",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject"
+      ],
+      "selection_seed": 11,
+      "loss_target": "candidate",
+      "action_loss_weights": {},
+      "action_margin_penalties": {
+        "flag>reject": 0.25
+      },
+      "action_margin_weight": 1.0,
+      "checkpoint_action_floors": {
+        "flag": 0.25,
+        "reject": 0.25
+      },
+      "skip_train_eval": true,
+      "skip_pre_eval": true,
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_curriculum_phase": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 8,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "eval_checkpoint_every": 2,
+      "checkpoint_selection": "action_floor",
+      "post_evaluation_state": "selected_checkpoint",
+      "selected_checkpoint": {
+        "step": 8,
+        "phase": "phase_batch:defer+flag+reject",
+        "selection_score": [
+          0.0,
+          -0.25,
+          0.0,
+          0.0,
+          0.667,
+          0.667,
+          -0.265
+        ],
+        "selection_action_floor": {
+          "action_accuracies": {
+            "flag": 1.0,
+            "reject": 0.0
+          },
+          "action_floors": {
+            "flag": 0.25,
+            "reject": 0.25
+          },
+          "deficits": {
+            "flag": 0.0,
+            "reject": 0.25
+          },
+          "floor_satisfied": false,
+          "min_required_action_accuracy": 0.0,
+          "total_deficit": 0.25
+        }
+      },
+      "pre_train_action_accuracy": null,
+      "post_train_action_accuracy": null,
+      "pre_eval_action_accuracy": null,
+      "post_eval_action_accuracy": 0.667,
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "defer": 4
+          }
+        },
+        "flag": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "flag": 4
+          }
+        }
+      },
+      "checkpoint_path_summary": [
+        {
+          "step": 2,
+          "post_eval_action_accuracy": 0.333,
+          "floor_satisfied": false,
+          "floor_deficit": 0.5,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 4,
+          "post_eval_action_accuracy": 0.333,
+          "floor_satisfied": false,
+          "floor_deficit": 0.5,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 6,
+          "post_eval_action_accuracy": 0.667,
+          "floor_satisfied": false,
+          "floor_deficit": 0.25,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 1.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 8,
+          "post_eval_action_accuracy": 0.667,
+          "floor_satisfied": false,
+          "floor_deficit": 0.25,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 1.0,
+            "reject": 0.0
+          }
+        }
+      ],
+      "loss_trace_summary": [
+        {
+          "step": 1,
+          "loss": 1.84375,
+          "ce_loss": 1.84375,
+          "action_margin_penalty": 0.0
+        },
+        {
+          "step": 2,
+          "loss": 1.4453125,
+          "ce_loss": 1.4453125,
+          "action_margin_penalty": 0.0
+        },
+        {
+          "step": 3,
+          "loss": 1.3984375,
+          "ce_loss": 1.21875,
+          "action_margin_penalty": 0.1826171875
+        },
+        {
+          "step": 4,
+          "loss": 1.1484375,
+          "ce_loss": 1.1484375,
+          "action_margin_penalty": 0.0026092529296875
+        },
+        {
+          "step": 5,
+          "loss": 1.4375,
+          "ce_loss": 1.4375,
+          "action_margin_penalty": 0.0
+        },
+        {
+          "step": 6,
+          "loss": 1.3125,
+          "ce_loss": 1.3125,
+          "action_margin_penalty": 0.0
+        },
+        {
+          "step": 7,
+          "loss": 1.4765625,
+          "ce_loss": 1.4765625,
+          "action_margin_penalty": 0.0
+        },
+        {
+          "step": 8,
+          "loss": 1.7734375,
+          "ce_loss": 1.7734375,
+          "action_margin_penalty": 0.0
+        }
+      ],
+      "interpretation": "The asymmetric flag>reject margin penalty is active in the loss trace and recovers held-out flag 4/4, but it over-rotates back into reject collapse: reject is 0/4 and all reject examples are predicted as flag. The action_floor selector correctly refuses to mark the checkpoint floor-satisfied. This one-sided margin is therefore a negative result, not a scaling candidate."
+    },
+    "phase_batch_two_sided_margin_seed11_a8_eval4_steps8_every2": {
+      "raw_report": "post_training/runs/qwen_boundary_preference_candidate_ce_two_sided_margin_seed11_a8_eval4_steps8_every2/report.json",
+      "checkpoint_report": "post_training/runs/qwen_boundary_preference_candidate_ce_two_sided_margin_seed11_a8_eval4_steps8_every2/checkpoint_report.json",
+      "training_schedule": "boundary_phase_batch",
+      "phase_order": [
+        "defer",
+        "flag",
+        "reject"
+      ],
+      "selection_seed": 11,
+      "loss_target": "candidate",
+      "action_loss_weights": {},
+      "action_margin_penalties": {
+        "flag>reject": 0.25,
+        "reject>flag": 0.25
+      },
+      "action_margin_weight": 1.0,
+      "checkpoint_action_floors": {
+        "flag": 0.25,
+        "reject": 0.25
+      },
+      "skip_train_eval": true,
+      "skip_pre_eval": true,
+      "selected_train_sets": 24,
+      "selected_eval_sets": 12,
+      "train_by_curriculum_phase": {
+        "defer": 8,
+        "flag": 8,
+        "reject": 8
+      },
+      "eval_by_curriculum_phase": {
+        "defer": 4,
+        "flag": 4,
+        "reject": 4
+      },
+      "max_steps": 8,
+      "train_last_layers": 2,
+      "trainable_params": 29825664,
+      "eval_checkpoint_every": 2,
+      "checkpoint_selection": "action_floor",
+      "post_evaluation_state": "selected_checkpoint",
+      "selected_checkpoint": {
+        "step": 4,
+        "phase": "phase_batch:defer+flag+reject",
+        "selection_score": [
+          0.0,
+          -0.25,
+          0.0,
+          0.0,
+          0.583,
+          0.583,
+          -0.2728
+        ],
+        "selection_action_floor": {
+          "action_accuracies": {
+            "flag": 0.0,
+            "reject": 0.75
+          },
+          "action_floors": {
+            "flag": 0.25,
+            "reject": 0.25
+          },
+          "deficits": {
+            "flag": 0.25,
+            "reject": 0.0
+          },
+          "floor_satisfied": false,
+          "min_required_action_accuracy": 0.0,
+          "total_deficit": 0.25
+        }
+      },
+      "pre_train_action_accuracy": null,
+      "post_train_action_accuracy": null,
+      "pre_eval_action_accuracy": null,
+      "post_eval_action_accuracy": 0.583,
+      "post_eval_by_expected_action": {
+        "defer": {
+          "action_accuracy": 1.0,
+          "pred_actions": {
+            "defer": 4
+          }
+        },
+        "flag": {
+          "action_accuracy": 0.0,
+          "pred_actions": {
+            "defer": 3,
+            "reject": 1
+          }
+        },
+        "reject": {
+          "action_accuracy": 0.75,
+          "pred_actions": {
+            "defer": 1,
+            "reject": 3
+          }
+        }
+      },
+      "checkpoint_path_summary": [
+        {
+          "step": 2,
+          "post_eval_action_accuracy": 0.333,
+          "floor_satisfied": false,
+          "floor_deficit": 0.25,
+          "by_action": {
+            "defer": 0.0,
+            "flag": 0.0,
+            "reject": 1.0
+          }
+        },
+        {
+          "step": 4,
+          "post_eval_action_accuracy": 0.583,
+          "floor_satisfied": false,
+          "floor_deficit": 0.25,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.75
+          }
+        },
+        {
+          "step": 6,
+          "post_eval_action_accuracy": 0.333,
+          "floor_satisfied": false,
+          "floor_deficit": 0.5,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.0
+          }
+        },
+        {
+          "step": 8,
+          "post_eval_action_accuracy": 0.333,
+          "floor_satisfied": false,
+          "floor_deficit": 0.5,
+          "by_action": {
+            "defer": 1.0,
+            "flag": 0.0,
+            "reject": 0.0
+          }
+        }
+      ],
+      "loss_trace_summary": [
+        {
+          "step": 1,
+          "loss": 2.796875,
+          "ce_loss": 1.84375,
+          "action_margin_penalty": 0.95703125
+        },
+        {
+          "step": 2,
+          "loss": 1.6875,
+          "ce_loss": 1.4765625,
+          "action_margin_penalty": 0.2138671875
+        },
+        {
+          "step": 3,
+          "loss": 1.71875,
+          "ce_loss": 1.3359375,
+          "action_margin_penalty": 0.384765625
+        },
+        {
+          "step": 4,
+          "loss": 1.6953125,
+          "ce_loss": 1.2734375,
+          "action_margin_penalty": 0.419921875
+        },
+        {
+          "step": 5,
+          "loss": 1.7109375,
+          "ce_loss": 1.375,
+          "action_margin_penalty": 0.337890625
+        },
+        {
+          "step": 6,
+          "loss": 1.453125,
+          "ce_loss": 1.25,
+          "action_margin_penalty": 0.203125
+        },
+        {
+          "step": 7,
+          "loss": 1.640625,
+          "ce_loss": 1.4375,
+          "action_margin_penalty": 0.2001953125
+        },
+        {
+          "step": 8,
+          "loss": 2.015625,
+          "ce_loss": 1.7265625,
+          "action_margin_penalty": 0.283203125
+        }
+      ],
+      "interpretation": "The two-sided flag/reject margin penalty is active in the loss trace, but it does not satisfy the explicit action floor on the seed 11 slice. The selected step 4 reaches held-out action accuracy 0.583 with defer 4/4 and reject 3/4, but flag remains 0/4 and is predicted as defer or reject. Later checkpoints preserve defer while losing both flag and reject. This is a negative objective-pressure result, not a full hard-split scaling candidate."
+    }
+  },
+  "decision_boundary": "All-candidate CE with controlled boundary scheduling can move top-1 decisions. Phase-batch updates plus eval-gated checkpointing can avoid zero-family collapse on small slices, but seeded replication shows the high 0.917 first-N result is not stable. Flag-only weighting fixes flag by sacrificing reject, joint low flag/reject weighting preserves reject by sacrificing flag, action-level CE still collapses reject once flag is recovered, and a one-sided flag>reject margin penalty also recovers flag by sacrificing reject. The action_floor selector can gate against this collapse and select a nonzero flag/reject checkpoint, but the best floor-satisfying checkpoint still leaves flag weak at 1/4. A two-sided flag/reject margin penalty does not fix the tradeoff: the selected checkpoint remains floor-unsatisfied with flag 0/4.",
+  "next_safe_step": "Use action_floor selection as the conservative checkpoint gate, but do not scale directly to full hard-split claims. The next objective should be explicitly floor-aware during training, for example by coupling action-margin pressure with per-checkpoint or per-batch floor deficits, or by moving to a multi-negative objective that preserves flag and reject simultaneously before rerunning the floor-gated selector."
+}

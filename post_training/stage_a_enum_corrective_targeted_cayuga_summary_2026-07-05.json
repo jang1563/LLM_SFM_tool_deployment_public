@@ -1,0 +1,143 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_outputs_committed": false,
+    "raw_outputs_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "cluster": "Cayuga Slurm GPU",
+  "component": "enum_action",
+  "dataset": "negbiodb_ct_stage_a_enum_corrective_targeted_sampling_v1",
+  "failure_mode": "ground_supported_collapse",
+  "focus": {
+    "focus_chosen_pairs": [
+      "flag/invalid_value",
+      "defer/insufficient"
+    ],
+    "focus_only": false,
+    "focus_repeat": 4,
+    "train_examples": 16,
+    "training_by_chosen_pair": {
+      "defer/insufficient": 16,
+      "flag/invalid_value": 16,
+      "reject/contradicted": 4,
+      "verify/insufficient": 4
+    },
+    "training_examples": 40
+  },
+  "heldout_delta_readout": [
+    {
+      "base_margin": -0.034748,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "chosen_pair": "reject/contradicted",
+      "margin_delta": 0.029153,
+      "outcome": "remained_lost",
+      "trained_margin": -0.005595,
+      "trained_passed": false
+    },
+    {
+      "base_margin": -0.257193,
+      "case_family": "insufficient_evidence",
+      "chosen_pair": "defer/insufficient",
+      "margin_delta": 0.247205,
+      "outcome": "remained_lost",
+      "trained_margin": -0.009988,
+      "trained_passed": false
+    },
+    {
+      "base_margin": -0.020147,
+      "case_family": "related_evidence_requires_verification",
+      "chosen_pair": "verify/insufficient",
+      "margin_delta": 0.098662,
+      "outcome": "newly_won",
+      "trained_margin": 0.078515,
+      "trained_passed": true
+    },
+    {
+      "base_margin": -0.153953,
+      "case_family": "invalid_value_attribution_failure",
+      "chosen_pair": "flag/invalid_value",
+      "margin_delta": 0.058323,
+      "outcome": "remained_lost",
+      "trained_margin": -0.09563,
+      "trained_passed": false
+    }
+  ],
+  "heldout_delta_summary": {
+    "base_margin_wins": 0,
+    "heldout_pairs": 4,
+    "mean_base_margin": -0.11651,
+    "mean_margin_delta": 0.108336,
+    "mean_trained_margin": -0.008175,
+    "min_margin_delta": 0.029153,
+    "newly_lost": 0,
+    "newly_won": 1,
+    "outcomes": {
+      "newly_won": 1,
+      "remained_lost": 3
+    },
+    "trained_margin_wins": 1
+  },
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "prompt_contract": "stage_a_v2_strict",
+  "previous_non_targeted_comparison": {
+    "heldout_margin_wins": 2,
+    "mean_margin_delta": 0.095825,
+    "mean_trained_margin": -0.020685,
+    "summary_artifact": "post_training/stage_a_enum_corrective_margin_delta_cayuga_summary_2026-07-05.json"
+  },
+  "run_id": "stage_a_enum_corrective_targeted_cayuga_2026_07_05",
+  "runner": "post_training/run_stage_a_enum_corrective_sft_smoke.py",
+  "scientific_readout": {
+    "interpretation": "Targeted oversampling moves weak families in the right direction but does not repair them. It improves mean trained held-out margin relative to the non-targeted run, but reduces held-out wins from 2/4 to 1/4 and leaves invalid-value at 0/4 train wins.",
+    "next_decision": "Do not run longer or escalate to DPO/RLVR from this. Diagnose invalid-value target representation or add targeted invalid-value rows before moving to tool_query.",
+    "question": "Does oversampling the weak enum train pairs repair invalid-value and defer/insufficient without new data or preference optimization?",
+    "result": "No stable repair. Mean held-out margin improves to -0.008175, but held-out wins fall to 1/4 and invalid-value remains 0/4 on train margins."
+  },
+  "trace": {
+    "base_margin_report_sha256": "ef539fda8def38691ee847b2b4663d920042961faa61a814db0d66d5b93f4115",
+    "base_margins_jsonl_sha256": "624c5a810419682512cf82f2e7c64874272f5db1d004d7d71ebc668212d578c7",
+    "heldout_margin_report_sha256": "30c2b37a494af6b0c5451b4b056b7ad67c692b97caa7769b946f76b1707ca546",
+    "heldout_margins_jsonl_sha256": "b26064938584bfbbd1ce798f9bc3a76525fd8d3ad2009dd5b3936f29f24ca6d2",
+    "margin_delta_report_sha256": "0b1cc8da75921cfb6c70a4fd6d36ab7c24ef59dd8ff58320bc70447a42d59418",
+    "report_sha256": "8017db6710fbb39aa0d4813aa47982f77ed8504ca379608f915604d28046232c",
+    "train_margin_report_sha256": "154ef2d1832da2fcd65594aecdcfd532ff09268f51d3cba696b9e26d5cbfdac5",
+    "train_margins_jsonl_sha256": "ebc8115608c5fe8b4ee9b667b0139d7ef3470fe5acc06fa7b4805124e6702688",
+    "trainable_state_sha256": "79372afcc66f88d3bf5170beecacafe6be1c248f37a370a4675e492d74dc9de7"
+  },
+  "trained_train_summary": {
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "margin_wins": 1,
+        "mean_margin": -0.017516,
+        "pairs": 4
+      },
+      "flag/invalid_value": {
+        "margin_wins": 0,
+        "mean_margin": -0.099119,
+        "pairs": 4
+      },
+      "reject/contradicted": {
+        "margin_wins": 4,
+        "mean_margin": 0.042518,
+        "pairs": 4
+      },
+      "verify/insufficient": {
+        "margin_wins": 4,
+        "mean_margin": 0.078015,
+        "pairs": 4
+      }
+    },
+    "margin_accuracy": 0.562,
+    "margin_wins": 9,
+    "mean_margin": 0.000974,
+    "train_pairs": 16
+  },
+  "training": {
+    "batch_size": 1,
+    "device": "cuda",
+    "loss_delta": -0.635322,
+    "max_steps": 20,
+    "train_last_layers": 1,
+    "trainable_params": 14913280
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "by_component": {
+    "enum_action": {
+      "has_evidence_content_markers": 25,
+      "has_evidence_for_routing": 25,
+      "has_observed_tool_loop": 0,
+      "hidden_label_leak_rows": 0,
+      "mean_observed_tool_loop_len": 0,
+      "observed_tool_loop_has_tool_results": 0,
+      "requires_evidence_for_target": 25,
+      "rows": 25,
+      "underdetermined_evidence_routing": 0,
+      "visible_key_sets": {
+        "allowed_actions,allowed_evidence_statuses,allowed_tools,claim,component,evidence_packet,input_id,required_query_fields": 25
+      }
+    },
+    "routing_after_loop": {
+      "has_evidence_content_markers": 15,
+      "has_evidence_for_routing": 25,
+      "has_observed_tool_loop": 25,
+      "hidden_label_leak_rows": 0,
+      "mean_observed_tool_loop_len": 4,
+      "observed_tool_loop_has_tool_results": 25,
+      "requires_evidence_for_target": 25,
+      "rows": 25,
+      "underdetermined_evidence_routing": 0,
+      "visible_key_sets": {
+        "allowed_actions,allowed_evidence_statuses,allowed_tools,claim,component,input_id,observed_tool_loop,required_query_fields": 25
+      }
+    },
+    "tool_query": {
+      "has_evidence_content_markers": 0,
+      "has_evidence_for_routing": 0,
+      "has_observed_tool_loop": 0,
+      "hidden_label_leak_rows": 0,
+      "mean_observed_tool_loop_len": 0,
+      "observed_tool_loop_has_tool_results": 0,
+      "requires_evidence_for_target": 0,
+      "rows": 25,
+      "underdetermined_evidence_routing": 0,
+      "visible_key_sets": {
+        "allowed_actions,allowed_evidence_statuses,allowed_tools,claim,component,input_id,required_query_fields": 25
+      }
+    }
+  },
+  "component": "stage_a_components",
+  "dataset": "negbiodb_ct_stage_a_component_visibility_audit_v1",
+  "input_targets_sha256": "cca947ae8525f75178ba6bae4aa2221733bf34a2587d8f6f600bcd709eb87f9a",
+  "row_examples": [
+    {
+      "component": "enum_action",
+      "has_evidence_content_markers": true,
+      "has_observed_tool_loop": false,
+      "observed_tool_loop_has_tool_results": false,
+      "target_keys": [
+        "action",
+        "evidence_status"
+      ],
+      "underdetermined_evidence_routing": false,
+      "visible_keys": [
+        "allowed_actions",
+        "allowed_evidence_statuses",
+        "allowed_tools",
+        "claim",
+        "component",
+        "evidence_packet",
+        "input_id",
+        "required_query_fields"
+      ]
+    },
+    {
+      "component": "tool_query",
+      "has_evidence_content_markers": false,
+      "has_observed_tool_loop": false,
+      "observed_tool_loop_has_tool_results": false,
+      "target_keys": [
+        "tool_calls"
+      ],
+      "underdetermined_evidence_routing": false,
+      "visible_keys": [
+        "allowed_actions",
+        "allowed_evidence_statuses",
+        "allowed_tools",
+        "claim",
+        "component",
+        "input_id",
+        "required_query_fields"
+      ]
+    },
+    {
+      "component": "routing_after_loop",
+      "has_evidence_content_markers": true,
+      "has_observed_tool_loop": true,
+      "observed_tool_loop_has_tool_results": true,
+      "target_keys": [
+        "action",
+        "evidence_status",
+        "cited_source_ids"
+      ],
+      "underdetermined_evidence_routing": false,
+      "visible_keys": [
+        "allowed_actions",
+        "allowed_evidence_statuses",
+        "allowed_tools",
+        "claim",
+        "component",
+        "input_id",
+        "observed_tool_loop",
+        "required_query_fields"
+      ]
+    },
+    {
+      "component": "enum_action",
+      "has_evidence_content_markers": true,
+      "has_observed_tool_loop": false,
+      "observed_tool_loop_has_tool_results": false,
+      "target_keys": [
+        "action",
+        "evidence_status"
+      ],
+      "underdetermined_evidence_routing": false,
+      "visible_keys": [
+        "allowed_actions",
+        "allowed_evidence_statuses",
+        "allowed_tools",
+        "claim",
+        "component",
+        "evidence_packet",
+        "input_id",
+        "required_query_fields"
+      ]
+    },
+    {
+      "component": "tool_query",
+      "has_evidence_content_markers": false,
+      "has_observed_tool_loop": false,
+      "observed_tool_loop_has_tool_results": false,
+      "target_keys": [
+        "tool_calls"
+      ],
+      "underdetermined_evidence_routing": false,
+      "visible_keys": [
+        "allowed_actions",
+        "allowed_evidence_statuses",
+        "allowed_tools",
+        "claim",
+        "component",
+        "input_id",
+        "required_query_fields"
+      ]
+    },
+    {
+      "component": "routing_after_loop",
+      "has_evidence_content_markers": true,
+      "has_observed_tool_loop": true,
+      "observed_tool_loop_has_tool_results": true,
+      "target_keys": [
+        "action",
+        "evidence_status",
+        "cited_source_ids"
+      ],
+      "underdetermined_evidence_routing": false,
+      "visible_keys": [
+        "allowed_actions",
+        "allowed_evidence_statuses",
+        "allowed_tools",
+        "claim",
+        "component",
+        "input_id",
+        "observed_tool_loop",
+        "required_query_fields"
+      ]
+    }
+  ],
+  "rows": 75,
+  "run_id": "stage_a_evidence_conditioned_component_visibility_audit_2026_07_05",
+  "scientific_readout": {
+    "boundary": "This is a data-interface audit, not a model score, DPO/RLVR reward, or full trajectory result.",
+    "diagnostic_question": "Do Stage A component prompts expose enough model-visible evidence to train action/evidence-status routing, or are some targets hidden-label projections without evidence packets?",
+    "interpretation_rule": "If enum/routing targets require action plus evidence_status but the prompt lacks tool results or evidence content, further enum loss shaping is not a clean repair; the substrate should expose evidence-conditioned state before moving to tool_query, DPO, or RLVR."
+  },
+  "summary": {
+    "components_with_underdetermined_routing": [],
+    "evidence_routing_components": [
+      "enum_action",
+      "routing_after_loop"
+    ],
+    "hidden_label_leak_rows": 0,
+    "underdetermined_evidence_routing_rows": 0
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "boundary": "Stage A strict-contract targets reuse the saved-prediction prompt contract and the shared trajectory evaluator; no hidden label is introduced into model-visible prompt messages.",
+  "by_case_family": {
+    "contradicted_or_mixed_endpoint_claim": 5,
+    "insufficient_evidence": 5,
+    "invalid_value_attribution_failure": 5,
+    "related_evidence_requires_verification": 5,
+    "supported_negative_evidence": 5
+  },
+  "by_evidence_status": {
+    "contradicted": 5,
+    "insufficient": 10,
+    "invalid_value": 5,
+    "supported": 5
+  },
+  "chosen_passed": 50,
+  "dataset": "negbiodb_ct_stage_a_strict_contract_export_v1",
+  "heldout_by_case_family": {
+    "contradicted_or_mixed_endpoint_claim": 1,
+    "insufficient_evidence": 1,
+    "invalid_value_attribution_failure": 1,
+    "related_evidence_requires_verification": 1,
+    "supported_negative_evidence": 1
+  },
+  "heldout_by_evidence_status": {
+    "contradicted": 1,
+    "insufficient": 2,
+    "invalid_value": 1,
+    "supported": 1
+  },
+  "heldout_case_ids": [
+    "stage_a::000001",
+    "stage_a::000007",
+    "stage_a::000012",
+    "stage_a::000019",
+    "stage_a::000021"
+  ],
+  "heldout_preference_failure_modes": {
+    "full_loop_verify_supported": 5,
+    "observed_single_tool_verify_supported": 5
+  },
+  "heldout_preference_pairs": 10,
+  "heldout_preferences": "post_training/stage_a_strict_contract_preferences_heldout_v1.jsonl",
+  "heldout_process": "post_training/stage_a_strict_contract_process_heldout_v1.jsonl",
+  "heldout_process_examples": 5,
+  "heldout_sft": "post_training/stage_a_strict_contract_sft_heldout_v1.jsonl",
+  "heldout_sft_examples": 5,
+  "heldout_source_task_ids": [
+    "ct::defer::83207::959",
+    "ct::flag::13976::643",
+    "ct::ground::368::3511",
+    "ct::reject::13964::481",
+    "ct::verify::80618::12955"
+  ],
+  "heldout_split_groups": [
+    "drug_condition::13964::481",
+    "drug_condition::80618::12955",
+    "drug_condition::83207::959",
+    "source::NCT00588770",
+    "source::NCT00828178"
+  ],
+  "overlap_case_ids": [],
+  "overlap_source_task_ids": [],
+  "overlap_split_groups": [],
+  "preference_dataset": "negbiodb_ct_stage_a_strict_contract_preferences_v1",
+  "preference_failure_modes": {
+    "full_loop_verify_supported": 25,
+    "observed_single_tool_verify_supported": 25
+  },
+  "preference_pairs": 50,
+  "preferences": "post_training/stage_a_strict_contract_preferences_v1.jsonl",
+  "process": "post_training/stage_a_strict_contract_process_v1.jsonl",
+  "process_dataset": "negbiodb_ct_stage_a_strict_contract_process_v1",
+  "process_examples": 25,
+  "prompt_contract": "stage_a_v2_strict",
+  "rejected_passed": 0,
+  "sft": "post_training/stage_a_strict_contract_sft_v1.jsonl",
+  "sft_dataset": "negbiodb_ct_stage_a_strict_contract_sft_v1",
+  "sft_examples": 25,
+  "source_manifest": "negbiodb_ct/stage_a_mini_manifest.jsonl",
+  "source_sft": "post_training/stage_a_sft_v1.jsonl",
+  "source_split_manifest": "post_training/stage_a_split_manifest.json",
+  "strategy": "strict_prompt_contract_targets_v1",
+  "train_by_case_family": {
+    "contradicted_or_mixed_endpoint_claim": 4,
+    "insufficient_evidence": 4,
+    "invalid_value_attribution_failure": 4,
+    "related_evidence_requires_verification": 4,
+    "supported_negative_evidence": 4
+  },
+  "train_by_evidence_status": {
+    "contradicted": 4,
+    "insufficient": 8,
+    "invalid_value": 4,
+    "supported": 4
+  },
+  "train_case_ids": [
+    "stage_a::000000",
+    "stage_a::000002",
+    "stage_a::000003",
+    "stage_a::000004",
+    "stage_a::000005",
+    "stage_a::000006",
+    "stage_a::000008",
+    "stage_a::000009",
+    "stage_a::000010",
+    "stage_a::000011",
+    "stage_a::000013",
+    "stage_a::000014",
+    "stage_a::000015",
+    "stage_a::000016",
+    "stage_a::000017",
+    "stage_a::000018",
+    "stage_a::000020",
+    "stage_a::000022",
+    "stage_a::000023",
+    "stage_a::000024"
+  ],
+  "train_preference_failure_modes": {
+    "full_loop_verify_supported": 20,
+    "observed_single_tool_verify_supported": 20
+  },
+  "train_preference_pairs": 40,
+  "train_preferences": "post_training/stage_a_strict_contract_preferences_train_v1.jsonl",
+  "train_process": "post_training/stage_a_strict_contract_process_train_v1.jsonl",
+  "train_process_examples": 20,
+  "train_sft": "post_training/stage_a_strict_contract_sft_train_v1.jsonl",
+  "train_sft_examples": 20,
+  "train_source_task_ids": [
+    "ct::defer::135357::32219",
+    "ct::defer::21866::4057",
+    "ct::defer::29653::30882",
+    "ct::defer::74096::41728",
+    "ct::flag::3423::1396",
+    "ct::flag::41960::16080",
+    "ct::flag::4483::7080",
+    "ct::flag::4675::2550",
+    "ct::ground::3634::1796",
+    "ct::ground::39465::211",
+    "ct::ground::4073::424",
+    "ct::ground::7272::227",
+    "ct::reject::167892::281",
+    "ct::reject::22104::5857",
+    "ct::reject::32409::40584",
+    "ct::reject::5513::2346",
+    "ct::verify::1216::3958",
+    "ct::verify::169043::7393",
+    "ct::verify::38487::47651",
+    "ct::verify::70114::48582"
+  ],
+  "train_split_groups": [
+    "drug_condition::1216::3958",
+    "drug_condition::135357::32219",
+    "drug_condition::167892::281",
+    "drug_condition::169043::7393",
+    "drug_condition::21866::4057",
+    "drug_condition::22104::5857",
+    "drug_condition::29653::30882",
+    "drug_condition::32409::40584",
+    "drug_condition::38487::47651",
+    "drug_condition::5513::2346",
+    "drug_condition::70114::48582",
+    "drug_condition::74096::41728",
+    "source::NCT00183729",
+    "source::NCT00474903",
+    "source::NCT00875017",
+    "source::NCT00895245",
+    "source::NCT01233869",
+    "source::NCT01869764",
+    "source::NCT01949337",
+    "source::NCT03036800"
+  ]
+}

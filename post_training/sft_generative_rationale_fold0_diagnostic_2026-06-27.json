@@ -1,0 +1,82 @@
+{
+  "date": "2026-06-27",
+  "diagnostic": "qwen_oracle400_generative_rationale_fold0_diagnostic",
+  "boundary": "Fold0 diagnostic only. Train source is deterministic-oracle evidence-rationale target text, not live runner behavior. Raw run outputs remain ignored under post_training/runs/.",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "train": {
+    "sft": "post_training/negbiodb_ct_oracle_sft_generative_rationale_v1.jsonl",
+    "examples": 400,
+    "max_steps": 160,
+    "batch_size": 2,
+    "max_length": 768,
+    "train_last_layers": 2,
+    "trainable_params": 29825664,
+    "device": "mps",
+    "first_loss": 2.393005132675171,
+    "last_loss": 0.03557004779577255,
+    "loss_delta": -2.3574350848793983,
+    "trainable_state": "post_training/runs/qwen_oracle400_generative_rationale_fold0_diagnostic/train/trainable_state.pt"
+  },
+  "evals": {
+    "generative_fold0_strict": {
+      "sft": "post_training/generative_rationale/negbiodb_ct_native_sft_cv4_generative_rationale_v1_fold0_heldout.jsonl",
+      "n": 10,
+      "max_new_tokens": 192,
+      "action_accuracy": 0.3,
+      "mean_reward": 0.15,
+      "generic_mean_score": 0.767,
+      "tool_call_rate": 1.0,
+      "parse_failures": 0,
+      "by_class": {
+        "defer": "1/2",
+        "flag": "0/2",
+        "ground": "2/2",
+        "reject": "0/2",
+        "verify": "0/2"
+      }
+    },
+    "native_base_fold0_strict": {
+      "sft": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_heldout.jsonl",
+      "n": 10,
+      "max_new_tokens": 192,
+      "action_accuracy": 0.0,
+      "mean_reward": 0.0,
+      "generic_mean_score": 0.433,
+      "tool_call_rate": 1.0,
+      "parse_failures": 10,
+      "by_class": {
+        "defer": "0/2",
+        "flag": "0/2",
+        "ground": "0/2",
+        "reject": "0/2",
+        "verify": "0/2"
+      }
+    },
+    "native_base_fold0_constrained_loaded": {
+      "sft": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_heldout.jsonl",
+      "n": 10,
+      "score_mode": "mean",
+      "max_length": 768,
+      "action_accuracy": 0.4,
+      "mean_reward": 0.2,
+      "generic_mean_score": 0.767,
+      "tool_call_rate": 1.0,
+      "parse_failures": 0,
+      "by_class": {
+        "defer": "0/2",
+        "flag": "0/2",
+        "ground": "2/2",
+        "reject": "0/2",
+        "verify": "2/2"
+      }
+    }
+  },
+  "interpretation": [
+    "The model fits the 400-row generative-rationale training artifact by loss.",
+    "Held-out generative-rationale strict generation remains weak at 0.300 action accuracy, despite parse-stable outputs.",
+    "Unprompted native/base prompt transfer fails as strict JSON decision generation, with 10/10 parse failures.",
+    "Constrained candidate scoring on the native/base prompt reaches 0.400, recovering ground and verify only.",
+    "This is a negative fold0 diagnostic for generative-rationale SFT as an internalization route. The deployable evidence-rationale guardrail remains the strongest current path."
+  ],
+  "next_safe_action": "Do not scale this exact generative-rationale SFT formulation before changing the objective. Prefer contrastive/preference training around boundary decisions or keep the evidence-rationale layer as an external guardrail/routing component."
+}

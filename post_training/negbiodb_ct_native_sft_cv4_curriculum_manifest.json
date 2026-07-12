@@ -1,0 +1,170 @@
+{
+  "dataset": "negbiodb_ct_native_sft_curriculum_v1",
+  "family_class_orders": {
+    "ground_flag": [
+      "ground",
+      "flag"
+    ],
+    "reject_override": [
+      "ground",
+      "flag",
+      "reject"
+    ],
+    "verify_defer": [
+      "defer",
+      "verify"
+    ]
+  },
+  "fold_manifests": [
+    {
+      "fold": 0,
+      "heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_examples": 10,
+      "source_train": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_train.jsonl",
+      "source_train_by_class": {
+        "defer": 6,
+        "flag": 6,
+        "ground": 6,
+        "reject": 6,
+        "verify": 6
+      },
+      "source_train_examples": 30,
+      "train": "post_training/curriculum/negbiodb_ct_native_sft_cv4_curriculum_v1_fold0_train.jsonl",
+      "train_by_class": {
+        "defer": 12,
+        "flag": 18,
+        "ground": 18,
+        "reject": 12,
+        "verify": 12
+      },
+      "train_by_family": {
+        "base": 30,
+        "ground_flag": 12,
+        "reject_override": 18,
+        "verify_defer": 12
+      },
+      "train_examples": 72
+    },
+    {
+      "fold": 1,
+      "heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold1_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_examples": 10,
+      "source_train": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold1_train.jsonl",
+      "source_train_by_class": {
+        "defer": 6,
+        "flag": 6,
+        "ground": 6,
+        "reject": 6,
+        "verify": 6
+      },
+      "source_train_examples": 30,
+      "train": "post_training/curriculum/negbiodb_ct_native_sft_cv4_curriculum_v1_fold1_train.jsonl",
+      "train_by_class": {
+        "defer": 12,
+        "flag": 18,
+        "ground": 18,
+        "reject": 12,
+        "verify": 12
+      },
+      "train_by_family": {
+        "base": 30,
+        "ground_flag": 12,
+        "reject_override": 18,
+        "verify_defer": 12
+      },
+      "train_examples": 72
+    },
+    {
+      "fold": 2,
+      "heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold2_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_examples": 10,
+      "source_train": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold2_train.jsonl",
+      "source_train_by_class": {
+        "defer": 6,
+        "flag": 6,
+        "ground": 6,
+        "reject": 6,
+        "verify": 6
+      },
+      "source_train_examples": 30,
+      "train": "post_training/curriculum/negbiodb_ct_native_sft_cv4_curriculum_v1_fold2_train.jsonl",
+      "train_by_class": {
+        "defer": 12,
+        "flag": 18,
+        "ground": 18,
+        "reject": 12,
+        "verify": 12
+      },
+      "train_by_family": {
+        "base": 30,
+        "ground_flag": 12,
+        "reject_override": 18,
+        "verify_defer": 12
+      },
+      "train_examples": 72
+    },
+    {
+      "fold": 3,
+      "heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold3_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_examples": 10,
+      "source_train": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold3_train.jsonl",
+      "source_train_by_class": {
+        "defer": 6,
+        "flag": 6,
+        "ground": 6,
+        "reject": 6,
+        "verify": 6
+      },
+      "source_train_examples": 30,
+      "train": "post_training/curriculum/negbiodb_ct_native_sft_cv4_curriculum_v1_fold3_train.jsonl",
+      "train_by_class": {
+        "defer": 12,
+        "flag": 18,
+        "ground": 18,
+        "reject": 12,
+        "verify": 12
+      },
+      "train_by_family": {
+        "base": 30,
+        "ground_flag": 12,
+        "reject_override": 18,
+        "verify_defer": 12
+      },
+      "train_examples": 72
+    }
+  ],
+  "out_dir": "post_training/curriculum",
+  "prefix": "negbiodb_ct_native_sft_cv4_curriculum_v1",
+  "source_cv_manifest": "post_training/negbiodb_ct_native_sft_cv4_manifest.json",
+  "source_cv_manifest_folds": 4,
+  "source_manifest": "post_training/negbiodb_ct_native_sft_v1.jsonl",
+  "strategy": "contrast_family_interleave"
+}

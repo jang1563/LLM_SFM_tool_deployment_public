@@ -1,0 +1,132 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_predictions_committed": false,
+    "raw_predictions_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "baseline_comparison": {
+    "freeform_enum_action_2026_07_05": {
+      "enum_validity": 0.0,
+      "exact_match": 0.0,
+      "mean_score": 0.25,
+      "passed": 0,
+      "target_keys": 0.0
+    },
+    "candidate_scoring_enum_action_2026_07_05": {
+      "enum_validity": 1.0,
+      "exact_match": 0.2,
+      "mean_score": 0.8,
+      "passed": 1,
+      "target_keys": 1.0
+    }
+  },
+  "cases_expected": 5,
+  "cluster": "Cayuga Slurm GPU",
+  "component": "enum_action",
+  "dataset": "negbiodb_ct_stage_a_strict_component_sft_smoke_v1",
+  "decode_mode": "enum_candidate_score",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "prompt_contract": "stage_a_v2_strict",
+  "run_id": "stage_a_component_enum_action_candidate_sft_cayuga_2026_07_05",
+  "runner": "post_training/run_stage_a_strict_component_sft_smoke.py",
+  "split": {
+    "heldout": "post_training/stage_a_strict_component_targets_heldout_v1.jsonl",
+    "train": "post_training/stage_a_strict_component_targets_train_v1.jsonl"
+  },
+  "training": {
+    "batch_size": 1,
+    "device": "cuda",
+    "loss_delta": -0.49055612087249756,
+    "loss_first": 1.0502474308013916,
+    "loss_last": 0.559691309928894,
+    "max_steps": 20,
+    "train_last_layers": 1,
+    "trainable_params": 14913280
+  },
+  "result": {
+    "cases": 5,
+    "gate_accuracy": {
+      "enum_validity": 1.0,
+      "exact_match": 0.2,
+      "target_keys": 1.0,
+      "tool_query_shape": 1.0
+    },
+    "mean_score": 0.8,
+    "passed": 1,
+    "violations": {
+      "target_mismatch": 4
+    }
+  },
+  "heldout_readout": [
+    {
+      "case_family": "supported_negative_evidence",
+      "expected": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "passed": true,
+      "predicted": {
+        "action": "ground",
+        "evidence_status": "supported"
+      }
+    },
+    {
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "expected": {
+        "action": "reject",
+        "evidence_status": "contradicted"
+      },
+      "passed": false,
+      "predicted": {
+        "action": "ground",
+        "evidence_status": "supported"
+      }
+    },
+    {
+      "case_family": "insufficient_evidence",
+      "expected": {
+        "action": "defer",
+        "evidence_status": "insufficient"
+      },
+      "passed": false,
+      "predicted": {
+        "action": "ground",
+        "evidence_status": "supported"
+      }
+    },
+    {
+      "case_family": "related_evidence_requires_verification",
+      "expected": {
+        "action": "verify",
+        "evidence_status": "insufficient"
+      },
+      "passed": false,
+      "predicted": {
+        "action": "verify",
+        "evidence_status": "invalid_value"
+      }
+    },
+    {
+      "case_family": "invalid_value_attribution_failure",
+      "expected": {
+        "action": "flag",
+        "evidence_status": "invalid_value"
+      },
+      "passed": false,
+      "predicted": {
+        "action": "ground",
+        "evidence_status": "supported"
+      }
+    }
+  ],
+  "trace": {
+    "eval_report_sha256": "3ba76d365bbb8071420e75cedb0fe2278f51e8ae4f49015b7705ff378ec61de3",
+    "predictions_sha256": "fec5e46ab5b279774c7043be98c536d7c356303ec78d753bcdd01d8c17f37750",
+    "report_sha256": "405e6ed6b04b14855543264860f6bb9a65a85f9d11d28206bc865cd9324e6338"
+  },
+  "scientific_readout": {
+    "improvement": "Finite candidate scoring fixes target-key and enum-validity failures from the free-form enum_action run.",
+    "remaining_failure": "Exact enum-pair selection remains weak: the model passes only the supported/ground case and often ranks ground/supported highest.",
+    "next_decision": "Do not move to tool_query, DPO, or RLVR yet. Add a slice-specific ranking or calibration diagnostic for enum pair selection."
+  }
+}

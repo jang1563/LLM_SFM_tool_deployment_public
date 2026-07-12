@@ -1,0 +1,163 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_predictions_committed": false,
+    "raw_predictions_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "candidate_rank_diagnostic": {
+    "all_candidates_retained_cases": 5,
+    "candidate_space_size": 30,
+    "cases": 5,
+    "exact_top1": 1,
+    "gold_in_retained_candidates": 5,
+    "gold_rank_histogram": {
+      "1": 1,
+      "13": 1,
+      "24": 1,
+      "4": 1,
+      "5": 1
+    },
+    "mean_gold_rank_observed": 9.4,
+    "mean_top_gold_margin_observed": 0.115211,
+    "missing_candidate_scores": 0,
+    "retained_candidate_count_histogram": {
+      "30": 5
+    },
+    "top_action_counts": {
+      "ground": 4,
+      "verify": 1
+    },
+    "top_evidence_status_counts": {
+      "invalid_value": 1,
+      "supported": 4
+    }
+  },
+  "cluster": "Cayuga Slurm GPU",
+  "component": "enum_action",
+  "dataset": "negbiodb_ct_stage_a_strict_component_sft_smoke_v1",
+  "decode_mode": "enum_candidate_score",
+  "heldout_rank_readout": [
+    {
+      "case_family": "supported_negative_evidence",
+      "exact_top1": true,
+      "expected": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "gold_rank": 1,
+      "top_candidate": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_gold_margin": 0.0
+    },
+    {
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "exact_top1": false,
+      "expected": {
+        "action": "reject",
+        "evidence_status": "contradicted"
+      },
+      "gold_rank": 5,
+      "top_candidate": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_gold_margin": 0.121863
+    },
+    {
+      "case_family": "insufficient_evidence",
+      "exact_top1": false,
+      "expected": {
+        "action": "defer",
+        "evidence_status": "insufficient"
+      },
+      "gold_rank": 13,
+      "top_candidate": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_gold_margin": 0.171361
+    },
+    {
+      "case_family": "related_evidence_requires_verification",
+      "exact_top1": false,
+      "expected": {
+        "action": "verify",
+        "evidence_status": "insufficient"
+      },
+      "gold_rank": 4,
+      "top_candidate": {
+        "action": "verify",
+        "evidence_status": "invalid_value"
+      },
+      "top_gold_margin": 0.052832
+    },
+    {
+      "case_family": "invalid_value_attribution_failure",
+      "exact_top1": false,
+      "expected": {
+        "action": "flag",
+        "evidence_status": "invalid_value"
+      },
+      "gold_rank": 24,
+      "top_candidate": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_gold_margin": 0.229999
+    }
+  ],
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "prompt_contract": "stage_a_v2_strict",
+  "rank_analyzer": "post_training/analyze_stage_a_enum_candidate_scores.py",
+  "result": {
+    "by_component": {
+      "enum_action": {
+        "cases": 5,
+        "mean_score": 0.8,
+        "passed": 1
+      }
+    },
+    "cases": 5,
+    "gate_accuracy": {
+      "enum_validity": 1.0,
+      "exact_match": 0.2,
+      "target_keys": 1.0,
+      "tool_query_shape": 1.0
+    },
+    "mean_score": 0.8,
+    "passed": 1,
+    "violations": {
+      "target_mismatch": 4
+    }
+  },
+  "run_id": "stage_a_component_enum_action_candidate_fullrank_cayuga_2026_07_05",
+  "runner": "post_training/run_stage_a_strict_component_sft_smoke.py",
+  "scientific_readout": {
+    "bias": "The top candidate is ground/supported in four of five held-out cases; the remaining top candidate is verify/invalid_value.",
+    "next_decision": "Do not move to tool_query, DPO, or RLVR yet. Add enum-specific corrective supervision or a narrower valid-pair target before the next component slice.",
+    "rank_finding": "Gold ranks are 1, 5, 13, 4, and 24 across the five held-out families; insufficient and invalid-value cases are not near-miss calibration errors.",
+    "result": "Full candidate retention keeps the same 1/5 pass, mean 0.800 enum_action result while making the rank failure measurable."
+  },
+  "split": {
+    "heldout": "post_training/stage_a_strict_component_targets_heldout_v1.jsonl",
+    "train": "post_training/stage_a_strict_component_targets_train_v1.jsonl"
+  },
+  "trace": {
+    "eval_report_sha256": "021e969dd8991f6578a2ae411f1a52c713a14bc45fefe1f627f4a3368c15652d",
+    "predictions_sha256": "bacc78cb74c91b01f3a70e3b7d02f85ef5d6c719949bc735e2853ed189eae28f",
+    "rank_summary_sha256": "fc54b7ed4fc3cafdee93f2a28a21659afb90a0be7ae81781db2bfd830b179a1d",
+    "report_sha256": "a4a97e7b41773707ce4e6fdb7de9d1a2a07abb90bbdd19d21f25d2e237218792"
+  },
+  "training": {
+    "batch_size": 1,
+    "device": "cuda",
+    "loss_delta": -0.49055612087249756,
+    "loss_first": 1.0502474308013916,
+    "loss_last": 0.559691309928894,
+    "max_steps": 20,
+    "train_last_layers": 1,
+    "trainable_params": 14913280
+  }
+}

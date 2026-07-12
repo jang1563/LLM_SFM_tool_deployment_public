@@ -1,0 +1,25 @@
+flowchart LR
+    A["Free-text claim or specialist output"] --> B["Entity / representation resolver"]
+    B --> C["Tool or database query"]
+    C --> D["Evidence packet"]
+    D --> E["Deterministic trajectory evaluator"]
+    E --> F["Terminal action"]
+
+    F --> F1["Ground with attribution"]
+    F --> F2["Verify with assay or database"]
+    F --> F3["Use cheap baseline"]
+    F --> F4["Defer or request evidence"]
+    F --> F5["Reject or flag unsupported claim"]
+
+    D --> G["Policy gates"]
+    G --> G1["Attribution required"]
+    G --> G2["Calibration regime match"]
+    G --> G3["Invalid value check"]
+    G --> G4["No self-answer on tool-required tasks"]
+
+    E --> H["Post-training artifacts"]
+    H --> H1["SFT examples"]
+    H --> H2["Preference pairs"]
+    H --> H3["Guardrail stress tests"]
+    H --> H4["A2 reranker diagnostics"]
+

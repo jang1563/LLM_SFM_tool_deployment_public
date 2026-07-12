@@ -1,0 +1,455 @@
+{
+  "checkpoint_name": "post_candidate_ce_next_decision",
+  "current_evidence": {
+    "full_trajectory_arbitration": {
+      "dataset": "negbiodb_ct_stage_a_full_trajectory_arbitration_v1",
+      "path": "post_training/stage_a_full_trajectory_arbitration_2026-07-09.json",
+      "policies": {
+        "citationless_runtime_action": {
+          "cases": 25,
+          "mean_score": 0.943,
+          "passed": 15,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {
+            "missing_required_attribution": 10
+          }
+        },
+        "ground_supported_collapse": {
+          "cases": 25,
+          "mean_score": 0.714,
+          "passed": 5,
+          "unsafe_ground_supported_overrides": 20,
+          "violations": {
+            "contradicted_claim_requires_reject_or_flag": 5,
+            "evidence_status_mismatch": 20,
+            "invalid_value_requires_reject_or_flag": 5,
+            "terminal_action_mismatch": 20
+          }
+        },
+        "hybrid_runtime_over_collapse": {
+          "cases": 25,
+          "mean_score": 1.0,
+          "passed": 25,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {}
+        },
+        "oracle_full": {
+          "cases": 25,
+          "mean_score": 1.0,
+          "passed": 25,
+          "unsafe_ground_supported_overrides": 0,
+          "violations": {}
+        }
+      },
+      "raw_model_outputs_used": false,
+      "sha256": "272d6b402b72179a260f09db0d2cb57ac024b628a811092dd36f3161d82afdb0"
+    },
+    "routing_evidence_gate": {
+      "all": {
+        "by_predicted_pair": {
+          "defer/insufficient": 5,
+          "flag/invalid_value": 5,
+          "ground/supported": 5,
+          "reject/contradicted": 5,
+          "verify/insufficient": 5
+        },
+        "exact": 25,
+        "rows": 25
+      },
+      "dataset": "negbiodb_ct_stage_a_routing_evidence_gate_v1",
+      "heldout": {
+        "by_predicted_pair": {
+          "defer/insufficient": 1,
+          "flag/invalid_value": 1,
+          "ground/supported": 1,
+          "reject/contradicted": 1,
+          "verify/insufficient": 1
+        },
+        "exact": 5,
+        "rows": 5
+      },
+      "hidden_labels_used_by_gate": false,
+      "model_visible_fields_only": true,
+      "path": "post_training/stage_a_routing_evidence_gate_2026-07-08.json",
+      "sha256": "49353503c252d6549d2dc666fb83f867e3c782763599d6a5ef5e754cfea8b13f"
+    },
+    "routing_model_readiness": {
+      "all_family_model_results": {
+        "constrained_routing_observed_pair": {
+          "heldout_cases": 5,
+          "heldout_passed": 2,
+          "mean_score": 0.85,
+          "ready_for_escalation": false
+        },
+        "freeform_routing_after_loop": {
+          "heldout_cases": 5,
+          "heldout_passed": 0,
+          "mean_score": 0.2,
+          "ready_for_escalation": false
+        }
+      },
+      "dataset": "negbiodb_ct_stage_a_routing_model_readiness_v1",
+      "decision": {
+        "blockers": [
+          "best all-family model readout is 2/5, below citationless routing at 3/5",
+          "best all-family model readout is below runtime evidence gate at 5/5",
+          "free-form routing is 0/5 and does not beat collapse baseline",
+          "score-gap fail-closed result is only a two-case boundary diagnostic"
+        ],
+        "ready_for_dpo_rlvr": false,
+        "ready_for_hugging_face_publication": false,
+        "ready_for_release_tagging": false,
+        "ready_for_tool_query": false,
+        "runtime_enforcement_required": true
+      },
+      "path": "post_training/stage_a_routing_model_readiness_2026-07-09.json",
+      "sha256": "f625396804276bb413e834d1ef194746c199affcc2f438c0c77f86ec971e0246"
+    },
+    "standalone_candidate_checkpoints": [
+      {
+        "best_candidate_exact": 1,
+        "best_runtime_arbitration_exact": 4,
+        "calibrated_heldout_candidate_top1": {
+          "exact": 1,
+          "rows": 4,
+          "top_pair_counts": {
+            "defer/insufficient": 2,
+            "ground/supported": 1,
+            "reject/contradicted": 1
+          }
+        },
+        "candidate_policy_readouts": [
+          {
+            "by_predicted_pair": {
+              "ground/supported": 1,
+              "verify/insufficient": 3
+            },
+            "error_case_ids": [
+              "stage_a::000007",
+              "stage_a::000012",
+              "stage_a::000021"
+            ],
+            "exact": 1,
+            "policy": "raw_candidate_top1",
+            "rows": 4,
+            "trusted_candidate": 4,
+            "trusted_candidate_incorrect": 3
+          },
+          {
+            "by_predicted_pair": {
+              "defer/insufficient": 2,
+              "ground/supported": 1,
+              "reject/contradicted": 1
+            },
+            "error_case_ids": [
+              "stage_a::000007",
+              "stage_a::000019",
+              "stage_a::000021"
+            ],
+            "exact": 1,
+            "policy": "calibrated_candidate_top1",
+            "rows": 4,
+            "trusted_candidate": 4,
+            "trusted_candidate_incorrect": 3
+          },
+          {
+            "by_predicted_pair": {
+              "defer/insufficient": 4
+            },
+            "error_case_ids": [
+              "stage_a::000007",
+              "stage_a::000019",
+              "stage_a::000021"
+            ],
+            "exact": 1,
+            "policy": "train_selected_score_gap_gate",
+            "rows": 4,
+            "trusted_candidate": 0,
+            "trusted_candidate_incorrect": 0
+          }
+        ],
+        "candidate_trusted_incorrect_max": 3,
+        "checkpoint_name": "balanced_nonflag_candidate_rank_readout",
+        "dataset": "negbiodb_ct_stage_a_saved_output_nonflag_checkpoint_result_v1",
+        "decision": {
+          "interpretation": "Non-flag balancing moved the finite-candidate prior away from flag/invalid_value, but did not improve held-out exact top-1 or meet the runtime arbitration baseline.",
+          "next_research_move": "Do not escalate to DPO/RLVR or tool_query. Treat simple pair oversampling as insufficient and continue with runtime-enforced evidence arbitration or a more explicit candidate-routing objective.",
+          "passes_meet_or_beat_gate": false,
+          "selected_next_step": "keep_runtime_evidence_arbitration_baseline"
+        },
+        "field_diagnostic": {
+          "action_top1": 1,
+          "evidence_status_top1": 2,
+          "exact_top1": 1,
+          "field_rank_patterns": {
+            "action_field_failure": 1,
+            "both_field_failure": 2,
+            "pair_top1": 1
+          },
+          "rows": 4
+        },
+        "label": "balanced_nonflag_candidate_rank_readout",
+        "path": "post_training/stage_a_saved_output_nonflag_checkpoint_result_2026-07-10.json",
+        "raw_heldout_candidate_top1": {
+          "exact": 1,
+          "rows": 4,
+          "top_pair_counts": {
+            "ground/supported": 1,
+            "verify/insufficient": 3
+          }
+        },
+        "run_id": "stage_a_saved_output_nonflag_candidate_rank_qwen05b_cayuga_20260710",
+        "runtime_arbitration_readouts": [
+          {
+            "by_predicted_pair": {
+              "defer/insufficient": 1,
+              "flag/invalid_value": 1,
+              "reject/contradicted": 1,
+              "verify/insufficient": 1
+            },
+            "error_case_ids": [],
+            "exact": 4,
+            "policy": "evidence_gate_override",
+            "rows": 4,
+            "trusted_candidate": 0,
+            "trusted_candidate_incorrect": 0
+          },
+          {
+            "by_predicted_pair": {
+              "defer/insufficient": 1,
+              "flag/invalid_value": 1,
+              "reject/contradicted": 1,
+              "verify/insufficient": 1
+            },
+            "error_case_ids": [],
+            "exact": 4,
+            "policy": "hybrid_evidence_then_train_gate",
+            "rows": 4,
+            "trusted_candidate": 0,
+            "trusted_candidate_incorrect": 0
+          }
+        ],
+        "runtime_trusted_incorrect_max": 0,
+        "sha256": "c63c34b531de8d59e7aac2068bbd72e490b90eaf2e83a80a678c31b29fb4bd80",
+        "train_selected_gate": {
+          "strict_final_correct": 1,
+          "trusted": 0,
+          "trusted_incorrect": 0
+        }
+      },
+      {
+        "best_candidate_exact": 1,
+        "best_runtime_arbitration_exact": 4,
+        "calibrated_heldout_candidate_top1": {
+          "exact": 1,
+          "rows": 4,
+          "top_pair_counts": {
+            "defer/insufficient": 1,
+            "ground/supported": 1,
+            "verify/insufficient": 2
+          }
+        },
+        "candidate_policy_readouts": [
+          {
+            "by_predicted_pair": {
+              "verify/insufficient": 4
+            },
+            "error_case_ids": [
+              "stage_a::000007",
+              "stage_a::000012",
+              "stage_a::000021"
+            ],
+            "exact": 1,
+            "policy": "raw_candidate_top1",
+            "rows": 4,
+            "trusted_candidate": 4,
+            "trusted_candidate_incorrect": 3
+          },
+          {
+            "by_predicted_pair": {
+              "defer/insufficient": 1,
+              "ground/supported": 1,
+              "verify/insufficient": 2
+            },
+            "error_case_ids": [
+              "stage_a::000007",
+              "stage_a::000012",
+              "stage_a::000021"
+            ],
+            "exact": 1,
+            "policy": "calibrated_candidate_top1",
+            "rows": 4,
+            "trusted_candidate": 4,
+            "trusted_candidate_incorrect": 3
+          },
+          {
+            "by_predicted_pair": {
+              "defer/insufficient": 4
+            },
+            "error_case_ids": [
+              "stage_a::000007",
+              "stage_a::000019",
+              "stage_a::000021"
+            ],
+            "exact": 1,
+            "policy": "train_selected_score_gap_gate",
+            "rows": 4,
+            "trusted_candidate": 0,
+            "trusted_candidate_incorrect": 0
+          }
+        ],
+        "candidate_trusted_incorrect_max": 3,
+        "checkpoint_name": "candidate_ce_action_status_pair_field_readout",
+        "dataset": "negbiodb_ct_stage_a_saved_output_candidate_ce_checkpoint_result_v1",
+        "decision": {
+          "interpretation": "Candidate CE pair+field supervision shifted the candidate prior toward verify/insufficient but did not improve held-out exact top-1 or meet the runtime arbitration baseline.",
+          "next_research_move": "Do not escalate to DPO/RLVR, tool_query, Hugging Face publication, or release tagging. Treat standalone candidate-routing SFT as insufficient and keep runtime evidence arbitration as the baseline while designing evidence-conditioned or larger-slice candidate routing checks.",
+          "passes_meet_or_beat_gate": false,
+          "selected_next_step": "keep_runtime_evidence_arbitration_baseline"
+        },
+        "field_diagnostic": {
+          "action_top1": 1,
+          "evidence_status_top1": 2,
+          "exact_top1": 1,
+          "field_rank_patterns": {
+            "action_field_failure": 1,
+            "both_field_failure": 2,
+            "pair_top1": 1
+          },
+          "rows": 4
+        },
+        "label": "candidate_ce_action_status_pair_field_readout",
+        "path": "post_training/stage_a_saved_output_candidate_ce_checkpoint_result_2026-07-10.json",
+        "raw_heldout_candidate_top1": {
+          "exact": 1,
+          "rows": 4,
+          "top_pair_counts": {
+            "verify/insufficient": 4
+          }
+        },
+        "run_id": "stage_a_saved_output_candidate_ce_pair_field_qwen05b_cayuga_20260710_163249",
+        "runtime_arbitration_readouts": [
+          {
+            "by_predicted_pair": {
+              "defer/insufficient": 1,
+              "flag/invalid_value": 1,
+              "reject/contradicted": 1,
+              "verify/insufficient": 1
+            },
+            "error_case_ids": [],
+            "exact": 4,
+            "policy": "evidence_gate_override",
+            "rows": 4,
+            "trusted_candidate": 0,
+            "trusted_candidate_incorrect": 0
+          },
+          {
+            "by_predicted_pair": {
+              "defer/insufficient": 1,
+              "flag/invalid_value": 1,
+              "reject/contradicted": 1,
+              "verify/insufficient": 1
+            },
+            "error_case_ids": [],
+            "exact": 4,
+            "policy": "hybrid_evidence_then_train_gate",
+            "rows": 4,
+            "trusted_candidate": 0,
+            "trusted_candidate_incorrect": 0
+          }
+        ],
+        "runtime_trusted_incorrect_max": 0,
+        "sha256": "41f27fabc76c2936ea7408b94c555709e6100af4a0a1b260eb32a5930e866ae6",
+        "train_selected_gate": {
+          "strict_final_correct": 1,
+          "trusted": 0,
+          "trusted_incorrect": 0
+        }
+      }
+    ]
+  },
+  "dataset": "negbiodb_ct_stage_a_saved_output_post_candidate_ce_next_decision_v1",
+  "decision": {
+    "blockers": [
+      "nonflag and candidate-CE standalone candidate checkpoints both remain below runtime arbitration",
+      "raw/calibrated candidate trust still produces unsafe incorrect held-out decisions",
+      "routing model readiness remains closed for tool_query and DPO/RLVR",
+      "runtime-plus-evidence hybrid already has a full-trajectory passing reference"
+    ],
+    "candidate_best_exact": 1,
+    "candidate_rows": 4,
+    "interpretation": "Standalone saved-output candidate routing did not learn enough from small supervised checkpoints. The next scientifically useful step is to bridge those failed held-out candidate decisions to prompt-visible evidence reasons and the existing runtime evidence gate before adding more optimization objectives.",
+    "passes_meet_or_beat_gate": false,
+    "ready_flags": {
+      "ready_for_dpo_rlvr": false,
+      "ready_for_hugging_face_publication": false,
+      "ready_for_release_tagging": false,
+      "ready_for_tool_query": false
+    },
+    "rejected_next_steps": [
+      "more_standalone_candidate_sft",
+      "tool_query_component_training",
+      "DPO_or_preference_optimization",
+      "audited_RLVR",
+      "Hugging_Face_dataset_publication",
+      "v0.1_release_tagging"
+    ],
+    "routing_evidence_gate_heldout_exact": 5,
+    "routing_evidence_gate_heldout_rows": 5,
+    "runtime_arbitration_best_exact": 4,
+    "selected_next_step": "build_evidence_conditioned_saved_output_bridge"
+  },
+  "input_artifacts": {
+    "candidate_ce_result": {
+      "path": "post_training/stage_a_saved_output_candidate_ce_checkpoint_result_2026-07-10.json",
+      "role": "candidate-CE checkpoint result",
+      "sha256": "41f27fabc76c2936ea7408b94c555709e6100af4a0a1b260eb32a5930e866ae6"
+    },
+    "full_trajectory_arbitration": {
+      "path": "post_training/stage_a_full_trajectory_arbitration_2026-07-09.json",
+      "role": "canonical full-trajectory arbitration checkpoint",
+      "sha256": "272d6b402b72179a260f09db0d2cb57ac024b628a811092dd36f3161d82afdb0"
+    },
+    "nonflag_result": {
+      "path": "post_training/stage_a_saved_output_nonflag_checkpoint_result_2026-07-10.json",
+      "role": "nonflag checkpoint result",
+      "sha256": "c63c34b531de8d59e7aac2068bbd72e490b90eaf2e83a80a678c31b29fb4bd80"
+    },
+    "routing_evidence_gate": {
+      "path": "post_training/stage_a_routing_evidence_gate_2026-07-08.json",
+      "role": "deterministic routing evidence gate",
+      "sha256": "49353503c252d6549d2dc666fb83f867e3c782763599d6a5ef5e754cfea8b13f"
+    },
+    "routing_model_readiness": {
+      "path": "post_training/stage_a_routing_model_readiness_2026-07-09.json",
+      "role": "routing model readiness checkpoint",
+      "sha256": "f625396804276bb413e834d1ef194746c199affcc2f438c0c77f86ec971e0246"
+    }
+  },
+  "next_checkpoint_contract": {
+    "acceptance_gate": {
+      "candidate_policy_exact_must_meet_runtime_baseline": true,
+      "candidate_policy_trusted_incorrect_must_be_zero": true,
+      "hidden_labels_must_remain_isolated": true,
+      "must_report_failure_case_ids_and_predicted_pair_counts": true,
+      "raw_outputs_must_remain_uncommitted": true
+    },
+    "minimum_public_inputs": [
+      "post_training/stage_a_saved_output_candidate_ce_checkpoint_result_2026-07-10.json",
+      "post_training/stage_a_saved_output_nonflag_checkpoint_result_2026-07-10.json",
+      "post_training/stage_a_routing_evidence_gate_2026-07-08.json",
+      "post_training/stage_a_full_trajectory_arbitration_2026-07-09.json"
+    ],
+    "name": "stage_a_saved_output_evidence_conditioned_bridge",
+    "purpose": "Map failed saved-output candidate choices to prompt-visible evidence reasons, runtime gate decisions, and full-trajectory violations before deciding whether another training objective is warranted."
+  },
+  "public_safety_contract": {
+    "hidden_labels_used_for_decision": false,
+    "ignored_run_folder_read": false,
+    "model_state_read": false,
+    "raw_artifacts_committed": false,
+    "raw_candidate_score_jsonl_read": false,
+    "raw_prediction_jsonl_read": false,
+    "scheduler_logs_read": false
+  }
+}

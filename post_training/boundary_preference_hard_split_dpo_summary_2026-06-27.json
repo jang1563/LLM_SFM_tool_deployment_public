@@ -1,0 +1,87 @@
+{
+  "date": "2026-06-27",
+  "condition": "hard_boundary_preference_split_dpo_smoke",
+  "boundary": "Reference-free DPO-style margin smoke over deterministic oracle-derived hard boundary preference pairs. This is a heldout-aware margin diagnostic, not a final tool-use task accuracy or RLVR deployment claim.",
+  "artifacts": {
+    "train": "post_training/negbiodb_ct_oracle_boundary_preferences_hard_train_v1.jsonl",
+    "heldout": "post_training/negbiodb_ct_oracle_boundary_preferences_hard_heldout_v1.jsonl",
+    "split_manifest": "post_training/negbiodb_ct_oracle_boundary_preferences_hard_split_manifest.json",
+    "dpo_report": "post_training/runs/qwen_boundary_preference_dpo_hard_split_steps48/report.json",
+    "trainable_state": "post_training/runs/qwen_boundary_preference_dpo_hard_split_steps48/trainable_state.pt"
+  },
+  "split": {
+    "source": "post_training/negbiodb_ct_oracle_boundary_preferences_hard_v1.jsonl",
+    "seed": 20260627,
+    "heldout_per_mode": 8,
+    "train_pairs": 208,
+    "heldout_pairs": 32,
+    "overlap_source_ids": [],
+    "train_by_failure_mode": {
+      "boundary_defer_over_verify": 112,
+      "boundary_flag_over_ground": 32,
+      "boundary_reject_over_flag": 32,
+      "boundary_reject_over_ground": 32
+    },
+    "heldout_by_failure_mode": {
+      "boundary_defer_over_verify": 8,
+      "boundary_flag_over_ground": 8,
+      "boundary_reject_over_flag": 8,
+      "boundary_reject_over_ground": 8
+    }
+  },
+  "run": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "selected_pairs": 208,
+    "train_eval_pairs": 32,
+    "selected_eval_pairs": 32,
+    "max_steps": 48,
+    "batch_size": 2,
+    "max_length": 768,
+    "train_last_layers": 2,
+    "trainable_params": 29825664,
+    "lr": 5e-05,
+    "beta": 0.1,
+    "logprob_mode": "mean",
+    "loss_delta": -0.611328125,
+    "step_margin_delta": 34.96875
+  },
+  "train_eval": {
+    "pre_win_rate": 0.0,
+    "pre_mean_margin": -0.9019,
+    "post_win_rate": 1.0,
+    "post_mean_margin": 38.4805
+  },
+  "heldout_eval": {
+    "pre_win_rate": 0.0,
+    "pre_mean_margin": -1.3701,
+    "post_win_rate": 1.0,
+    "post_mean_margin": 39.5352,
+    "post_by_failure_mode": {
+      "boundary_defer_over_verify": {
+        "n": 8,
+        "win_rate": 1.0,
+        "mean_margin": 31.5625
+      },
+      "boundary_flag_over_ground": {
+        "n": 8,
+        "win_rate": 1.0,
+        "mean_margin": 10.8125
+      },
+      "boundary_reject_over_flag": {
+        "n": 8,
+        "win_rate": 1.0,
+        "mean_margin": 56.75
+      },
+      "boundary_reject_over_ground": {
+        "n": 8,
+        "win_rate": 1.0,
+        "mean_margin": 59.0156
+      }
+    }
+  },
+  "interpretation": {
+    "positive": "The pairwise objective moved all heldout hard-mode margins from negative to positive under the same four hard contrast families.",
+    "limit": "The evaluation is margin-only over deterministic oracle-derived terminal-action pairs, so it does not yet establish improved live tool-use trajectory quality or RLVR readiness.",
+    "next": "Evaluate final-decision/tool-use behavior after loading the trainable state, or run a fuller hard-subset epoch with stricter heldout diagnostics."
+  }
+}

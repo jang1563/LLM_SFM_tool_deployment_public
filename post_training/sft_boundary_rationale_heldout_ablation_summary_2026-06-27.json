@@ -1,0 +1,288 @@
+{
+  "ablation_manifest": "post_training/negbiodb_ct_native_sft_cv4_boundary_rationale_heldout_ablation_manifest.json",
+  "aggregate": {
+    "constrained_loaded_accuracy_mean": 1.0,
+    "constrained_loaded_accuracy_range": "1.000..1.000",
+    "constrained_loaded_class_accuracy": {
+      "defer": "8/8",
+      "flag": "8/8",
+      "ground": "8/8",
+      "reject": "8/8",
+      "verify": "8/8"
+    },
+    "heldout_loss_mean": 0.0039,
+    "strict_action_accuracy_mean": 1.0,
+    "strict_action_accuracy_range": "1.000..1.000",
+    "strict_class_accuracy": {
+      "defer": "8/8",
+      "flag": "8/8",
+      "ground": "8/8",
+      "reject": "8/8",
+      "verify": "8/8"
+    },
+    "strict_parse_failures_total": 0
+  },
+  "artifact": {
+    "dataset": "negbiodb_ct_native_sft_boundary_rationale_heldout_oracle_v1",
+    "folds": [
+      {
+        "evidence_action_mismatches": null,
+        "fold": 0,
+        "heldout_by_class": {
+          "defer": 2,
+          "flag": 2,
+          "ground": 2,
+          "reject": 2,
+          "verify": 2
+        },
+        "heldout_by_role": {
+          "rationale": 10
+        },
+        "heldout_examples": 10
+      },
+      {
+        "evidence_action_mismatches": null,
+        "fold": 1,
+        "heldout_by_class": {
+          "defer": 2,
+          "flag": 2,
+          "ground": 2,
+          "reject": 2,
+          "verify": 2
+        },
+        "heldout_by_role": {
+          "rationale": 10
+        },
+        "heldout_examples": 10
+      },
+      {
+        "evidence_action_mismatches": null,
+        "fold": 2,
+        "heldout_by_class": {
+          "defer": 2,
+          "flag": 2,
+          "ground": 2,
+          "reject": 2,
+          "verify": 2
+        },
+        "heldout_by_role": {
+          "rationale": 10
+        },
+        "heldout_examples": 10
+      },
+      {
+        "evidence_action_mismatches": null,
+        "fold": 3,
+        "heldout_by_class": {
+          "defer": 2,
+          "flag": 2,
+          "ground": 2,
+          "reject": 2,
+          "verify": 2
+        },
+        "heldout_by_role": {
+          "rationale": 10
+        },
+        "heldout_examples": 10
+      }
+    ],
+    "rationale_mode": "oracle",
+    "source_boundary_manifest": "post_training/negbiodb_ct_native_sft_cv4_boundary_rationale_manifest.json",
+    "strategy": "heldout_oracle_boundary_rationale_ablation_v1"
+  },
+  "condition": "boundary_rationale_heldout_oracle_ablation",
+  "config": {
+    "allow_download": false,
+    "batch_size": 2,
+    "device": "auto",
+    "max_length": 512,
+    "max_new_tokens": 64,
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "score_mode": "mean",
+    "source_state_root": "post_training/runs/qwen_sft_cv4_boundary_rationale_schema_action_80_evalfast",
+    "tasks": "negbiodb_ct/tasks_pilot.jsonl"
+  },
+  "confusion_matrices": {
+    "constrained_loaded": {
+      "defer": {
+        "defer": 8
+      },
+      "flag": {
+        "flag": 8
+      },
+      "ground": {
+        "ground": 8
+      },
+      "reject": {
+        "reject": 8
+      },
+      "verify": {
+        "verify": 8
+      }
+    },
+    "strict": {
+      "defer": {
+        "defer": 8
+      },
+      "flag": {
+        "flag": 8
+      },
+      "ground": {
+        "ground": 8
+      },
+      "reject": {
+        "reject": 8
+      },
+      "verify": {
+        "verify": 8
+      }
+    }
+  },
+  "failure_pairs": {
+    "constrained_loaded": {},
+    "strict": {}
+  },
+  "folds": [
+    {
+      "constrained_loaded_action_accuracy": 1.0,
+      "constrained_loaded_by_class": {
+        "defer": "2/2",
+        "flag": "2/2",
+        "ground": "2/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "fold": 0,
+      "heldout": "post_training/boundary_rationale_heldout_ablation/negbiodb_ct_native_sft_cv4_boundary_rationale_heldout_oracle_v1_fold0_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_by_role": {
+        "rationale": 10
+      },
+      "heldout_examples": 10,
+      "heldout_teacher_forced_loaded_loss": 0.0049,
+      "source_heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_heldout.jsonl",
+      "source_state": "post_training/runs/qwen_sft_cv4_boundary_rationale_schema_action_80_evalfast/fold0/train/trainable_state.pt",
+      "strict_action_accuracy": 1.0,
+      "strict_by_class": {
+        "defer": "2/2",
+        "flag": "2/2",
+        "ground": "2/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "strict_parse_failures": 0
+    },
+    {
+      "constrained_loaded_action_accuracy": 1.0,
+      "constrained_loaded_by_class": {
+        "defer": "2/2",
+        "flag": "2/2",
+        "ground": "2/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "fold": 1,
+      "heldout": "post_training/boundary_rationale_heldout_ablation/negbiodb_ct_native_sft_cv4_boundary_rationale_heldout_oracle_v1_fold1_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_by_role": {
+        "rationale": 10
+      },
+      "heldout_examples": 10,
+      "heldout_teacher_forced_loaded_loss": 0.0029,
+      "source_heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold1_heldout.jsonl",
+      "source_state": "post_training/runs/qwen_sft_cv4_boundary_rationale_schema_action_80_evalfast/fold1/train/trainable_state.pt",
+      "strict_action_accuracy": 1.0,
+      "strict_by_class": {
+        "defer": "2/2",
+        "flag": "2/2",
+        "ground": "2/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "strict_parse_failures": 0
+    },
+    {
+      "constrained_loaded_action_accuracy": 1.0,
+      "constrained_loaded_by_class": {
+        "defer": "2/2",
+        "flag": "2/2",
+        "ground": "2/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "fold": 2,
+      "heldout": "post_training/boundary_rationale_heldout_ablation/negbiodb_ct_native_sft_cv4_boundary_rationale_heldout_oracle_v1_fold2_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_by_role": {
+        "rationale": 10
+      },
+      "heldout_examples": 10,
+      "heldout_teacher_forced_loaded_loss": 0.0038,
+      "source_heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold2_heldout.jsonl",
+      "source_state": "post_training/runs/qwen_sft_cv4_boundary_rationale_schema_action_80_evalfast/fold2/train/trainable_state.pt",
+      "strict_action_accuracy": 1.0,
+      "strict_by_class": {
+        "defer": "2/2",
+        "flag": "2/2",
+        "ground": "2/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "strict_parse_failures": 0
+    },
+    {
+      "constrained_loaded_action_accuracy": 1.0,
+      "constrained_loaded_by_class": {
+        "defer": "2/2",
+        "flag": "2/2",
+        "ground": "2/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "fold": 3,
+      "heldout": "post_training/boundary_rationale_heldout_ablation/negbiodb_ct_native_sft_cv4_boundary_rationale_heldout_oracle_v1_fold3_heldout.jsonl",
+      "heldout_by_class": {
+        "defer": 2,
+        "flag": 2,
+        "ground": 2,
+        "reject": 2,
+        "verify": 2
+      },
+      "heldout_by_role": {
+        "rationale": 10
+      },
+      "heldout_examples": 10,
+      "heldout_teacher_forced_loaded_loss": 0.0041,
+      "source_heldout": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold3_heldout.jsonl",
+      "source_state": "post_training/runs/qwen_sft_cv4_boundary_rationale_schema_action_80_evalfast/fold3/train/trainable_state.pt",
+      "strict_action_accuracy": 1.0,
+      "strict_by_class": {
+        "defer": "2/2",
+        "flag": "2/2",
+        "ground": "2/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "strict_parse_failures": 0
+    }
+  ],
+  "root": "post_training/runs/qwen_sft_cv4_boundary_rationale_heldout_oracle_ablation"
+}

@@ -1,0 +1,340 @@
+{
+  "aggregate": {
+    "constrained_base_accuracy_mean": null,
+    "constrained_loaded_accuracy_mean": 0.5,
+    "constrained_loaded_accuracy_range": "0.400..0.600",
+    "constrained_loaded_class_accuracy": {
+      "defer": "0/8",
+      "flag": "3/8",
+      "ground": "4/8",
+      "reject": "5/8",
+      "verify": "8/8"
+    },
+    "heldout_loss_mean": 0.1001,
+    "strict_action_accuracy_mean": 0.5,
+    "strict_action_accuracy_range": "0.400..0.600",
+    "strict_class_accuracy": {
+      "defer": "0/8",
+      "flag": "3/8",
+      "ground": "3/8",
+      "reject": "6/8",
+      "verify": "8/8"
+    },
+    "strict_parse_failures_total": 0
+  },
+  "artifact": {
+    "boundary_negative_actions": {
+      "defer": [
+        "verify"
+      ],
+      "flag": [
+        "ground",
+        "reject"
+      ],
+      "ground": [
+        "flag",
+        "reject"
+      ],
+      "reject": [
+        "ground",
+        "flag"
+      ],
+      "verify": [
+        "defer"
+      ]
+    },
+    "dataset": "negbiodb_ct_native_sft_boundary_rationale_v1",
+    "folds": [
+      {
+        "fold": 0,
+        "heldout_by_class": {
+          "defer": 2,
+          "flag": 2,
+          "ground": 2,
+          "reject": 2,
+          "verify": 2
+        },
+        "heldout_examples": 10,
+        "train_by_class": {
+          "defer": 12,
+          "flag": 12,
+          "ground": 12,
+          "reject": 12,
+          "verify": 12
+        },
+        "train_by_role": {
+          "base": 30,
+          "rationale": 30
+        },
+        "train_examples": 60
+      },
+      {
+        "fold": 1,
+        "heldout_by_class": {
+          "defer": 2,
+          "flag": 2,
+          "ground": 2,
+          "reject": 2,
+          "verify": 2
+        },
+        "heldout_examples": 10,
+        "train_by_class": {
+          "defer": 12,
+          "flag": 12,
+          "ground": 12,
+          "reject": 12,
+          "verify": 12
+        },
+        "train_by_role": {
+          "base": 30,
+          "rationale": 30
+        },
+        "train_examples": 60
+      },
+      {
+        "fold": 2,
+        "heldout_by_class": {
+          "defer": 2,
+          "flag": 2,
+          "ground": 2,
+          "reject": 2,
+          "verify": 2
+        },
+        "heldout_examples": 10,
+        "train_by_class": {
+          "defer": 12,
+          "flag": 12,
+          "ground": 12,
+          "reject": 12,
+          "verify": 12
+        },
+        "train_by_role": {
+          "base": 30,
+          "rationale": 30
+        },
+        "train_examples": 60
+      },
+      {
+        "fold": 3,
+        "heldout_by_class": {
+          "defer": 2,
+          "flag": 2,
+          "ground": 2,
+          "reject": 2,
+          "verify": 2
+        },
+        "heldout_examples": 10,
+        "train_by_class": {
+          "defer": 12,
+          "flag": 12,
+          "ground": 12,
+          "reject": 12,
+          "verify": 12
+        },
+        "train_by_role": {
+          "base": 30,
+          "rationale": 30
+        },
+        "train_examples": 60
+      }
+    ],
+    "strategy": "paired_boundary_rationale_v1"
+  },
+  "condition": "native_boundary_rationale_cv",
+  "config": {
+    "allow_download": false,
+    "batch_size": 2,
+    "device": "auto",
+    "lr": 5e-05,
+    "max_length": 512,
+    "max_new_tokens": 64,
+    "max_steps": 80,
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "score_mode": "mean",
+    "skip_base_constrained": true,
+    "skip_constrained": false,
+    "skip_strict_generation": false,
+    "skip_train_loss": true,
+    "tasks": "negbiodb_ct/tasks_pilot.jsonl",
+    "train_last_layers": 2
+  },
+  "confusion_matrices": {
+    "constrained_loaded": {
+      "defer": {
+        "verify": 8
+      },
+      "flag": {
+        "flag": 3,
+        "ground": 3,
+        "reject": 2
+      },
+      "ground": {
+        "flag": 3,
+        "ground": 4,
+        "reject": 1
+      },
+      "reject": {
+        "flag": 3,
+        "reject": 5
+      },
+      "verify": {
+        "verify": 8
+      }
+    },
+    "strict": {
+      "defer": {
+        "verify": 8
+      },
+      "flag": {
+        "flag": 3,
+        "ground": 3,
+        "reject": 2
+      },
+      "ground": {
+        "flag": 3,
+        "ground": 3,
+        "reject": 1,
+        "verify": 1
+      },
+      "reject": {
+        "flag": 2,
+        "reject": 6
+      },
+      "verify": {
+        "verify": 8
+      }
+    }
+  },
+  "failure_pairs": {
+    "constrained_loaded": {
+      "defer->verify": 8,
+      "flag->ground": 3,
+      "flag->reject": 2,
+      "ground->flag": 3,
+      "ground->reject": 1,
+      "reject->flag": 3
+    },
+    "strict": {
+      "defer->verify": 8,
+      "flag->ground": 3,
+      "flag->reject": 2,
+      "ground->flag": 3,
+      "ground->reject": 1,
+      "ground->verify": 1,
+      "reject->flag": 2
+    }
+  },
+  "folds": [
+    {
+      "constrained_base_action_accuracy": null,
+      "constrained_loaded_action_accuracy": 0.5,
+      "constrained_loaded_by_class": {
+        "defer": "0/2",
+        "flag": "1/2",
+        "ground": "1/2",
+        "reject": "1/2",
+        "verify": "2/2"
+      },
+      "fold": 0,
+      "heldout_examples": 10,
+      "heldout_teacher_forced_loaded_loss": 0.1164,
+      "strict_action_accuracy": 0.5,
+      "strict_by_class": {
+        "defer": "0/2",
+        "flag": "1/2",
+        "ground": "0/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "strict_parse_failures": 0,
+      "train_examples": 60,
+      "train_first_loss": 3.9821,
+      "train_last_loss": 0.0272,
+      "train_teacher_forced_loaded_loss": null
+    },
+    {
+      "constrained_base_action_accuracy": null,
+      "constrained_loaded_action_accuracy": 0.6,
+      "constrained_loaded_by_class": {
+        "defer": "0/2",
+        "flag": "0/2",
+        "ground": "2/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "fold": 1,
+      "heldout_examples": 10,
+      "heldout_teacher_forced_loaded_loss": 0.0789,
+      "strict_action_accuracy": 0.6,
+      "strict_by_class": {
+        "defer": "0/2",
+        "flag": "0/2",
+        "ground": "2/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "strict_parse_failures": 0,
+      "train_examples": 60,
+      "train_first_loss": 3.9821,
+      "train_last_loss": 0.0231,
+      "train_teacher_forced_loaded_loss": null
+    },
+    {
+      "constrained_base_action_accuracy": null,
+      "constrained_loaded_action_accuracy": 0.4,
+      "constrained_loaded_by_class": {
+        "defer": "0/2",
+        "flag": "2/2",
+        "ground": "0/2",
+        "reject": "0/2",
+        "verify": "2/2"
+      },
+      "fold": 2,
+      "heldout_examples": 10,
+      "heldout_teacher_forced_loaded_loss": 0.1118,
+      "strict_action_accuracy": 0.4,
+      "strict_by_class": {
+        "defer": "0/2",
+        "flag": "2/2",
+        "ground": "0/2",
+        "reject": "0/2",
+        "verify": "2/2"
+      },
+      "strict_parse_failures": 0,
+      "train_examples": 60,
+      "train_first_loss": 3.9821,
+      "train_last_loss": 0.01,
+      "train_teacher_forced_loaded_loss": null
+    },
+    {
+      "constrained_base_action_accuracy": null,
+      "constrained_loaded_action_accuracy": 0.5,
+      "constrained_loaded_by_class": {
+        "defer": "0/2",
+        "flag": "0/2",
+        "ground": "1/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "fold": 3,
+      "heldout_examples": 10,
+      "heldout_teacher_forced_loaded_loss": 0.0932,
+      "strict_action_accuracy": 0.5,
+      "strict_by_class": {
+        "defer": "0/2",
+        "flag": "0/2",
+        "ground": "1/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "strict_parse_failures": 0,
+      "train_examples": 60,
+      "train_first_loss": 1.5006,
+      "train_last_loss": 0.0284,
+      "train_teacher_forced_loaded_loss": null
+    }
+  ],
+  "manifest": "post_training/negbiodb_ct_native_sft_cv4_boundary_rationale_manifest.json",
+  "root": "post_training/runs/qwen_sft_cv4_boundary_rationale_schema_action_80_evalfast",
+  "train_examples_per_fold": 60
+}

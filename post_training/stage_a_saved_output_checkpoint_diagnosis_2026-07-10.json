@@ -1,0 +1,179 @@
+{
+  "current_thesis": "Biology tool-use agents need trainable trajectories plus runtime evidence arbitration; RLVR/DPO escalation is not justified until compact held-out checkpoint policies beat deterministic runtime baselines.",
+  "dataset": "negbiodb_ct_stage_a_saved_output_checkpoint_diagnosis_v1",
+  "decision": {
+    "keep_gated": [
+      "tool_query",
+      "DPO/RLVR",
+      "Hugging Face publication",
+      "release tagging",
+      "broad retraining"
+    ],
+    "next_model_checkpoint_requirement": "Any future compact Cayuga policy summary must reach 4/4 held-out exact with zero trusted-candidate incorrect cases before DPO/RLVR, tool_query, HF publication, or release tagging reopens.",
+    "next_research_move": "Diagnose per-case action/status discrimination under finite-candidate or runtime-enforced policies; do not treat teacher-forced margin repair as deployment readiness.",
+    "selected_next_step": "meet_or_beat_runtime_evidence_arbitration_baseline"
+  },
+  "diagnosis": {
+    "candidate_calibration": {
+      "calibrated_heldout_exact_top1": 2,
+      "calibration_mode": "pair_mean_center",
+      "candidate_policy": "train_observed_plus_rejected",
+      "candidate_target_format": "full",
+      "interpretation": "Train-derived pair-mean centering helps but remains below the runtime evidence-arbitration baseline.",
+      "pairs": 4,
+      "raw_heldout_exact_top1": 1,
+      "run_id": "stage_a_saved_output_flag_full_train_candidates_qwen05b_cayuga_20260710",
+      "train_selected_gate_strict_final_correct": 1,
+      "train_selected_gate_trusted_incorrect": 0,
+      "train_selected_zero_unsafe_threshold": 0.045521
+    },
+    "finite_candidate_rank": {
+      "base_exact_top1": 0,
+      "candidate_policy": "train_observed_plus_rejected",
+      "candidate_target_format": "full",
+      "fail_closed_strict_final_correct": 1,
+      "fail_closed_trusted_incorrect": 0,
+      "interpretation": "Full-format teacher-forced margins do not transfer to finite-candidate top-1; the trained candidate readout collapses to a single flag/invalid_value top pair.",
+      "mean_target_rank": 2.5,
+      "mean_top_target_margin": 0.039652,
+      "pairs": 4,
+      "run_id": "stage_a_saved_output_flag_full_candidate_rank_qwen05b_cayuga_20260710",
+      "trained_exact_top1": 1,
+      "trained_top_pair_counts": {
+        "flag/invalid_value": 4
+      }
+    },
+    "meet_or_beat_gate": {
+      "candidate_or_model_policy_exact_min": 4,
+      "gate_violations": [
+        "no_model_policy_meets_runtime_baseline"
+      ],
+      "passes_gate": false,
+      "raw_predictions_remain_uncommitted": true,
+      "trusted_candidate_incorrect_max": 0
+    },
+    "runtime_arbitration": {
+      "best_policy_names": [
+        "evidence_gate_override",
+        "hybrid_evidence_then_train_gate"
+      ],
+      "cases": 4,
+      "hidden_labels_used_by_arbitration": false,
+      "policies": [
+        {
+          "error_case_ids": [
+            "stage_a::000007",
+            "stage_a::000012",
+            "stage_a::000019"
+          ],
+          "exact": 1,
+          "policy": "raw_candidate_top1",
+          "rows": 4,
+          "trusted_candidate": 4,
+          "trusted_candidate_incorrect": 3
+        },
+        {
+          "error_case_ids": [
+            "stage_a::000007",
+            "stage_a::000021"
+          ],
+          "exact": 2,
+          "policy": "calibrated_candidate_top1",
+          "rows": 4,
+          "trusted_candidate": 4,
+          "trusted_candidate_incorrect": 2
+        },
+        {
+          "error_case_ids": [
+            "stage_a::000007",
+            "stage_a::000019",
+            "stage_a::000021"
+          ],
+          "exact": 1,
+          "policy": "train_selected_score_gap_gate",
+          "rows": 4,
+          "trusted_candidate": 0,
+          "trusted_candidate_incorrect": 0
+        },
+        {
+          "error_case_ids": [],
+          "exact": 4,
+          "policy": "evidence_gate_override",
+          "rows": 4,
+          "trusted_candidate": 0,
+          "trusted_candidate_incorrect": 0
+        },
+        {
+          "error_case_ids": [],
+          "exact": 4,
+          "policy": "hybrid_evidence_then_train_gate",
+          "rows": 4,
+          "trusted_candidate": 0,
+          "trusted_candidate_incorrect": 0
+        }
+      ],
+      "run_id": "stage_a_saved_output_flag_full_train_candidates_qwen05b_cayuga_20260710"
+    },
+    "teacher_forced_margin": {
+      "base_full_margin_wins": 0,
+      "base_mean_margin": -0.081001,
+      "flag_invalid_value_margin": 0.025968,
+      "heldout_examples": 4,
+      "interpretation": "Teacher-forced full-target scoring can be repaired on the 4-case held-out slice, but this is not a deployment-ready candidate policy.",
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "newly_won": 4,
+      "pairs": 4,
+      "run_id": "stage_a_saved_output_flag_full_same_model_multiformat_qwen05b_cayuga_20260710",
+      "trained_full_margin_wins": 4,
+      "trained_mean_margin": 0.018087,
+      "training_target_format": "full"
+    }
+  },
+  "input_artifacts": {
+    "candidate_arbitration": {
+      "path": "post_training/stage_a_saved_output_candidate_arbitration_2026-07-10.json",
+      "role": "runtime-vs-candidate arbitration compact summary",
+      "sha256": "3cc6678d43e4f21b2a83d1ba5f48021c41ee86d19eb4d3c41c0ea29809772b92"
+    },
+    "candidate_calibration": {
+      "path": "post_training/stage_a_saved_output_candidate_calibration_qwen05b_cayuga_summary_2026-07-10.json",
+      "role": "train-derived candidate calibration compact summary",
+      "sha256": "a170b3dd66869cae832675d2397ad5a0aa6450f3d59f96e50d87534290e5167e"
+    },
+    "candidate_rank": {
+      "path": "post_training/stage_a_saved_output_candidate_rank_qwen05b_cayuga_summary_2026-07-10.json",
+      "role": "finite-candidate compact rank summary",
+      "sha256": "6e5357d1016294cd4b4ae1d822f4b64d503327e5e5ea55bb7494b5ffab683e57"
+    },
+    "meet_or_beat_gate": {
+      "path": "post_training/stage_a_saved_output_meet_or_beat_gate_2026-07-10.json",
+      "role": "saved-output acceptance gate",
+      "sha256": "ba34e5f91001aee94eaec1b5e6aa2b35300a19d053979df217be0336ed456e4f"
+    },
+    "next_decision": {
+      "path": "post_training/stage_a_saved_output_next_decision_2026-07-10.json",
+      "role": "saved-output next-decision checkpoint",
+      "sha256": "69ff03a337ba3171191690a65f4a51389f8e49e42e436c0a39d2adfcf20d0a13"
+    },
+    "same_model_target_format": {
+      "path": "post_training/stage_a_saved_output_same_model_target_format_qwen05b_cayuga_summary_2026-07-10.json",
+      "role": "teacher-forced target-format compact summary",
+      "sha256": "8a827941ea718fda1a78612fc0194a3b4e04d78c9b2495f397670c80bc1f1ec0"
+    }
+  },
+  "non_goals": [
+    "pretraining a biology foundation model",
+    "generic biomedical QA",
+    "unaudited LLM-judge rewards",
+    "trusting specialist/SFM confidence without calibration"
+  ],
+  "public_safety_contract": {
+    "ignored_run_folder_read": false,
+    "model_state_read": false,
+    "raw_artifacts_committed": false,
+    "raw_candidate_score_jsonl_read": false,
+    "raw_prediction_jsonl_read": false,
+    "scheduler_logs_read": false
+  },
+  "source_changes": []
+}

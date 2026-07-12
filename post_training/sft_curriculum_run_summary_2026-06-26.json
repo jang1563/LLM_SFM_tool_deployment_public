@@ -1,0 +1,156 @@
+{
+  "aggregate": {
+    "constrained_base_accuracy_mean": 0.275,
+    "constrained_loaded_accuracy_mean": 0.425,
+    "constrained_loaded_accuracy_range": "0.300..0.600",
+    "constrained_loaded_class_accuracy": {
+      "defer": "3/8",
+      "flag": "7/8",
+      "ground": "2/8",
+      "reject": "2/8",
+      "verify": "3/8"
+    },
+    "heldout_loss_mean": 0.104,
+    "strict_action_accuracy_mean": 0.475,
+    "strict_action_accuracy_range": "0.300..0.700",
+    "strict_class_accuracy": {
+      "defer": "3/8",
+      "flag": "6/8",
+      "ground": "3/8",
+      "reject": "4/8",
+      "verify": "3/8"
+    },
+    "strict_parse_failures_total": 0
+  },
+  "condition": "native_curriculum_cv",
+  "config": {
+    "allow_download": false,
+    "batch_size": 2,
+    "device": "auto",
+    "lr": 5e-05,
+    "max_length": 512,
+    "max_new_tokens": 64,
+    "max_steps": 80,
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "score_mode": "mean",
+    "skip_base_constrained": false,
+    "skip_constrained": false,
+    "skip_strict_generation": false,
+    "skip_train_loss": false,
+    "tasks": "negbiodb_ct/tasks_pilot.jsonl",
+    "train_last_layers": 2
+  },
+  "folds": [
+    {
+      "constrained_base_action_accuracy": 0.3,
+      "constrained_loaded_action_accuracy": 0.3,
+      "constrained_loaded_by_class": {
+        "defer": "1/2",
+        "flag": "2/2",
+        "ground": "0/2",
+        "reject": "0/2",
+        "verify": "0/2"
+      },
+      "fold": 0,
+      "heldout_examples": 10,
+      "heldout_teacher_forced_loaded_loss": 0.0898,
+      "strict_action_accuracy": 0.3,
+      "strict_by_class": {
+        "defer": "1/2",
+        "flag": "1/2",
+        "ground": "0/2",
+        "reject": "1/2",
+        "verify": "0/2"
+      },
+      "strict_parse_failures": 0,
+      "train_examples": 72,
+      "train_first_loss": 2.3547,
+      "train_last_loss": 0.033,
+      "train_teacher_forced_loaded_loss": 0.0516
+    },
+    {
+      "constrained_base_action_accuracy": 0.2,
+      "constrained_loaded_action_accuracy": 0.6,
+      "constrained_loaded_by_class": {
+        "defer": "0/2",
+        "flag": "2/2",
+        "ground": "2/2",
+        "reject": "1/2",
+        "verify": "1/2"
+      },
+      "fold": 1,
+      "heldout_examples": 10,
+      "heldout_teacher_forced_loaded_loss": 0.056,
+      "strict_action_accuracy": 0.7,
+      "strict_by_class": {
+        "defer": "0/2",
+        "flag": "2/2",
+        "ground": "2/2",
+        "reject": "2/2",
+        "verify": "1/2"
+      },
+      "strict_parse_failures": 0,
+      "train_examples": 72,
+      "train_first_loss": 2.2059,
+      "train_last_loss": 0.0738,
+      "train_teacher_forced_loaded_loss": 0.0494
+    },
+    {
+      "constrained_base_action_accuracy": 0.3,
+      "constrained_loaded_action_accuracy": 0.4,
+      "constrained_loaded_by_class": {
+        "defer": "0/2",
+        "flag": "2/2",
+        "ground": "0/2",
+        "reject": "0/2",
+        "verify": "2/2"
+      },
+      "fold": 2,
+      "heldout_examples": 10,
+      "heldout_teacher_forced_loaded_loss": 0.1036,
+      "strict_action_accuracy": 0.5,
+      "strict_by_class": {
+        "defer": "0/2",
+        "flag": "2/2",
+        "ground": "1/2",
+        "reject": "0/2",
+        "verify": "2/2"
+      },
+      "strict_parse_failures": 0,
+      "train_examples": 72,
+      "train_first_loss": 2.2059,
+      "train_last_loss": 0.0087,
+      "train_teacher_forced_loaded_loss": 0.0605
+    },
+    {
+      "constrained_base_action_accuracy": 0.3,
+      "constrained_loaded_action_accuracy": 0.4,
+      "constrained_loaded_by_class": {
+        "defer": "2/2",
+        "flag": "1/2",
+        "ground": "0/2",
+        "reject": "1/2",
+        "verify": "0/2"
+      },
+      "fold": 3,
+      "heldout_examples": 10,
+      "heldout_teacher_forced_loaded_loss": 0.1664,
+      "strict_action_accuracy": 0.4,
+      "strict_by_class": {
+        "defer": "2/2",
+        "flag": "1/2",
+        "ground": "0/2",
+        "reject": "1/2",
+        "verify": "0/2"
+      },
+      "strict_parse_failures": 0,
+      "train_examples": 72,
+      "train_first_loss": 1.6316,
+      "train_last_loss": 0.017,
+      "train_teacher_forced_loaded_loss": 0.0715
+    }
+  ],
+  "manifest": "post_training/negbiodb_ct_native_sft_cv4_curriculum_manifest.json",
+  "root": "post_training/runs/qwen_sft_cv4_curriculum_schema_action_80",
+  "train_examples_per_fold": 72
+}

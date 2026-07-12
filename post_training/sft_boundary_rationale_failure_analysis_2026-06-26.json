@@ -1,0 +1,1840 @@
+{
+  "boundary_failure_pair_counts": {
+    "boundary_constrained": {
+      "defer->verify": 8,
+      "flag->ground": 3,
+      "flag->reject": 2,
+      "ground->flag": 3,
+      "ground->reject": 1,
+      "reject->flag": 3
+    },
+    "boundary_strict": {
+      "defer->verify": 8,
+      "flag->ground": 3,
+      "flag->reject": 2,
+      "ground->flag": 3,
+      "ground->reject": 1,
+      "ground->verify": 1,
+      "reject->flag": 2
+    }
+  },
+  "boundary_persistent_failures": [
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold3",
+          "gold": "defer",
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::124533::4281",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold3",
+          "gold": "defer",
+          "gold_minus_winner_mean_nll": 0.2140822522342205,
+          "gold_rank": 2,
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::124533::4281",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          },
+          "winner_candidate": {
+            "action": "verify"
+          }
+        }
+      ],
+      "packet_id": "ct::defer::124533::4281"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold1",
+          "gold": "defer",
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::134453::3090",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold1",
+          "gold": "defer",
+          "gold_minus_winner_mean_nll": 0.2853217776864767,
+          "gold_rank": 2,
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::134453::3090",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          },
+          "winner_candidate": {
+            "action": "verify"
+          }
+        }
+      ],
+      "packet_id": "ct::defer::134453::3090"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold1",
+          "gold": "defer",
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::158039::15870",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold1",
+          "gold": "defer",
+          "gold_minus_winner_mean_nll": 0.24954306334257126,
+          "gold_rank": 2,
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::158039::15870",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          },
+          "winner_candidate": {
+            "action": "verify"
+          }
+        }
+      ],
+      "packet_id": "ct::defer::158039::15870"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold2",
+          "gold": "defer",
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::166731::7134",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold2",
+          "gold": "defer",
+          "gold_minus_winner_mean_nll": 0.5709333447739482,
+          "gold_rank": 2,
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::166731::7134",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          },
+          "winner_candidate": {
+            "action": "verify"
+          }
+        }
+      ],
+      "packet_id": "ct::defer::166731::7134"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold2",
+          "gold": "defer",
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::26670::54004",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold2",
+          "gold": "defer",
+          "gold_minus_winner_mean_nll": 0.4280733549967408,
+          "gold_rank": 2,
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::26670::54004",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          },
+          "winner_candidate": {
+            "action": "verify"
+          }
+        }
+      ],
+      "packet_id": "ct::defer::26670::54004"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold0",
+          "gold": "defer",
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::50845::834",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold0",
+          "gold": "defer",
+          "gold_minus_winner_mean_nll": 0.19616209715604782,
+          "gold_rank": 2,
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::50845::834",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          },
+          "winner_candidate": {
+            "action": "verify"
+          }
+        }
+      ],
+      "packet_id": "ct::defer::50845::834"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold3",
+          "gold": "defer",
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::59110::32859",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold3",
+          "gold": "defer",
+          "gold_minus_winner_mean_nll": 0.2319266889244318,
+          "gold_rank": 2,
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::59110::32859",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          },
+          "winner_candidate": {
+            "action": "verify"
+          }
+        }
+      ],
+      "packet_id": "ct::defer::59110::32859"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold0",
+          "gold": "defer",
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::6426::28490",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold0",
+          "gold": "defer",
+          "gold_minus_winner_mean_nll": 0.6068185875192285,
+          "gold_rank": 2,
+          "note": "drug has no recorded failures -> insufficient evidence",
+          "packet_id": "ct::defer::6426::28490",
+          "pred": "verify",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 0,
+            "search_failures_len": 0
+          },
+          "winner_candidate": {
+            "action": "verify"
+          }
+        }
+      ],
+      "packet_id": "ct::defer::6426::28490"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold3",
+          "gold": "flag",
+          "note": "adapter injects an impossible p-value into the gold efficacy record",
+          "packet_id": "ct::flag::148::1617",
+          "pred": "reject",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 1184,
+            "search_failures_len": 2
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold3",
+          "gold": "flag",
+          "gold_minus_winner_mean_nll": 0.059686798602342606,
+          "gold_rank": 2,
+          "note": "adapter injects an impossible p-value into the gold efficacy record",
+          "packet_id": "ct::flag::148::1617",
+          "pred": "reject",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 1184,
+            "search_failures_len": 2
+          },
+          "winner_candidate": {
+            "action": "reject"
+          }
+        }
+      ],
+      "packet_id": "ct::flag::148::1617"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold3",
+          "gold": "flag",
+          "note": "adapter injects an impossible p-value into the gold efficacy record",
+          "packet_id": "ct::flag::24736::209",
+          "pred": "ground",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 2,
+            "search_failures_len": 1
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold3",
+          "gold": "flag",
+          "gold_minus_winner_mean_nll": 0.01258748397231102,
+          "gold_rank": 2,
+          "note": "adapter injects an impossible p-value into the gold efficacy record",
+          "packet_id": "ct::flag::24736::209",
+          "pred": "ground",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 2,
+            "search_failures_len": 1
+          },
+          "winner_candidate": {
+            "action": "ground",
+            "nct": "NCT03664232"
+          }
+        }
+      ],
+      "packet_id": "ct::flag::24736::209"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold0",
+          "gold": "flag",
+          "note": "adapter injects an impossible p-value into the gold efficacy record",
+          "packet_id": "ct::flag::368::3511",
+          "pred": "reject",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 979,
+            "search_failures_len": 2
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold0",
+          "gold": "flag",
+          "gold_minus_winner_mean_nll": 0.08856479823589325,
+          "gold_rank": 2,
+          "note": "adapter injects an impossible p-value into the gold efficacy record",
+          "packet_id": "ct::flag::368::3511",
+          "pred": "reject",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 979,
+            "search_failures_len": 2
+          },
+          "winner_candidate": {
+            "action": "reject"
+          }
+        }
+      ],
+      "packet_id": "ct::flag::368::3511"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold1",
+          "gold": "flag",
+          "note": "adapter injects an impossible p-value into the gold efficacy record",
+          "packet_id": "ct::flag::383::5105",
+          "pred": "ground",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 47,
+            "search_failures_len": 1
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold1",
+          "gold": "flag",
+          "gold_minus_winner_mean_nll": 0.006239000707864761,
+          "gold_rank": 2,
+          "note": "adapter injects an impossible p-value into the gold efficacy record",
+          "packet_id": "ct::flag::383::5105",
+          "pred": "ground",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 47,
+            "search_failures_len": 1
+          },
+          "winner_candidate": {
+            "action": "ground",
+            "nct": "NCT00844805"
+          }
+        }
+      ],
+      "packet_id": "ct::flag::383::5105"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold1",
+          "gold": "flag",
+          "note": "adapter injects an impossible p-value into the gold efficacy record",
+          "packet_id": "ct::flag::4675::2550",
+          "pred": "ground",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 85,
+            "search_failures_len": 1
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold1",
+          "gold": "flag",
+          "gold_minus_winner_mean_nll": 0.01178063452243805,
+          "gold_rank": 2,
+          "note": "adapter injects an impossible p-value into the gold efficacy record",
+          "packet_id": "ct::flag::4675::2550",
+          "pred": "ground",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 85,
+            "search_failures_len": 1
+          },
+          "winner_candidate": {
+            "action": "ground",
+            "nct": "NCT01949337"
+          }
+        }
+      ],
+      "packet_id": "ct::flag::4675::2550"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold2",
+          "gold": "ground",
+          "note": "efficacy",
+          "packet_id": "ct::ground::1196::14942",
+          "pred": "flag",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 205,
+            "search_failures_len": 1
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold2",
+          "gold": "ground",
+          "gold_minus_winner_mean_nll": 0.007079463452100754,
+          "gold_rank": 2,
+          "note": "efficacy",
+          "packet_id": "ct::ground::1196::14942",
+          "pred": "flag",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 205,
+            "search_failures_len": 1
+          },
+          "winner_candidate": {
+            "action": "flag",
+            "nct": "NCT00068692"
+          }
+        }
+      ],
+      "packet_id": "ct::ground::1196::14942"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold3",
+          "gold": "ground",
+          "note": "efficacy",
+          "packet_id": "ct::ground::22::300",
+          "pred": "reject",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 218,
+            "search_failures_len": 2
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold3",
+          "gold": "ground",
+          "gold_minus_winner_mean_nll": 0.06701252982020378,
+          "gold_rank": 3,
+          "note": "efficacy",
+          "packet_id": "ct::ground::22::300",
+          "pred": "reject",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 218,
+            "search_failures_len": 2
+          },
+          "winner_candidate": {
+            "action": "reject"
+          }
+        }
+      ],
+      "packet_id": "ct::ground::22::300"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold2",
+          "gold": "ground",
+          "note": "efficacy",
+          "packet_id": "ct::ground::24736::209",
+          "pred": "flag",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 2,
+            "search_failures_len": 1
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold2",
+          "gold": "ground",
+          "gold_minus_winner_mean_nll": 0.0239473357796669,
+          "gold_rank": 2,
+          "note": "efficacy",
+          "packet_id": "ct::ground::24736::209",
+          "pred": "flag",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 2,
+            "search_failures_len": 1
+          },
+          "winner_candidate": {
+            "action": "flag",
+            "nct": "NCT03664232"
+          }
+        }
+      ],
+      "packet_id": "ct::ground::24736::209"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold0",
+          "gold": "ground",
+          "note": "efficacy",
+          "packet_id": "ct::ground::47205::44830",
+          "pred": "flag",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 4,
+            "search_failures_len": 1
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold0",
+          "gold": "ground",
+          "gold_minus_winner_mean_nll": 0.014993928372859955,
+          "gold_rank": 2,
+          "note": "efficacy",
+          "packet_id": "ct::ground::47205::44830",
+          "pred": "flag",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 4,
+            "search_failures_len": 1
+          },
+          "winner_candidate": {
+            "action": "flag",
+            "nct": "NCT01562548"
+          }
+        }
+      ],
+      "packet_id": "ct::ground::47205::44830"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold2",
+          "gold": "reject",
+          "note": "both met and not-met endpoints for this drug x indication -> mixed, reject unqualified 'failed'",
+          "packet_id": "ct::reject::1060::12635",
+          "pred": "flag",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 25,
+            "search_failures_len": 2
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold2",
+          "gold": "reject",
+          "gold_minus_winner_mean_nll": 0.208892110735178,
+          "gold_rank": 3,
+          "note": "both met and not-met endpoints for this drug x indication -> mixed, reject unqualified 'failed'",
+          "packet_id": "ct::reject::1060::12635",
+          "pred": "flag",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 25,
+            "search_failures_len": 2
+          },
+          "winner_candidate": {
+            "action": "flag",
+            "nct": "NCT00570674"
+          }
+        }
+      ],
+      "packet_id": "ct::reject::1060::12635"
+    },
+    {
+      "failure_conditions": 2,
+      "failures": [
+        {
+          "condition": "boundary_strict",
+          "fold": "fold2",
+          "gold": "reject",
+          "note": "both met and not-met endpoints for this drug x indication -> mixed, reject unqualified 'failed'",
+          "packet_id": "ct::reject::22104::5857",
+          "pred": "flag",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 30,
+            "search_failures_len": 2
+          }
+        },
+        {
+          "condition": "boundary_constrained",
+          "fold": "fold2",
+          "gold": "reject",
+          "gold_minus_winner_mean_nll": 0.14317754283547401,
+          "gold_rank": 3,
+          "note": "both met and not-met endpoints for this drug x indication -> mixed, reject unqualified 'failed'",
+          "packet_id": "ct::reject::22104::5857",
+          "pred": "flag",
+          "tool_signature": {
+            "has_boundary_rationale_prompt": false,
+            "other_indication_failures": 30,
+            "search_failures_len": 2
+          },
+          "winner_candidate": {
+            "action": "flag",
+            "nct": "NCT01798485"
+          }
+        }
+      ],
+      "packet_id": "ct::reject::22104::5857"
+    }
+  ],
+  "conditions": {
+    "boundary_constrained": {
+      "accuracy": 0.5,
+      "class_accuracy": {
+        "defer": "0/8",
+        "flag": "3/8",
+        "ground": "4/8",
+        "reject": "5/8",
+        "verify": "8/8"
+      },
+      "confusion_matrix": {
+        "defer": {
+          "verify": 8
+        },
+        "flag": {
+          "flag": 3,
+          "ground": 3,
+          "reject": 2
+        },
+        "ground": {
+          "flag": 3,
+          "ground": 4,
+          "reject": 1
+        },
+        "reject": {
+          "flag": 3,
+          "reject": 5
+        },
+        "verify": {
+          "verify": 8
+        }
+      },
+      "correct": 20,
+      "failure_count": 20,
+      "failures": [
+        {
+          "fold": "fold0",
+          "gold": "ground",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "ground",
+              "nct": "NCT01562548"
+            },
+            "gold_mean_nll": 0.07756056636571884,
+            "gold_minus_winner_mean_nll": 0.014993928372859955,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT01562548"
+            },
+            "winner_mean_nll": 0.06256663799285889
+          },
+          "packet_id": "ct::ground::47205::44830",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT01562548"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 7,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT00588770"
+            },
+            "gold_mean_nll": 0.13215048611164093,
+            "gold_minus_winner_mean_nll": 0.08856479823589325,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 0.04358568787574768
+          },
+          "packet_id": "ct::flag::368::3511",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.6111648678779602,
+            "gold_minus_winner_mean_nll": 0.6068185875192285,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.004346280358731747
+          },
+          "packet_id": "ct::defer::6426::28490",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 7,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 0.12021271139383316,
+            "gold_minus_winner_mean_nll": 0.034119583666324615,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT02777190"
+            },
+            "winner_mean_nll": 0.08609312772750854
+          },
+          "packet_id": "ct::reject::155::6192",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT02777190"
+          },
+          "violations": [
+            "evidence_status_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.2328122854232788,
+            "gold_minus_winner_mean_nll": 0.19616209715604782,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.03665018826723099
+          },
+          "packet_id": "ct::defer::50845::834",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT00844805"
+            },
+            "gold_mean_nll": 0.06407542526721954,
+            "gold_minus_winner_mean_nll": 0.006239000707864761,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT00844805"
+            },
+            "winner_mean_nll": 0.05783642455935478
+          },
+          "packet_id": "ct::flag::383::5105",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT00844805"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.31019631028175354,
+            "gold_minus_winner_mean_nll": 0.24954306334257126,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.06065324693918228
+          },
+          "packet_id": "ct::defer::158039::15870",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT01949337"
+            },
+            "gold_mean_nll": 0.06850317120552063,
+            "gold_minus_winner_mean_nll": 0.01178063452243805,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT01949337"
+            },
+            "winner_mean_nll": 0.05672253668308258
+          },
+          "packet_id": "ct::flag::4675::2550",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT01949337"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.3162385821342468,
+            "gold_minus_winner_mean_nll": 0.2853217776864767,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.03091680444777012
+          },
+          "packet_id": "ct::defer::134453::3090",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.4410664737224579,
+            "gold_minus_winner_mean_nll": 0.4280733549967408,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.012993118725717068
+          },
+          "packet_id": "ct::defer::26670::54004",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "ground",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "ground",
+              "nct": "NCT03664232"
+            },
+            "gold_mean_nll": 0.06335625797510147,
+            "gold_minus_winner_mean_nll": 0.0239473357796669,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT03664232"
+            },
+            "winner_mean_nll": 0.03940892219543457
+          },
+          "packet_id": "ct::ground::24736::209",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT03664232"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.5782961845397949,
+            "gold_minus_winner_mean_nll": 0.5709333447739482,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.007362839765846729
+          },
+          "packet_id": "ct::defer::166731::7134",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 0.19977930188179016,
+            "gold_minus_winner_mean_nll": 0.14317754283547401,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT01798485"
+            },
+            "winner_mean_nll": 0.05660175904631615
+          },
+          "packet_id": "ct::reject::22104::5857",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT01798485"
+          },
+          "violations": [
+            "evidence_status_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "reject",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "reject"
+            },
+            "gold_mean_nll": 0.24747467041015625,
+            "gold_minus_winner_mean_nll": 0.208892110735178,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT00570674"
+            },
+            "winner_mean_nll": 0.038582559674978256
+          },
+          "packet_id": "ct::reject::1060::12635",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT00570674"
+          },
+          "violations": [
+            "evidence_status_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "ground",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "ground",
+              "nct": "NCT00068692"
+            },
+            "gold_mean_nll": 0.05435875803232193,
+            "gold_minus_winner_mean_nll": 0.007079463452100754,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "flag",
+              "nct": "NCT00068692"
+            },
+            "winner_mean_nll": 0.047279294580221176
+          },
+          "packet_id": "ct::ground::1196::14942",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT00068692"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.26192203164100647,
+            "gold_minus_winner_mean_nll": 0.2319266889244318,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.02999534271657467
+          },
+          "packet_id": "ct::defer::59110::32859",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "defer",
+          "gold_candidate_rank": {
+            "candidate_count": 3,
+            "gold_candidate": {
+              "action": "defer"
+            },
+            "gold_mean_nll": 0.2468719184398651,
+            "gold_minus_winner_mean_nll": 0.2140822522342205,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "verify"
+            },
+            "winner_mean_nll": 0.03278966620564461
+          },
+          "packet_id": "ct::defer::124533::4281",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 7,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT01196390"
+            },
+            "gold_mean_nll": 0.11013643443584442,
+            "gold_minus_winner_mean_nll": 0.059686798602342606,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 0.050449635833501816
+          },
+          "packet_id": "ct::flag::148::1617",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "flag",
+          "gold_candidate_rank": {
+            "candidate_count": 5,
+            "gold_candidate": {
+              "action": "flag",
+              "nct": "NCT03664232"
+            },
+            "gold_mean_nll": 0.05660152807831764,
+            "gold_minus_winner_mean_nll": 0.01258748397231102,
+            "gold_rank": 2,
+            "winner_candidate": {
+              "action": "ground",
+              "nct": "NCT03664232"
+            },
+            "winner_mean_nll": 0.04401404410600662
+          },
+          "packet_id": "ct::flag::24736::209",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT03664232"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "ground",
+          "gold_candidate_rank": {
+            "candidate_count": 7,
+            "gold_candidate": {
+              "action": "ground",
+              "nct": "NCT01001325"
+            },
+            "gold_mean_nll": 0.11758046597242355,
+            "gold_minus_winner_mean_nll": 0.06701252982020378,
+            "gold_rank": 3,
+            "winner_candidate": {
+              "action": "reject"
+            },
+            "winner_mean_nll": 0.05056793615221977
+          },
+          "packet_id": "ct::ground::22::300",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution",
+            "terminal_action_mismatch"
+          ]
+        }
+      ],
+      "gold_candidate_rank_summary": {
+        "defer": {
+          "mean_gold_minus_winner_mean_nll": 0.3479,
+          "rank_counts": {
+            "2": 8
+          },
+          "total": 8
+        },
+        "flag": {
+          "mean_gold_minus_winner_mean_nll": 0.0224,
+          "rank_counts": {
+            "1": 3,
+            "2": 5
+          },
+          "total": 8
+        },
+        "ground": {
+          "mean_gold_minus_winner_mean_nll": 0.0141,
+          "rank_counts": {
+            "1": 4,
+            "2": 3,
+            "3": 1
+          },
+          "total": 8
+        },
+        "reject": {
+          "mean_gold_minus_winner_mean_nll": 0.0483,
+          "rank_counts": {
+            "1": 5,
+            "3": 3
+          },
+          "total": 8
+        },
+        "verify": {
+          "mean_gold_minus_winner_mean_nll": 0.0,
+          "rank_counts": {
+            "1": 8
+          },
+          "total": 8
+        }
+      },
+      "n": 40,
+      "parse_failures": 0,
+      "violation_counts": {
+        "evidence_status_mismatch": 12,
+        "invalid_value_requires_reject_or_flag": 3,
+        "missing_required_attribution": 3,
+        "terminal_action_mismatch": 15
+      }
+    },
+    "boundary_strict": {
+      "accuracy": 0.5,
+      "class_accuracy": {
+        "defer": "0/8",
+        "flag": "3/8",
+        "ground": "3/8",
+        "reject": "6/8",
+        "verify": "8/8"
+      },
+      "confusion_matrix": {
+        "defer": {
+          "verify": 8
+        },
+        "flag": {
+          "flag": 3,
+          "ground": 3,
+          "reject": 2
+        },
+        "ground": {
+          "flag": 3,
+          "ground": 3,
+          "reject": 1,
+          "verify": 1
+        },
+        "reject": {
+          "flag": 2,
+          "reject": 6
+        },
+        "verify": {
+          "verify": 8
+        }
+      },
+      "correct": 20,
+      "failure_count": 20,
+      "failures": [
+        {
+          "fold": "fold0",
+          "gold": "ground",
+          "packet_id": "ct::ground::47205::44830",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT01562548"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "flag",
+          "packet_id": "ct::flag::368::3511",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "defer",
+          "packet_id": "ct::defer::6426::28490",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "ground",
+          "packet_id": "ct::ground::5768::4152",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold0",
+          "gold": "defer",
+          "packet_id": "ct::defer::50845::834",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "flag",
+          "packet_id": "ct::flag::383::5105",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT00844805"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "defer",
+          "packet_id": "ct::defer::158039::15870",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "flag",
+          "packet_id": "ct::flag::4675::2550",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT01949337"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold1",
+          "gold": "defer",
+          "packet_id": "ct::defer::134453::3090",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "defer",
+          "packet_id": "ct::defer::26670::54004",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "ground",
+          "packet_id": "ct::ground::24736::209",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT03664232"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "defer",
+          "packet_id": "ct::defer::166731::7134",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "reject",
+          "packet_id": "ct::reject::22104::5857",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT01798485"
+          },
+          "violations": [
+            "evidence_status_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "reject",
+          "packet_id": "ct::reject::1060::12635",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT00570674"
+          },
+          "violations": [
+            "evidence_status_mismatch"
+          ]
+        },
+        {
+          "fold": "fold2",
+          "gold": "ground",
+          "packet_id": "ct::ground::1196::14942",
+          "pred": "flag",
+          "pred_detail": {
+            "action": "flag",
+            "cited_nct": "NCT00068692"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "defer",
+          "packet_id": "ct::defer::59110::32859",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "defer",
+          "packet_id": "ct::defer::124533::4281",
+          "pred": "verify",
+          "pred_detail": {
+            "action": "verify",
+            "cited_nct": null
+          },
+          "violations": [
+            "terminal_action_mismatch"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "flag",
+          "packet_id": "ct::flag::148::1617",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "flag",
+          "packet_id": "ct::flag::24736::209",
+          "pred": "ground",
+          "pred_detail": {
+            "action": "ground",
+            "cited_nct": "NCT03664232"
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "terminal_action_mismatch",
+            "invalid_value_requires_reject_or_flag"
+          ]
+        },
+        {
+          "fold": "fold3",
+          "gold": "ground",
+          "packet_id": "ct::ground::22::300",
+          "pred": "reject",
+          "pred_detail": {
+            "action": "reject",
+            "cited_nct": null
+          },
+          "violations": [
+            "evidence_status_mismatch",
+            "missing_required_attribution",
+            "terminal_action_mismatch"
+          ]
+        }
+      ],
+      "gold_candidate_rank_summary": {},
+      "n": 40,
+      "parse_failures": 0,
+      "violation_counts": {
+        "evidence_status_mismatch": 12,
+        "invalid_value_requires_reject_or_flag": 3,
+        "missing_required_attribution": 4,
+        "terminal_action_mismatch": 16
+      }
+    }
+  },
+  "defer_verify_diagnostic": {
+    "all_defer_failures_predicted_verify": true,
+    "all_defer_observations_empty": true,
+    "defer_failure_count": 8,
+    "failures": [
+      {
+        "defer_mean_nll": 0.6111648678779602,
+        "defer_minus_verify_mean_nll": 0.6068185875192285,
+        "fold": "fold0",
+        "packet_id": "ct::defer::6426::28490",
+        "pred": {
+          "action": "verify",
+          "cited_nct": null
+        },
+        "tool_signature": {
+          "has_boundary_rationale_prompt": false,
+          "other_indication_failures": 0,
+          "search_failures_len": 0
+        },
+        "verify_mean_nll": 0.004346280358731747
+      },
+      {
+        "defer_mean_nll": 0.2328122854232788,
+        "defer_minus_verify_mean_nll": 0.19616209715604782,
+        "fold": "fold0",
+        "packet_id": "ct::defer::50845::834",
+        "pred": {
+          "action": "verify",
+          "cited_nct": null
+        },
+        "tool_signature": {
+          "has_boundary_rationale_prompt": false,
+          "other_indication_failures": 0,
+          "search_failures_len": 0
+        },
+        "verify_mean_nll": 0.03665018826723099
+      },
+      {
+        "defer_mean_nll": 0.31019631028175354,
+        "defer_minus_verify_mean_nll": 0.24954306334257126,
+        "fold": "fold1",
+        "packet_id": "ct::defer::158039::15870",
+        "pred": {
+          "action": "verify",
+          "cited_nct": null
+        },
+        "tool_signature": {
+          "has_boundary_rationale_prompt": false,
+          "other_indication_failures": 0,
+          "search_failures_len": 0
+        },
+        "verify_mean_nll": 0.06065324693918228
+      },
+      {
+        "defer_mean_nll": 0.3162385821342468,
+        "defer_minus_verify_mean_nll": 0.2853217776864767,
+        "fold": "fold1",
+        "packet_id": "ct::defer::134453::3090",
+        "pred": {
+          "action": "verify",
+          "cited_nct": null
+        },
+        "tool_signature": {
+          "has_boundary_rationale_prompt": false,
+          "other_indication_failures": 0,
+          "search_failures_len": 0
+        },
+        "verify_mean_nll": 0.03091680444777012
+      },
+      {
+        "defer_mean_nll": 0.4410664737224579,
+        "defer_minus_verify_mean_nll": 0.4280733549967408,
+        "fold": "fold2",
+        "packet_id": "ct::defer::26670::54004",
+        "pred": {
+          "action": "verify",
+          "cited_nct": null
+        },
+        "tool_signature": {
+          "has_boundary_rationale_prompt": false,
+          "other_indication_failures": 0,
+          "search_failures_len": 0
+        },
+        "verify_mean_nll": 0.012993118725717068
+      },
+      {
+        "defer_mean_nll": 0.5782961845397949,
+        "defer_minus_verify_mean_nll": 0.5709333447739482,
+        "fold": "fold2",
+        "packet_id": "ct::defer::166731::7134",
+        "pred": {
+          "action": "verify",
+          "cited_nct": null
+        },
+        "tool_signature": {
+          "has_boundary_rationale_prompt": false,
+          "other_indication_failures": 0,
+          "search_failures_len": 0
+        },
+        "verify_mean_nll": 0.007362839765846729
+      },
+      {
+        "defer_mean_nll": 0.26192203164100647,
+        "defer_minus_verify_mean_nll": 0.2319266889244318,
+        "fold": "fold3",
+        "packet_id": "ct::defer::59110::32859",
+        "pred": {
+          "action": "verify",
+          "cited_nct": null
+        },
+        "tool_signature": {
+          "has_boundary_rationale_prompt": false,
+          "other_indication_failures": 0,
+          "search_failures_len": 0
+        },
+        "verify_mean_nll": 0.02999534271657467
+      },
+      {
+        "defer_mean_nll": 0.2468719184398651,
+        "defer_minus_verify_mean_nll": 0.2140822522342205,
+        "fold": "fold3",
+        "packet_id": "ct::defer::124533::4281",
+        "pred": {
+          "action": "verify",
+          "cited_nct": null
+        },
+        "tool_signature": {
+          "has_boundary_rationale_prompt": false,
+          "other_indication_failures": 0,
+          "search_failures_len": 0
+        },
+        "verify_mean_nll": 0.03278966620564461
+      }
+    ],
+    "heldout_defer_prompt_has_boundary_rationale": false,
+    "max_defer_minus_verify_mean_nll": 0.6068,
+    "mean_defer_minus_verify_mean_nll": 0.3479,
+    "min_defer_minus_verify_mean_nll": 0.1962
+  },
+  "diagnosis": {
+    "interpretation": "Boundary-rationale SFT improves aggregate native-SFT accuracy but fully collapses true defer rows into verify on held-out prompts.",
+    "likely_mechanism": "The model learned the positive verify action boundary better than the negative empty-evidence defer boundary when the held-out prompt lacks the injected boundary-rationale message.",
+    "next": "Run a held-out prompt-side rationale ablation and/or construct explicit defer-vs-verify preference pairs before DPO/RLVR.",
+    "primary_failure": "defer->verify"
+  },
+  "recurrent_failures": [],
+  "tasks": "negbiodb_ct/tasks_pilot.jsonl"
+}

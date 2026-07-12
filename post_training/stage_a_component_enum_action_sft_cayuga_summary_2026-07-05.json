@@ -1,0 +1,61 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_predictions_committed": false,
+    "raw_predictions_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "cases_expected": 5,
+  "cluster": "Cayuga Slurm GPU",
+  "component": "enum_action",
+  "dataset": "negbiodb_ct_stage_a_strict_component_sft_smoke_v1",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "prompt_contract": "stage_a_v2_strict",
+  "run_id": "stage_a_component_enum_action_sft_cayuga_2026_07_05",
+  "runner": "post_training/run_stage_a_strict_component_sft_smoke.py",
+  "split": {
+    "heldout": "post_training/stage_a_strict_component_targets_heldout_v1.jsonl",
+    "train": "post_training/stage_a_strict_component_targets_train_v1.jsonl"
+  },
+  "training": {
+    "batch_size": 1,
+    "device": "cuda",
+    "loss_delta": -0.49055612087249756,
+    "loss_first": 1.0502474308013916,
+    "loss_last": 0.559691309928894,
+    "max_steps": 20,
+    "train_last_layers": 1,
+    "trainable_params": 14913280
+  },
+  "result": {
+    "cases": 5,
+    "gate_accuracy": {
+      "enum_validity": 0.0,
+      "exact_match": 0.0,
+      "target_keys": 0.0,
+      "tool_query_shape": 1.0
+    },
+    "mean_score": 0.25,
+    "passed": 0,
+    "violations": {
+      "enum_value_invalid": 5,
+      "target_key_mismatch": 5,
+      "target_mismatch": 5
+    }
+  },
+  "raw_output_pattern": {
+    "disallowed_evidence_status": "valid",
+    "extra_key": "tool",
+    "observed_in_heldout_cases": 5,
+    "parseable_json": true
+  },
+  "trace": {
+    "eval_report_sha256": "11ab7371ff1f1ef25ac494ade1aa258b306e5b99c48942de20303bfbb63a8fac",
+    "predictions_sha256": "af5f5df2cac7c9955a47d98ad9676b99c2de1f446424bd4cc7e0e860a005b6c5",
+    "report_sha256": "fdb2fa57cd2e73e6885c13d7c5d603ef0810433409066c4bc0f7a5cd76b2ef6e"
+  },
+  "scientific_readout": {
+    "negative_result": "Tiny last-layer enum_action SFT reduced teacher-forced train loss but scored 0/5 on held-out enum/action targets.",
+    "failure": "All held-out outputs were parseable JSON, but included an extra tool key and used the disallowed evidence_status value valid.",
+    "next_decision": "Fix enum-constrained output or target format before escalating to DPO/RLVR or interpreting later component runs as training progress."
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "date": "2026-06-28",
+  "condition": "hard_boundary_preference_heldout_candidate_eval",
+  "boundary": "Constrained all-legal-final-candidate evaluation over held-out hard boundary preference pairs. This tests whether the DPO-updated state makes the evidence-derived final action the top candidate, not just whether it beats the paired rejected action.",
+  "artifacts": {
+    "script": "post_training/run_boundary_preference_candidate_eval.py",
+    "preferences": "post_training/negbiodb_ct_oracle_boundary_preferences_hard_heldout_v1.jsonl",
+    "dpo_state": "post_training/runs/qwen_boundary_preference_dpo_hard_split_steps48/trainable_state.pt",
+    "base_raw": "post_training/runs/qwen_boundary_preference_candidate_eval_hard_heldout/base_mean.json",
+    "dpo_loaded_raw": "post_training/runs/qwen_boundary_preference_candidate_eval_hard_heldout/dpo_loaded_mean.json"
+  },
+  "run": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "n": 32,
+    "score_mode": "mean",
+    "max_length": 768,
+    "device": "mps",
+    "missing_expected_candidates": 0,
+    "loaded_tensors": 25,
+    "unexpected_tensors": []
+  },
+  "base": {
+    "action_accuracy": 0.0,
+    "exact_candidate_accuracy": 0.0,
+    "expected_rank_counts": {
+      "2": 7,
+      "3": 19,
+      "4": 1,
+      "5": 1,
+      "9": 2,
+      "18": 1,
+      "41": 1
+    },
+    "expected_margin_from_winner": {
+      "mean": 1.4521,
+      "median": 1.39,
+      "min": 0.1195,
+      "max": 3.1331
+    },
+    "by_failure_mode": {
+      "boundary_defer_over_verify": {
+        "action_accuracy": 0.0,
+        "exact_candidate_accuracy": 0.0,
+        "expected_rank_counts": {
+          "3": 8
+        },
+        "pred_actions": {
+          "reject": 6,
+          "verify": 2
+        }
+      },
+      "boundary_flag_over_ground": {
+        "action_accuracy": 0.0,
+        "exact_candidate_accuracy": 0.0,
+        "expected_rank_counts": {
+          "2": 7,
+          "9": 1
+        },
+        "pred_actions": {
+          "ground": 8
+        }
+      },
+      "boundary_reject_over_flag": {
+        "action_accuracy": 0.0,
+        "exact_candidate_accuracy": 0.0,
+        "expected_rank_counts": {
+          "3": 6,
+          "4": 1,
+          "5": 1
+        },
+        "pred_actions": {
+          "ground": 8
+        }
+      },
+      "boundary_reject_over_ground": {
+        "action_accuracy": 0.0,
+        "exact_candidate_accuracy": 0.0,
+        "expected_rank_counts": {
+          "3": 5,
+          "9": 1,
+          "18": 1,
+          "41": 1
+        },
+        "pred_actions": {
+          "flag": 1,
+          "ground": 7
+        }
+      }
+    }
+  },
+  "dpo_loaded": {
+    "action_accuracy": 0.25,
+    "exact_candidate_accuracy": 0.25,
+    "expected_rank_counts": {
+      "1": 8,
+      "2": 16,
+      "4": 7,
+      "11": 1
+    },
+    "expected_margin_from_winner": {
+      "mean": 14.5591,
+      "median": 0.8455,
+      "min": 0.0,
+      "max": 58.765
+    },
+    "by_failure_mode": {
+      "boundary_defer_over_verify": {
+        "action_accuracy": 1.0,
+        "exact_candidate_accuracy": 1.0,
+        "expected_rank_counts": {
+          "1": 8
+        },
+        "pred_actions": {
+          "defer": 8
+        }
+      },
+      "boundary_flag_over_ground": {
+        "action_accuracy": 0.0,
+        "exact_candidate_accuracy": 0.0,
+        "expected_rank_counts": {
+          "4": 7,
+          "11": 1
+        },
+        "pred_actions": {
+          "defer": 8
+        }
+      },
+      "boundary_reject_over_flag": {
+        "action_accuracy": 0.0,
+        "exact_candidate_accuracy": 0.0,
+        "expected_rank_counts": {
+          "2": 8
+        },
+        "pred_actions": {
+          "defer": 8
+        }
+      },
+      "boundary_reject_over_ground": {
+        "action_accuracy": 0.0,
+        "exact_candidate_accuracy": 0.0,
+        "expected_rank_counts": {
+          "2": 8
+        },
+        "pred_actions": {
+          "defer": 8
+        }
+      }
+    }
+  },
+  "interpretation": {
+    "positive": "The loaded state recovers all held-out defer_over_verify rows at all-candidate top-1, and moves reject hard modes from lower ranks to rank 2.",
+    "negative": "The same state collapses the all-candidate winner to defer for every held-out row, so flag and reject hard modes still fail top-1 decision selection.",
+    "claim_boundary": "The earlier pairwise margin success does not establish final-decision candidate success. This remains a diagnostic post-training result, not a live tool-use or RLVR deployment claim.",
+    "next": "Use multi-negative/all-candidate preference training or mode-conditioned objective design before claiming decision-level improvement."
+  }
+}

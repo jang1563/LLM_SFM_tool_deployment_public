@@ -1,0 +1,681 @@
+{
+  "candidate_gates": [
+    {
+      "candidate_policy": "train_observed_pairs",
+      "cases": 5,
+      "compact_report_path": "post_training/stage_a_saved_candidate_gate_train_observed_qwen05b_2026-07-09.json",
+      "comparison": {
+        "beats_citationless_strict_final": false,
+        "beats_collapse_strict_final": true,
+        "matches_runtime_strict_final": false,
+        "zero_unsafe_trust": true
+      },
+      "exact_top1": 1,
+      "fail_closed": 4,
+      "fail_closed_case_ids": [
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ],
+      "fail_closed_exact_correct": 1,
+      "mean_target_rank": 3,
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "model_candidate": true,
+      "name": "stage_a_saved_candidate_readout_qwen05b_train_observed_2026_07_09",
+      "notes": "Compact public fail-closed gate summary over ignored candidate-score JSONL; raw candidate scores and raw saved predictions remain uncommitted.",
+      "prompt_contract": "stage_a_v4_canonical_json",
+      "raw_predictions_committed": false,
+      "run_id": "stage_a_saved_candidate_readout_qwen05b_train_observed_2026_07_09",
+      "source_type": "real_saved_candidate_gate_compact_summary",
+      "strict_final_accuracy": 0.4,
+      "strict_final_correct": 2,
+      "threshold": 0.035,
+      "top_pair_counts": {
+        "ground/supported": 5
+      },
+      "trusted": 1,
+      "trusted_case_ids": [
+        "stage_a::000001"
+      ],
+      "trusted_correct": 1,
+      "trusted_incorrect": 0,
+      "trusted_precision": 1.0,
+      "unsafe_trust_case_ids": []
+    },
+    {
+      "candidate_policy": "all_valid_pairs",
+      "cases": 5,
+      "compact_report_path": "post_training/stage_a_saved_candidate_gate_all_valid_qwen05b_2026-07-09.json",
+      "comparison": {
+        "beats_citationless_strict_final": false,
+        "beats_collapse_strict_final": true,
+        "matches_runtime_strict_final": false,
+        "zero_unsafe_trust": true
+      },
+      "exact_top1": 1,
+      "fail_closed": 4,
+      "fail_closed_case_ids": [
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ],
+      "fail_closed_exact_correct": 1,
+      "mean_target_rank": 8.6,
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "model_candidate": true,
+      "name": "stage_a_saved_candidate_readout_qwen05b_all_valid_2026_07_09",
+      "notes": "Compact public fail-closed gate summary over ignored candidate-score JSONL; raw candidate scores and raw saved predictions remain uncommitted.",
+      "prompt_contract": "stage_a_v4_canonical_json",
+      "raw_predictions_committed": false,
+      "run_id": "stage_a_saved_candidate_readout_qwen05b_all_valid_2026_07_09",
+      "source_type": "real_saved_candidate_gate_compact_summary",
+      "strict_final_accuracy": 0.4,
+      "strict_final_correct": 2,
+      "threshold": 0.011,
+      "top_pair_counts": {
+        "ground/supported": 5
+      },
+      "trusted": 1,
+      "trusted_case_ids": [
+        "stage_a::000001"
+      ],
+      "trusted_correct": 1,
+      "trusted_incorrect": 0,
+      "trusted_precision": 1.0,
+      "unsafe_trust_case_ids": []
+    }
+  ],
+  "canonical_evaluator": "negbiodb_ct.stage_a_manifest.score_stage_a_trajectory",
+  "dataset": "negbiodb_ct_stage_a_saved_prediction_readiness_v1",
+  "decision": {
+    "best_real_saved_output": {
+      "cases": 5,
+      "compact_report_path": "post_training/stage_a_saved_candidate_readout_qwen05b_train_observed_summary_2026-07-09.json",
+      "comparison": {
+        "beats_citationless_pass_count": false,
+        "beats_collapse_pass_count": false,
+        "matches_runtime_pass_count": false,
+        "mean_score_above_citationless": false,
+        "mean_score_above_collapse": false,
+        "mean_score_matches_runtime": false
+      },
+      "gate_accuracy": {
+        "action_allowed": 1.0,
+        "attribution": 0.6,
+        "evidence_status": 0.2,
+        "policy_compliance": 0.6,
+        "query_filter_completeness": 1.0,
+        "required_tool_sequence": 1.0,
+        "terminal_action": 0.2
+      },
+      "generation_mode": "hf_candidate_score",
+      "mean_score": 0.657,
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "model_candidate": true,
+      "name": "stage_a_saved_candidate_readout_qwen05b_train_observed_2026_07_09",
+      "notes": "Compact public summary; raw saved predictions remain uncommitted.",
+      "parse_error_count": 0,
+      "parse_errors": {},
+      "passed": 0,
+      "prompt_contract": "stage_a_v4_canonical_json",
+      "raw_predictions_committed": false,
+      "raw_predictions_sha256_present": false,
+      "run_id": "stage_a_saved_candidate_readout_qwen05b_train_observed_2026_07_09",
+      "source_type": "real_saved_model_compact_summary",
+      "violations": {
+        "contradicted_claim_requires_reject_or_flag": 1,
+        "evidence_status_mismatch": 4,
+        "invalid_value_requires_reject_or_flag": 1,
+        "missing_required_attribution": 2,
+        "terminal_action_mismatch": 4
+      }
+    },
+    "best_saved_candidate_gate": {
+      "candidate_policy": "all_valid_pairs",
+      "cases": 5,
+      "compact_report_path": "post_training/stage_a_saved_candidate_gate_all_valid_qwen05b_2026-07-09.json",
+      "comparison": {
+        "beats_citationless_strict_final": false,
+        "beats_collapse_strict_final": true,
+        "matches_runtime_strict_final": false,
+        "zero_unsafe_trust": true
+      },
+      "exact_top1": 1,
+      "fail_closed": 4,
+      "fail_closed_case_ids": [
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ],
+      "fail_closed_exact_correct": 1,
+      "mean_target_rank": 8.6,
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "model_candidate": true,
+      "name": "stage_a_saved_candidate_readout_qwen05b_all_valid_2026_07_09",
+      "notes": "Compact public fail-closed gate summary over ignored candidate-score JSONL; raw candidate scores and raw saved predictions remain uncommitted.",
+      "prompt_contract": "stage_a_v4_canonical_json",
+      "raw_predictions_committed": false,
+      "run_id": "stage_a_saved_candidate_readout_qwen05b_all_valid_2026_07_09",
+      "source_type": "real_saved_candidate_gate_compact_summary",
+      "strict_final_accuracy": 0.4,
+      "strict_final_correct": 2,
+      "threshold": 0.011,
+      "top_pair_counts": {
+        "ground/supported": 5
+      },
+      "trusted": 1,
+      "trusted_case_ids": [
+        "stage_a::000001"
+      ],
+      "trusted_correct": 1,
+      "trusted_incorrect": 0,
+      "trusted_precision": 1.0,
+      "unsafe_trust_case_ids": []
+    },
+    "blockers": [
+      "Best real saved output does not beat the collapse baseline.",
+      "Best real saved output does not beat the citationless routing baseline.",
+      "Best real saved output remains below runtime-gate full-trajectory performance.",
+      "Best saved-candidate gate remains below citationless routing.",
+      "Best saved-candidate gate remains below runtime-gate full-trajectory performance."
+    ],
+    "next_decision": "Use the saved-prediction scorer and saved-candidate gate analyzer for the next real Cayuga output, then compare compact reports here. Do not reopen tool_query, DPO/RLVR, Hugging Face publication, or release tagging until a real saved model output and its fail-closed gate beat collapse/citationless baselines and approach the runtime full-trajectory gate.",
+    "ready_for_dpo_rlvr": false,
+    "ready_for_hugging_face_publication": false,
+    "ready_for_release_tagging": false,
+    "ready_for_tool_query": false,
+    "runtime_enforcement_required": true
+  },
+  "full_trajectory_scorecard_source": "stage_a_full_trajectory_arbitration_2026-07-09",
+  "heldout_scorecard": {
+    "citationless_runtime_action": {
+      "cases": 5,
+      "mean_score": 0.943,
+      "passed": 3,
+      "violations": {
+        "missing_required_attribution": 2
+      }
+    },
+    "ground_supported_collapse": {
+      "cases": 5,
+      "mean_score": 0.714,
+      "passed": 1,
+      "violations": {
+        "contradicted_claim_requires_reject_or_flag": 1,
+        "evidence_status_mismatch": 4,
+        "invalid_value_requires_reject_or_flag": 1,
+        "terminal_action_mismatch": 4
+      }
+    },
+    "hybrid_runtime_over_collapse": {
+      "cases": 5,
+      "mean_score": 1.0,
+      "passed": 5,
+      "violations": {}
+    },
+    "runtime_gate_full": {
+      "cases": 5,
+      "mean_score": 1.0,
+      "passed": 5,
+      "violations": {}
+    },
+    "self_answer": {
+      "cases": 5,
+      "mean_score": 0.229,
+      "passed": 0,
+      "violations": {
+        "contradicted_claim_requires_reject_or_flag": 1,
+        "evidence_status_mismatch": 5,
+        "external_tool_required": 5,
+        "invalid_value_requires_reject_or_flag": 1,
+        "missing_required_attribution": 2,
+        "missing_required_tool_sequence": 5,
+        "query_filter_missing_required_field": 5,
+        "terminal_action_mismatch": 5
+      }
+    }
+  },
+  "raw_model_outputs_committed": false,
+  "raw_model_outputs_used": false,
+  "records": [
+    {
+      "cases": 5,
+      "compact_report_path": null,
+      "comparison": {
+        "beats_citationless_pass_count": true,
+        "beats_collapse_pass_count": true,
+        "matches_runtime_pass_count": true,
+        "mean_score_above_citationless": true,
+        "mean_score_above_collapse": true,
+        "mean_score_matches_runtime": true
+      },
+      "gate_accuracy": {
+        "action_allowed": 1.0,
+        "attribution": 1.0,
+        "evidence_status": 1.0,
+        "policy_compliance": 1.0,
+        "query_filter_completeness": 1.0,
+        "required_tool_sequence": 1.0,
+        "terminal_action": 1.0
+      },
+      "generation_mode": null,
+      "mean_score": 1.0,
+      "model": null,
+      "model_candidate": false,
+      "name": "deterministic_saved_oracle",
+      "notes": "Generated in memory from public deterministic prediction modes.",
+      "parse_error_count": 0,
+      "parse_errors": {},
+      "passed": 5,
+      "prompt_contract": null,
+      "raw_predictions_committed": false,
+      "raw_predictions_sha256_present": false,
+      "run_id": "deterministic_saved_oracle",
+      "source_type": "deterministic_public_smoke",
+      "violations": {}
+    },
+    {
+      "cases": 5,
+      "compact_report_path": null,
+      "comparison": {
+        "beats_citationless_pass_count": false,
+        "beats_collapse_pass_count": false,
+        "matches_runtime_pass_count": false,
+        "mean_score_above_citationless": false,
+        "mean_score_above_collapse": false,
+        "mean_score_matches_runtime": false
+      },
+      "gate_accuracy": {
+        "action_allowed": 1.0,
+        "attribution": 0.6,
+        "evidence_status": 0.0,
+        "policy_compliance": 0.0,
+        "query_filter_completeness": 0.0,
+        "required_tool_sequence": 0.0,
+        "terminal_action": 0.0
+      },
+      "generation_mode": null,
+      "mean_score": 0.229,
+      "model": null,
+      "model_candidate": false,
+      "name": "deterministic_saved_self_answer",
+      "notes": "Generated in memory from public deterministic prediction modes.",
+      "parse_error_count": 0,
+      "parse_errors": {},
+      "passed": 0,
+      "prompt_contract": null,
+      "raw_predictions_committed": false,
+      "raw_predictions_sha256_present": false,
+      "run_id": "deterministic_saved_self_answer",
+      "source_type": "deterministic_public_smoke",
+      "violations": {
+        "contradicted_claim_requires_reject_or_flag": 1,
+        "evidence_status_mismatch": 5,
+        "external_tool_required": 5,
+        "invalid_value_requires_reject_or_flag": 1,
+        "missing_required_attribution": 2,
+        "missing_required_tool_sequence": 5,
+        "query_filter_missing_required_field": 5,
+        "terminal_action_mismatch": 5
+      }
+    },
+    {
+      "cases": 5,
+      "compact_report_path": null,
+      "comparison": {
+        "beats_citationless_pass_count": false,
+        "beats_collapse_pass_count": false,
+        "matches_runtime_pass_count": false,
+        "mean_score_above_citationless": false,
+        "mean_score_above_collapse": true,
+        "mean_score_matches_runtime": false
+      },
+      "gate_accuracy": {
+        "action_allowed": 1.0,
+        "attribution": 1.0,
+        "evidence_status": 1.0,
+        "policy_compliance": 1.0,
+        "query_filter_completeness": 0.0,
+        "required_tool_sequence": 1.0,
+        "terminal_action": 1.0
+      },
+      "generation_mode": null,
+      "mean_score": 0.857,
+      "model": null,
+      "model_candidate": false,
+      "name": "deterministic_compact_tool_names_oracle",
+      "notes": "Generated in memory from public deterministic prediction modes.",
+      "parse_error_count": 0,
+      "parse_errors": {},
+      "passed": 0,
+      "prompt_contract": null,
+      "raw_predictions_committed": false,
+      "raw_predictions_sha256_present": false,
+      "run_id": "deterministic_compact_tool_names_oracle",
+      "source_type": "deterministic_public_smoke",
+      "violations": {
+        "query_filter_missing_required_field": 5
+      }
+    },
+    {
+      "cases": 5,
+      "compact_report_path": "post_training/stage_a_cayuga_hf_chat_baseline_summary_2026-07-04.json",
+      "comparison": {
+        "beats_citationless_pass_count": false,
+        "beats_collapse_pass_count": false,
+        "matches_runtime_pass_count": false,
+        "mean_score_above_citationless": false,
+        "mean_score_above_collapse": false,
+        "mean_score_matches_runtime": false
+      },
+      "gate_accuracy": {
+        "action_allowed": 0.2,
+        "attribution": 0.2,
+        "evidence_status": 0.2,
+        "policy_compliance": 0.2,
+        "query_filter_completeness": 0.0,
+        "required_tool_sequence": 0.0,
+        "terminal_action": 0.0
+      },
+      "generation_mode": "hf_chat",
+      "mean_score": 0.114,
+      "model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_candidate": true,
+      "name": "stage_a_cayuga_qwen15b_heldout_2026-07-04_r2",
+      "notes": "Compact public summary; raw saved predictions remain uncommitted.",
+      "parse_error_count": 4,
+      "parse_errors": {
+        "Unknown evidence_status: 'sourced'": 4
+      },
+      "passed": 0,
+      "prompt_contract": null,
+      "raw_predictions_committed": false,
+      "raw_predictions_sha256_present": true,
+      "run_id": "stage_a_cayuga_qwen15b_heldout_2026-07-04_r2",
+      "source_type": "real_saved_model_compact_summary",
+      "violations": {
+        "missing_required_tool_sequence": 1,
+        "prediction_parse_error": 4,
+        "query_filter_missing_required_field": 1,
+        "terminal_action_mismatch": 1
+      }
+    },
+    {
+      "cases": 5,
+      "compact_report_path": "post_training/stage_a_cayuga_strict_contract_summary_2026-07-04.json",
+      "comparison": {
+        "beats_citationless_pass_count": false,
+        "beats_collapse_pass_count": false,
+        "matches_runtime_pass_count": false,
+        "mean_score_above_citationless": false,
+        "mean_score_above_collapse": false,
+        "mean_score_matches_runtime": false
+      },
+      "gate_accuracy": {
+        "action_allowed": 1.0,
+        "attribution": 0.6,
+        "evidence_status": 0.2,
+        "policy_compliance": 0.6,
+        "query_filter_completeness": 0.0,
+        "required_tool_sequence": 0.0,
+        "terminal_action": 0.2
+      },
+      "generation_mode": "hf_chat",
+      "mean_score": 0.372,
+      "model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_candidate": true,
+      "name": "stage_a_cayuga_qwen15b_strict_heldout_2026-07-04",
+      "notes": "Compact public summary; raw saved predictions remain uncommitted.",
+      "parse_error_count": 0,
+      "parse_errors": {},
+      "passed": 0,
+      "prompt_contract": "stage_a_v2_strict",
+      "raw_predictions_committed": false,
+      "raw_predictions_sha256_present": true,
+      "run_id": "stage_a_cayuga_qwen15b_strict_heldout_2026-07-04",
+      "source_type": "real_saved_model_compact_summary",
+      "violations": {
+        "contradicted_claim_requires_reject_or_flag": 1,
+        "evidence_status_mismatch": 4,
+        "invalid_value_requires_reject_or_flag": 1,
+        "missing_required_attribution": 2,
+        "missing_required_tool_sequence": 5,
+        "query_filter_missing_required_field": 5,
+        "terminal_action_mismatch": 4
+      }
+    },
+    {
+      "cases": 5,
+      "compact_report_path": "post_training/stage_a_strict_sft_cayuga_smoke_summary_2026-07-04.json",
+      "comparison": {
+        "beats_citationless_pass_count": false,
+        "beats_collapse_pass_count": false,
+        "matches_runtime_pass_count": false,
+        "mean_score_above_citationless": false,
+        "mean_score_above_collapse": false,
+        "mean_score_matches_runtime": false
+      },
+      "gate_accuracy": {},
+      "generation_mode": "strict_contract_sft_smoke",
+      "mean_score": 0.0,
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "model_candidate": true,
+      "name": "stage_a_strict_sft_cayuga_qwen05b_2026_07_04",
+      "notes": "Compact public SFT smoke summary; raw saved predictions remain uncommitted.",
+      "parse_error_count": 5,
+      "parse_errors": {
+        "Unknown evidence_status: 'verified'": 5
+      },
+      "passed": 0,
+      "prompt_contract": "stage_a_v2_strict",
+      "raw_predictions_committed": false,
+      "raw_predictions_sha256_present": true,
+      "run_id": "stage_a_strict_sft_cayuga_qwen05b_2026_07_04",
+      "source_type": "real_saved_sft_compact_summary",
+      "violations": {
+        "prediction_parse_error": 5
+      }
+    },
+    {
+      "cases": 5,
+      "compact_report_path": "post_training/stage_a_strict_sft_cayuga_smoke_summary_2026-07-04.json",
+      "comparison": {
+        "beats_citationless_pass_count": false,
+        "beats_collapse_pass_count": false,
+        "matches_runtime_pass_count": false,
+        "mean_score_above_citationless": false,
+        "mean_score_above_collapse": false,
+        "mean_score_matches_runtime": false
+      },
+      "gate_accuracy": {
+        "action_allowed": 1.0,
+        "attribution": 0.6,
+        "evidence_status": 0.2,
+        "policy_compliance": 0.6,
+        "query_filter_completeness": 0.0,
+        "required_tool_sequence": 0.0,
+        "terminal_action": 0.2
+      },
+      "generation_mode": "strict_contract_sft_smoke",
+      "mean_score": 0.372,
+      "model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_candidate": true,
+      "name": "stage_a_strict_sft_cayuga_qwen15b_2026_07_04",
+      "notes": "Compact public SFT smoke summary; raw saved predictions remain uncommitted.",
+      "parse_error_count": 0,
+      "parse_errors": {},
+      "passed": 0,
+      "prompt_contract": "stage_a_v2_strict",
+      "raw_predictions_committed": false,
+      "raw_predictions_sha256_present": true,
+      "run_id": "stage_a_strict_sft_cayuga_qwen15b_2026_07_04",
+      "source_type": "real_saved_sft_compact_summary",
+      "violations": {
+        "contradicted_claim_requires_reject_or_flag": 1,
+        "evidence_status_mismatch": 4,
+        "invalid_value_requires_reject_or_flag": 1,
+        "missing_required_attribution": 2,
+        "missing_required_tool_sequence": 5,
+        "query_filter_missing_required_field": 5,
+        "terminal_action_mismatch": 4
+      }
+    },
+    {
+      "cases": 5,
+      "compact_report_path": "post_training/stage_a_v3_tool_trace_qwen05b_cayuga_summary_2026-07-09.json",
+      "comparison": {
+        "beats_citationless_pass_count": false,
+        "beats_collapse_pass_count": false,
+        "matches_runtime_pass_count": false,
+        "mean_score_above_citationless": false,
+        "mean_score_above_collapse": false,
+        "mean_score_matches_runtime": false
+      },
+      "gate_accuracy": {},
+      "generation_mode": "hf_chat",
+      "mean_score": 0.0,
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "model_candidate": true,
+      "name": "stage_a_v3_tool_trace_qwen05b_2026_07_09_cache",
+      "notes": "Compact public summary; raw saved predictions remain uncommitted.",
+      "parse_error_count": 5,
+      "parse_errors": {
+        "Unknown evidence_status: 'verified'": 5
+      },
+      "passed": 0,
+      "prompt_contract": "stage_a_v3_tool_trace",
+      "raw_predictions_committed": false,
+      "raw_predictions_sha256_present": false,
+      "run_id": "stage_a_v3_tool_trace_qwen05b_2026_07_09_cache",
+      "source_type": "real_saved_model_compact_summary",
+      "violations": {
+        "prediction_parse_error": 5
+      }
+    },
+    {
+      "cases": 5,
+      "compact_report_path": "post_training/stage_a_v4_canonical_json_qwen05b_cayuga_summary_2026-07-09.json",
+      "comparison": {
+        "beats_citationless_pass_count": false,
+        "beats_collapse_pass_count": false,
+        "matches_runtime_pass_count": false,
+        "mean_score_above_citationless": false,
+        "mean_score_above_collapse": false,
+        "mean_score_matches_runtime": false
+      },
+      "gate_accuracy": {},
+      "generation_mode": "hf_chat",
+      "mean_score": 0.0,
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "model_candidate": true,
+      "name": "stage_a_v4_canonical_json_qwen05b_2026_07_09",
+      "notes": "Compact public summary; raw saved predictions remain uncommitted.",
+      "parse_error_count": 5,
+      "parse_errors": {
+        "Invalid JSON model output: Extra data: line 1 column 28 (char 27)": 1,
+        "Model output must include an action or terminal_action string.": 4
+      },
+      "passed": 0,
+      "prompt_contract": "stage_a_v4_canonical_json",
+      "raw_predictions_committed": false,
+      "raw_predictions_sha256_present": false,
+      "run_id": "stage_a_v4_canonical_json_qwen05b_2026_07_09",
+      "source_type": "real_saved_model_compact_summary",
+      "violations": {
+        "prediction_parse_error": 5
+      }
+    },
+    {
+      "cases": 5,
+      "compact_report_path": "post_training/stage_a_saved_candidate_readout_qwen05b_train_observed_summary_2026-07-09.json",
+      "comparison": {
+        "beats_citationless_pass_count": false,
+        "beats_collapse_pass_count": false,
+        "matches_runtime_pass_count": false,
+        "mean_score_above_citationless": false,
+        "mean_score_above_collapse": false,
+        "mean_score_matches_runtime": false
+      },
+      "gate_accuracy": {
+        "action_allowed": 1.0,
+        "attribution": 0.6,
+        "evidence_status": 0.2,
+        "policy_compliance": 0.6,
+        "query_filter_completeness": 1.0,
+        "required_tool_sequence": 1.0,
+        "terminal_action": 0.2
+      },
+      "generation_mode": "hf_candidate_score",
+      "mean_score": 0.657,
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "model_candidate": true,
+      "name": "stage_a_saved_candidate_readout_qwen05b_train_observed_2026_07_09",
+      "notes": "Compact public summary; raw saved predictions remain uncommitted.",
+      "parse_error_count": 0,
+      "parse_errors": {},
+      "passed": 0,
+      "prompt_contract": "stage_a_v4_canonical_json",
+      "raw_predictions_committed": false,
+      "raw_predictions_sha256_present": false,
+      "run_id": "stage_a_saved_candidate_readout_qwen05b_train_observed_2026_07_09",
+      "source_type": "real_saved_model_compact_summary",
+      "violations": {
+        "contradicted_claim_requires_reject_or_flag": 1,
+        "evidence_status_mismatch": 4,
+        "invalid_value_requires_reject_or_flag": 1,
+        "missing_required_attribution": 2,
+        "terminal_action_mismatch": 4
+      }
+    },
+    {
+      "cases": 5,
+      "compact_report_path": "post_training/stage_a_saved_candidate_readout_qwen05b_all_valid_summary_2026-07-09.json",
+      "comparison": {
+        "beats_citationless_pass_count": false,
+        "beats_collapse_pass_count": false,
+        "matches_runtime_pass_count": false,
+        "mean_score_above_citationless": false,
+        "mean_score_above_collapse": false,
+        "mean_score_matches_runtime": false
+      },
+      "gate_accuracy": {
+        "action_allowed": 1.0,
+        "attribution": 0.6,
+        "evidence_status": 0.2,
+        "policy_compliance": 0.6,
+        "query_filter_completeness": 1.0,
+        "required_tool_sequence": 1.0,
+        "terminal_action": 0.2
+      },
+      "generation_mode": "hf_candidate_score",
+      "mean_score": 0.657,
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "model_candidate": true,
+      "name": "stage_a_saved_candidate_readout_qwen05b_all_valid_2026_07_09",
+      "notes": "Compact public summary; raw saved predictions remain uncommitted.",
+      "parse_error_count": 0,
+      "parse_errors": {},
+      "passed": 0,
+      "prompt_contract": "stage_a_v4_canonical_json",
+      "raw_predictions_committed": false,
+      "raw_predictions_sha256_present": false,
+      "run_id": "stage_a_saved_candidate_readout_qwen05b_all_valid_2026_07_09",
+      "source_type": "real_saved_model_compact_summary",
+      "violations": {
+        "contradicted_claim_requires_reject_or_flag": 1,
+        "evidence_status_mismatch": 4,
+        "invalid_value_requires_reject_or_flag": 1,
+        "missing_required_attribution": 2,
+        "terminal_action_mismatch": 4
+      }
+    }
+  ],
+  "scientific_readout": {
+    "diagnostic_question": "Do existing saved Stage A model outputs beat deterministic full-trajectory collapse/citationless/runtime baselines, and do score-gap gates provide zero-unsafe fail-closed coverage?",
+    "interpretation_rule": "Only real saved model outputs count for escalation. Deterministic oracle rows validate the adapter but are not model competence.",
+    "next_decision": "Use the saved-prediction scorer and saved-candidate gate analyzer for the next real Cayuga output, then compare compact reports here. Do not reopen tool_query, DPO/RLVR, Hugging Face publication, or release tagging until a real saved model output and its fail-closed gate beat collapse/citationless baselines and approach the runtime full-trajectory gate."
+  }
+}

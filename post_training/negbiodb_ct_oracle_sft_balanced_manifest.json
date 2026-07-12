@@ -1,0 +1,23 @@
+{
+  "by_class": {
+    "defer": 140,
+    "flag": 140,
+    "ground": 140,
+    "reject": 140,
+    "verify": 140
+  },
+  "dataset": "negbiodb_ct_oracle_sft_balanced_v1",
+  "seed": 20260626,
+  "sft": "post_training/negbiodb_ct_oracle_sft_balanced_v1.jsonl",
+  "sft_examples": 700,
+  "source": "post_training/negbiodb_ct_oracle_sft_v1.jsonl",
+  "source_by_class": {
+    "defer": 120,
+    "flag": 40,
+    "ground": 140,
+    "reject": 40,
+    "verify": 60
+  },
+  "source_examples": 400,
+  "strategy": "class_balance_to_max"
+}

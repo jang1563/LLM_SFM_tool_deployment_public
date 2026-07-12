@@ -1,0 +1,558 @@
+{
+  "adaptive_zero_unsafe_report": {
+    "coverage": 0.2,
+    "fail_closed": 4,
+    "fail_closed_case_ids": [
+      "stage_a::000007",
+      "stage_a::000012",
+      "stage_a::000019",
+      "stage_a::000021"
+    ],
+    "fail_closed_exact_correct": 1,
+    "strict_final_accuracy": 0.4,
+    "strict_final_correct": 2,
+    "threshold": 0.033997,
+    "trusted": 1,
+    "trusted_case_ids": [
+      "stage_a::000001"
+    ],
+    "trusted_correct": 1,
+    "trusted_incorrect": 0,
+    "trusted_precision": 1.0,
+    "unsafe_trust_case_ids": []
+  },
+  "adaptive_zero_unsafe_threshold": 0.033997,
+  "best_default_zero_unsafe_report": {
+    "coverage": 0.2,
+    "fail_closed": 4,
+    "fail_closed_case_ids": [
+      "stage_a::000007",
+      "stage_a::000012",
+      "stage_a::000019",
+      "stage_a::000021"
+    ],
+    "fail_closed_exact_correct": 1,
+    "strict_final_accuracy": 0.4,
+    "strict_final_correct": 2,
+    "threshold": 0.035,
+    "trusted": 1,
+    "trusted_case_ids": [
+      "stage_a::000001"
+    ],
+    "trusted_correct": 1,
+    "trusted_incorrect": 0,
+    "trusted_precision": 1.0,
+    "unsafe_trust_case_ids": []
+  },
+  "candidate_policy": "train_observed_pairs",
+  "cases": 5,
+  "dataset": "negbiodb_ct_stage_a_saved_candidate_gate_diagnostic_v1",
+  "fail_closed_pair": {
+    "action": "defer",
+    "evidence_status": "insufficient"
+  },
+  "input_candidates_sha256": "025dc10d98647d9129179e42b5844a7b902376b08fe1474d33e86030a56522be",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "prompt_contract": "stage_a_v4_canonical_json",
+  "rows": [
+    {
+      "candidate_count": 5,
+      "case_family": "supported_negative_evidence",
+      "case_id": "stage_a::000001",
+      "exact_top1": true,
+      "fail_closed_exact": false,
+      "fail_closed_pair": {
+        "action": "defer",
+        "evidence_status": "insufficient"
+      },
+      "fail_closed_pair_label": "defer/insufficient",
+      "target_pair": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "target_pair_label": "ground/supported",
+      "target_rank": 1,
+      "target_score": -0.742594,
+      "top_candidates": [
+        {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "score": -0.742594
+        },
+        {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "score": -0.779752
+        },
+        {
+          "candidate": {
+            "action": "defer",
+            "evidence_status": "insufficient"
+          },
+          "score": -0.803835
+        }
+      ],
+      "top_pair": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_pair_label": "ground/supported",
+      "top_score": -0.742594,
+      "top_second_gap": 0.037158,
+      "top_target_margin": 0.0
+    },
+    {
+      "candidate_count": 5,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "exact_top1": false,
+      "fail_closed_exact": false,
+      "fail_closed_pair": {
+        "action": "defer",
+        "evidence_status": "insufficient"
+      },
+      "fail_closed_pair_label": "defer/insufficient",
+      "target_pair": {
+        "action": "reject",
+        "evidence_status": "contradicted"
+      },
+      "target_pair_label": "reject/contradicted",
+      "target_rank": 5,
+      "target_score": -0.814215,
+      "top_candidates": [
+        {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "score": -0.758998
+        },
+        {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "score": -0.787497
+        },
+        {
+          "candidate": {
+            "action": "defer",
+            "evidence_status": "insufficient"
+          },
+          "score": -0.807551
+        }
+      ],
+      "top_pair": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_pair_label": "ground/supported",
+      "top_score": -0.758998,
+      "top_second_gap": 0.028499,
+      "top_target_margin": 0.055217
+    },
+    {
+      "candidate_count": 5,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "exact_top1": false,
+      "fail_closed_exact": true,
+      "fail_closed_pair": {
+        "action": "defer",
+        "evidence_status": "insufficient"
+      },
+      "fail_closed_pair_label": "defer/insufficient",
+      "target_pair": {
+        "action": "defer",
+        "evidence_status": "insufficient"
+      },
+      "target_pair_label": "defer/insufficient",
+      "target_rank": 3,
+      "target_score": -0.801975,
+      "top_candidates": [
+        {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "score": -0.748359
+        },
+        {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "score": -0.781995
+        },
+        {
+          "candidate": {
+            "action": "defer",
+            "evidence_status": "insufficient"
+          },
+          "score": -0.801975
+        }
+      ],
+      "top_pair": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_pair_label": "ground/supported",
+      "top_score": -0.748359,
+      "top_second_gap": 0.033636,
+      "top_target_margin": 0.053616
+    },
+    {
+      "candidate_count": 5,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "exact_top1": false,
+      "fail_closed_exact": false,
+      "fail_closed_pair": {
+        "action": "defer",
+        "evidence_status": "insufficient"
+      },
+      "fail_closed_pair_label": "defer/insufficient",
+      "target_pair": {
+        "action": "verify",
+        "evidence_status": "insufficient"
+      },
+      "target_pair_label": "verify/insufficient",
+      "target_rank": 2,
+      "target_score": -0.772924,
+      "top_candidates": [
+        {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "score": -0.738928
+        },
+        {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "score": -0.772924
+        },
+        {
+          "candidate": {
+            "action": "reject",
+            "evidence_status": "contradicted"
+          },
+          "score": -0.798859
+        }
+      ],
+      "top_pair": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_pair_label": "ground/supported",
+      "top_score": -0.738928,
+      "top_second_gap": 0.033996,
+      "top_target_margin": 0.033996
+    },
+    {
+      "candidate_count": 5,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "exact_top1": false,
+      "fail_closed_exact": false,
+      "fail_closed_pair": {
+        "action": "defer",
+        "evidence_status": "insufficient"
+      },
+      "fail_closed_pair_label": "defer/insufficient",
+      "target_pair": {
+        "action": "flag",
+        "evidence_status": "invalid_value"
+      },
+      "target_pair_label": "flag/invalid_value",
+      "target_rank": 4,
+      "target_score": -0.805784,
+      "top_candidates": [
+        {
+          "candidate": {
+            "action": "ground",
+            "evidence_status": "supported"
+          },
+          "score": -0.754233
+        },
+        {
+          "candidate": {
+            "action": "verify",
+            "evidence_status": "insufficient"
+          },
+          "score": -0.782164
+        },
+        {
+          "candidate": {
+            "action": "defer",
+            "evidence_status": "insufficient"
+          },
+          "score": -0.800238
+        }
+      ],
+      "top_pair": {
+        "action": "ground",
+        "evidence_status": "supported"
+      },
+      "top_pair_label": "ground/supported",
+      "top_score": -0.754233,
+      "top_second_gap": 0.027931,
+      "top_target_margin": 0.051551
+    }
+  ],
+  "run_id": "stage_a_saved_candidate_readout_qwen05b_train_observed_2026_07_09",
+  "scientific_readout": {
+    "decision_boundary": "This report uses ignored saved candidate scores only. It is not new training, not explanation-quality scoring, and not a reason to start DPO/RLVR.",
+    "diagnostic_question": "Can a saved-prediction candidate top-vs-second score gap identify action/status decisions that are safe to trust, while failing closed to defer/insufficient otherwise?",
+    "interpretation_rule": "A useful gate should avoid unsafe trust and improve or preserve strict final correctness after fail-closed routing. This is a tiny held-out diagnostic, not deployment calibration."
+  },
+  "summary": {
+    "candidate_count_histogram": {
+      "5": 5
+    },
+    "exact_top1": 1,
+    "fail_closed_exact_correct": 1,
+    "max_top_second_gap": 0.037158,
+    "mean_target_rank": 3,
+    "mean_top_second_gap": 0.032244,
+    "mean_top_target_margin": 0.038876,
+    "min_top_second_gap": 0.027931,
+    "target_pair_counts": {
+      "defer/insufficient": 1,
+      "flag/invalid_value": 1,
+      "ground/supported": 1,
+      "reject/contradicted": 1,
+      "verify/insufficient": 1
+    },
+    "top_pair_counts": {
+      "ground/supported": 5
+    }
+  },
+  "threshold_reports": [
+    {
+      "coverage": 1.0,
+      "fail_closed": 0,
+      "fail_closed_case_ids": [],
+      "fail_closed_exact_correct": 0,
+      "strict_final_accuracy": 0.2,
+      "strict_final_correct": 1,
+      "threshold": 0.0,
+      "trusted": 5,
+      "trusted_case_ids": [
+        "stage_a::000001",
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ],
+      "trusted_correct": 1,
+      "trusted_incorrect": 4,
+      "trusted_precision": 0.2,
+      "unsafe_trust_case_ids": [
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ]
+    },
+    {
+      "coverage": 1.0,
+      "fail_closed": 0,
+      "fail_closed_case_ids": [],
+      "fail_closed_exact_correct": 0,
+      "strict_final_accuracy": 0.2,
+      "strict_final_correct": 1,
+      "threshold": 0.005,
+      "trusted": 5,
+      "trusted_case_ids": [
+        "stage_a::000001",
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ],
+      "trusted_correct": 1,
+      "trusted_incorrect": 4,
+      "trusted_precision": 0.2,
+      "unsafe_trust_case_ids": [
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ]
+    },
+    {
+      "coverage": 1.0,
+      "fail_closed": 0,
+      "fail_closed_case_ids": [],
+      "fail_closed_exact_correct": 0,
+      "strict_final_accuracy": 0.2,
+      "strict_final_correct": 1,
+      "threshold": 0.01,
+      "trusted": 5,
+      "trusted_case_ids": [
+        "stage_a::000001",
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ],
+      "trusted_correct": 1,
+      "trusted_incorrect": 4,
+      "trusted_precision": 0.2,
+      "unsafe_trust_case_ids": [
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ]
+    },
+    {
+      "coverage": 1.0,
+      "fail_closed": 0,
+      "fail_closed_case_ids": [],
+      "fail_closed_exact_correct": 0,
+      "strict_final_accuracy": 0.2,
+      "strict_final_correct": 1,
+      "threshold": 0.011,
+      "trusted": 5,
+      "trusted_case_ids": [
+        "stage_a::000001",
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ],
+      "trusted_correct": 1,
+      "trusted_incorrect": 4,
+      "trusted_precision": 0.2,
+      "unsafe_trust_case_ids": [
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ]
+    },
+    {
+      "coverage": 1.0,
+      "fail_closed": 0,
+      "fail_closed_case_ids": [],
+      "fail_closed_exact_correct": 0,
+      "strict_final_accuracy": 0.2,
+      "strict_final_correct": 1,
+      "threshold": 0.025,
+      "trusted": 5,
+      "trusted_case_ids": [
+        "stage_a::000001",
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ],
+      "trusted_correct": 1,
+      "trusted_incorrect": 4,
+      "trusted_precision": 0.2,
+      "unsafe_trust_case_ids": [
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ]
+    },
+    {
+      "coverage": 0.6,
+      "fail_closed": 2,
+      "fail_closed_case_ids": [
+        "stage_a::000007",
+        "stage_a::000021"
+      ],
+      "fail_closed_exact_correct": 0,
+      "strict_final_accuracy": 0.2,
+      "strict_final_correct": 1,
+      "threshold": 0.03,
+      "trusted": 3,
+      "trusted_case_ids": [
+        "stage_a::000001",
+        "stage_a::000012",
+        "stage_a::000019"
+      ],
+      "trusted_correct": 1,
+      "trusted_incorrect": 2,
+      "trusted_precision": 0.333333,
+      "unsafe_trust_case_ids": [
+        "stage_a::000012",
+        "stage_a::000019"
+      ]
+    },
+    {
+      "coverage": 0.2,
+      "fail_closed": 4,
+      "fail_closed_case_ids": [
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ],
+      "fail_closed_exact_correct": 1,
+      "strict_final_accuracy": 0.4,
+      "strict_final_correct": 2,
+      "threshold": 0.035,
+      "trusted": 1,
+      "trusted_case_ids": [
+        "stage_a::000001"
+      ],
+      "trusted_correct": 1,
+      "trusted_incorrect": 0,
+      "trusted_precision": 1.0,
+      "unsafe_trust_case_ids": []
+    },
+    {
+      "coverage": 0.0,
+      "fail_closed": 5,
+      "fail_closed_case_ids": [
+        "stage_a::000001",
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ],
+      "fail_closed_exact_correct": 1,
+      "strict_final_accuracy": 0.2,
+      "strict_final_correct": 1,
+      "threshold": 0.04,
+      "trusted": 0,
+      "trusted_case_ids": [],
+      "trusted_correct": 0,
+      "trusted_incorrect": 0,
+      "trusted_precision": null,
+      "unsafe_trust_case_ids": []
+    },
+    {
+      "coverage": 0.0,
+      "fail_closed": 5,
+      "fail_closed_case_ids": [
+        "stage_a::000001",
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ],
+      "fail_closed_exact_correct": 1,
+      "strict_final_accuracy": 0.2,
+      "strict_final_correct": 1,
+      "threshold": 0.05,
+      "trusted": 0,
+      "trusted_case_ids": [],
+      "trusted_correct": 0,
+      "trusted_incorrect": 0,
+      "trusted_precision": null,
+      "unsafe_trust_case_ids": []
+    }
+  ]
+}

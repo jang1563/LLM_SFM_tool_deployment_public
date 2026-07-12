@@ -1,0 +1,234 @@
+{
+  "artifact_policy": {
+    "committed": "compact_summary_only",
+    "raw_outputs_committed": false,
+    "raw_outputs_location": "ignored post_training/runs/ on the cluster working copy"
+  },
+  "cluster": "Cayuga Slurm GPU",
+  "component": "enum_action",
+  "contrast_axis": "action",
+  "dataset": "negbiodb_ct_stage_a_enum_action_only_cayuga_v1",
+  "failure_mode": "same_status_wrong_action_contrast",
+  "focus": {
+    "focus_chosen_pairs": [
+      "flag/invalid_value"
+    ],
+    "focus_only": false,
+    "focus_repeat": 4,
+    "train_examples": 16,
+    "training_by_chosen_pair": {
+      "defer/insufficient": 4,
+      "flag/invalid_value": 16,
+      "reject/contradicted": 4,
+      "verify/insufficient": 4
+    },
+    "training_examples": 28
+  },
+  "heldout_base_summary": {
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "margin_wins": 0,
+        "mean_margin": -0.427937,
+        "pairs": 1
+      },
+      "flag/invalid_value": {
+        "margin_wins": 0,
+        "mean_margin": -0.269291,
+        "pairs": 1
+      },
+      "reject/contradicted": {
+        "margin_wins": 0,
+        "mean_margin": -0.358202,
+        "pairs": 1
+      },
+      "verify/insufficient": {
+        "margin_wins": 1,
+        "mean_margin": 0.210202,
+        "pairs": 1
+      }
+    },
+    "heldout_pairs": 4,
+    "margin_accuracy": 0.25,
+    "margin_wins": 1,
+    "mean_margin": -0.211307,
+    "min_margin": -0.427937,
+    "violations": {
+      "chosen_not_above_rejected": 3
+    }
+  },
+  "heldout_delta_readout": [
+    {
+      "base_margin": -0.358202,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "chosen_output": {
+        "action": "reject"
+      },
+      "chosen_pair": "reject/contradicted",
+      "margin_delta": 0.222589,
+      "outcome": "remained_lost",
+      "rejected_output": {
+        "action": "ground"
+      },
+      "rejected_pair": "ground/contradicted",
+      "trained_margin": -0.135613,
+      "trained_passed": false
+    },
+    {
+      "base_margin": -0.427937,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "chosen_output": {
+        "action": "defer"
+      },
+      "chosen_pair": "defer/insufficient",
+      "margin_delta": 0.354446,
+      "outcome": "remained_lost",
+      "rejected_output": {
+        "action": "ground"
+      },
+      "rejected_pair": "ground/insufficient",
+      "trained_margin": -0.073491,
+      "trained_passed": false
+    },
+    {
+      "base_margin": 0.210202,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "chosen_output": {
+        "action": "verify"
+      },
+      "chosen_pair": "verify/insufficient",
+      "margin_delta": -0.066874,
+      "outcome": "remained_won",
+      "rejected_output": {
+        "action": "ground"
+      },
+      "rejected_pair": "ground/insufficient",
+      "trained_margin": 0.143328,
+      "trained_passed": true
+    },
+    {
+      "base_margin": -0.269291,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "chosen_output": {
+        "action": "flag"
+      },
+      "chosen_pair": "flag/invalid_value",
+      "margin_delta": 0.203659,
+      "outcome": "remained_lost",
+      "rejected_output": {
+        "action": "ground"
+      },
+      "rejected_pair": "ground/invalid_value",
+      "trained_margin": -0.065632,
+      "trained_passed": false
+    }
+  ],
+  "heldout_delta_summary": {
+    "base_margin_wins": 1,
+    "heldout_pairs": 4,
+    "mean_base_margin": -0.211307,
+    "mean_margin_delta": 0.178455,
+    "mean_trained_margin": -0.032852,
+    "min_margin_delta": -0.066874,
+    "newly_lost": 0,
+    "newly_won": 0,
+    "outcomes": {
+      "remained_lost": 3,
+      "remained_won": 1
+    },
+    "trained_margin_wins": 1
+  },
+  "heldout_trained_summary": {
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "margin_wins": 0,
+        "mean_margin": -0.073491,
+        "pairs": 1
+      },
+      "flag/invalid_value": {
+        "margin_wins": 0,
+        "mean_margin": -0.065632,
+        "pairs": 1
+      },
+      "reject/contradicted": {
+        "margin_wins": 0,
+        "mean_margin": -0.135613,
+        "pairs": 1
+      },
+      "verify/insufficient": {
+        "margin_wins": 1,
+        "mean_margin": 0.143328,
+        "pairs": 1
+      }
+    },
+    "heldout_pairs": 4,
+    "margin_accuracy": 0.25,
+    "margin_wins": 1,
+    "mean_margin": -0.032852,
+    "min_margin": -0.135613,
+    "violations": {
+      "chosen_not_above_rejected": 3
+    }
+  },
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "prompt_contract": "stage_a_v2_strict",
+  "run_id": "stage_a_enum_action_only_cayuga_2026_07_05",
+  "runner": "post_training/run_stage_a_enum_corrective_sft_smoke.py",
+  "scientific_readout": {
+    "interpretation": "Removing evidence_status from the target does not repair the weak action families. It improves margins relative to the action-only base model, but held-out wins stay 1/4 and train-pair margins show that flag, defer, and reject still lose to ground.",
+    "next_decision": "Keep tool_query, DPO, and RLVR gated. The next enum repair should add targeted action rows or a constrained action-head objective for flag/defer/reject rather than only changing target formatting.",
+    "question": "Do weak enum_action families pass when the target format is only the action field?",
+    "result": "No. Action-only held-out wins remain 1/4, mean trained margin is -0.032852, and flag/defer/reject are still below zero."
+  },
+  "target_format": "action_only",
+  "trace": {
+    "base_margin_report_sha256": "421b25cbb276e786666b7c85542c59403ae6892f878e2c2946711f1f78d63570",
+    "base_margins_jsonl_sha256": "9e15726ca30b6c57202cdeef2a9f325cb2ede4e300d9c98932b7ca59f165b49e",
+    "heldout_margin_report_sha256": "61033fa37e4ae2d4c88b1bcbe929dc722040bebf196ca40e1ffec8cd823c351d",
+    "heldout_margins_jsonl_sha256": "005ca63a410745a2537f1ff3fb1fb12c2893c813c2865e5cff51be2fe01e48c0",
+    "margin_delta_report_sha256": "5b93ecda8271e440c8ff0eeeb2e0898580d9507fa111d962f14efb58fbb324db",
+    "report_sha256": "5190cf22398fb481a574e0594b64b4b5dbc4aefafa0612e4214eaefd016e56bc",
+    "train_margin_report_sha256": "15e2b2af16bf75cc2b1fa814d226d83686e9f6a180c01601125c60e4872836e3",
+    "train_margins_jsonl_sha256": "ce4c2eb55b1792012dad9be9121b4b8d8c12651c6f24e076d5f222cc95021255",
+    "trainable_state_sha256": "21ff6d816687fda7f03997733f3e380e1f2d4d56dfbbe8d5eb5ae133dbffcb9b"
+  },
+  "trained_train_summary": {
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "margin_wins": 0,
+        "mean_margin": -0.119163,
+        "pairs": 4
+      },
+      "flag/invalid_value": {
+        "margin_wins": 0,
+        "mean_margin": -0.120798,
+        "pairs": 4
+      },
+      "reject/contradicted": {
+        "margin_wins": 0,
+        "mean_margin": -0.055307,
+        "pairs": 4
+      },
+      "verify/insufficient": {
+        "margin_wins": 3,
+        "mean_margin": 0.076226,
+        "pairs": 4
+      }
+    },
+    "margin_accuracy": 0.188,
+    "margin_wins": 3,
+    "mean_margin": -0.054761,
+    "train_pairs": 16
+  },
+  "training": {
+    "batch_size": 1,
+    "device": "cuda",
+    "loss_delta": -1.469203,
+    "max_steps": 20,
+    "train_last_layers": 1,
+    "trainable_params": 14913280
+  }
+}

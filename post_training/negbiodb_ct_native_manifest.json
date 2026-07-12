@@ -1,0 +1,29 @@
+{
+  "dataset": "negbiodb_ct_native_trajectory_v1",
+  "preference_failure_modes": {
+    "missing_attribution": 16,
+    "mixed_endpoint_over_grounding": 8,
+    "self_answering_without_tools": 40
+  },
+  "preference_pairs": 64,
+  "runner": "negbiodb_ct/agent_sonnet_n40_mixedfix.json",
+  "runner_summary": {
+    "action_accuracy": 1.0,
+    "by_class": {
+      "defer": "8/8",
+      "flag": "8/8",
+      "ground": "8/8",
+      "reject": "8/8",
+      "verify": "8/8"
+    },
+    "generic_mean_score": 1.0,
+    "mean_reward": 1.0,
+    "model": "claude-sonnet-4-6",
+    "n": 40,
+    "tool_call_rate": 1.0
+  },
+  "sft_examples": 40,
+  "skipped": [],
+  "source_runner": "claude-sonnet-4-6",
+  "tasks": "negbiodb_ct/tasks_pilot.jsonl"
+}

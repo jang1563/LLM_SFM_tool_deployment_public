@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it using the metadata below."
+title: "LLM-SFM Tool Deployment"
+authors:
+  - family-names: "Kim"
+    given-names: "Jihoon"
+repository-code: "https://github.com/jang1563/LLM_SFM_tool_deployment_public"
+version: "0.1.0"
+date-released: "2026-07-12"
+keywords:
+  - "AI for science"
+  - "biology agents"
+  - "tool use"
+  - "post-training"
+  - "entity resolution"
+  - "scientific evaluation"
+license: "LicenseRef-All-Rights-Reserved"

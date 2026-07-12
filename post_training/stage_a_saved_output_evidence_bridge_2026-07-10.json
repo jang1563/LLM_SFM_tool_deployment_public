@@ -1,0 +1,670 @@
+{
+  "bridge_rows": [
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "ground/supported": 1,
+        "verify/insufficient": 3
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 4,
+      "candidate_policy_trusted_incorrect": 3,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "checkpoint": "balanced_nonflag_candidate_rank_readout",
+      "join_status": "joined",
+      "policy": "raw_candidate_top1",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "reject/contradicted",
+      "runtime_evidence_reason": "mixed_endpoint_records_for_same_claim",
+      "target_pair": "reject/contradicted",
+      "visible_evidence_features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "mixed_endpoint_records_for_same_claim",
+        "observed_tool_loop_present": true,
+        "records_considered": 2,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 2,
+        "value_validity_findings_count": 0
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "ground/supported": 1,
+        "verify/insufficient": 3
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 4,
+      "candidate_policy_trusted_incorrect": 3,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "checkpoint": "balanced_nonflag_candidate_rank_readout",
+      "join_status": "joined",
+      "policy": "raw_candidate_top1",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "defer/insufficient",
+      "runtime_evidence_reason": "no_same_indication_or_related_failure_record",
+      "target_pair": "defer/insufficient",
+      "visible_evidence_features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0,
+        "value_validity_findings_count": 0
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "ground/supported": 1,
+        "verify/insufficient": 3
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 4,
+      "candidate_policy_trusted_incorrect": 3,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "checkpoint": "balanced_nonflag_candidate_rank_readout",
+      "join_status": "joined",
+      "policy": "raw_candidate_top1",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "flag/invalid_value",
+      "runtime_evidence_reason": "invalid_numeric_value_in_same_indication_record",
+      "target_pair": "flag/invalid_value",
+      "visible_evidence_features": {
+        "citation_candidate_count": 1,
+        "completeness_signal": "same_indication_record_has_invalid_numeric_value",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings_count": 1
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "defer/insufficient": 2,
+        "ground/supported": 1,
+        "reject/contradicted": 1
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 4,
+      "candidate_policy_trusted_incorrect": 3,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "checkpoint": "balanced_nonflag_candidate_rank_readout",
+      "join_status": "joined",
+      "policy": "calibrated_candidate_top1",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "reject/contradicted",
+      "runtime_evidence_reason": "mixed_endpoint_records_for_same_claim",
+      "target_pair": "reject/contradicted",
+      "visible_evidence_features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "mixed_endpoint_records_for_same_claim",
+        "observed_tool_loop_present": true,
+        "records_considered": 2,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 2,
+        "value_validity_findings_count": 0
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "defer/insufficient": 2,
+        "ground/supported": 1,
+        "reject/contradicted": 1
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 4,
+      "candidate_policy_trusted_incorrect": 3,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "checkpoint": "balanced_nonflag_candidate_rank_readout",
+      "join_status": "joined",
+      "policy": "calibrated_candidate_top1",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "verify/insufficient",
+      "runtime_evidence_reason": "related_evidence_without_same_indication_record",
+      "target_pair": "verify/insufficient",
+      "visible_evidence_features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0,
+        "value_validity_findings_count": 0
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "defer/insufficient": 2,
+        "ground/supported": 1,
+        "reject/contradicted": 1
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 4,
+      "candidate_policy_trusted_incorrect": 3,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "checkpoint": "balanced_nonflag_candidate_rank_readout",
+      "join_status": "joined",
+      "policy": "calibrated_candidate_top1",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "flag/invalid_value",
+      "runtime_evidence_reason": "invalid_numeric_value_in_same_indication_record",
+      "target_pair": "flag/invalid_value",
+      "visible_evidence_features": {
+        "citation_candidate_count": 1,
+        "completeness_signal": "same_indication_record_has_invalid_numeric_value",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings_count": 1
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "defer/insufficient": 4
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 0,
+      "candidate_policy_trusted_incorrect": 0,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "checkpoint": "balanced_nonflag_candidate_rank_readout",
+      "join_status": "joined",
+      "policy": "train_selected_score_gap_gate",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "reject/contradicted",
+      "runtime_evidence_reason": "mixed_endpoint_records_for_same_claim",
+      "target_pair": "reject/contradicted",
+      "visible_evidence_features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "mixed_endpoint_records_for_same_claim",
+        "observed_tool_loop_present": true,
+        "records_considered": 2,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 2,
+        "value_validity_findings_count": 0
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "defer/insufficient": 4
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 0,
+      "candidate_policy_trusted_incorrect": 0,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "checkpoint": "balanced_nonflag_candidate_rank_readout",
+      "join_status": "joined",
+      "policy": "train_selected_score_gap_gate",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "verify/insufficient",
+      "runtime_evidence_reason": "related_evidence_without_same_indication_record",
+      "target_pair": "verify/insufficient",
+      "visible_evidence_features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0,
+        "value_validity_findings_count": 0
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "defer/insufficient": 4
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 0,
+      "candidate_policy_trusted_incorrect": 0,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "checkpoint": "balanced_nonflag_candidate_rank_readout",
+      "join_status": "joined",
+      "policy": "train_selected_score_gap_gate",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "flag/invalid_value",
+      "runtime_evidence_reason": "invalid_numeric_value_in_same_indication_record",
+      "target_pair": "flag/invalid_value",
+      "visible_evidence_features": {
+        "citation_candidate_count": 1,
+        "completeness_signal": "same_indication_record_has_invalid_numeric_value",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings_count": 1
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "verify/insufficient": 4
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 4,
+      "candidate_policy_trusted_incorrect": 3,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "checkpoint": "candidate_ce_action_status_pair_field_readout",
+      "join_status": "joined",
+      "policy": "raw_candidate_top1",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "reject/contradicted",
+      "runtime_evidence_reason": "mixed_endpoint_records_for_same_claim",
+      "target_pair": "reject/contradicted",
+      "visible_evidence_features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "mixed_endpoint_records_for_same_claim",
+        "observed_tool_loop_present": true,
+        "records_considered": 2,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 2,
+        "value_validity_findings_count": 0
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "verify/insufficient": 4
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 4,
+      "candidate_policy_trusted_incorrect": 3,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "checkpoint": "candidate_ce_action_status_pair_field_readout",
+      "join_status": "joined",
+      "policy": "raw_candidate_top1",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "defer/insufficient",
+      "runtime_evidence_reason": "no_same_indication_or_related_failure_record",
+      "target_pair": "defer/insufficient",
+      "visible_evidence_features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0,
+        "value_validity_findings_count": 0
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "verify/insufficient": 4
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 4,
+      "candidate_policy_trusted_incorrect": 3,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "checkpoint": "candidate_ce_action_status_pair_field_readout",
+      "join_status": "joined",
+      "policy": "raw_candidate_top1",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "flag/invalid_value",
+      "runtime_evidence_reason": "invalid_numeric_value_in_same_indication_record",
+      "target_pair": "flag/invalid_value",
+      "visible_evidence_features": {
+        "citation_candidate_count": 1,
+        "completeness_signal": "same_indication_record_has_invalid_numeric_value",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings_count": 1
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "defer/insufficient": 1,
+        "ground/supported": 1,
+        "verify/insufficient": 2
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 4,
+      "candidate_policy_trusted_incorrect": 3,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "checkpoint": "candidate_ce_action_status_pair_field_readout",
+      "join_status": "joined",
+      "policy": "calibrated_candidate_top1",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "reject/contradicted",
+      "runtime_evidence_reason": "mixed_endpoint_records_for_same_claim",
+      "target_pair": "reject/contradicted",
+      "visible_evidence_features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "mixed_endpoint_records_for_same_claim",
+        "observed_tool_loop_present": true,
+        "records_considered": 2,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 2,
+        "value_validity_findings_count": 0
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "defer/insufficient": 1,
+        "ground/supported": 1,
+        "verify/insufficient": 2
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 4,
+      "candidate_policy_trusted_incorrect": 3,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "checkpoint": "candidate_ce_action_status_pair_field_readout",
+      "join_status": "joined",
+      "policy": "calibrated_candidate_top1",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "defer/insufficient",
+      "runtime_evidence_reason": "no_same_indication_or_related_failure_record",
+      "target_pair": "defer/insufficient",
+      "visible_evidence_features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "no_same_indication_or_related_failure_record",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 0,
+        "value_validity_findings_count": 0
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "defer/insufficient": 1,
+        "ground/supported": 1,
+        "verify/insufficient": 2
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 4,
+      "candidate_policy_trusted_incorrect": 3,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "checkpoint": "candidate_ce_action_status_pair_field_readout",
+      "join_status": "joined",
+      "policy": "calibrated_candidate_top1",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "flag/invalid_value",
+      "runtime_evidence_reason": "invalid_numeric_value_in_same_indication_record",
+      "target_pair": "flag/invalid_value",
+      "visible_evidence_features": {
+        "citation_candidate_count": 1,
+        "completeness_signal": "same_indication_record_has_invalid_numeric_value",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings_count": 1
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "defer/insufficient": 4
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 0,
+      "candidate_policy_trusted_incorrect": 0,
+      "case_family": "contradicted_or_mixed_endpoint_claim",
+      "case_id": "stage_a::000007",
+      "checkpoint": "candidate_ce_action_status_pair_field_readout",
+      "join_status": "joined",
+      "policy": "train_selected_score_gap_gate",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "reject/contradicted",
+      "runtime_evidence_reason": "mixed_endpoint_records_for_same_claim",
+      "target_pair": "reject/contradicted",
+      "visible_evidence_features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "mixed_endpoint_records_for_same_claim",
+        "observed_tool_loop_present": true,
+        "records_considered": 2,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 2,
+        "value_validity_findings_count": 0
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "defer/insufficient": 4
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 0,
+      "candidate_policy_trusted_incorrect": 0,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "checkpoint": "candidate_ce_action_status_pair_field_readout",
+      "join_status": "joined",
+      "policy": "train_selected_score_gap_gate",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "verify/insufficient",
+      "runtime_evidence_reason": "related_evidence_without_same_indication_record",
+      "target_pair": "verify/insufficient",
+      "visible_evidence_features": {
+        "citation_candidate_count": 0,
+        "completeness_signal": "related_evidence_exists_but_same_indication_record_absent",
+        "observed_tool_loop_present": true,
+        "records_considered": 0,
+        "related_negative_evidence_count": 2,
+        "same_indication_record_count": 0,
+        "value_validity_findings_count": 0
+      }
+    },
+    {
+      "candidate_policy_exact": 1,
+      "candidate_policy_predicted_pair_counts": {
+        "defer/insufficient": 4
+      },
+      "candidate_policy_rows": 4,
+      "candidate_policy_trusted_candidate": 0,
+      "candidate_policy_trusted_incorrect": 0,
+      "case_family": "invalid_value_attribution_failure",
+      "case_id": "stage_a::000021",
+      "checkpoint": "candidate_ce_action_status_pair_field_readout",
+      "join_status": "joined",
+      "policy": "train_selected_score_gap_gate",
+      "runtime_arbitration_best_exact": 4,
+      "runtime_evidence_exact": true,
+      "runtime_evidence_pair": "flag/invalid_value",
+      "runtime_evidence_reason": "invalid_numeric_value_in_same_indication_record",
+      "target_pair": "flag/invalid_value",
+      "visible_evidence_features": {
+        "citation_candidate_count": 1,
+        "completeness_signal": "same_indication_record_has_invalid_numeric_value",
+        "observed_tool_loop_present": true,
+        "records_considered": 1,
+        "related_negative_evidence_count": 0,
+        "same_indication_record_count": 1,
+        "value_validity_findings_count": 1
+      }
+    }
+  ],
+  "bridge_summary": {
+    "all_joined_rows_runtime_exact": true,
+    "bridge_rows": 18,
+    "candidate_prediction_granularity": "policy_level_predicted_pair_counts_only",
+    "checkpoint_counts": {
+      "balanced_nonflag_candidate_rank_readout": 9,
+      "candidate_ce_action_status_pair_field_readout": 9
+    },
+    "joined_rows": 18,
+    "missing_evidence_rows": 0,
+    "policy_counts": {
+      "calibrated_candidate_top1": 6,
+      "raw_candidate_top1": 6,
+      "train_selected_score_gap_gate": 6
+    },
+    "runtime_reason_counts": {
+      "invalid_numeric_value_in_same_indication_record": 6,
+      "mixed_endpoint_records_for_same_claim": 6,
+      "no_same_indication_or_related_failure_record": 3,
+      "related_evidence_without_same_indication_record": 3
+    },
+    "runtime_reasons_by_case": {
+      "stage_a::000007": "mixed_endpoint_records_for_same_claim",
+      "stage_a::000012": "no_same_indication_or_related_failure_record",
+      "stage_a::000019": "related_evidence_without_same_indication_record",
+      "stage_a::000021": "invalid_numeric_value_in_same_indication_record"
+    },
+    "target_pair_counts": {
+      "defer/insufficient": 3,
+      "flag/invalid_value": 6,
+      "reject/contradicted": 6,
+      "verify/insufficient": 3
+    },
+    "target_pairs_by_case": {
+      "stage_a::000007": "reject/contradicted",
+      "stage_a::000012": "defer/insufficient",
+      "stage_a::000019": "verify/insufficient",
+      "stage_a::000021": "flag/invalid_value"
+    },
+    "unique_failure_case_ids": [
+      "stage_a::000007",
+      "stage_a::000012",
+      "stage_a::000019",
+      "stage_a::000021"
+    ],
+    "unique_failure_cases": 4
+  },
+  "checkpoint_name": "stage_a_saved_output_evidence_conditioned_bridge",
+  "dataset": "negbiodb_ct_stage_a_saved_output_evidence_bridge_v1",
+  "decision": {
+    "do_not_run_more_standalone_sft_yet": true,
+    "interpretation": "Candidate failures cover multiple evidence reasons and target pairs that the prompt-visible runtime evidence gate resolves. The next training substrate should condition candidate routing on those visible evidence features rather than repeat standalone candidate SFT on the same small slice.",
+    "ready_for_dpo_rlvr": false,
+    "ready_for_hugging_face_publication": false,
+    "ready_for_release_tagging": false,
+    "ready_for_tool_query": false,
+    "selected_next_step": "build_evidence_conditioned_candidate_routing_slice",
+    "source_next_decision": "build_evidence_conditioned_saved_output_bridge"
+  },
+  "input_artifacts": {
+    "candidate_ce_result": {
+      "path": "post_training/stage_a_saved_output_candidate_ce_checkpoint_result_2026-07-10.json",
+      "role": "candidate-CE checkpoint result",
+      "sha256": "41f27fabc76c2936ea7408b94c555709e6100af4a0a1b260eb32a5930e866ae6"
+    },
+    "full_trajectory_arbitration": {
+      "path": "post_training/stage_a_full_trajectory_arbitration_2026-07-09.json",
+      "role": "full-trajectory runtime arbitration reference",
+      "sha256": "272d6b402b72179a260f09db0d2cb57ac024b628a811092dd36f3161d82afdb0"
+    },
+    "nonflag_result": {
+      "path": "post_training/stage_a_saved_output_nonflag_checkpoint_result_2026-07-10.json",
+      "role": "nonflag checkpoint result",
+      "sha256": "c63c34b531de8d59e7aac2068bbd72e490b90eaf2e83a80a678c31b29fb4bd80"
+    },
+    "post_ce_next_decision": {
+      "path": "post_training/stage_a_saved_output_post_candidate_ce_next_decision_2026-07-10.json",
+      "role": "post-candidate-CE next decision",
+      "sha256": "b7867edf14ca0e152ef9804c476fe2f49dbc287d4aad87027456f71758770add"
+    },
+    "routing_evidence_gate": {
+      "path": "post_training/stage_a_routing_evidence_gate_2026-07-08.json",
+      "role": "routing evidence gate rows",
+      "sha256": "49353503c252d6549d2dc666fb83f867e3c782763599d6a5ef5e754cfea8b13f"
+    }
+  },
+  "next_data_contract": {
+    "acceptance_gate": {
+      "candidate_granularity_disclosed": true,
+      "no_missing_evidence_gate_rows": true,
+      "raw_outputs_uncommitted": true,
+      "runtime_evidence_rows_exact": true
+    },
+    "must_include_fields": [
+      "case_id",
+      "case_family",
+      "target_pair",
+      "runtime_evidence_reason",
+      "visible_evidence_features",
+      "candidate_policy",
+      "candidate_policy_predicted_pair_counts"
+    ],
+    "must_not_include": [
+      "hidden_eval_metadata",
+      "raw_candidate_score_table",
+      "raw_model_text",
+      "scheduler_log",
+      "model_state_path"
+    ],
+    "name": "stage_a_evidence_conditioned_candidate_routing_rows"
+  },
+  "public_safety_contract": {
+    "hidden_labels_used_for_bridge": false,
+    "ignored_run_folder_read": false,
+    "model_state_read": false,
+    "raw_artifacts_committed": false,
+    "raw_candidate_score_jsonl_read": false,
+    "raw_prediction_jsonl_read": false,
+    "scheduler_logs_read": false
+  },
+  "runtime_reference": {
+    "full_trajectory_arbitration": {
+      "citationless_runtime_action": {
+        "cases": 25,
+        "passed": 15,
+        "violations": {
+          "missing_required_attribution": 10
+        }
+      },
+      "ground_supported_collapse": {
+        "cases": 25,
+        "passed": 5,
+        "unsafe_ground_supported_overrides": 20
+      },
+      "hybrid_runtime_over_collapse": {
+        "cases": 25,
+        "mean_score": 1.0,
+        "passed": 25,
+        "violations": {}
+      },
+      "path": "post_training/stage_a_full_trajectory_arbitration_2026-07-09.json",
+      "raw_model_outputs_used": false,
+      "sha256": "272d6b402b72179a260f09db0d2cb57ac024b628a811092dd36f3161d82afdb0"
+    },
+    "routing_evidence_gate_hidden_labels_used": false,
+    "routing_evidence_gate_model_visible_fields_only": true
+  }
+}

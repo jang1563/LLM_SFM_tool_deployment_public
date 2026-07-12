@@ -1,0 +1,168 @@
+{
+  "anchor": "post_training/BOUNDARY_PREFERENCE_MARGIN_BASE_2026-06-27.md",
+  "raw_run": "post_training/runs/qwen_boundary_preference_margin/base_full.json",
+  "command": "python post_training/run_boundary_preference_margin.py --max-length 768 --device auto --out post_training/runs/qwen_boundary_preference_margin/base_full.json",
+  "summary": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "condition": "boundary_preference_margin",
+    "state": null,
+    "loaded_state": null,
+    "preferences": "post_training/negbiodb_ct_oracle_boundary_preferences_v1.jsonl",
+    "n": 620,
+    "max_length": 768,
+    "device": "mps",
+    "mean_win_rate": 0.615,
+    "sum_win_rate": 0.453,
+    "mean_margin": {
+      "mean": 0.4442,
+      "median": 0.155,
+      "min": -2.8325,
+      "max": 2.8617
+    },
+    "sum_margin": {
+      "mean": -0.3806,
+      "median": -0.7129,
+      "min": -20.5695,
+      "max": 36.1039
+    },
+    "by_failure_mode": {
+      "boundary_defer_over_verify": {
+        "n": 120,
+        "mean_win_rate": 0.008,
+        "mean_margin": {
+          "mean": -0.1125,
+          "median": -0.1239,
+          "min": -0.1937,
+          "max": 0.5131
+        }
+      },
+      "boundary_flag_over_ground": {
+        "n": 40,
+        "mean_win_rate": 0.0,
+        "mean_margin": {
+          "mean": -0.1656,
+          "median": -0.1753,
+          "min": -0.201,
+          "max": -0.0071
+        }
+      },
+      "boundary_flag_over_reject": {
+        "n": 40,
+        "mean_win_rate": 1.0,
+        "mean_margin": {
+          "mean": 2.4932,
+          "median": 2.4991,
+          "min": 2.3632,
+          "max": 2.581
+        }
+      },
+      "boundary_ground_over_flag": {
+        "n": 140,
+        "mean_win_rate": 1.0,
+        "mean_margin": {
+          "mean": 0.1784,
+          "median": 0.1752,
+          "min": 0.0957,
+          "max": 0.3595
+        }
+      },
+      "boundary_ground_over_reject": {
+        "n": 140,
+        "mean_win_rate": 1.0,
+        "mean_margin": {
+          "mean": 2.6621,
+          "median": 2.6637,
+          "min": 2.4902,
+          "max": 2.8617
+        }
+      },
+      "boundary_reject_over_flag": {
+        "n": 40,
+        "mean_win_rate": 0.0,
+        "mean_margin": {
+          "mean": -2.5255,
+          "median": -2.5456,
+          "min": -2.7615,
+          "max": -2.1826
+        }
+      },
+      "boundary_reject_over_ground": {
+        "n": 40,
+        "mean_win_rate": 0.0,
+        "mean_margin": {
+          "mean": -2.6783,
+          "median": -2.7031,
+          "min": -2.8325,
+          "max": -2.1467
+        }
+      },
+      "boundary_verify_over_defer": {
+        "n": 60,
+        "mean_win_rate": 1.0,
+        "mean_margin": {
+          "mean": 0.1042,
+          "median": 0.1074,
+          "min": 0.0268,
+          "max": 0.1641
+        }
+      }
+    }
+  },
+  "hard_negative_modes": [
+    {
+      "failure_mode": "boundary_defer_over_verify",
+      "n": 120,
+      "mean_win_rate": 0.008,
+      "mean_margin": -0.1125,
+      "interpretation": "The base model prefers verify over correct defer on nearly all empty-evidence cases."
+    },
+    {
+      "failure_mode": "boundary_flag_over_ground",
+      "n": 40,
+      "mean_win_rate": 0.0,
+      "mean_margin": -0.1656,
+      "interpretation": "The base model prefers clean ground over correct flag when impossible-value evidence should dominate."
+    },
+    {
+      "failure_mode": "boundary_reject_over_ground",
+      "n": 40,
+      "mean_win_rate": 0.0,
+      "mean_margin": -2.6783,
+      "interpretation": "The base model strongly prefers ground over correct mixed-endpoint reject."
+    },
+    {
+      "failure_mode": "boundary_reject_over_flag",
+      "n": 40,
+      "mean_win_rate": 0.0,
+      "mean_margin": -2.5255,
+      "interpretation": "The base model strongly prefers flag over correct mixed-endpoint reject."
+    }
+  ],
+  "easy_or_already_aligned_modes": [
+    {
+      "failure_mode": "boundary_ground_over_reject",
+      "n": 140,
+      "mean_win_rate": 1.0,
+      "mean_margin": 2.6621
+    },
+    {
+      "failure_mode": "boundary_ground_over_flag",
+      "n": 140,
+      "mean_win_rate": 1.0,
+      "mean_margin": 0.1784
+    },
+    {
+      "failure_mode": "boundary_flag_over_reject",
+      "n": 40,
+      "mean_win_rate": 1.0,
+      "mean_margin": 2.4932
+    },
+    {
+      "failure_mode": "boundary_verify_over_defer",
+      "n": 60,
+      "mean_win_rate": 1.0,
+      "mean_margin": 0.1042
+    }
+  ],
+  "next_safe_action": "Build a hard-mode DPO/preference smoke subset from negative-margin modes rather than training all 620 pairs uniformly."
+}

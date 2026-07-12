@@ -1,0 +1,57 @@
+{
+  "base_unprompted": {
+    "constrained_loaded": {
+      "action_accuracy": 0.2,
+      "by_class": {
+        "defer": "0/2",
+        "flag": "0/2",
+        "ground": "2/2",
+        "reject": "0/2",
+        "verify": "0/2"
+      },
+      "parse_failures": 0
+    },
+    "sft": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_heldout.jsonl",
+    "strict": {
+      "action_accuracy": 0.2,
+      "by_class": {
+        "defer": "0/2",
+        "flag": "0/2",
+        "ground": "2/2",
+        "reject": "0/2",
+        "verify": "0/2"
+      },
+      "parse_failures": 4
+    }
+  },
+  "condition": "evidence_distill_prompted_rule_upper_bound_fold0",
+  "interpretation": "prompted_rule_following_positive_but_unprompted_internalization_negative",
+  "prompted": {
+    "constrained_loaded": {
+      "action_accuracy": 1.0,
+      "by_class": {
+        "defer": "2/2",
+        "flag": "2/2",
+        "ground": "2/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "parse_failures": 0
+    },
+    "sft": "post_training/boundary_rationale_heldout_evidence_ablation/negbiodb_ct_native_sft_cv4_boundary_rationale_heldout_evidence_v1_fold0_heldout.jsonl",
+    "strict": {
+      "action_accuracy": 1.0,
+      "by_class": {
+        "defer": "2/2",
+        "flag": "2/2",
+        "ground": "2/2",
+        "reject": "2/2",
+        "verify": "2/2"
+      },
+      "parse_failures": 0
+    }
+  },
+  "raw_run_root": "post_training/runs/qwen_oracle400_evidence_distill_prompted_fold0",
+  "state": "post_training/runs/qwen_oracle400_evidence_distill_base_cvheldout/train/trainable_state.pt",
+  "train_sft": "post_training/negbiodb_ct_oracle_sft_evidence_rationale_v1.jsonl"
+}

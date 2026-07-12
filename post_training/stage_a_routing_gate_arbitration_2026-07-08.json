@@ -1,0 +1,179 @@
+{
+  "boundary": "defer_vs_verify_insufficient",
+  "candidate_gate_report": "post_training/stage_a_routing_defer_verify_gate_trained_2026-07-08.json",
+  "cases": 2,
+  "component": "routing_after_loop",
+  "dataset": "negbiodb_ct_stage_a_routing_gate_arbitration_v1",
+  "evidence_gate_report": "post_training/stage_a_routing_evidence_boundary_gate_2026-07-08.json",
+  "rows": [
+    {
+      "candidate_top_pair": "verify/insufficient",
+      "candidate_top_second_gap": 0.023557,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "evidence_gate_pair": "defer/insufficient",
+      "exact": false,
+      "expected_pair": "defer/insufficient",
+      "policy": "raw_candidate_top1",
+      "predicted_pair": "verify/insufficient",
+      "reason": "trust_candidate_top1"
+    },
+    {
+      "candidate_top_pair": "verify/insufficient",
+      "candidate_top_second_gap": 0.023557,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "evidence_gate_pair": "defer/insufficient",
+      "exact": true,
+      "expected_pair": "defer/insufficient",
+      "policy": "score_gap_fail_closed",
+      "predicted_pair": "defer/insufficient",
+      "reason": "fail_closed_low_gap"
+    },
+    {
+      "candidate_top_pair": "verify/insufficient",
+      "candidate_top_second_gap": 0.023557,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "evidence_gate_pair": "defer/insufficient",
+      "exact": true,
+      "expected_pair": "defer/insufficient",
+      "policy": "evidence_boundary_override",
+      "predicted_pair": "defer/insufficient",
+      "reason": "use_evidence_boundary_gate"
+    },
+    {
+      "candidate_top_pair": "verify/insufficient",
+      "candidate_top_second_gap": 0.023557,
+      "case_family": "insufficient_evidence",
+      "case_id": "stage_a::000012",
+      "evidence_gate_pair": "defer/insufficient",
+      "exact": true,
+      "expected_pair": "defer/insufficient",
+      "policy": "hybrid_evidence_then_score_gap",
+      "predicted_pair": "defer/insufficient",
+      "reason": "use_evidence_boundary_gate"
+    },
+    {
+      "candidate_top_pair": "verify/insufficient",
+      "candidate_top_second_gap": 0.036484,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "evidence_gate_pair": "verify/insufficient",
+      "exact": true,
+      "expected_pair": "verify/insufficient",
+      "policy": "raw_candidate_top1",
+      "predicted_pair": "verify/insufficient",
+      "reason": "trust_candidate_top1"
+    },
+    {
+      "candidate_top_pair": "verify/insufficient",
+      "candidate_top_second_gap": 0.036484,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "evidence_gate_pair": "verify/insufficient",
+      "exact": true,
+      "expected_pair": "verify/insufficient",
+      "policy": "score_gap_fail_closed",
+      "predicted_pair": "verify/insufficient",
+      "reason": "trust_high_gap_candidate"
+    },
+    {
+      "candidate_top_pair": "verify/insufficient",
+      "candidate_top_second_gap": 0.036484,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "evidence_gate_pair": "verify/insufficient",
+      "exact": true,
+      "expected_pair": "verify/insufficient",
+      "policy": "evidence_boundary_override",
+      "predicted_pair": "verify/insufficient",
+      "reason": "use_evidence_boundary_gate"
+    },
+    {
+      "candidate_top_pair": "verify/insufficient",
+      "candidate_top_second_gap": 0.036484,
+      "case_family": "related_evidence_requires_verification",
+      "case_id": "stage_a::000019",
+      "evidence_gate_pair": "verify/insufficient",
+      "exact": true,
+      "expected_pair": "verify/insufficient",
+      "policy": "hybrid_evidence_then_score_gap",
+      "predicted_pair": "verify/insufficient",
+      "reason": "use_evidence_boundary_gate"
+    }
+  ],
+  "scientific_readout": {
+    "diagnostic_question": "Which public-safe runtime policy should arbitrate the weak defer-vs-verify routing model: raw top-1, score-gap fail-closed, or deterministic evidence-boundary override?",
+    "interpretation_rule": "If evidence-boundary or hybrid policies dominate raw top-1 on the held-out boundary slice, the next system design should route through runtime enforcement before adding new training objectives.",
+    "next_decision": "Keep tool_query, DPO/RLVR, and Hugging Face publication gated. Use arbitration as a public-safe system baseline before more model-heavy experiments."
+  },
+  "score_gap_threshold": 0.025,
+  "summary": {
+    "best_policy_names": [
+      "score_gap_fail_closed",
+      "evidence_boundary_override",
+      "hybrid_evidence_then_score_gap"
+    ],
+    "by_policy": {
+      "evidence_boundary_override": {
+        "accuracy": 1.0,
+        "by_predicted_pair": {
+          "defer/insufficient": 1,
+          "verify/insufficient": 1
+        },
+        "by_reason": {
+          "use_evidence_boundary_gate": 2
+        },
+        "error_case_ids": [],
+        "exact": 2,
+        "policy": "evidence_boundary_override",
+        "rows": 2
+      },
+      "hybrid_evidence_then_score_gap": {
+        "accuracy": 1.0,
+        "by_predicted_pair": {
+          "defer/insufficient": 1,
+          "verify/insufficient": 1
+        },
+        "by_reason": {
+          "use_evidence_boundary_gate": 2
+        },
+        "error_case_ids": [],
+        "exact": 2,
+        "policy": "hybrid_evidence_then_score_gap",
+        "rows": 2
+      },
+      "raw_candidate_top1": {
+        "accuracy": 0.5,
+        "by_predicted_pair": {
+          "verify/insufficient": 2
+        },
+        "by_reason": {
+          "trust_candidate_top1": 2
+        },
+        "error_case_ids": [
+          "stage_a::000012"
+        ],
+        "exact": 1,
+        "policy": "raw_candidate_top1",
+        "rows": 2
+      },
+      "score_gap_fail_closed": {
+        "accuracy": 1.0,
+        "by_predicted_pair": {
+          "defer/insufficient": 1,
+          "verify/insufficient": 1
+        },
+        "by_reason": {
+          "fail_closed_low_gap": 1,
+          "trust_high_gap_candidate": 1
+        },
+        "error_case_ids": [],
+        "exact": 2,
+        "policy": "score_gap_fail_closed",
+        "rows": 2
+      }
+    }
+  }
+}

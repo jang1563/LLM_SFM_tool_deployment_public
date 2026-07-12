@@ -1,0 +1,662 @@
+{
+  "artifact_policy": {
+    "model_state_committed": false,
+    "raw_model_text_committed": false,
+    "raw_prompt_messages_committed": false,
+    "raw_readout_committed": false,
+    "raw_scheduler_logs_committed": false,
+    "summary_only": true
+  },
+  "dataset": "negbiodb_ct_stage_a_saved_output_calibration_probe_readout_summary_v1",
+  "input_hashes": {
+    "ignored_readout_sha256": "8b91fd89feb1c1f74170279ca7ad323209aa4535e3c1bbd76860bbf6537ed85d",
+    "probe_heldout_sha256": "e69646f79a2285645da801039ab3174bb6848c946230869329944d310aa34062",
+    "probe_pairs_sha256": "bad77bcd702f8a2a30fd5437543723f77118d7dae18a5c383f8daec5e3ed4c16",
+    "probe_train_sha256": "f2afc84070d4d727154fa8d443a49154eccb9a04968c4af607f9dbd6c9e88ba1"
+  },
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "prompt_contract": "stage_a_v4_canonical_json",
+  "result": {
+    "adaptive_train_zero_unsafe_threshold": 0.189912,
+    "all_mean_margin": -0.078163,
+    "all_top_pair_counts": {
+      "ground/supported": 20
+    },
+    "heldout_at_adaptive_train_threshold": {
+      "coverage": 0.0,
+      "fail_closed": 4,
+      "fail_closed_case_ids": [
+        "stage_a::000007",
+        "stage_a::000012",
+        "stage_a::000019",
+        "stage_a::000021"
+      ],
+      "fail_closed_exact_correct": 1,
+      "rows": 4,
+      "strict_final_accuracy": 0.25,
+      "strict_final_correct": 1,
+      "threshold": 0.189912,
+      "trusted": 0,
+      "trusted_case_ids": [],
+      "trusted_correct": 0,
+      "trusted_incorrect": 0,
+      "trusted_precision": null,
+      "unsafe_trust_case_ids": []
+    },
+    "heldout_at_train_selected_threshold": null,
+    "heldout_exact_top1": 0,
+    "heldout_mean_margin": -0.081001,
+    "heldout_rows": 4,
+    "heldout_top_pair_counts": {
+      "ground/supported": 4
+    },
+    "rows": 20,
+    "train_exact_top1": 0,
+    "train_mean_margin": -0.077454,
+    "train_rows": 16,
+    "train_selected_zero_unsafe_report": null,
+    "train_top_pair_counts": {
+      "ground/supported": 16
+    }
+  },
+  "run_context": {
+    "compute_site": "Cayuga",
+    "heldout_rows": 4,
+    "model_load_mode": "allow_download",
+    "no_local_heavy_compute": true,
+    "probe_rows": 20,
+    "scored_offline": true,
+    "train_rows": 16
+  },
+  "run_id": "stage_a_saved_output_calibration_probe_readout_qwen05b_cayuga_2026_07_10",
+  "scientific_readout": {
+    "diagnostic_question": "Can Qwen2.5-0.5B score target action/status outputs above the observed ground/supported collapse on the saved-output calibration probe?",
+    "interpretation": "No. The model scores ground/supported above the target output on all 20 probe rows, including all 4 held-out evaluation-only rows. Ordinary score-gap trust would therefore be unsafe.",
+    "next_decision": "Keep tool_query, DPO/RLVR, Hugging Face publication, release tagging, and broad retraining gated. The next useful step is constrained calibration or supervision that directly penalizes ground/supported collapse before any full saved-output readiness claim."
+  },
+  "source_report_dataset": "negbiodb_ct_stage_a_saved_output_calibration_probe_readout_v1",
+  "source_run_id": "stage_a_saved_output_calibration_probe_readout_qwen05b_cayuga_20260710_download",
+  "summary_date": "2026-07-10",
+  "threshold_snapshot": {
+    "heldout_threshold_reports": [
+      {
+        "coverage": 1.0,
+        "fail_closed": 0,
+        "fail_closed_case_ids": [],
+        "fail_closed_exact_correct": 0,
+        "rows": 4,
+        "strict_final_accuracy": 0.0,
+        "strict_final_correct": 0,
+        "threshold": 0.0,
+        "trusted": 4,
+        "trusted_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 4,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ]
+      },
+      {
+        "coverage": 1.0,
+        "fail_closed": 0,
+        "fail_closed_case_ids": [],
+        "fail_closed_exact_correct": 0,
+        "rows": 4,
+        "strict_final_accuracy": 0.0,
+        "strict_final_correct": 0,
+        "threshold": 0.005,
+        "trusted": 4,
+        "trusted_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 4,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ]
+      },
+      {
+        "coverage": 1.0,
+        "fail_closed": 0,
+        "fail_closed_case_ids": [],
+        "fail_closed_exact_correct": 0,
+        "rows": 4,
+        "strict_final_accuracy": 0.0,
+        "strict_final_correct": 0,
+        "threshold": 0.01,
+        "trusted": 4,
+        "trusted_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 4,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ]
+      },
+      {
+        "coverage": 1.0,
+        "fail_closed": 0,
+        "fail_closed_case_ids": [],
+        "fail_closed_exact_correct": 0,
+        "rows": 4,
+        "strict_final_accuracy": 0.0,
+        "strict_final_correct": 0,
+        "threshold": 0.025,
+        "trusted": 4,
+        "trusted_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 4,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019",
+          "stage_a::000021"
+        ]
+      },
+      {
+        "coverage": 0.75,
+        "fail_closed": 1,
+        "fail_closed_case_ids": [
+          "stage_a::000019"
+        ],
+        "fail_closed_exact_correct": 0,
+        "rows": 4,
+        "strict_final_accuracy": 0.0,
+        "strict_final_correct": 0,
+        "threshold": 0.035,
+        "trusted": 3,
+        "trusted_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000021"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 3,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000021"
+        ]
+      },
+      {
+        "coverage": 0.75,
+        "fail_closed": 1,
+        "fail_closed_case_ids": [
+          "stage_a::000019"
+        ],
+        "fail_closed_exact_correct": 0,
+        "rows": 4,
+        "strict_final_accuracy": 0.0,
+        "strict_final_correct": 0,
+        "threshold": 0.05,
+        "trusted": 3,
+        "trusted_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000021"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 3,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000021"
+        ]
+      },
+      {
+        "coverage": 0.25,
+        "fail_closed": 3,
+        "fail_closed_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019"
+        ],
+        "fail_closed_exact_correct": 1,
+        "rows": 4,
+        "strict_final_accuracy": 0.25,
+        "strict_final_correct": 1,
+        "threshold": 0.075,
+        "trusted": 1,
+        "trusted_case_ids": [
+          "stage_a::000021"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 1,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000021"
+        ]
+      },
+      {
+        "coverage": 0.25,
+        "fail_closed": 3,
+        "fail_closed_case_ids": [
+          "stage_a::000007",
+          "stage_a::000012",
+          "stage_a::000019"
+        ],
+        "fail_closed_exact_correct": 1,
+        "rows": 4,
+        "strict_final_accuracy": 0.25,
+        "strict_final_correct": 1,
+        "threshold": 0.1,
+        "trusted": 1,
+        "trusted_case_ids": [
+          "stage_a::000021"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 1,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000021"
+        ]
+      }
+    ],
+    "train_threshold_reports": [
+      {
+        "coverage": 1.0,
+        "fail_closed": 0,
+        "fail_closed_case_ids": [],
+        "fail_closed_exact_correct": 0,
+        "rows": 16,
+        "strict_final_accuracy": 0.0,
+        "strict_final_correct": 0,
+        "threshold": 0.0,
+        "trusted": 16,
+        "trusted_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 16,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ]
+      },
+      {
+        "coverage": 1.0,
+        "fail_closed": 0,
+        "fail_closed_case_ids": [],
+        "fail_closed_exact_correct": 0,
+        "rows": 16,
+        "strict_final_accuracy": 0.0,
+        "strict_final_correct": 0,
+        "threshold": 0.005,
+        "trusted": 16,
+        "trusted_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 16,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ]
+      },
+      {
+        "coverage": 1.0,
+        "fail_closed": 0,
+        "fail_closed_case_ids": [],
+        "fail_closed_exact_correct": 0,
+        "rows": 16,
+        "strict_final_accuracy": 0.0,
+        "strict_final_correct": 0,
+        "threshold": 0.01,
+        "trusted": 16,
+        "trusted_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 16,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ]
+      },
+      {
+        "coverage": 1.0,
+        "fail_closed": 0,
+        "fail_closed_case_ids": [],
+        "fail_closed_exact_correct": 0,
+        "rows": 16,
+        "strict_final_accuracy": 0.0,
+        "strict_final_correct": 0,
+        "threshold": 0.025,
+        "trusted": 16,
+        "trusted_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 16,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ]
+      },
+      {
+        "coverage": 0.8125,
+        "fail_closed": 3,
+        "fail_closed_case_ids": [
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000018"
+        ],
+        "fail_closed_exact_correct": 0,
+        "rows": 16,
+        "strict_final_accuracy": 0.0,
+        "strict_final_correct": 0,
+        "threshold": 0.035,
+        "trusted": 13,
+        "trusted_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000017",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 13,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000017",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ]
+      },
+      {
+        "coverage": 0.6875,
+        "fail_closed": 5,
+        "fail_closed_case_ids": [
+          "stage_a::000009",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018"
+        ],
+        "fail_closed_exact_correct": 0,
+        "rows": 16,
+        "strict_final_accuracy": 0.0,
+        "strict_final_correct": 0,
+        "threshold": 0.05,
+        "trusted": 11,
+        "trusted_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 11,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ]
+      },
+      {
+        "coverage": 0.25,
+        "fail_closed": 12,
+        "fail_closed_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018"
+        ],
+        "fail_closed_exact_correct": 4,
+        "rows": 16,
+        "strict_final_accuracy": 0.25,
+        "strict_final_correct": 4,
+        "threshold": 0.075,
+        "trusted": 4,
+        "trusted_case_ids": [
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 4,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ]
+      },
+      {
+        "coverage": 0.25,
+        "fail_closed": 12,
+        "fail_closed_case_ids": [
+          "stage_a::000005",
+          "stage_a::000006",
+          "stage_a::000008",
+          "stage_a::000009",
+          "stage_a::000010",
+          "stage_a::000011",
+          "stage_a::000013",
+          "stage_a::000014",
+          "stage_a::000015",
+          "stage_a::000016",
+          "stage_a::000017",
+          "stage_a::000018"
+        ],
+        "fail_closed_exact_correct": 4,
+        "rows": 16,
+        "strict_final_accuracy": 0.25,
+        "strict_final_correct": 4,
+        "threshold": 0.1,
+        "trusted": 4,
+        "trusted_case_ids": [
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ],
+        "trusted_correct": 0,
+        "trusted_incorrect": 4,
+        "trusted_precision": 0.0,
+        "unsafe_trust_case_ids": [
+          "stage_a::000020",
+          "stage_a::000022",
+          "stage_a::000023",
+          "stage_a::000024"
+        ]
+      }
+    ]
+  }
+}

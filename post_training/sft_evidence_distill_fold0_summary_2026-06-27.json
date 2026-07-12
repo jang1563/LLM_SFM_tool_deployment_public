@@ -1,0 +1,42 @@
+{
+  "condition": "oracle400_evidence_rationale_distill_base_fold0",
+  "constrained_loaded": {
+    "action_accuracy": 0.2,
+    "by_class": {
+      "defer": "0/2",
+      "flag": "0/2",
+      "ground": "2/2",
+      "reject": "0/2",
+      "verify": "0/2"
+    },
+    "generic_mean_score": 0.667,
+    "parse_failures": 0
+  },
+  "eval_fold": "fold0_heldout",
+  "eval_sft": "post_training/cv/negbiodb_ct_native_sft_cv4_v1_fold0_heldout.jsonl",
+  "heldout_loaded_loss": 0.25340962332131256,
+  "interpretation": "negative_fold0_diagnostic",
+  "raw_run_root": "post_training/runs/qwen_oracle400_evidence_distill_base_cvheldout",
+  "run_scope": "fold0 completed; folds 1-3 stopped after negative fold0 signal",
+  "strict": {
+    "action_accuracy": 0.2,
+    "by_class": {
+      "defer": "0/2",
+      "flag": "0/2",
+      "ground": "2/2",
+      "reject": "0/2",
+      "verify": "0/2"
+    },
+    "generic_mean_score": 0.6,
+    "parse_failures": 4
+  },
+  "train": {
+    "examples": 400,
+    "first_loss": 1.510115623474121,
+    "last_loss": 0.001673419028520584,
+    "loss_delta": -1.5084422044456005,
+    "max_steps": 160,
+    "sft": "post_training/negbiodb_ct_oracle_sft_evidence_rationale_v1.jsonl",
+    "trainable_params": 29825664
+  }
+}

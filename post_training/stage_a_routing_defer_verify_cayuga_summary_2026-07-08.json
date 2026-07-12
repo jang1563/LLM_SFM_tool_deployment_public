@@ -1,0 +1,109 @@
+{
+  "artifact": "stage_a_routing_defer_verify_cayuga_summary",
+  "date": "2026-07-08",
+  "run_id": "stage_a_routing_defer_verify_cayuga_2026_07_08",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "component": "routing_after_loop",
+  "failure_mode": "routing_defer_verify_boundary_confusion",
+  "candidate_policy": "insufficient_defer_vs_verify_boundary",
+  "train_pairs": 8,
+  "heldout_pairs": 2,
+  "pairwise_margin_weight": 1.0,
+  "pairwise_margin": 0.05,
+  "base_margin": {
+    "wins": 1,
+    "pairs": 2,
+    "accuracy": 0.5,
+    "mean_margin": 0.013428,
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "wins": 0,
+        "pairs": 1,
+        "mean_margin": -0.154711
+      },
+      "verify/insufficient": {
+        "wins": 1,
+        "pairs": 1,
+        "mean_margin": 0.181567
+      }
+    }
+  },
+  "trained_margin": {
+    "wins": 1,
+    "pairs": 2,
+    "accuracy": 0.5,
+    "mean_margin": 0.006464,
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "wins": 0,
+        "pairs": 1,
+        "mean_margin": -0.023557
+      },
+      "verify/insufficient": {
+        "wins": 1,
+        "pairs": 1,
+        "mean_margin": 0.036484
+      }
+    }
+  },
+  "margin_delta": {
+    "base_wins": 1,
+    "trained_wins": 1,
+    "newly_won": 0,
+    "newly_lost": 0,
+    "mean_base_margin": 0.013428,
+    "mean_trained_margin": 0.006464,
+    "mean_delta": -0.006964,
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "base_wins": 0,
+        "trained_wins": 0,
+        "mean_delta": 0.131154
+      },
+      "verify/insufficient": {
+        "base_wins": 1,
+        "trained_wins": 1,
+        "mean_delta": -0.145083
+      }
+    }
+  },
+  "base_routing_candidates": {
+    "exact_top1": 1,
+    "cases": 2,
+    "mean_gold_rank": 1.5,
+    "top_pair_counts": {
+      "verify/insufficient": 2
+    },
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "exact_top1": 0,
+        "mean_gold_rank": 2.0
+      },
+      "verify/insufficient": {
+        "exact_top1": 1,
+        "mean_gold_rank": 1.0
+      }
+    }
+  },
+  "trained_routing_candidates": {
+    "exact_top1": 1,
+    "cases": 2,
+    "mean_gold_rank": 1.5,
+    "top_pair_counts": {
+      "verify/insufficient": 2
+    },
+    "by_chosen_pair": {
+      "defer/insufficient": {
+        "exact_top1": 0,
+        "mean_gold_rank": 2.0
+      },
+      "verify/insufficient": {
+        "exact_top1": 1,
+        "mean_gold_rank": 1.0
+      }
+    }
+  },
+  "interpretation": "The targeted defer-vs-verify smoke does not repair the held-out boundary. Defer/insufficient margin improves toward zero but remains below verify/insufficient; finite-candidate top-1 stays 1/2 and selects verify/insufficient for both held-out cases.",
+  "next_decision": "Keep tool_query, DPO, RLVR, release tagging, and Hugging Face publication gated. Next work should diagnose boundary calibration or fail-closed routing before adding broader data or optimization.",
+  "raw_outputs_uncommitted": true
+}
