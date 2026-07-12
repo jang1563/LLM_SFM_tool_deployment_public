@@ -339,10 +339,9 @@ For a compact visual/result summary, see [figures/RESULTS_SNAPSHOT.md](figures/R
 
 ## Release Status
 
-- GitHub target: [jang1563/LLM_SFM_tool_deployment_public](https://github.com/jang1563/LLM_SFM_tool_deployment_public).
-  This tree is the validated clean-snapshot release surface; live visibility is
-  verified separately from the repository contents.
-- Earlier private development history is intentionally excluded from this
+- GitHub: [jang1563/LLM_SFM_tool_deployment_public](https://github.com/jang1563/LLM_SFM_tool_deployment_public)
+  is published as a validated clean-snapshot release surface.
+- Earlier private development history and workflow runs are intentionally excluded from this
   release surface.
 - Hugging Face: project-specific model/dataset/space repositories are not yet
   published.

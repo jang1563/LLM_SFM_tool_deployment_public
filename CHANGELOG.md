@@ -2,7 +2,7 @@
 
 All notable public-facing changes are tracked here.
 
-## Unreleased
+## 0.1.0 - 2026-07-12
 
 - Curate a clean-snapshot release surface: remove career-planning and session
   recovery documents, replace the former one-page summary with a research

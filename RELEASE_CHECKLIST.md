@@ -1,8 +1,8 @@
 # Release Checklist
 
-Current status: the benchmark-first clean-snapshot release surface is validated
-for `jang1563/LLM_SFM_tool_deployment_public`. Live GitHub visibility is checked
-separately. Project-specific Hugging Face repositories have not been published.
+Current status: the benchmark-first clean-snapshot release surface is public at
+`jang1563/LLM_SFM_tool_deployment_public`. Project-specific Hugging Face
+repositories have not been published.
 
 Important: publish only the clean-snapshot history represented by this release
 surface. Earlier private development history is not part of the release.
@@ -122,8 +122,8 @@ surface. Earlier private development history is not part of the release.
   and zero public-source overlap without publishing private rows or labels.
 - [ ] Decide final license: all-rights-reserved, MIT, Apache-2.0, or lab-approved release.
 - [x] Build a clean-snapshot release surface from the validated current tree.
-- [ ] Verify live public visibility for `jang1563/LLM_SFM_tool_deployment_public`.
-- [ ] Verify the public-safe GitHub Actions QA workflow on the released commit.
+- [x] Verify live public visibility for `jang1563/LLM_SFM_tool_deployment_public`.
+- [x] Verify the public-safe GitHub Actions QA workflow on the clean root commit.
 - [x] Add pull-request checklist for benchmark leakage and public-surface hygiene.
 - [ ] Publish a GitHub release tag once cards and public data policy are final.
 

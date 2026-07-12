@@ -7,7 +7,7 @@ LLM-SFM Tool Deployment benchmark package.
 
 - Release profile: `benchmark_public_surface`
 - Primary object: Stage A biology tool-use trajectory benchmark substrate
-- Repository form: validated clean-snapshot release surface
+- Repository form: published and validated clean-snapshot release surface
 - GitHub: `https://github.com/jang1563/LLM_SFM_tool_deployment_public`
 - Earlier private development history is intentionally not included
 - License status: all rights reserved until a final open-source or

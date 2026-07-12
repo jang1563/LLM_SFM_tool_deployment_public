@@ -2,7 +2,7 @@
   "manifest_version": "0.1",
   "project": "LLM-SFM Tool Deployment",
   "release_profile": "benchmark_public_surface",
-  "status": "validated_clean_snapshot_release_surface",
+  "status": "public_clean_snapshot_release_surface",
   "last_updated": "2026-07-12",
   "benchmark_scope": {
     "primary_release_object": "Stage A biology tool-use trajectory benchmark substrate",
@@ -17,7 +17,7 @@
     "github": {
       "repo": "jang1563/LLM_SFM_tool_deployment_public",
       "target_visibility": "public",
-      "status": "external_live_check_required"
+      "status": "public_verified_2026-07-12"
     },
     "hugging_face": {
       "status": "not_published",
