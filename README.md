@@ -1,6 +1,7 @@
 # LLM-SFM Tool Deployment
 
 [![Public QA](https://github.com/jang1563/LLM_SFM_tool_deployment_public/actions/workflows/public-qa.yml/badge.svg)](https://github.com/jang1563/LLM_SFM_tool_deployment_public/actions/workflows/public-qa.yml)
+[![License: All rights reserved](https://img.shields.io/badge/License-All_rights_reserved-lightgrey.svg)](LICENSE)
 
 Deployment and post-training experiments for biology tool-use agents.
 
