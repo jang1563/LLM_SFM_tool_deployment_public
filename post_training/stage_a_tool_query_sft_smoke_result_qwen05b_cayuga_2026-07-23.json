@@ -1,0 +1,120 @@
+{
+  "acceptance_gate": {
+    "passes": false,
+    "required_cases": 5,
+    "required_gate_accuracy": {
+      "exact_match": 1.0,
+      "target_keys": 1.0,
+      "tool_query_shape": 1.0
+    },
+    "required_passed": 5,
+    "violations": [
+      "below_exact_pass_requirement",
+      "target_keys_below_requirement",
+      "tool_query_shape_below_requirement",
+      "exact_match_below_requirement"
+    ]
+  },
+  "component": "tool_query",
+  "dataset": "negbiodb_ct_stage_a_tool_query_sft_smoke_result_v1",
+  "decision": {
+    "diagnostic_complete": true,
+    "interpretation": "The tool-query slice measures one shared placeholder output shape. It is complete as a schema diagnostic but cannot support a claim about resolving real query identifiers.",
+    "ready_for_dpo_rlvr": false,
+    "ready_for_hugging_face_publication": false,
+    "selected_next_step": "freeze_candidate_routing_policy_then_run_one_time_sealed_routing_evaluation",
+    "tool_query_schema_gate_passed": false
+  },
+  "experiment_scope": {
+    "actual_identifier_resolution_evaluated": false,
+    "actual_tool_execution_evaluated": false,
+    "all_targets_use_expected_placeholder_sequence": true,
+    "diagnostic": "ordered_tool_call_and_placeholder_schema_compliance",
+    "shared_target_hashes": 1,
+    "unique_heldout_targets": 1,
+    "unique_train_targets": 1
+  },
+  "heldout_result": {
+    "cases": 5,
+    "gate_accuracy": {
+      "enum_validity": 1.0,
+      "exact_match": 0.0,
+      "target_keys": 0.0,
+      "tool_query_shape": 0.0
+    },
+    "mean_score": 0.25,
+    "passed": 0,
+    "violations": {
+      "target_key_mismatch": 5,
+      "target_mismatch": 5,
+      "tool_query_shape_invalid": 5
+    }
+  },
+  "input_artifacts": {
+    "eval_report": {
+      "path": "private_run_input::eval_report.json",
+      "role": "private held-out eval report",
+      "sha256": "be04005553a758e8ee6f44bc577be7623fb3f3cda0d550479c4c5985312b2f24"
+    },
+    "heldout_targets": {
+      "path": "post_training/stage_a_strict_component_targets_heldout_v1.jsonl",
+      "role": "tracked held-out component targets",
+      "sha256": "0ea7d5967a16c3dea2dbe7c92e599c55b370bcf53c334ccc3b1bd440cab901f3"
+    },
+    "predictions": {
+      "path": "private_run_input::predictions.jsonl",
+      "role": "private raw prediction JSONL",
+      "sha256": "b0f69ba270ee5decdc2b2df2e09de66745c1ac0ca3837481144b0f3695d63a27"
+    },
+    "run_report": {
+      "path": "private_run_input::report.json",
+      "role": "private compact training report",
+      "sha256": "4c58a04dd3202b52e7e65da1137f18e12cd6f041c11502ed4892e9dd147e2f1c"
+    },
+    "train_targets": {
+      "path": "post_training/stage_a_strict_component_targets_train_v1.jsonl",
+      "role": "tracked train component targets",
+      "sha256": "e4edc15041c2e088d03635a31fe6c9e1e3340fac9d39e9495e6795b5f1616844"
+    }
+  },
+  "output_behavior": {
+    "parse_errors": {},
+    "parseable_json_objects": 5,
+    "prompt_field_copies": 0,
+    "prompt_payload_echoes": 0,
+    "prompt_schema_outputs": 5,
+    "rows": 5,
+    "tool_calls_key_present": 0,
+    "top_level_keyset_counts": {
+      "allowed_actions|allowed_evidence_statuses|allowed_tools|claim|component|input_id": 4,
+      "allowed_actions|allowed_evidence_statuses|allowed_tools|claim|component|input_id|required_query_fields": 1
+    },
+    "unique_raw_outputs": 5
+  },
+  "public_safety_contract": {
+    "model_state_read": false,
+    "private_paths_redacted": true,
+    "private_raw_predictions_read": true,
+    "prompt_text_emitted": false,
+    "raw_model_text_emitted": false,
+    "row_identifiers_emitted": false,
+    "scheduler_logs_read": false
+  },
+  "run_id": "stage_a_component_tool_query_sft_cayuga_20260723_r2",
+  "training": {
+    "batch_size": 1,
+    "decode_mode": "freeform",
+    "device": "cuda",
+    "heldout_examples": 5,
+    "loss_delta": -0.2171049416065216,
+    "loss_first": 0.4328805208206177,
+    "loss_last": 0.21577557921409607,
+    "max_length": 1024,
+    "max_new_tokens": 256,
+    "max_steps": 20,
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "train_examples": 20,
+    "train_last_layers": 1,
+    "trainable_params": 14913280
+  }
+}

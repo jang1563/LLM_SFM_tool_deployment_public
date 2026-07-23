@@ -154,6 +154,7 @@ def test_sealed_extension_cli_publishes_commitment_only(tmp_path: Path) -> None:
     assert "Has drug" not in serialized
     assert "Ready for one-time sealed evaluation: `True`" in public_md.read_text()
     assert private_manifest.exists()
+    assert private_manifest.stat().st_mode & 0o777 == 0o600
 
 
 def test_tracked_sealed_commitment_is_public_safe() -> None:

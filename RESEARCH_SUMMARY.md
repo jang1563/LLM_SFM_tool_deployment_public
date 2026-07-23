@@ -27,6 +27,8 @@ decisions with deterministic evaluators and public-safe benchmark artifacts.
 |---|---|
 | Stage A benchmark substrate | 25 public-safe manifest cases; oracle 25/25 pass; shortcut baselines 0/25 pass. |
 | Stage A post-training artifacts | 25 SFT rows, 150 preference pairs, 25 process rows; 20/5 train-heldout split with no source overlap. |
+| Stage A tool-query schema diagnostic | Qwen2.5-0.5B scores 0/5; no held-out output contains `tool_calls`. The shared placeholder target does not test identifier resolution. |
+| Stage A sealed candidate routing | Frozen Qwen2.5-0.5B scores 5/25 and selects `verify/insufficient` on all rows; static prior is 5/25 and runtime oracle is 25/25. |
 | Evidence-rationale guardrail | 0.50 model baseline to 1.00 guarded score on the stress slice; 20 rescued, 0 introduced. |
 | A2 disease ambiguous band | SapBERT 0.750; Qwen2.5-7B 0.810; SFT-1.5B 0.875; Claude-haiku 0.900; ceiling 0.970. |
 | A2 GRPO diagnostic | From-base GRPO improved full pick-or-abstain accuracy through abstention, but did not improve hard in-band disambiguation. |
@@ -51,3 +53,7 @@ policy paths without private databases, API keys, or real trial rows.
   validation.
 - Runtime evidence arbitration remains the fail-closed baseline that learned
   policies must meet or beat.
+- The completed private sealed set is evaluation-only and may not be reused for
+  training, threshold selection, prompt repair, or repeated model comparison.
+- The sealed result evaluates routing after synthetic oracle evidence, not
+  entity resolution, live database execution, or end-to-end tool use.

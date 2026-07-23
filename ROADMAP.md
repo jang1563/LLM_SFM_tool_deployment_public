@@ -146,15 +146,26 @@ Completed:
 - public demo with synthetic trajectory cases;
 - public release manifest with record counts and checksums;
 - public QA workflow and local release/history validators.
+- compact Cayuga `tool_query` placeholder-schema result: 0/5 held-out pass,
+  with no generated `tool_calls`;
+- hashed candidate-routing policy freeze using the existing saved trainable
+  state and no sealed-set retraining;
+- one-time source-separated sealed candidate-routing result: 5/25 exact,
+  collapsing to `verify` / `insufficient` on all 25 rows against a 25/25
+  deterministic runtime oracle;
+- private sealed-manifest and one-time-lock workflow with aggregate-only public
+  results and no row-level labels or candidate scores.
 
 Not completed:
 
 - final open-source license decision;
 - Hugging Face dataset/model/Space publication;
-- GitHub release tag;
+- a future release beyond the existing v0.1.0 reproducibility snapshot;
 - public demo video or GIF;
-- compact cluster results for `tool_query` and `routing_after_loop` component
-  SFT smokes;
+- prospective real-query component data with actual model-visible identifier
+  values or an explicit entity-resolution interface;
+- runtime-hybrid perturbation evaluation over attribution, source, value,
+  contradiction, partial-query, wrong-tool, and unavailable-tool failures;
 - Stage B C5 antibody-antigen OOD transfer package.
 
 ## Near-Term Milestones

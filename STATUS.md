@@ -1,17 +1,42 @@
 # Project Status
 
-Last updated: 2026-07-10
+Last updated: 2026-07-23
 
 ## Current Thesis
 
 Biology tool-use agents should be evaluated on trainable
 tool -> evidence packet -> terminal action trajectories, with runtime evidence
 arbitration and fail-closed gates. Stage A remains a benchmark and diagnosis
-substrate first; DPO/RLVR, tool-query expansion, Hugging Face publication, and
-release tagging stay closed until compact held-out policies beat deterministic
-runtime baselines.
+substrate first; DPO/RLVR, real-query expansion, and Hugging Face publication
+stay closed until source-separated policies beat deterministic runtime
+baselines. The existing v0.1.0 GitHub release is a reproducibility snapshot,
+not evidence that the scientific gate passed.
 
 ## Current Result
+
+The missing `tool_query` component diagnostic and the one-time sealed
+candidate-routing evaluation are complete.
+
+- `tool_query` placeholder-schema SFT: 0/5 held-out pass, mean score 0.250,
+  target-key accuracy 0.0, and tool-query-shape accuracy 0.0;
+- all five generated outputs are parseable JSON with prompt-schema fields, but
+  none contains `tool_calls`;
+- the current `tool_query` target has one shared four-tool sequence with
+  literal `<drug_id>` / `<condition_id>` arguments, so this result does not
+  evaluate identifier resolution or live tool execution;
+- frozen candidate-routing policy: the saved July 10 trainable state is loaded
+  directly, with no retraining before sealed evaluation;
+- source-separated sealed routing: 5/25 exact, selecting
+  `verify/insufficient` on all 25 rows;
+- best static single-pair prior: 5/25;
+- deterministic runtime oracle gate: 25/25;
+- incorrect `ground/supported` predictions: 0, but useful evidence-family
+  discrimination is also absent.
+
+The sealed result independently reproduces the exposed-development collapse.
+It does not beat the static prior and remains far below runtime evidence
+arbitration. The one-time lock is complete; do not tune on or rescore these 25
+sealed rows.
 
 Stage A saved-output diagnosis is active. The latest compact Cayuga summaries
 show that teacher-forced full-target scoring can be repaired on the 4-case
@@ -137,27 +162,32 @@ unpublished.
 
 ## Source Changes
 
-No new paper, company, product, or benchmark source changed the argument in this
-checkpoint. This was a repo/Cayuga compact-result diagnosis update only.
+A focused verifier/benchmark refresh strengthens, rather than changes, the
+thesis. BioAgent Bench and SciAgentGym motivate perturbation and horizon-aware
+tool-use slices. The Art of Building Verifiers motivates separate process and
+outcome signals plus controllable/uncontrollable failure attribution.
+Plan-RewardBench supports keeping unaudited LLM judges out of deterministic
+RLVR gates because trajectory reward models degrade on difficult long-horizon
+traces.
 
 ## Next Decision
 
-Proceed with `complete_tool_query_diagnostic_then_run_one_time_sealed_evaluation`.
+Proceed with
+`prospective_real_query_slice_and_runtime_hybrid_before_new_post_training`.
 
-The approved full smoke completed and failed all escalation criteria. The
-evidence-conditioned SFT policy collapses to `verify/insufficient` on every
-train and held-out row, so adding another objective to the same five repeatedly
-inspected held-out cases would not provide an independent scientific test.
-Treat the current 20/5 split as train/development diagnostic data, keep the
-runtime evidence gate as the deployment baseline, and build a new
-source-separated sealed Stage A evaluation extension before any further model
-claim. The extension should preserve all five action/status families and remain
-untouched while the missing `tool_query` component report is completed.
-DPO/RLVR, Hugging Face publication, release tagging, and broad retraining remain
-closed. The public-safe sealed-extension builder and tests are now implemented;
-the source-disjoint private extension and compact commitment now pass. Do not
-inspect or train on the sealed rows. Complete the missing `tool_query`
-diagnostic on the existing development substrate, freeze the model/prompt and
-evaluation adapter, then run the sealed extension once. Raw saved predictions,
-candidate-score JSONL, scheduler logs, model state, and ignored run folders
+Do not repeat the completed sealed evaluation or use its rows for training,
+threshold selection, model selection, or prompt repair. The next Stage A
+research substrate should be prospectively generated and should replace
+placeholder arguments with actual model-visible query values or an explicit
+entity-resolution interface. Pre-register source separation, mutation tests,
+and risk/coverage metrics before scoring.
+
+In parallel, evaluate the deployment claim directly: compare the frozen model,
+the deterministic evidence gate, and a runtime-enforced hybrid under missing
+attribution, stale source, contradictory evidence, invalid numeric values,
+partial queries, wrong tools, and unavailable-tool perturbations. Keep
+DPO/RLVR closed until a new development substrate shows a component-specific
+repair and a separate future sealed set confirms it. Explanation quality
+remains preference/process-supervision territory. Raw predictions, candidate
+scores, scheduler logs, model state, private manifests, and one-time lock files
 remain uncommitted.

@@ -128,6 +128,25 @@ The public Stage A smoke result is:
 This verifies that the evaluator catches shortcut trajectories before live API,
 HPC, or model-training spend.
 
+## Model Diagnostics
+
+The first source-separated model result is deliberately negative:
+
+| Diagnostic | Model result | Reference |
+|---|---:|---:|
+| Tool-query placeholder schema | 0/5 | 5/5 required |
+| Exposed-development candidate routing | 1/5 | runtime gate 5/5 |
+| One-time sealed candidate routing | 5/25 | static prior 5/25; runtime oracle 25/25 |
+
+The sealed policy selects `verify/insufficient` on all 25 cases. It has zero
+incorrect `ground/supported` predictions but does not distinguish evidence
+families. This supports runtime arbitration and does not justify DPO/RLVR.
+
+The tool-query and sealed routing diagnostics are not end-to-end tool-use
+measurements. Tool-query targets use placeholder arguments, and sealed routing
+uses synthetic oracle tool results constructed from hidden labels that remain
+invisible to the model.
+
 ## Reproducibility
 
 Use the public-safe validation path:
@@ -182,3 +201,5 @@ For a fuller run, see `REPRODUCIBILITY.md`.
 - Explanation fluency is not the primary metric. The benchmark prioritizes
   tool use, evidence status, attribution, terminal action, and fail-closed
   policy compliance.
+- The completed 25-row private sealed set is a one-time pilot. Its class-level
+  estimates are coarse and it must not be reused for tuning or model selection.

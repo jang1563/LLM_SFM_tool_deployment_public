@@ -38,6 +38,12 @@ Outputs:
 | `build_stage_a_sealed_extension.py` | - | Builds a source-disjoint private evaluation manifest outside the repository and publishes only aggregate balance/overlap counts plus cryptographic commitments. |
 | `stage_a_sealed_extension_commitment_2026-07-10.json` | 1 | Public-safe commitment for 25 private sealed rows with balanced family counts, zero declared public overlap, and no row-level labels. |
 | `STAGE_A_SEALED_EXTENSION_COMMITMENT_2026-07-10.md` | - | Human-readable sealed-extension readiness checkpoint. |
+| `evaluate_stage_a_tool_query_sft_smoke_result.py` | - | Converts private/ignored tool-query predictions into aggregate schema, violation, and prompt-schema behavior counts without emitting raw text. |
+| `stage_a_tool_query_sft_smoke_result_qwen05b_cayuga_2026-07-23.json` | 1 | Compact 0/5 tool-query placeholder-schema result; explicitly excludes identifier-resolution and live-tool claims. |
+| `build_stage_a_candidate_routing_policy_freeze.py` | - | Freezes model revision, saved-state hash, prompt/candidate policy, training inputs, evaluator, and sealed commitment before one-time evaluation. |
+| `stage_a_candidate_routing_policy_freeze_2026-07-23.json` | 1 | Public-safe frozen-policy commitment; private state and report paths are redacted and the original missing seed is disclosed. |
+| `run_stage_a_sealed_candidate_routing_eval.py` | - | One-time private evaluator with hash checks, external-path enforcement, lock protection, oracle-evidence scope declaration, and aggregate-only output. |
+| `stage_a_sealed_candidate_routing_result_qwen05b_cayuga_2026-07-23.json` | 1 | Compact sealed result: 5/25 exact, 25/25 `verify/insufficient`, static prior 5/25, runtime oracle 25/25. |
 | `run_stage_a_sft_smoke_eval.py` | - | No-API Stage A SFT smoke/eval harness for train/held-out trajectory mechanics. |
 | `generate_stage_a_predictions.py` | - | Artifact-first producer for saved Stage A prediction JSONL. |
 | `evaluate_stage_a_predictions.py` | - | Offline scorer for saved Stage A API, cluster, prompt-only, or oracle prediction JSONL. |
@@ -488,6 +494,8 @@ Saved-output evidence candidate-routing smoke runner: dry-run validates the 20/5
 Saved-output evidence candidate-routing smoke result adapter: reads compact eval reports only, rejects raw candidate-score/model-text fields, redacts external compact-input paths, and applies the 5/5 held-out plus 4/4 bridge-focus gate
 Saved-output evidence candidate-routing Cayuga dry-run checkpoint: mirror dry-run passes at commit 6820498 with 20 train, 5 held-out, 4 bridge-focus held-out rows, and no issues; next decision is explicit full smoke approval or no-submit
 Saved-output evidence candidate-routing Cayuga full smoke: Qwen2.5-0.5B selects verify/insufficient for all rows, reaching 4/20 train, 1/5 held-out, and 1/4 bridge-focus exact; freeze this diagnostic slice and build a sealed Stage A evaluation extension
+Tool-query placeholder-schema Cayuga smoke: 0/5 held-out pass; all outputs are parseable prompt-schema JSON, but 0/5 contain tool_calls
+One-time sealed candidate routing: frozen Qwen2.5-0.5B scores 5/25 and selects verify/insufficient on all 25 rows; static prior is 5/25 and runtime oracle is 25/25
 Routing gate arbitration: raw candidate top-1 is 1/2; score-gap fail-closed, evidence-boundary override, and hybrid policies are 2/2 on held-out defer-vs-verify
 ```
 

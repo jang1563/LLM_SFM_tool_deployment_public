@@ -150,6 +150,15 @@ Last checked: 2026-07-12.
   only; raw candidate-score JSONL and full field reports remain uncommitted.
 - Added routing gate arbitration over compact public gate reports; it does not
   require raw candidate JSONL or cluster run directories.
+- Added a compact tool-query SFT result adapter that reads ignored raw
+  predictions on the cluster but emits only aggregate schema/violation and
+  prompt-schema behavior counts.
+- Added a candidate-routing policy freeze that commits model revision,
+  saved-state hash, prompt/candidate policy, training inputs, evaluator, and
+  sealed-manifest hashes without publishing model state or private paths.
+- Added a one-time sealed candidate-routing evaluator with external private
+  paths, `0600` artifacts, a fail-closed lock, and aggregate-only public
+  results. Row-level labels, predictions, and candidate scores remain private.
 
 ## Current Public-Release Rule
 

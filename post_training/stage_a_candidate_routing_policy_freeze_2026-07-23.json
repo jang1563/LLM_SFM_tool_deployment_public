@@ -1,0 +1,111 @@
+{
+  "authorization": {
+    "ready_for_one_time_sealed_evaluation": true,
+    "repeated_sealed_evaluation_allowed": false,
+    "sealed_commitment_ready": true,
+    "tool_query_diagnostic_complete": true,
+    "training_on_sealed_rows_allowed": false
+  },
+  "dataset": "negbiodb_ct_stage_a_candidate_routing_policy_freeze_v1",
+  "freeze_id": "stage_a_candidate_routing_freeze::456bce64145f34c4db60c5aa590c556efd06211645758620deca44b7dca14fc8",
+  "frozen_artifacts": {
+    "candidate_routing_result": {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_smoke_result_qwen05b_cayuga_2026-07-10.json",
+      "role": "tracked exposed-development routing result",
+      "sha256": "ab6d1b5f015cd2b16b53e975b610d55c1a66cb828708ad7daecdebd2783f1f38"
+    },
+    "row_exporter": {
+      "path": "post_training/export_stage_a_saved_output_evidence_candidate_routing_rows.py",
+      "role": "tracked evidence candidate-row exporter",
+      "sha256": "2fc9abe46cfa9154fd60315e1cdb81db8bb30d4135c3084d29de49e119ac88ed"
+    },
+    "rows_manifest": {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_manifest.json",
+      "role": "tracked candidate-routing manifest",
+      "sha256": "13f88df5d7b815438b6123dcfdfd07cc611d65d967b5776a848c360d5a0734f1"
+    },
+    "sealed_commitment": {
+      "path": "post_training/stage_a_sealed_extension_commitment_2026-07-10.json",
+      "role": "tracked sealed-manifest commitment",
+      "sha256": "91e1a5722aac22e1c3e3b7333168aa2cfc92858db619b29c03104bec99a8655d"
+    },
+    "sealed_evaluator": {
+      "path": "post_training/run_stage_a_sealed_candidate_routing_eval.py",
+      "role": "tracked one-time sealed evaluator",
+      "sha256": "dcb3c17aaa70352ac8bbaa8b1a249431b3289d2410b7da1ddcddb5c709e5c7a4"
+    },
+    "tool_query_result": {
+      "path": "post_training/stage_a_tool_query_sft_smoke_result_qwen05b_cayuga_2026-07-23.json",
+      "role": "tracked tool-query diagnostic result",
+      "sha256": "3dcebd989ac0f6b1cccffade0bf638ddc0b6b46b57fcb3609ec80c56c3fc61d1"
+    },
+    "train_rows": {
+      "path": "post_training/stage_a_saved_output_evidence_candidate_routing_train_v1.jsonl",
+      "role": "tracked exposed development training rows",
+      "sha256": "b85c26e6dc40d41fe79c245d893b96b9e5c99759736099e7c872ff148f0b38b4"
+    },
+    "trainable_state": {
+      "path": "external_private_input::trainable_state.pt",
+      "role": "private frozen trainable parameters",
+      "sha256": "24eb2acafbbe650e97b98a6ef2d8d7042610f4985c7732f7db026919be85eba6"
+    },
+    "training_report": {
+      "path": "external_private_input::report.json",
+      "role": "private candidate-routing training report",
+      "sha256": "415f8acb9c22369d231406ed17d3a8815ab16585d6fa411a2d253f08a86eced5"
+    },
+    "training_runner": {
+      "path": "post_training/run_stage_a_saved_output_evidence_candidate_routing_smoke.py",
+      "role": "tracked candidate-routing training runner",
+      "sha256": "88a9a95bba4c6fedd8f9426ac4ffedcfb36f5775b6ecf3cdaac02c0f06117126"
+    }
+  },
+  "policy": {
+    "batch_size": 1,
+    "candidate_pairs": [
+      "ground/supported",
+      "reject/contradicted",
+      "defer/insufficient",
+      "verify/insufficient",
+      "flag/invalid_value"
+    ],
+    "candidate_policy": "all_valid_action_status_pairs_conditioned_on_visible_evidence",
+    "learning_rate": 1e-05,
+    "max_length": 1536,
+    "max_steps": 40,
+    "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+    "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "prompt_contract": "stage_a_saved_output_evidence_candidate_routing_v1",
+    "saved_state_load_only": true,
+    "system_prompt_sha256": "f5a360f5fa20bc6cbb268d35969267a7963f2af89b87119116252e6f371f0ac2",
+    "train_last_layers": 1,
+    "trainable_params": 14913280
+  },
+  "pre_freeze_results": {
+    "candidate_routing_heldout_exact": 1,
+    "candidate_routing_heldout_rows": 5,
+    "candidate_routing_passes_gate": false,
+    "tool_query_schema_gate_passed": false
+  },
+  "public_safety_contract": {
+    "private_paths_redacted": true,
+    "raw_training_report_committed": false,
+    "sealed_row_labels_emitted": false,
+    "sealed_rows_committed": false,
+    "trainable_state_committed": false
+  },
+  "reproducibility_boundary": {
+    "exact_retraining_claimed": false,
+    "original_training_seed_explicitly_recorded": false,
+    "reason": "The original smoke did not record an explicit seed. The sealed evaluation loads the hashed saved trainable state directly and does not retrain.",
+    "retraining_before_sealed_evaluation": false,
+    "saved_trainable_state_is_authoritative": true
+  },
+  "scientific_boundary": {
+    "actual_identifier_resolution_evaluated": false,
+    "dpo_rlvr_opened": false,
+    "evaluation_scope": "routing_after_synthetic_oracle_tool_loop",
+    "hidden_labels_visible_to_model": false,
+    "live_tool_execution_evaluated": false
+  }
+}

@@ -66,9 +66,17 @@ def main() -> int:
     require_pattern(
         issues,
         plan,
-        r"Do not start DPO, RLVR, v0\.1 tagging, or Hugging Face publication until at least\s+one component cluster result",
-        "release and method gate",
+        r"Do not repeat or tune on the completed 25-row sealed set\. Keep DPO, RLVR, and\s+Hugging Face Stage A publication closed until a component-specific repair\s+survives a new independent evaluation\.",
+        "post-sealed method and publication gate",
     )
+    for needle in (
+        "`tool_query` placeholder-schema SFT is 0/5",
+        "one-time source-separated sealed routing is 5/25",
+        "the static single-pair prior is 5/25",
+        "the deterministic runtime oracle is",
+        "25/25",
+    ):
+        require_contains(issues, plan, needle, "completed Stage A result")
     for needle in (
         "`complex_id`",
         "metric type, scope, and value",
@@ -108,8 +116,14 @@ def main() -> int:
     require_contains(
         issues,
         public_status,
-        "complete_tool_query_diagnostic_then_run_one_time_sealed_evaluation",
-        "public STATUS sealed-extension decision",
+        "prospective_real_query_slice_and_runtime_hybrid_before_new_post_training",
+        "public STATUS prospective research decision",
+    )
+    require_pattern(
+        issues,
+        public_status,
+        r"do not tune on or rescore these 25\s+sealed rows",
+        "public STATUS sealed-set reuse prohibition",
     )
     require_contains(
         issues,
@@ -131,8 +145,9 @@ def main() -> int:
         return 1
     print("OK research plan check passed")
     print("- component order: enum_action -> tool_query -> routing_after_loop")
-    print("- DPO/RLVR gate: held-out component reports required")
-    print("- sealed evaluation gate: exposed held-out becomes dev; private labels stay sealed")
+    print("- Stage A checkpoint: tool_query 0/5; sealed routing 5/25; runtime oracle 25/25")
+    print("- DPO/RLVR/HF gate: prospective repair plus new independent evaluation required")
+    print("- sealed evaluation gate: completed rows cannot be tuned on or rescored")
     print("- C5 gate: calibration metadata required before trust")
     return 0
 

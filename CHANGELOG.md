@@ -2,6 +2,27 @@
 
 All notable public-facing changes are tracked here.
 
+## Unreleased - 2026-07-23
+
+- Complete the missing Cayuga `tool_query` placeholder-schema diagnostic:
+  Qwen2.5-0.5B scores 0/5, emits no `tool_calls`, and produces prompt-schema
+  JSON instead.
+- Add a public-safe tool-query result adapter that reads ignored predictions
+  but emits no raw model text, prompts, row IDs, paths, or scheduler metadata.
+- Freeze the evidence-conditioned candidate-routing policy using the saved
+  trainable-state hash, model revision, prompt/candidate policy, training-data
+  hashes, evaluator hash, and sealed-manifest commitment.
+- Add a one-time sealed candidate-routing evaluator with external private-path
+  enforcement, model-state/hash checks, a fail-closed lock, and aggregate-only
+  public output.
+- Record the source-separated sealed result: 5/25 exact, 25/25
+  `verify/insufficient` predictions, static prior 5/25, and runtime oracle
+  25/25.
+- Fix private sealed-manifest and compact-result permissions to `0600`.
+- Keep DPO/RLVR and Hugging Face Stage A publication closed; select a
+  prospective real-query slice plus runtime-hybrid perturbation evaluation as
+  the next research milestone.
+
 ## 0.1.0 - 2026-07-12
 
 - Curate a clean-snapshot release surface: remove career-planning and session

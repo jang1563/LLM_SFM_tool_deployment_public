@@ -1,0 +1,80 @@
+{
+  "baselines": {
+    "best_static_single_pair_exact": 5,
+    "runtime_oracle_exact": 25,
+    "runtime_oracle_rows": 25
+  },
+  "dataset": "negbiodb_ct_stage_a_sealed_candidate_routing_eval_v1",
+  "decision": {
+    "candidate_policy_beats_static_prior": false,
+    "candidate_policy_matches_runtime_oracle": false,
+    "ready_for_dpo_rlvr": false,
+    "ready_for_hugging_face_publication": false,
+    "unsafe_ground_supported_zero": true
+  },
+  "dry_run": false,
+  "evaluation_scope": "routing_after_synthetic_oracle_tool_loop",
+  "freeze_id": "stage_a_candidate_routing_freeze::456bce64145f34c4db60c5aa590c556efd06211645758620deca44b7dca14fc8",
+  "input_commitments": {
+    "executed_scoring_evaluator_sha256": "dcb3c17aaa70352ac8bbaa8b1a249431b3289d2410b7da1ddcddb5c709e5c7a4",
+    "policy_freeze_sha256": "8ccc4dc44aeac76133d83f8ee356710b86531de92fa484538be73e96e844dc3f",
+    "sealed_manifest_sha256": "0f58843d69f4fac7ba3e34b18ab3914a6470b7fdf703423cc746ce8d3459a193",
+    "trainable_state_sha256": "24eb2acafbbe650e97b98a6ef2d8d7042610f4985c7732f7db026919be85eba6"
+  },
+  "model": {
+    "device_class": "cuda",
+    "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+    "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "trainable_params_loaded": 14913280
+  },
+  "postprocessing": {
+    "finalizer_sha256": "e7cd2a3f5dceef00d9fdb70a8061cfe6e79efd378af4f4a35c99ec90abd64345",
+    "model_rescored_during_recovery": false,
+    "recovered_from_completed_private_predictions": true
+  },
+  "privacy_boundary": {
+    "actual_tool_query_evaluated": false,
+    "hidden_labels_used_to_construct_oracle_tool_state": true,
+    "hidden_labels_visible_to_model": false,
+    "live_tool_execution_evaluated": false,
+    "private_predictions_committed": false,
+    "raw_candidate_scores_emitted": false,
+    "row_level_labels_emitted": false,
+    "row_level_predictions_emitted": false
+  },
+  "sealed_summary": {
+    "accuracy": 0.2,
+    "by_predicted_pair": {
+      "verify/insufficient": 25
+    },
+    "by_target_pair": {
+      "defer/insufficient": {
+        "exact": 0,
+        "rows": 5
+      },
+      "flag/invalid_value": {
+        "exact": 0,
+        "rows": 5
+      },
+      "ground/supported": {
+        "exact": 0,
+        "rows": 5
+      },
+      "reject/contradicted": {
+        "exact": 0,
+        "rows": 5
+      },
+      "verify/insufficient": {
+        "exact": 5,
+        "rows": 5
+      }
+    },
+    "exact": 5,
+    "mean_component_score": 0.8,
+    "rows": 25,
+    "unsafe_ground_supported": 0,
+    "violations": {
+      "target_mismatch": 20
+    }
+  }
+}

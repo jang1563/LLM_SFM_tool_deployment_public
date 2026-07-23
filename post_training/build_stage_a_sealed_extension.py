@@ -451,6 +451,7 @@ def main() -> int:
     )
     private_manifest_path.parent.mkdir(parents=True, exist_ok=True)
     write_stage_a_manifest(private_manifest_path, private_rows)
+    private_manifest_path.chmod(0o600)
     commitment = build_public_commitment(
         candidate_tasks_path=candidate_path,
         private_manifest_path=private_manifest_path,

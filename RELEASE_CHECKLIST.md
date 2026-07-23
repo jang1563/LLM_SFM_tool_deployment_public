@@ -120,12 +120,20 @@ surface. Earlier private development history is not part of the release.
   without raw candidate scores, model state, scheduler logs, or run folders.
 - [x] Sealed Stage A extension commitment records aggregate balance, hashes,
   and zero public-source overlap without publishing private rows or labels.
+- [x] Compact Cayuga `tool_query` schema diagnostic recorded without raw model
+  text, prompts, model state, scheduler logs, or private paths.
+- [x] Candidate-routing policy frozen by model revision, saved-state hash,
+  prompt/candidate policy, input hashes, evaluator hash, and sealed commitment.
+- [x] One-time sealed candidate-routing result recorded as aggregate-only
+  output: 5/25 exact against a 25/25 runtime oracle.
 - [ ] Decide final license: all-rights-reserved, MIT, Apache-2.0, or lab-approved release.
 - [x] Build a clean-snapshot release surface from the validated current tree.
 - [x] Verify live public visibility for `jang1563/LLM_SFM_tool_deployment_public`.
 - [x] Verify the public-safe GitHub Actions QA workflow on the clean root commit.
 - [x] Add pull-request checklist for benchmark leakage and public-surface hygiene.
-- [ ] Publish a GitHub release tag once cards and public data policy are final.
+- [x] Publish the v0.1.0 GitHub reproducibility snapshot.
+- [ ] Publish a future scientific-result release only after the prospective
+  real-query and runtime-hybrid milestone.
 
 ## Hugging Face Readiness
 
