@@ -3,7 +3,7 @@
   "project": "LLM-SFM Tool Deployment",
   "release_profile": "benchmark_public_surface",
   "status": "public_clean_snapshot_release_surface",
-  "last_updated": "2026-07-12",
+  "last_updated": "2026-07-23",
   "benchmark_scope": {
     "primary_release_object": "Stage A biology tool-use trajectory benchmark substrate",
     "primary_claim": "Agents should be evaluated on tool -> evidence packet -> terminal action trajectories with hidden labels separated from model-visible prompts.",
@@ -1299,6 +1299,42 @@
       "path": "post_training/STAGE_A_SEALED_EXTENSION_COMMITMENT_2026-07-10.md",
       "kind": "stage_a_sealed_extension_commitment_report",
       "sha256": "69e3deb97735eac04415b56f76b52aeaa75fc397282dd037b3f194e281167f54",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_tool_query_sft_smoke_result_qwen05b_cayuga_2026-07-23.json",
+      "kind": "stage_a_tool_query_sft_smoke_result",
+      "sha256": "3dcebd989ac0f6b1cccffade0bf638ddc0b6b46b57fcb3609ec80c56c3fc61d1",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_TOOL_QUERY_SFT_SMOKE_RESULT_QWEN05B_CAYUGA_2026-07-23.md",
+      "kind": "stage_a_tool_query_sft_smoke_result_report",
+      "sha256": "62aa4d8c1229b93568a5f6bb62a4e6932881364cfc8985f8bcda1d092dab6182",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_candidate_routing_policy_freeze_2026-07-23.json",
+      "kind": "stage_a_candidate_routing_policy_freeze",
+      "sha256": "8ccc4dc44aeac76133d83f8ee356710b86531de92fa484538be73e96e844dc3f",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_CANDIDATE_ROUTING_POLICY_FREEZE_2026-07-23.md",
+      "kind": "stage_a_candidate_routing_policy_freeze_report",
+      "sha256": "324926b0836a0bfb0a69e9ab7451cdd483acb195ccb0d44c878604a30b40f6fa",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_sealed_candidate_routing_result_qwen05b_cayuga_2026-07-23.json",
+      "kind": "stage_a_sealed_candidate_routing_result",
+      "sha256": "110c45abc7a86208b8f112ae4d6cbe5074d05db367271618a1349442b17a102f",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_SEALED_CANDIDATE_ROUTING_RESULT_QWEN05B_CAYUGA_2026-07-23.md",
+      "kind": "stage_a_sealed_candidate_routing_result_report",
+      "sha256": "5e34e0410eda98d3bd8f65d2fc7eb1e7e807c4512d02755635994af507095f27",
       "safe_to_publish": true
     },
     {

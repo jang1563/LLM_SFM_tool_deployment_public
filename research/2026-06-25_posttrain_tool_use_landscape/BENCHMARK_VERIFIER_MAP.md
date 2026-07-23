@@ -30,6 +30,8 @@ as expensive evidence, not a cheap reward.
 | Interactive agent training | AgentGym / WebRL | Environment interaction, trajectory datasets, online curricula, outcome rewards. | Helps design scientific curricula where failed attempts become new tasks. |
 | Tool-use RL | ReTool / Search-R1 / ToolRL | Code/search/tool rollouts, decomposed rewards, outcome rewards. | Direct evidence that models can learn when/how to invoke tools under RL, given rewardable tasks. |
 | Agentic RL infrastructure | Agent Lightning / VerlTool | Decoupled agent execution, MDP transitions, standardized tool APIs. | Systems path for turning existing biology agents into trainable trajectories. |
+| Trajectory verifier design | The Art of Building Verifiers for Computer Use Agents | Separate process/outcome criteria, controllable/uncontrollable failure attribution, and low false-positive evaluation. | Direct design guidance for evidence packets, tool-sequence checks, and distinguishing agent failure from unavailable or failed tools. |
+| Trajectory reward-model audit | Plan-RewardBench | Pairwise preference over valid and confusable tool trajectories. | Shows LLM judges and reward models degrade on difficult long-horizon traces; deterministic Stage A gates should remain authoritative where available. |
 
 ## Domain Sources By Verifier
 

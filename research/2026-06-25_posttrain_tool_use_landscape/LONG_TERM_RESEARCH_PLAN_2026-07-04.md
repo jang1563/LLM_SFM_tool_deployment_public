@@ -420,21 +420,34 @@ it changes at least one of:
 
 ## Next Concrete Ticket
 
-Diagnose Stage A `enum_action` candidate ranking.
+Build a prospective real-query Stage A development slice and a runtime-hybrid
+perturbation evaluation.
 
-Minimum output:
+The July 23 checkpoints close the original component/sealed sequence:
 
-- compare candidate-score margins for the five held-out cases;
-- identify why `ground` / `supported` dominates mismatched cases;
-- test a slice-specific ranking or calibration diagnostic without changing the
-  broader Stage A schema;
-- `STATUS.md` checkpoint with thesis, result, source changes, and next decision;
-- no raw cluster logs or private infrastructure identifiers committed.
+- `tool_query` placeholder-schema SFT is 0/5 and does not evaluate real
+  identifier resolution;
+- the saved candidate-routing policy is frozen without retraining;
+- one-time source-separated sealed routing is 5/25, selecting
+  `verify/insufficient` on all 25 rows;
+- the static single-pair prior is 5/25 and the deterministic runtime oracle is
+  25/25.
 
-Do not start DPO, RLVR, v0.1 tagging, or Hugging Face publication until at least
-one component cluster result is summarized and the gate decision is explicit.
-The first result is now summarized; the active gate decision is to repair
-`enum_action` pair selection before broad retraining or method escalation.
+Minimum next output:
+
+- actual model-visible drug/condition query values or an explicit
+  entity-resolution interface;
+- source-separated development data that does not reuse the completed sealed
+  rows;
+- mutation slices for missing attribution, stale source, contradiction,
+  invalid numeric value, partial query, wrong tool, and unavailable tool;
+- frozen-model vs deterministic-gate vs runtime-hybrid comparison;
+- macro action/status accuracy, unsafe trust count, and risk/coverage metrics;
+- a new prospective sealed protocol defined before any model selection.
+
+Do not repeat or tune on the completed 25-row sealed set. Keep DPO, RLVR, and
+Hugging Face Stage A publication closed until a component-specific repair
+survives a new independent evaluation.
 
 ## One-Paragraph Research Story
 

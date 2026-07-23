@@ -64,6 +64,8 @@ labels.
 | BenchGuard, 2026, https://arxiv.org/html/2604.24955v1 | benchmark auditing | Adds a meta-verifier layer: execution-based scientific benchmarks can contain cross-artifact defects, so reward/eval infrastructure needs its own audit. |
 | Evidence tracing / execution provenance survey, 2026, https://arxiv.org/html/2606.04990v1 | agent provenance and accountability | Supplies vocabulary for trace schemas: evidence, tool outputs, memory, observations, intermediate claims, actions, and final answers should be linked for verification/debugging. |
 | PromptBio-Bench / MedAgentGym, 2026, https://www.promptbio.ai/publications.html, https://openreview.net/forum?id=jHDZEUgS4r | biomedical agent benchmarks and training environments | Adds structured output-file grading and executable biomedical sandboxes with verifiable ground truth and trajectory generation. Useful for turning biology tasks into trainable environments. |
+| The Art of Building Verifiers for Computer Use Agents, 2026, https://arxiv.org/abs/2604.06240 | verifier design / process-outcome separation | Adds four concrete verifier rules that transfer to this benchmark: non-overlapping criteria, separate process and outcome signals, controllable vs uncontrollable failure attribution, and long-trajectory context coverage. |
+| Plan-RewardBench, 2026, https://arxiv.org/abs/2604.08178 | trajectory reward-model evaluation | Finds generative, discriminative, and LLM-judge reward models remain weak on confusable long-horizon tool trajectories. Supports deterministic verifier-first rewards and keeping explanation quality outside RLVR. |
 
 ## Method Takeaways
 
