@@ -1348,12 +1348,112 @@
       "kind": "stage_a_routing_gate_arbitration_report",
       "sha256": "79920a620e91919cd719867c8e7d0d7c17a42a166c720e0b5de6a98e84d5cce6",
       "safe_to_publish": true
+    },
+    {
+      "path": "negbiodb_ct/stage_a_prospective_real_query_manifest_v1.jsonl",
+      "kind": "stage_a_prospective_real_query_manifest",
+      "records": 25,
+      "sha256": "314c7b9293808a40499684bab914a76d5d252e78d6da698a55aeb7385ffccd4c",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_prospective_real_query_tool_query_v1.jsonl",
+      "kind": "stage_a_prospective_real_query_tool_query_rows",
+      "records": 25,
+      "sha256": "472674c8f5ce8fd6d545bd674c1f3be785825e75e57036b7df4ba047dfcaa376",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_prospective_real_query_routing_perturbations_v1.jsonl",
+      "kind": "stage_a_prospective_routing_perturbations",
+      "records": 180,
+      "sha256": "aae655eee1ca31bc69f4ef7ad8868745ee180bff307a5059b8637f4f8292ea8c",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_prospective_real_query_experiment_manifest.json",
+      "kind": "stage_a_prospective_real_query_experiment_manifest",
+      "sha256": "2b31665405af298680736b4cb5999dfe2d6e648a32f78fc05580a66609299e61",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_prospective_runtime_hybrid_no_model_2026-07-23.json",
+      "kind": "stage_a_prospective_runtime_hybrid_no_model_result",
+      "sha256": "701f37e74f29a564cff3a27f4a61a76cd993184c42f8f6969aff1087a400b105",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_PROSPECTIVE_RUNTIME_HYBRID_NO_MODEL_2026-07-23.md",
+      "kind": "stage_a_prospective_runtime_hybrid_no_model_report",
+      "sha256": "efa63c55baa7be861e9609c914a9893ef47f31a4bb95aa8c45a1b24d02268196",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_prospective_runtime_hybrid_result_qwen05b_cayuga_2026-07-23.json",
+      "kind": "stage_a_prospective_runtime_hybrid_model_result",
+      "sha256": "b1e3cc037c8b238f1458447ec4590177d72c4920eb8b0aff535bcec0d46f683f",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_PROSPECTIVE_RUNTIME_HYBRID_RESULT_QWEN05B_CAYUGA_2026-07-23.md",
+      "kind": "stage_a_prospective_runtime_hybrid_model_report",
+      "sha256": "eeddac442496906c51fd17ce1b13391a9e209807480ffa03b783a051b98312b2",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_prospective_tool_query_transfer_freeze_2026-07-23.json",
+      "kind": "stage_a_prospective_tool_query_transfer_freeze",
+      "sha256": "e15ed29984a59233b7a3a0b8a0409414614ff7b7f68a96a571da4dd3abc72917",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_prospective_tool_query_transfer_result_qwen05b_cayuga_2026-07-23.json",
+      "kind": "stage_a_prospective_tool_query_transfer_result",
+      "sha256": "01853c89d9bc06d53c3cf96898c8a45af6d9215f4b7421d955336a944b45322d",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_PROSPECTIVE_TOOL_QUERY_TRANSFER_RESULT_QWEN05B_CAYUGA_2026-07-23.md",
+      "kind": "stage_a_prospective_tool_query_transfer_report",
+      "sha256": "73c235eba851fc203717e8fdfc6b1a3fffc51fe4bffa9ad69aad19b21b4b32d7",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_prospective_tool_query_prompt_repair_freeze_2026-07-23.json",
+      "kind": "stage_a_prospective_tool_query_prompt_repair_freeze",
+      "sha256": "f9d64e2eec208131526122d5da91e4d4b7500dfc35c128517cc31b9b7a2187fd",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_prospective_tool_query_prompt_repair_result_qwen05b_cayuga_2026-07-23.json",
+      "kind": "stage_a_prospective_tool_query_prompt_repair_result",
+      "sha256": "d724c4065ea1793eaf00ffd45993f667abef331a68be6d5b7b22dfcd9e645c0c",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_PROSPECTIVE_TOOL_QUERY_PROMPT_REPAIR_RESULT_QWEN05B_CAYUGA_2026-07-23.md",
+      "kind": "stage_a_prospective_tool_query_prompt_repair_report",
+      "sha256": "01094fd90382f3da13a570fd0f239031970327e64f72adb5474e90d10c8a9364",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/stage_a_tool_query_runtime_compiler_result_2026-07-23.json",
+      "kind": "stage_a_tool_query_runtime_compiler_result",
+      "sha256": "1c698fcbf6d5354f1c46a569bb6db3135243053a3a0cb3adcccde9766b263085",
+      "safe_to_publish": true
+    },
+    {
+      "path": "post_training/STAGE_A_TOOL_QUERY_RUNTIME_COMPILER_RESULT_2026-07-23.md",
+      "kind": "stage_a_tool_query_runtime_compiler_report",
+      "sha256": "bc3683a4e6a85851d84a904afd72f97ec308d28760112779566f89a7b90498b7",
+      "safe_to_publish": true
     }
   ],
   "validation_commands": [
     "python scripts/check_public_release.py",
     "python scripts/check_public_git_history.py",
     "python scripts/check_research_plan.py",
+    "python post_training/evaluate_stage_a_tool_query_runtime_compiler.py --out-json /tmp/stage_a_tool_query_runtime_compiler_result.json --out-md /tmp/STAGE_A_TOOL_QUERY_RUNTIME_COMPILER_RESULT.md",
     "python examples/run_public_demo.py",
     "python post_training/run_stage_a_sft_smoke_eval.py --json",
     "python post_training/run_stage_a_strict_component_diagnostics.py --compact",

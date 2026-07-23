@@ -66,15 +66,15 @@ def main() -> int:
     require_pattern(
         issues,
         plan,
-        r"Do not repeat or tune on the completed 25-row sealed set\. Keep DPO, RLVR, and\s+Hugging Face Stage A publication closed until a component-specific repair\s+survives a new independent evaluation\.",
+        r"Do not repeat or tune on the completed 25-row sealed set\. Keep DPO, RLVR, and\s+Hugging Face publication closed until a learned routing repair beats static\s+baselines, adds useful decisive coverage, and survives independent evaluation\.",
         "post-sealed method and publication gate",
     )
     for needle in (
-        "`tool_query` placeholder-schema SFT is 0/5",
-        "one-time source-separated sealed routing is 5/25",
-        "the static single-pair prior is 5/25",
-        "the deterministic runtime oracle is",
-        "25/25",
+        "one-time source-separated sealed routing result remains 5/25",
+        "frozen routing is 35/180",
+        "runtime hybrid routing is 115/180",
+        "base and frozen placeholder-SFT tool-query policies are both 0/25 exact",
+        "150/150 malformed inputs rejected",
     ):
         require_contains(issues, plan, needle, "completed Stage A result")
     for needle in (
@@ -116,13 +116,13 @@ def main() -> int:
     require_contains(
         issues,
         public_status,
-        "prospective_real_query_slice_and_runtime_hybrid_before_new_post_training",
-        "public STATUS prospective research decision",
+        "stage_b_c5_manifest_prototype_after_stage_a_runtime_split",
+        "public STATUS C5 research decision",
     )
     require_pattern(
         issues,
         public_status,
-        r"do not tune on or rescore these 25\s+sealed rows",
+        r"[Dd]o not tune on or rescore these\s+25 sealed rows",
         "public STATUS sealed-set reuse prohibition",
     )
     require_contains(
@@ -137,6 +137,14 @@ def main() -> int:
         "aggregate balance/overlap counts plus cryptographic commitments",
         "roadmap sealed commitment boundary",
     )
+    for needle in (
+        "frozen routing is 35/180",
+        "runtime hybrid routing is 115/180",
+        "25/25 clean exact",
+        "150/150 malformed inputs rejected",
+        "Build the first Stage B C5",
+    ):
+        require_contains(issues, plan, needle, "prospective Stage A checkpoint")
 
     if issues:
         print(f"FAIL research plan check found {len(issues)} issue(s):")
@@ -146,7 +154,8 @@ def main() -> int:
     print("OK research plan check passed")
     print("- component order: enum_action -> tool_query -> routing_after_loop")
     print("- Stage A checkpoint: tool_query 0/5; sealed routing 5/25; runtime oracle 25/25")
-    print("- DPO/RLVR/HF gate: prospective repair plus new independent evaluation required")
+    print("- prospective Stage A: routing 35/180; hybrid 115/180; compiler 25/25 clean")
+    print("- DPO/RLVR/HF gate: useful routing coverage plus independent evaluation required")
     print("- sealed evaluation gate: completed rows cannot be tuned on or rescored")
     print("- C5 gate: calibration metadata required before trust")
     return 0

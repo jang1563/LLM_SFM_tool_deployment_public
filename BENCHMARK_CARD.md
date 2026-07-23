@@ -95,6 +95,10 @@ score.
 | `post_training/stage_a_sft_smoke_eval_summary_2026-07-04.json` | 1 report | No-API split-aware SFT smoke/eval baseline |
 | `post_training/generate_stage_a_predictions.py` | 1 script | Artifact-first producer for saved prediction JSONL |
 | `post_training/evaluate_stage_a_predictions.py` | 1 script | Offline scorer for saved API, local-SFT, or prompt-only prediction JSONL |
+| `post_training/stage_a_prospective_real_query_tool_query_v1.jsonl` | 25 rows | Case-specific typed query targets for public development |
+| `post_training/stage_a_prospective_real_query_routing_perturbations_v1.jsonl` | 180 rows | Synthetic runtime routing perturbations |
+| `negbiodb_ct/tool_query_runtime.py` | 1 module | Fail-closed compiler for the fixed Stage A tool/query contract |
+| `post_training/stage_a_tool_query_runtime_compiler_result_2026-07-23.json` | 1 report | Clean and malformed-input compiler evaluation |
 
 Checksums and record counts are registered in
 `release/public_release_manifest.json`.
@@ -137,15 +141,22 @@ The first source-separated model result is deliberately negative:
 | Tool-query placeholder schema | 0/5 | 5/5 required |
 | Exposed-development candidate routing | 1/5 | runtime gate 5/5 |
 | One-time sealed candidate routing | 5/25 | static prior 5/25; runtime oracle 25/25 |
+| Prospective frozen routing | 35/180 | best static pair 80/180; deterministic gate 180/180 |
+| Prospective runtime hybrid | 115/180 | zero unsafe grounding; zero decisive coverage |
+| Real-query base / frozen placeholder SFT | 0/25 / 0/25 | strict case-specific tool calls |
+| Explicit-contract base | 0/25 | target keys 25/25; strict call shape 0/25 |
+| Runtime tool-query compiler | 25/25 clean | 150/150 malformed inputs rejected |
 
 The sealed policy selects `verify/insufficient` on all 25 cases. It has zero
 incorrect `ground/supported` predictions but does not distinguish evidence
 families. This supports runtime arbitration and does not justify DPO/RLVR.
 
-The tool-query and sealed routing diagnostics are not end-to-end tool-use
-measurements. Tool-query targets use placeholder arguments, and sealed routing
-uses synthetic oracle tool results constructed from hidden labels that remain
-invisible to the model.
+The prospective tool-query rows use actual model-visible identifiers, but the
+current fixed-order copy operation is deterministic. It is therefore enforced
+by runtime code rather than presented as a model reasoning win. Prospective
+routing uses synthetic tool-result perturbations and the deterministic gate
+defines their expected policy, so its 180/180 score is a positive control, not
+an external generalization estimate.
 
 ## Reproducibility
 
@@ -173,6 +184,9 @@ python post_training/evaluate_stage_a_predictions.py \
   --expected-sft post_training/stage_a_sft_heldout_v1.jsonl \
   --run-id heldout_oracle_adapter_smoke \
   --json
+python post_training/evaluate_stage_a_tool_query_runtime_compiler.py \
+  --out-json /tmp/stage_a_tool_query_runtime_compiler_result.json \
+  --out-md /tmp/STAGE_A_TOOL_QUERY_RUNTIME_COMPILER_RESULT.md
 python -m pytest -q \
   tests/test_trajectory_evaluator.py \
   tests/test_public_demo.py \
@@ -186,6 +200,10 @@ python -m pytest -q \
   tests/test_stage_a_sft_smoke_eval.py \
   tests/test_stage_a_prediction_eval.py \
   tests/test_stage_a_prediction_generator.py \
+  tests/test_stage_a_prospective_real_query_slice.py \
+  tests/test_stage_a_prospective_runtime_hybrid.py \
+  tests/test_stage_a_prospective_tool_query_transfer.py \
+  tests/test_stage_a_tool_query_runtime.py \
   tests/test_post_training_data_validator.py
 ```
 

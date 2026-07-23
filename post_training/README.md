@@ -44,6 +44,16 @@ Outputs:
 | `stage_a_candidate_routing_policy_freeze_2026-07-23.json` | 1 | Public-safe frozen-policy commitment; private state and report paths are redacted and the original missing seed is disclosed. |
 | `run_stage_a_sealed_candidate_routing_eval.py` | - | One-time private evaluator with hash checks, external-path enforcement, lock protection, oracle-evidence scope declaration, and aggregate-only output. |
 | `stage_a_sealed_candidate_routing_result_qwen05b_cayuga_2026-07-23.json` | 1 | Compact sealed result: 5/25 exact, 25/25 `verify/insufficient`, static prior 5/25, runtime oracle 25/25. |
+| `stage_a_prospective_real_query_tool_query_v1.jsonl` | 25 | Public development tool-query rows with unique case-specific typed identifiers. |
+| `stage_a_prospective_real_query_routing_perturbations_v1.jsonl` | 180 | Synthetic routing states spanning eight tool/evidence perturbations. |
+| `stage_a_prospective_real_query_experiment_manifest.json` | 1 | Source separation, artifact hashes, balance, and query-contract checks for the prospective substrate. |
+| `run_stage_a_prospective_frozen_policy.py` | - | Loads the pre-prospective frozen routing state without retraining and keeps row-level predictions private. |
+| `stage_a_prospective_runtime_hybrid_result_qwen05b_cayuga_2026-07-23.json` | 1 | Aggregate comparison: frozen routing 35/180, static prior 80/180, deterministic gate 180/180, runtime hybrid 115/180. |
+| `run_stage_a_prospective_tool_query_transfer.py` | - | Compares base and pre-prospective placeholder-SFT policies on 25 real-query prompts without retraining. |
+| `stage_a_prospective_tool_query_transfer_result_qwen05b_cayuga_2026-07-23.json` | 1 | Aggregate transfer result: base and frozen SFT both 0/25 exact. |
+| `stage_a_prospective_tool_query_prompt_repair_result_qwen05b_cayuga_2026-07-23.json` | 1 | Adaptive prompt-only result: target keys 25/25, strict tool-call shape 0/25. |
+| `evaluate_stage_a_tool_query_runtime_compiler.py` | - | Evaluates exact compilation and fail-closed malformed-input behavior. |
+| `stage_a_tool_query_runtime_compiler_result_2026-07-23.json` | 1 | Runtime result: 25/25 clean exact and 150/150 malformed inputs rejected for intended reasons. |
 | `run_stage_a_sft_smoke_eval.py` | - | No-API Stage A SFT smoke/eval harness for train/held-out trajectory mechanics. |
 | `generate_stage_a_predictions.py` | - | Artifact-first producer for saved Stage A prediction JSONL. |
 | `evaluate_stage_a_predictions.py` | - | Offline scorer for saved Stage A API, cluster, prompt-only, or oracle prediction JSONL. |

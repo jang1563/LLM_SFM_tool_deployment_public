@@ -420,34 +420,38 @@ it changes at least one of:
 
 ## Next Concrete Ticket
 
-Build a prospective real-query Stage A development slice and a runtime-hybrid
-perturbation evaluation.
+Build the first Stage B C5 antibody-antigen OOD trust-routing manifest and
+fail-closed gate prototype.
 
-The July 23 checkpoints close the original component/sealed sequence:
+The prospective July 23 Stage A checkpoint is complete:
 
-- `tool_query` placeholder-schema SFT is 0/5 and does not evaluate real
-  identifier resolution;
-- the saved candidate-routing policy is frozen without retraining;
-- one-time source-separated sealed routing is 5/25, selecting
-  `verify/insufficient` on all 25 rows;
-- the static single-pair prior is 5/25 and the deterministic runtime oracle is
-  25/25.
+- 25 public development tasks expose case-specific typed query IDs without
+  reading or reusing completed sealed rows;
+- 180 synthetic routing states cover eight tool/evidence perturbations;
+- the previous one-time source-separated sealed routing result remains 5/25
+  and is not reused in this checkpoint;
+- frozen routing is 35/180 and below the 80/180 static prior;
+- runtime hybrid routing is 115/180 with zero unsafe grounding but zero
+  decisive coverage;
+- base and frozen placeholder-SFT tool-query policies are both 0/25 exact;
+- explicit prompting fixes top-level keys but remains 0/25 strict exact;
+- the fixed-order copy-only query operation is now a fail-closed runtime
+  compiler: 25/25 clean exact and 150/150 malformed inputs rejected.
 
 Minimum next output:
 
-- actual model-visible drug/condition query values or an explicit
-  entity-resolution interface;
-- source-separated development data that does not reuse the completed sealed
-  rows;
-- mutation slices for missing attribution, stale source, contradiction,
-  invalid numeric value, partial query, wrong tool, and unavailable tool;
-- frozen-model vs deterministic-gate vs runtime-hybrid comparison;
-- macro action/status accuracy, unsafe trust count, and risk/coverage metrics;
-- a new prospective sealed protocol defined before any model selection.
+- a small public C5 manifest with `complex_id`, chain-role mapping, metric
+  type/scope/value, calibration dataset, regime match, baseline result, hidden
+  interface-label status, and expected terminal action;
+- deterministic `trust_all`, general-gate, regime-specific-gate, and
+  fail-closed baselines;
+- tests showing missing calibration, metric scope, threshold, or regime match
+  cannot produce a trust action;
+- no model training until the C5 manifest and gates pass no-API validation.
 
 Do not repeat or tune on the completed 25-row sealed set. Keep DPO, RLVR, and
-Hugging Face Stage A publication closed until a component-specific repair
-survives a new independent evaluation.
+Hugging Face publication closed until a learned routing repair beats static
+baselines, adds useful decisive coverage, and survives independent evaluation.
 
 ## One-Paragraph Research Story
 

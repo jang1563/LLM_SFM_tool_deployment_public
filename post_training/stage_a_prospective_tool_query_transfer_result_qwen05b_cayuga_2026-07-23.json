@@ -1,0 +1,95 @@
+{
+  "completed_sealed_rows_used": false,
+  "dataset": "negbiodb_ct_stage_a_prospective_tool_query_transfer_run_v1",
+  "decision": {
+    "base_exact": 0,
+    "frozen_sft_exact": 0,
+    "frozen_sft_improves_exact": false,
+    "frozen_sft_query_values_exact": 0,
+    "ready_for_dpo_rlvr": false,
+    "ready_for_hugging_face_publication": false,
+    "ready_for_new_training": false
+  },
+  "device_class": "cuda",
+  "dry_run": false,
+  "evaluation_scope": "public_development_case_specific_real_query_transfer",
+  "freeze_id": "stage_a_tool_query_transfer_freeze::198f8edf10b71818de0d38775906721d709ce606f6e9a3994f9b04c958766e47",
+  "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+  "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "policies": {
+    "base": {
+      "accuracy": {
+        "exact": 0.0,
+        "parseable_json": 0.8,
+        "query_fields": 0.0,
+        "query_values": 0.0,
+        "target_keys": 0.0,
+        "tool_query_shape": 0.0,
+        "tool_sequence": 0.0
+      },
+      "exact": 0,
+      "parseable_json": 20,
+      "query_fields": 0,
+      "query_values": 0,
+      "rows": 25,
+      "target_keys": 0,
+      "tool_query_shape": 0,
+      "tool_sequence": 0,
+      "unique_raw_outputs": 25,
+      "violations": {
+        "prediction_parse_error": 5,
+        "query_fields_mismatch": 20,
+        "query_values_mismatch": 20,
+        "target_key_mismatch": 20,
+        "target_mismatch": 20,
+        "tool_query_shape_invalid": 20,
+        "tool_sequence_mismatch": 20
+      }
+    },
+    "frozen_tool_query_sft": {
+      "accuracy": {
+        "exact": 0.0,
+        "parseable_json": 0.56,
+        "query_fields": 0.0,
+        "query_values": 0.0,
+        "target_keys": 0.0,
+        "tool_query_shape": 0.0,
+        "tool_sequence": 0.0
+      },
+      "exact": 0,
+      "parseable_json": 14,
+      "query_fields": 0,
+      "query_values": 0,
+      "rows": 25,
+      "target_keys": 0,
+      "tool_query_shape": 0,
+      "tool_sequence": 0,
+      "unique_raw_outputs": 25,
+      "violations": {
+        "prediction_parse_error": 11,
+        "query_fields_mismatch": 14,
+        "query_values_mismatch": 14,
+        "target_key_mismatch": 14,
+        "target_mismatch": 14,
+        "tool_query_shape_invalid": 14,
+        "tool_sequence_mismatch": 14
+      }
+    }
+  },
+  "private_predictions": {
+    "committed": false,
+    "path": "private_output::tool_query_transfer_predictions.jsonl",
+    "sha256": "3f764723dbc7a11f86444dd8898bb1d82a77cba485125b1ce9594ed06ce98d19"
+  },
+  "rows_per_policy": 25,
+  "scientific_boundary": {
+    "actual_query_identifier_values_visible": true,
+    "development_only": true,
+    "independent_test_claimed": false,
+    "live_tool_execution_evaluated": false,
+    "retraining_performed": false,
+    "state_trained_before_prospective_rows": true
+  },
+  "trainable_params_loaded": 14913280,
+  "training_performed": false
+}

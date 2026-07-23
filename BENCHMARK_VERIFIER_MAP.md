@@ -14,6 +14,8 @@ passed by a valid `tool -> evidence packet -> terminal action` trajectory.
 | Saved prediction scorer | `post_training/evaluate_stage_a_predictions.py` | Provider-agnostic saved outputs scored offline through the same evaluator. | parse errors, missing/extra case IDs, non-reproducible live-only claims |
 | Component scorer | `post_training/run_stage_a_strict_component_sft_smoke.py` | Enum/action, tool-query, and routing-after-loop slices. | schema drift, invalid enum values, citationless routing |
 | Evidence visibility audit | `post_training/analyze_stage_a_component_visibility.py` | Whether model-visible prompts expose the evidence needed for routing. | underconditioned routing targets, hidden-label dependence |
+| Tool-query runtime compiler | `negbiodb_ct/tool_query_runtime.py` | Exact tool order, typed query namespaces/values, required fields, and approved tools. | stringified IDs, aliases, reordered/unknown tools, missing or extra query fields |
+| Prospective runtime hybrid | `post_training/evaluate_stage_a_prospective_runtime_hybrid.py` | Frozen routing versus deterministic evidence gates under eight tool-state perturbations. | unsafe grounding, decisive disagreement, fail-closed coverage loss |
 | Routing evidence gate | `post_training/evaluate_stage_a_routing_evidence_gate.py` | Deterministic routing from prompt-visible tool-result fields. | unsupported trust, insufficient-as-negative, invalid-value misses |
 | Baseline comparison | `post_training/evaluate_stage_a_routing_gate_baseline_comparison.py` | Runtime gate versus oracle, collapse, citationless, and empty-object routing. | unsafe `ground` / `supported` collapse, incomplete evidence packets |
 | Model-readiness gate | `post_training/evaluate_stage_a_routing_model_readiness.py` | Existing compact model summaries against deterministic baselines. | premature `tool_query`, DPO/RLVR, HF, or release escalation |
@@ -66,10 +68,15 @@ passed by a valid `tool -> evidence packet -> terminal action` trajectory.
 | Saved-output evidence candidate-routing dry-run checkpoint | `post_training/evaluate_stage_a_saved_output_evidence_candidate_routing_dry_run_checkpoint.py` | Records public-safe local/Cayuga dry-run readiness and keeps full submission behind an explicit decision. |
 | Saved-output evidence candidate-routing Cayuga result | train 4/20, held-out 1/5, bridge-focus 1/4; all predictions are `verify` / `insufficient` | Fails the 5/5 runtime-baseline gate and freezes the reused slice as diagnostic data before a new sealed evaluation extension. |
 | Stage A sealed extension commitment | `post_training/build_stage_a_sealed_extension.py` and `post_training/stage_a_sealed_extension_commitment_2026-07-10.json` | Requires private external paths, excludes public source-task/split-group/claim overlap, validates five-family balance, and publishes hashes plus aggregate checks without row-level labels. The current 25-row commitment passes with all overlap counts at 0. |
+| Prospective frozen routing | 35/180; predicts `verify` / `insufficient` on 180/180 | Below the 80/180 static prior; no optimizer escalation. |
+| Prospective runtime hybrid | 115/180; 0 unsafe grounding; 0 decisive coverage | Fail-closed enforcement prevents unsafe actions but does not turn the frozen policy into a useful router. |
+| Real-query model transfer | base 0/25; frozen placeholder SFT 0/25; explicit-contract base 0/25 | Prompt/schema movement is not exact executable tool use. |
+| Tool-query runtime compiler | 25/25 clean; 150/150 malformed rejected for intended reasons | Approve runtime compilation for the current fixed copy-only operation; do not spend corrective SFT on it. |
 
 ## Escalation Rule
 
-Do not move to `tool_query`, DPO/RLVR, Hugging Face publication, or release
-tagging from model scores alone. A model path must first beat collapse and
-citationless baselines, then approach runtime-gate full-trajectory performance
-on broader held-out slices.
+Do not move to DPO/RLVR, Hugging Face publication, or release tagging from
+model scores alone. Fixed query construction stays in the runtime layer. A
+learned routing path must beat static and citationless baselines, contribute
+useful decisive coverage, then approach runtime-gate full-trajectory
+performance on broader independent slices.

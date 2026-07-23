@@ -1,0 +1,69 @@
+{
+  "authorization": {
+    "dpo_rlvr_allowed": false,
+    "ready_for_base_vs_frozen_transfer": true,
+    "retraining_before_transfer_allowed": false,
+    "training_on_prospective_rows_allowed": false
+  },
+  "dataset": "negbiodb_ct_stage_a_prospective_tool_query_transfer_freeze_v1",
+  "freeze_id": "stage_a_tool_query_transfer_freeze::198f8edf10b71818de0d38775906721d709ce606f6e9a3994f9b04c958766e47",
+  "frozen_artifacts": {
+    "experiment_manifest": {
+      "path": "post_training/stage_a_prospective_real_query_experiment_manifest.json",
+      "role": "public prospective experiment manifest",
+      "sha256": "2b31665405af298680736b4cb5999dfe2d6e648a32f78fc05580a66609299e61"
+    },
+    "source_tool_query_result": {
+      "path": "post_training/stage_a_tool_query_sft_smoke_result_qwen05b_cayuga_2026-07-23.json",
+      "role": "public compact placeholder-schema training result",
+      "sha256": "3dcebd989ac0f6b1cccffade0bf638ddc0b6b46b57fcb3609ec80c56c3fc61d1"
+    },
+    "tool_query_rows": {
+      "path": "post_training/stage_a_prospective_real_query_tool_query_v1.jsonl",
+      "records": 25,
+      "role": "public prospective case-specific query rows",
+      "sha256": "472674c8f5ce8fd6d545bd674c1f3be785825e75e57036b7df4ba047dfcaa376"
+    },
+    "trainable_state": {
+      "path": "external_private_input::trainable_state.pt",
+      "role": "private pre-prospective tool-query trainable parameters",
+      "sha256": "5894d2ab0aad8f9d85077b47a1b6216f0fe77dcef80c5ab834bd767d3baa8cb4"
+    }
+  },
+  "policy": {
+    "comparison_policies": [
+      "base",
+      "frozen_tool_query_sft"
+    ],
+    "decode_mode": "freeform",
+    "max_length": 1024,
+    "max_new_tokens": 256,
+    "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+    "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "prompt_contract": "stage_a_prospective_real_query_v1",
+    "retraining_allowed": false,
+    "source_prompt_contract": "stage_a_v2_strict",
+    "system_prompt_sha256": "57dd7aef85fd587df6d38a87d461bf3f6d780cfa826d0f47c0833c5463e884fd",
+    "train_last_layers": 1,
+    "trainable_params": 14913280
+  },
+  "public_safety_contract": {
+    "private_paths_redacted": true,
+    "raw_source_predictions_committed": false,
+    "trainable_state_committed": false
+  },
+  "scientific_boundary": {
+    "actual_identifier_values_visible": true,
+    "development_only": true,
+    "independent_test_claimed": false,
+    "live_tool_execution_evaluated": false,
+    "prospective_row_dataset": "negbiodb_ct_stage_a_prospective_real_query_tool_query_v1",
+    "state_trained_before_prospective_rows": true
+  },
+  "source_result": {
+    "heldout_cases": 5,
+    "heldout_passed": 0,
+    "run_id": "stage_a_component_tool_query_sft_cayuga_20260723_r2",
+    "source_targets_used_literal_placeholders": true
+  }
+}
