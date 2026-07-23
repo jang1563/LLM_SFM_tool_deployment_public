@@ -66,6 +66,7 @@ labels.
 | PromptBio-Bench / MedAgentGym, 2026, https://www.promptbio.ai/publications.html, https://openreview.net/forum?id=jHDZEUgS4r | biomedical agent benchmarks and training environments | Adds structured output-file grading and executable biomedical sandboxes with verifiable ground truth and trajectory generation. Useful for turning biology tasks into trainable environments. |
 | The Art of Building Verifiers for Computer Use Agents, 2026, https://arxiv.org/abs/2604.06240 | verifier design / process-outcome separation | Adds four concrete verifier rules that transfer to this benchmark: non-overlapping criteria, separate process and outcome signals, controllable vs uncontrollable failure attribution, and long-trajectory context coverage. |
 | Plan-RewardBench, 2026, https://arxiv.org/abs/2604.08178 | trajectory reward-model evaluation | Finds generative, discriminative, and LLM-judge reward models remain weak on confusable long-horizon tool trajectories. Supports deterministic verifier-first rewards and keeping explanation quality outside RLVR. |
+| JSONSchemaBench, 2025, https://arxiv.org/abs/2501.10868 | constrained structured generation | Separates schema coverage, efficiency, and output quality across real JSON schemas. For this project, structural validity must be reported separately from evidence/action quality; deterministic copy-only calls should be compiled or constrained at runtime rather than counted as learned scientific reasoning. |
 
 ## Method Takeaways
 
@@ -74,6 +75,9 @@ labels.
 - RLVR is appropriate only where reward is actually verifiable: schema validity, retrieval count/exactness, citation existence, hidden-label correctness, or cost-aware routing.
 - Tool-use RL needs decomposed rewards. A final-answer reward is too sparse for deciding which database/tool to call and whether to trust, verify, baseline, or defer.
 - Deployment enforcement remains necessary: some local findings imply the correct move is to force a tool/gate, not ask the model to internalize the distinction.
+- Structured-output compliance and semantic tool-use quality are separate axes.
+  The prospective Stage A result makes this concrete: prompt wording can repair
+  the top-level key while exact call structure still fails.
 - ToolUniverse/TxAgent suggest a concrete implementation path: build or wrap a scientific tool universe, generate high-quality traces, then train/evaluate agents on tool retrieval, argument construction, result integration, and final action choice.
 - Domain matters: math has formal proof checkers, physics has simulators/units/holdouts, chemistry has molecular and lab-execution validators, and biology has evidence-status plus context-dependent calibration. The farther we move from math, the less defensible it is to treat final-answer RLVR as the whole solution.
 - The new `BENCHMARK_VERIFIER_MAP.md` reframes the literature by verifier level rather than paper family. This should be the default tutor-mode map.

@@ -4,6 +4,21 @@ All notable public-facing changes are tracked here.
 
 ## Unreleased - 2026-07-23
 
+- Add a prospective Stage A public development slice with 25 case-specific
+  typed query targets and 180 routing states across eight perturbations,
+  without reading or reusing completed sealed rows.
+- Record frozen routing at 35/180 versus an 80/180 static prior; record the
+  runtime hybrid at 115/180 with zero unsafe grounding and zero decisive
+  coverage.
+- Compare base and pre-prospective placeholder-SFT policies on real query IDs:
+  both score 0/25 exact, and frozen SFT reduces parseable JSON.
+- Add an adaptive explicit-contract diagnostic: top-level target keys improve
+  to 25/25, but strict call structure remains 0/25.
+- Move the current fixed-order copy-only tool-query step into a fail-closed
+  runtime compiler. It matches 25/25 clean targets and rejects 150/150
+  malformed inputs for the intended reason.
+- Keep raw generations, candidate scores, trainable states, scheduler logs, and
+  private manifests outside the public repository.
 - Complete the missing Cayuga `tool_query` placeholder-schema diagnostic:
   Qwen2.5-0.5B scores 0/5, emits no `tool_calls`, and produces prompt-schema
   JSON instead.

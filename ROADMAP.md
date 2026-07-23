@@ -155,6 +155,17 @@ Completed:
   deterministic runtime oracle;
 - private sealed-manifest and one-time-lock workflow with aggregate-only public
   results and no row-level labels or candidate scores.
+- prospective public development substrate with 25 case-specific typed query
+  targets and 180 synthetic routing states across eight perturbations;
+- frozen candidate-routing transfer result: 35/180 exact, below the 80/180
+  static prior, with `verify` / `insufficient` selected on every row;
+- runtime-hybrid routing result: 115/180 exact, zero unsafe grounding, and zero
+  decisive coverage;
+- real-query tool-call transfer result: base and frozen placeholder-SFT states
+  both 0/25 exact, with explicit prompting fixing top-level keys but not strict
+  tool-call shape;
+- fail-closed Stage A tool-query runtime compiler: 25/25 clean exact and
+  150/150 malformed inputs rejected for the intended reason.
 
 Not completed:
 
@@ -162,11 +173,14 @@ Not completed:
 - Hugging Face dataset/model/Space publication;
 - a future release beyond the existing v0.1.0 reproducibility snapshot;
 - public demo video or GIF;
-- prospective real-query component data with actual model-visible identifier
-  values or an explicit entity-resolution interface;
-- runtime-hybrid perturbation evaluation over attribution, source, value,
-  contradiction, partial-query, wrong-tool, and unavailable-tool failures;
 - Stage B C5 antibody-antigen OOD transfer package.
+
+Current checkpoint:
+
+- keep fixed-order query construction in the runtime layer;
+- keep routing as the learned decision surface;
+- do not start corrective tool-query SFT, DPO, or RLVR;
+- build the first Stage B C5 manifest and fail-closed gate prototype next.
 
 ## Near-Term Milestones
 
@@ -307,8 +321,11 @@ Exit criteria:
 - action-contrast pairs now isolate same-status wrong-action failures, with
   `flag/invalid_value` rejecting `ground/invalid_value` instead of
   `ground/supported`;
-- `tool_query` failure maps to structured argument generation and required query
-  fields;
+- prospective `tool_query` transfer maps aliases, type coercion, and fixed-order
+  copying to runtime compilation: clean 25/25 and malformed 150/150 now pass;
+- do not spend corrective SFT on the current deterministic query contract;
+  reopen model learning only when tool selection or argument extraction becomes
+  a genuinely nontrivial decision;
 - `routing_after_loop` failure maps to evidence/action routing and citation
   grounding;
 - current constrained-routing failure maps specifically to insufficient,
@@ -614,6 +631,9 @@ python post_training/evaluate_stage_a_full_trajectory_arbitration.py \
 python post_training/evaluate_stage_a_saved_prediction_readiness.py \
   --out-json /tmp/stage_a_saved_prediction_readiness.json \
   --out-md /tmp/STAGE_A_SAVED_PREDICTION_READINESS.md
+python post_training/evaluate_stage_a_tool_query_runtime_compiler.py \
+  --out-json /tmp/stage_a_tool_query_runtime_compiler_result.json \
+  --out-md /tmp/STAGE_A_TOOL_QUERY_RUNTIME_COMPILER_RESULT.md
 python -m pytest -q
 git diff --check
 ```

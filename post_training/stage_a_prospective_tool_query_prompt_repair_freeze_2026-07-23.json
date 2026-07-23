@@ -1,0 +1,42 @@
+{
+  "authorization": {
+    "dpo_rlvr_allowed": false,
+    "ready_for_adaptive_prompt_diagnostic": true,
+    "training_allowed": false
+  },
+  "dataset": "negbiodb_ct_stage_a_prospective_tool_query_prompt_repair_freeze_v1",
+  "freeze_id": "stage_a_tool_query_prompt_repair_freeze::a29b51f98316e07e8580397fa6362c3b4ef7b85e054550d25c2e23475cef3a71",
+  "frozen_artifacts": {
+    "experiment_manifest": {
+      "path": "post_training/stage_a_prospective_real_query_experiment_manifest.json",
+      "role": "public prospective experiment manifest",
+      "sha256": "2b31665405af298680736b4cb5999dfe2d6e648a32f78fc05580a66609299e61"
+    },
+    "observed_transfer_result": {
+      "path": "post_training/stage_a_prospective_tool_query_transfer_result_qwen05b_cayuga_2026-07-23.json",
+      "role": "public aggregate result motivating adaptive prompt repair",
+      "sha256": "01853c89d9bc06d53c3cf96898c8a45af6d9215f4b7421d955336a944b45322d"
+    },
+    "tool_query_rows": {
+      "path": "post_training/stage_a_prospective_real_query_tool_query_v1.jsonl",
+      "records": 25,
+      "role": "public prospective case-specific query rows",
+      "sha256": "472674c8f5ce8fd6d545bd674c1f3be785825e75e57036b7df4ba047dfcaa376"
+    }
+  },
+  "policy": {
+    "decode_mode": "freeform",
+    "max_new_tokens": 256,
+    "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+    "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "system_prompt": "You are a Stage A tool-query compiler. Return exactly one JSON object with exactly one top-level key \"tool_calls\". Use every name in allowed_tools exactly once, in listed order. For every call, arguments must contain exactly \"drug_id\" and \"condition_id\". Copy their raw values from query.drug_id.value and query.condition_id.value. Do not return or repeat any input fields. Do not include prose or markdown.",
+    "system_prompt_sha256": "9e7d1e24d13e915123e7d29025ba5c8612eb3df691c4405c6ed434f347d950fa",
+    "training_allowed": false
+  },
+  "scientific_boundary": {
+    "adaptive_after_observing_input_echo_failure": true,
+    "development_only": true,
+    "independent_test_claimed": false,
+    "live_tool_execution_evaluated": false
+  }
+}

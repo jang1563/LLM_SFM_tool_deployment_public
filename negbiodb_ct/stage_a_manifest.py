@@ -41,6 +41,10 @@ DEFAULT_COST_PROFILE = {
     "defer_or_request_more_evidence": 0.5,
 }
 DEFAULT_REQUIRED_QUERY_FIELDS = ("drug_id", "condition_id")
+QUERY_IDENTIFIER_NAMESPACES = {
+    "drug_id": "negbiodb_ct.intervention_id",
+    "condition_id": "negbiodb_ct.condition_id",
+}
 ACTION_CLASS_ORDER = ("ground", "reject", "defer", "verify", "flag")
 HIDDEN_LABEL_TOKENS = (
     "ground",
@@ -118,6 +122,7 @@ def stage_a_row_from_task_record(
     *,
     case_index: int,
     tool_profile: str = "nullatlas_full",
+    include_query_values: bool = False,
 ) -> dict[str, Any]:
     """Project a NegBioDB-CT task into the Stage A manifest shape."""
 
@@ -130,14 +135,18 @@ def stage_a_row_from_task_record(
     gold_nct = scoring_key.get("gold_nct")
     gold_source_ids = [str(gold_nct)] if gold_nct else []
 
+    model_visible_task: dict[str, Any] = {
+        "input_id": input_id,
+        "claim": str(observation["claim"]),
+        "allowed_tools": list(allowed_tools_for_profile(tool_profile)),
+    }
+    if include_query_values:
+        model_visible_task["query"] = model_visible_query_for_record(record)
+
     return {
         "case_id": case_id,
         "dataset": STAGE_A_DATASET,
-        "model_visible_task": {
-            "input_id": input_id,
-            "claim": str(observation["claim"]),
-            "allowed_tools": list(allowed_tools_for_profile(tool_profile)),
-        },
+        "model_visible_task": model_visible_task,
         "hidden_eval_metadata": {
             "source_task_id": str(record["packet_id"]),
             "required_tools": list(required_tools),
@@ -154,6 +163,42 @@ def stage_a_row_from_task_record(
         },
         "cost_profile": dict(DEFAULT_COST_PROFILE),
     }
+
+
+def model_visible_query_for_record(record: Mapping[str, Any]) -> dict[str, dict[str, Any]]:
+    """Expose typed query identifiers without exposing evaluator labels."""
+
+    observation = record.get("observation")
+    if not isinstance(observation, Mapping):
+        raise ValueError("Task record is missing observation mapping.")
+    query: dict[str, dict[str, Any]] = {}
+    for field in DEFAULT_REQUIRED_QUERY_FIELDS:
+        value = observation.get(field)
+        if isinstance(value, bool) or not isinstance(value, (int, str)) or value == "":
+            raise ValueError(f"Task record has invalid {field}: {value!r}")
+        query[field] = {
+            "namespace": QUERY_IDENTIFIER_NAMESPACES[field],
+            "value": value,
+        }
+    return query
+
+
+def query_arguments_from_model_visible_task(
+    model_visible: Mapping[str, Any],
+    *,
+    required_fields: Sequence[str],
+) -> dict[str, Any]:
+    """Resolve tool arguments from visible query values, with legacy fallback."""
+
+    query = model_visible.get("query")
+    arguments: dict[str, Any] = {}
+    for field in required_fields:
+        field_payload = query.get(field) if isinstance(query, Mapping) else None
+        if isinstance(field_payload, Mapping) and "value" in field_payload:
+            arguments[field] = field_payload["value"]
+        else:
+            arguments[field] = f"<{field}>"
+    return arguments
 
 
 def allowed_tools_for_profile(tool_profile: str) -> tuple[str, ...]:
@@ -220,7 +265,10 @@ def ideal_trajectory_from_stage_a_row(row: Mapping[str, Any]) -> Trajectory:
     terminal = str(hidden["expected_terminal_action"])
     required_tools = tuple(str(tool) for tool in hidden.get("required_tools", ()))
     required_query_fields = tuple(str(field) for field in hidden.get("required_query_fields", ()))
-    step_args = {field: f"<{field}>" for field in required_query_fields}
+    step_args = query_arguments_from_model_visible_task(
+        model_visible,
+        required_fields=required_query_fields,
+    )
 
     return Trajectory(
         input_id=input_id,

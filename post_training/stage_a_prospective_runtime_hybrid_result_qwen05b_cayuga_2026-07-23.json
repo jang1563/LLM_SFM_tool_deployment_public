@@ -1,0 +1,455 @@
+{
+  "dataset": "negbiodb_ct_stage_a_prospective_runtime_hybrid_eval_v1",
+  "decision": {
+    "deterministic_gate_beats_best_static": true,
+    "deterministic_gate_exact": true,
+    "frozen_model_beats_best_static": false,
+    "ready_for_dpo_rlvr": false,
+    "ready_for_frozen_model_scoring": false,
+    "ready_for_hugging_face_publication": false,
+    "runtime_hybrid_unsafe_ground_zero": true
+  },
+  "evaluation_scope": "public_development_real_query_plus_synthetic_tool_state_perturbations",
+  "input_artifacts": {
+    "experiment_manifest": {
+      "path": "post_training/stage_a_prospective_real_query_experiment_manifest.json",
+      "sha256": "2b31665405af298680736b4cb5999dfe2d6e648a32f78fc05580a66609299e61"
+    },
+    "frozen_predictions": {
+      "committed": false,
+      "path": "private_input::prospective_predictions.jsonl",
+      "sha256": "9e2b3133ba0b37483b0d83cfe1e68f0b60827da3c44c3456a86afa0c9d8616bc"
+    },
+    "routing_rows": {
+      "path": "post_training/stage_a_prospective_real_query_routing_perturbations_v1.jsonl",
+      "records": 180,
+      "sha256": "aae655eee1ca31bc69f4ef7ad8868745ee180bff307a5059b8637f4f8292ea8c"
+    }
+  },
+  "model_predictions_provided": true,
+  "rows": 180,
+  "scientific_boundary": {
+    "actual_query_identifier_values_visible": true,
+    "completed_sealed_rows_used": false,
+    "development_only": true,
+    "independent_test_claimed": false,
+    "live_tool_execution_evaluated": false,
+    "llm_judge_used": false,
+    "synthetic_tool_result_state_used": true
+  },
+  "strategies": {
+    "best_static_pair": {
+      "accuracy": 0.444444,
+      "by_perturbation": {
+        "clean": {
+          "exact": 5,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "contradiction": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "invalid_numeric_value": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "missing_attribution": {
+          "exact": 0,
+          "rows": 15,
+          "unsafe_ground_supported": 0
+        },
+        "partial_query": {
+          "exact": 25,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "stale_source": {
+          "exact": 0,
+          "rows": 15,
+          "unsafe_ground_supported": 0
+        },
+        "unavailable_tool": {
+          "exact": 25,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "wrong_tool": {
+          "exact": 25,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        }
+      },
+      "by_predicted_pair": {
+        "defer/insufficient": 180
+      },
+      "by_target_pair": {
+        "defer/insufficient": {
+          "exact": 80,
+          "rows": 80
+        },
+        "flag/invalid_value": {
+          "exact": 0,
+          "rows": 30
+        },
+        "ground/supported": {
+          "exact": 0,
+          "rows": 5
+        },
+        "reject/contradicted": {
+          "exact": 0,
+          "rows": 30
+        },
+        "verify/insufficient": {
+          "exact": 0,
+          "rows": 35
+        }
+      },
+      "decisive_coverage": 0.0,
+      "decisive_predictions": 0,
+      "exact": 80,
+      "fail_closed_rate": 1.0,
+      "macro_pair_accuracy": 0.2,
+      "pair": "defer/insufficient",
+      "rows": 180,
+      "selective_risk": 0.0,
+      "unsafe_ground_supported": 0
+    },
+    "deterministic_gate": {
+      "accuracy": 1.0,
+      "by_perturbation": {
+        "clean": {
+          "exact": 25,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "contradiction": {
+          "exact": 25,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "invalid_numeric_value": {
+          "exact": 25,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "missing_attribution": {
+          "exact": 15,
+          "rows": 15,
+          "unsafe_ground_supported": 0
+        },
+        "partial_query": {
+          "exact": 25,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "stale_source": {
+          "exact": 15,
+          "rows": 15,
+          "unsafe_ground_supported": 0
+        },
+        "unavailable_tool": {
+          "exact": 25,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "wrong_tool": {
+          "exact": 25,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        }
+      },
+      "by_predicted_pair": {
+        "defer/insufficient": 80,
+        "flag/invalid_value": 30,
+        "ground/supported": 5,
+        "reject/contradicted": 30,
+        "verify/insufficient": 35
+      },
+      "by_reason": {
+        "invalid_numeric_value": 30,
+        "missing_source_attribution": 15,
+        "mixed_endpoint_contradiction": 30,
+        "no_relevant_evidence": 5,
+        "query_contract_failure": 25,
+        "related_evidence_requires_verification": 5,
+        "same_indication_failure_supported": 5,
+        "stale_source_requires_verification": 15,
+        "tool_contract_failure": 25,
+        "tool_unavailable": 25
+      },
+      "by_target_pair": {
+        "defer/insufficient": {
+          "exact": 80,
+          "rows": 80
+        },
+        "flag/invalid_value": {
+          "exact": 30,
+          "rows": 30
+        },
+        "ground/supported": {
+          "exact": 5,
+          "rows": 5
+        },
+        "reject/contradicted": {
+          "exact": 30,
+          "rows": 30
+        },
+        "verify/insufficient": {
+          "exact": 35,
+          "rows": 35
+        }
+      },
+      "decisive_coverage": 0.361111,
+      "decisive_predictions": 65,
+      "exact": 180,
+      "fail_closed_rate": 0.638889,
+      "macro_pair_accuracy": 1.0,
+      "rows": 180,
+      "selective_risk": 0.0,
+      "unsafe_ground_supported": 0
+    },
+    "frozen_model": {
+      "accuracy": 0.194444,
+      "by_perturbation": {
+        "clean": {
+          "exact": 5,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "contradiction": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "invalid_numeric_value": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "missing_attribution": {
+          "exact": 15,
+          "rows": 15,
+          "unsafe_ground_supported": 0
+        },
+        "partial_query": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "stale_source": {
+          "exact": 15,
+          "rows": 15,
+          "unsafe_ground_supported": 0
+        },
+        "unavailable_tool": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "wrong_tool": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        }
+      },
+      "by_predicted_pair": {
+        "verify/insufficient": 180
+      },
+      "by_target_pair": {
+        "defer/insufficient": {
+          "exact": 0,
+          "rows": 80
+        },
+        "flag/invalid_value": {
+          "exact": 0,
+          "rows": 30
+        },
+        "ground/supported": {
+          "exact": 0,
+          "rows": 5
+        },
+        "reject/contradicted": {
+          "exact": 0,
+          "rows": 30
+        },
+        "verify/insufficient": {
+          "exact": 35,
+          "rows": 35
+        }
+      },
+      "decisive_coverage": 0.0,
+      "decisive_predictions": 0,
+      "exact": 35,
+      "fail_closed_rate": 1.0,
+      "macro_pair_accuracy": 0.2,
+      "rows": 180,
+      "selective_risk": 0.0,
+      "unsafe_ground_supported": 0
+    },
+    "runtime_hybrid": {
+      "accuracy": 0.638889,
+      "by_perturbation": {
+        "clean": {
+          "exact": 10,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "contradiction": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "invalid_numeric_value": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "missing_attribution": {
+          "exact": 15,
+          "rows": 15,
+          "unsafe_ground_supported": 0
+        },
+        "partial_query": {
+          "exact": 25,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "stale_source": {
+          "exact": 15,
+          "rows": 15,
+          "unsafe_ground_supported": 0
+        },
+        "unavailable_tool": {
+          "exact": 25,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        },
+        "wrong_tool": {
+          "exact": 25,
+          "rows": 25,
+          "unsafe_ground_supported": 0
+        }
+      },
+      "by_predicted_pair": {
+        "defer/insufficient": 80,
+        "verify/insufficient": 100
+      },
+      "by_reason": {
+        "decisive_disagreement_requires_verification": 65,
+        "model_gate_agreement": 35,
+        "runtime_fail_closed_override": 80
+      },
+      "by_target_pair": {
+        "defer/insufficient": {
+          "exact": 80,
+          "rows": 80
+        },
+        "flag/invalid_value": {
+          "exact": 0,
+          "rows": 30
+        },
+        "ground/supported": {
+          "exact": 0,
+          "rows": 5
+        },
+        "reject/contradicted": {
+          "exact": 0,
+          "rows": 30
+        },
+        "verify/insufficient": {
+          "exact": 35,
+          "rows": 35
+        }
+      },
+      "decisive_coverage": 0.0,
+      "decisive_predictions": 0,
+      "exact": 115,
+      "fail_closed_rate": 1.0,
+      "macro_pair_accuracy": 0.4,
+      "rows": 180,
+      "selective_risk": 0.0,
+      "unsafe_ground_supported": 0
+    },
+    "trust_all": {
+      "accuracy": 0.027778,
+      "by_perturbation": {
+        "clean": {
+          "exact": 5,
+          "rows": 25,
+          "unsafe_ground_supported": 20
+        },
+        "contradiction": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 25
+        },
+        "invalid_numeric_value": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 25
+        },
+        "missing_attribution": {
+          "exact": 0,
+          "rows": 15,
+          "unsafe_ground_supported": 15
+        },
+        "partial_query": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 25
+        },
+        "stale_source": {
+          "exact": 0,
+          "rows": 15,
+          "unsafe_ground_supported": 15
+        },
+        "unavailable_tool": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 25
+        },
+        "wrong_tool": {
+          "exact": 0,
+          "rows": 25,
+          "unsafe_ground_supported": 25
+        }
+      },
+      "by_predicted_pair": {
+        "ground/supported": 180
+      },
+      "by_target_pair": {
+        "defer/insufficient": {
+          "exact": 0,
+          "rows": 80
+        },
+        "flag/invalid_value": {
+          "exact": 0,
+          "rows": 30
+        },
+        "ground/supported": {
+          "exact": 5,
+          "rows": 5
+        },
+        "reject/contradicted": {
+          "exact": 0,
+          "rows": 30
+        },
+        "verify/insufficient": {
+          "exact": 0,
+          "rows": 35
+        }
+      },
+      "decisive_coverage": 1.0,
+      "decisive_predictions": 180,
+      "exact": 5,
+      "fail_closed_rate": 0.0,
+      "macro_pair_accuracy": 0.2,
+      "rows": 180,
+      "selective_risk": 0.972222,
+      "unsafe_ground_supported": 175
+    }
+  }
+}

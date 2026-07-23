@@ -1,6 +1,6 @@
 # Public Release Audit
 
-Last checked: 2026-07-12.
+Last checked: 2026-07-23.
 
 ## Redaction Applied
 
@@ -159,6 +159,13 @@ Last checked: 2026-07-12.
 - Added a one-time sealed candidate-routing evaluator with external private
   paths, `0600` artifacts, a fail-closed lock, and aggregate-only public
   results. Row-level labels, predictions, and candidate scores remain private.
+- Added the prospective real-query manifest, routing perturbations, and compact
+  Cayuga summaries. Row-level model generations, candidate scores, trainable
+  states, and scheduler logs remain private with `0600` permissions.
+- Added freeze artifacts that publish only model/artifact hashes and redacted
+  private-state references.
+- Added a deterministic tool-query runtime compiler and malformed-input report;
+  neither reads private predictions nor emits source-row identifiers.
 
 ## Current Public-Release Rule
 

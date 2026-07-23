@@ -1,0 +1,105 @@
+{
+  "artifacts": {
+    "base_manifest": {
+      "path": "negbiodb_ct/stage_a_prospective_real_query_manifest_v1.jsonl",
+      "records": 25,
+      "sha256": "314c7b9293808a40499684bab914a76d5d252e78d6da698a55aeb7385ffccd4c"
+    },
+    "excluded_existing_manifest": {
+      "path": "negbiodb_ct/stage_a_mini_manifest.jsonl",
+      "sha256": "681dcb1e8f5a1de5460a52112f62e41a6e0b6508650d38d045f0c54fe99bd807"
+    },
+    "routing_rows": {
+      "path": "post_training/stage_a_prospective_real_query_routing_perturbations_v1.jsonl",
+      "records": 180,
+      "sha256": "aae655eee1ca31bc69f4ef7ad8868745ee180bff307a5059b8637f4f8292ea8c"
+    },
+    "sealed_commitment": {
+      "path": "post_training/stage_a_sealed_extension_commitment_2026-07-10.json",
+      "sha256": "91e1a5722aac22e1c3e3b7333168aa2cfc92858db619b29c03104bec99a8655d"
+    },
+    "source_tasks": {
+      "path": "negbiodb_ct/tasks_pilot.jsonl",
+      "sha256": "4f9e27e5c7f319eb94f80a4435e0f3e8233c8261feee55b3dc7b31c963f7c9fd"
+    },
+    "tool_query_rows": {
+      "path": "post_training/stage_a_prospective_real_query_tool_query_v1.jsonl",
+      "records": 25,
+      "sha256": "472674c8f5ce8fd6d545bd674c1f3be785825e75e57036b7df4ba047dfcaa376"
+    }
+  },
+  "base_dataset": "negbiodb_ct_stage_a_prospective_real_query_v1",
+  "counts": {
+    "base_by_terminal_action": {
+      "defer_or_request_more_evidence": 5,
+      "ground_with_attribution": 5,
+      "reject_or_flag_unsupported_claim": 10,
+      "verify_with_assay_or_database": 5
+    },
+    "base_rows": 25,
+    "routing_by_perturbation": {
+      "clean": 25,
+      "contradiction": 25,
+      "invalid_numeric_value": 25,
+      "missing_attribution": 15,
+      "partial_query": 25,
+      "stale_source": 15,
+      "unavailable_tool": 25,
+      "wrong_tool": 25
+    },
+    "routing_by_target_pair": {
+      "defer/insufficient": 80,
+      "flag/invalid_value": 30,
+      "ground/supported": 5,
+      "reject/contradicted": 30,
+      "verify/insufficient": 35
+    },
+    "routing_rows": 180,
+    "tool_query_rows": 25,
+    "unique_tool_query_targets": 25
+  },
+  "dataset": "negbiodb_ct_stage_a_prospective_real_query_manifest_v1",
+  "dpo_rlvr_authorized": false,
+  "hugging_face_publication_authorized": false,
+  "issues": [],
+  "perturbations": [
+    "clean",
+    "missing_attribution",
+    "stale_source",
+    "contradiction",
+    "invalid_numeric_value",
+    "partial_query",
+    "wrong_tool",
+    "unavailable_tool"
+  ],
+  "prompt_contract": "stage_a_prospective_real_query_v1",
+  "query_contract": {
+    "identifier_namespaces": {
+      "condition_id": "negbiodb_ct.condition_id",
+      "drug_id": "negbiodb_ct.intervention_id"
+    },
+    "literal_placeholders_allowed": false,
+    "required_fields": [
+      "drug_id",
+      "condition_id"
+    ],
+    "target_arguments_must_equal_visible_values": true
+  },
+  "ready_for_frozen_model_scoring": true,
+  "ready_for_no_model_baselines": true,
+  "routing_dataset": "negbiodb_ct_stage_a_prospective_real_query_routing_perturbations_v1",
+  "sealed_separation": {
+    "basis": "The source task file is a hash-matched public exclusion in the sealed commitment, whose aggregate source/split/claim overlap checks are all zero.",
+    "sealed_manifest_read": false
+  },
+  "selection": {
+    "base_rows": 25,
+    "development_only": true,
+    "independent_test_claimed": false,
+    "per_action": 5,
+    "seed": 20260723,
+    "selection_commitment_sha256": "6339a475634a8fb699dcea078f49e577cda191091f48dcdaa2ffc05accd7b5fe"
+  },
+  "tool_query_dataset": "negbiodb_ct_stage_a_prospective_real_query_tool_query_v1",
+  "training_authorized": false
+}

@@ -1,0 +1,142 @@
+{
+  "dataset": "negbiodb_ct_stage_a_tool_query_runtime_compiler_eval_v1",
+  "decision": {
+    "corrective_sft_selected": false,
+    "ready_for_dpo_rlvr": false,
+    "ready_for_hugging_face_publication": false,
+    "reason": "The current fixed-order copy-only query operation is a deterministic runtime contract, not a learned decision.",
+    "runtime_compiler_approved_for_stage_a": true,
+    "runtime_compiler_clean_exact": true,
+    "runtime_compiler_fail_closed": true
+  },
+  "evaluation_scope": "public_development_deterministic_tool_query_compilation",
+  "input_artifacts": {
+    "model_transfer_result": {
+      "path": "post_training/stage_a_prospective_tool_query_transfer_result_qwen05b_cayuga_2026-07-23.json",
+      "sha256": "01853c89d9bc06d53c3cf96898c8a45af6d9215f4b7421d955336a944b45322d"
+    },
+    "prompt_repair_result": {
+      "path": "post_training/stage_a_prospective_tool_query_prompt_repair_result_qwen05b_cayuga_2026-07-23.json",
+      "sha256": "d724c4065ea1793eaf00ffd45993f667abef331a68be6d5b7b22dfcd9e645c0c"
+    },
+    "tool_query_rows": {
+      "path": "post_training/stage_a_prospective_real_query_tool_query_v1.jsonl",
+      "records": 25,
+      "sha256": "472674c8f5ce8fd6d545bd674c1f3be785825e75e57036b7df4ba047dfcaa376"
+    }
+  },
+  "model_results": {
+    "base_explicit_contract": {
+      "exact": 0,
+      "parseable_json": 25,
+      "query_fields": 0,
+      "query_values": 0,
+      "target_keys": 25,
+      "tool_query_shape": 0,
+      "tool_sequence": 0
+    },
+    "base_minimal_contract": {
+      "exact": 0,
+      "parseable_json": 20,
+      "query_fields": 0,
+      "query_values": 0,
+      "target_keys": 0,
+      "tool_query_shape": 0,
+      "tool_sequence": 0
+    },
+    "frozen_placeholder_sft": {
+      "exact": 0,
+      "parseable_json": 14,
+      "query_fields": 0,
+      "query_values": 0,
+      "target_keys": 0,
+      "tool_query_shape": 0,
+      "tool_sequence": 0
+    }
+  },
+  "runtime_compiler": {
+    "clean": {
+      "accuracy": 1.0,
+      "errors": {},
+      "exact": 25,
+      "rows": 25
+    },
+    "malformed": {
+      "by_mutation": {
+        "extra_query_field": {
+          "accepted": 0,
+          "expected_reason": "query_field_set_mismatch",
+          "intended_reason": 25,
+          "observed_reasons": {
+            "query_field_set_mismatch": 25
+          },
+          "rejected": 25,
+          "rows": 25
+        },
+        "missing_condition": {
+          "accepted": 0,
+          "expected_reason": "query_field_set_mismatch",
+          "intended_reason": 25,
+          "observed_reasons": {
+            "query_field_set_mismatch": 25
+          },
+          "rejected": 25,
+          "rows": 25
+        },
+        "reordered_tools": {
+          "accepted": 0,
+          "expected_reason": "tool_sequence_contract_mismatch",
+          "intended_reason": 25,
+          "observed_reasons": {
+            "tool_sequence_contract_mismatch": 25
+          },
+          "rejected": 25,
+          "rows": 25
+        },
+        "stringified_drug_id": {
+          "accepted": 0,
+          "expected_reason": "drug_id_value_not_positive_integer",
+          "intended_reason": 25,
+          "observed_reasons": {
+            "drug_id_value_not_positive_integer": 25
+          },
+          "rejected": 25,
+          "rows": 25
+        },
+        "unapproved_tool": {
+          "accepted": 0,
+          "expected_reason": "tool_sequence_contract_mismatch",
+          "intended_reason": 25,
+          "observed_reasons": {
+            "tool_sequence_contract_mismatch": 25
+          },
+          "rejected": 25,
+          "rows": 25
+        },
+        "wrong_drug_namespace": {
+          "accepted": 0,
+          "expected_reason": "drug_id_namespace_mismatch",
+          "intended_reason": 25,
+          "observed_reasons": {
+            "drug_id_namespace_mismatch": 25
+          },
+          "rejected": 25,
+          "rows": 25
+        }
+      },
+      "fail_closed_rate": 1.0,
+      "intended_reason": 150,
+      "intended_reason_rate": 1.0,
+      "rejected": 150,
+      "rows": 150
+    }
+  },
+  "scientific_boundary": {
+    "completed_sealed_rows_used": false,
+    "deterministic_mutations_define_expected_rejections": true,
+    "development_only": true,
+    "independent_test_claimed": false,
+    "live_tool_execution_evaluated": false,
+    "llm_judge_used": false
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "completed_sealed_rows_used": false,
+  "dataset": "negbiodb_ct_stage_a_prospective_tool_query_prompt_repair_run_v1",
+  "decision": {
+    "exact": 0,
+    "prompt_contract_resolves_transfer": false,
+    "query_values_exact": 0,
+    "ready_for_corrective_sft": true,
+    "ready_for_dpo_rlvr": false,
+    "ready_for_hugging_face_publication": false
+  },
+  "device_class": "cuda",
+  "dry_run": false,
+  "evaluation_scope": "post_failure_adaptive_public_development_prompt_contract_diagnostic",
+  "freeze_id": "stage_a_tool_query_prompt_repair_freeze::a29b51f98316e07e8580397fa6362c3b4ef7b85e054550d25c2e23475cef3a71",
+  "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+  "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "policy": {
+    "accuracy": {
+      "exact": 0.0,
+      "parseable_json": 1.0,
+      "query_fields": 0.0,
+      "query_values": 0.0,
+      "target_keys": 1.0,
+      "tool_query_shape": 0.0,
+      "tool_sequence": 0.0
+    },
+    "exact": 0,
+    "parseable_json": 25,
+    "query_fields": 0,
+    "query_values": 0,
+    "rows": 25,
+    "target_keys": 25,
+    "tool_query_shape": 0,
+    "tool_sequence": 0,
+    "unique_raw_outputs": 25,
+    "violations": {
+      "query_fields_mismatch": 25,
+      "query_values_mismatch": 25,
+      "target_mismatch": 25,
+      "tool_query_shape_invalid": 25,
+      "tool_sequence_mismatch": 25
+    }
+  },
+  "private_predictions": {
+    "committed": false,
+    "path": "private_output::prompt_repair_predictions.jsonl",
+    "sha256": "dcebb5cb622854fab44558daff5c1b82e4d041cca2184a259b03e59fcf7d53d2"
+  },
+  "rows": 25,
+  "scientific_boundary": {
+    "actual_query_identifier_values_visible": true,
+    "adaptive_after_observing_input_echo_failure": true,
+    "development_only": true,
+    "independent_test_claimed": false,
+    "live_tool_execution_evaluated": false,
+    "retraining_performed": false
+  },
+  "training_performed": false
+}
