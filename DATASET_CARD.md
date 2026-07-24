@@ -1,7 +1,8 @@
 # Dataset Card: LLM-SFM Tool Deployment Artifacts
 
 Draft Hugging Face dataset card for the Stage A trajectory benchmark, synthetic
-trajectory demo, and planned A2 entity-resolution release.
+trajectory demo, synthetic Stage B C5 policy tests, and planned A2
+entity-resolution release.
 
 ## Dataset Summary
 
@@ -24,6 +25,8 @@ Included public-safe subsets:
   saved-prediction contract.
 - `stage_a_train_heldout`: deterministic 20/5 case-level split with no
   `source_manifest_case_id`, `split_group`, or `source_task_id` overlap.
+- `c5_policy_test_manifest`: 12 synthetic antibody-antigen trust-routing
+  contract cases balanced across trust, baseline, verify, and defer.
 
 Planned or local-only subsets:
 
@@ -72,6 +75,19 @@ The preference artifact covers:
 - `invalid_value_missed`
 - `unsupported_trust`
 - `insufficient_as_negative`
+
+## Stage B C5 Policy-Test Schema
+
+Each C5 fixture separates:
+
+- `model_visible_task`: synthetic complex ID, chain-role mapping, specialist
+  metric type/scope/value, general and Ab-Ag calibration cards, baseline result,
+  and verifier availability;
+- `hidden_eval_metadata`: expected terminal action, evaluator evidence status,
+  synthetic interface-label status/source, required tools, and split group.
+
+The fixtures contain no real PDB structure, biological sequence, private model
+output, or experimental label. They test policy enforcement only.
 
 ## A2 Band Schema
 
@@ -124,6 +140,8 @@ evaluation and reports the de-leaked metrics.
   full SQLite substrate is not bundled here.
 - Some post-training examples are oracle-derived scaffolds and should be treated
   as controlled evaluation/training artifacts.
+- C5 rows are synthetic policy tests. Their baseline scores are not evidence of
+  antibody-antigen model accuracy or calibration transfer.
 
 ## Public Demo
 

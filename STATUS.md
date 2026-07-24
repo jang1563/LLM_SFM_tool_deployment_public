@@ -1,6 +1,6 @@
 # Project Status
 
-Last updated: 2026-07-23
+Last updated: 2026-07-24
 
 ## Current Thesis
 
@@ -13,30 +13,33 @@ independent evidence.
 
 ## Current Result
 
-The prospective Stage A development checkpoint is complete.
+The Stage B C5 no-API policy prototype is complete.
 
-- Built 25 public development tasks with case-specific, model-visible integer
-  drug and condition IDs. They are disjoint from the original public Stage A
-  manifest and use a source file declared as a zero-overlap exclusion in the
-  completed sealed-set commitment.
-- Built 180 synthetic routing states across clean, missing-attribution, stale,
-  contradiction, invalid-value, partial-query, wrong-tool, and unavailable-tool
-  conditions.
-- Frozen Qwen2.5-0.5B candidate routing predicts `verify/insufficient` on all
-  180 rows: 35/180 exact, below the 80/180 best static pair.
-- The deterministic routing gate is 180/180 by construction on its policy-test
-  mutations. The runtime hybrid is 115/180, has zero unsafe grounding, and has
-  zero decisive coverage because every decisive model/gate disagreement is
-  sent to verification.
-- On 25 real-query tool-call prompts, the base model and the pre-prospective
-  placeholder-SFT state both score 0/25 exact. The frozen SFT also reduces
-  parseable JSON from 20/25 to 14/25.
-- An adaptive explicit output contract fixes top-level target keys to 25/25 but
-  still scores 0/25 for strict call shape and exact output.
-- Because Stage A currently uses a fixed four-tool sequence and copies two
-  already-visible typed IDs, this step is now implemented as a runtime
-  compiler, not a learned policy. It matches 25/25 clean targets and rejects
-  150/150 malformed contract mutations for the intended reason.
+- Added 12 synthetic public policy-test records, balanced at three expected
+  `trust`, `baseline`, `verify`, and `defer` actions.
+- Each row includes a visible complex ID, chain-role mapping, typed specialist
+  metric, general and Ab-Ag calibration cards, baseline result, and verifier
+  availability. Interface labels and expected actions remain evaluator-only.
+- Reused `TaskSpec`, `Trajectory`, `EvidencePacket`, and
+  `TrajectoryEvaluator`; no parallel schema family was introduced.
+- Oracle trajectories pass 12/12. Missing metric scope, calibration dataset,
+  RCPS threshold, or regime match cannot produce a fail-closed trust action.
+- `trust_all` passes 3/12 with 9 unsafe trusts. The general gate passes 3/12
+  with 8 unsafe trusts. The regime-specific certifier passes 6/12 with zero
+  unsafe trust but does not choose operational fallbacks. The fail-closed
+  router passes 12/12 with zero unsafe trust.
+- These outcomes are defined by a synthetic policy fixture. They validate the
+  contract and test harness, not Ab-Ag calibration transfer or model quality.
+
+The previous prospective Stage A checkpoint remains unchanged: frozen routing
+is 35/180 versus an 80/180 static prior, the runtime hybrid is 115/180 with
+zero unsafe grounding and zero decisive coverage, and the tool-query compiler
+is 25/25 clean with 150/150 malformed inputs rejected.
+
+The completed private sealed set was not reused. Its commitment remains
+`post_training/stage_a_sealed_extension_commitment_2026-07-10.json` and its
+one-time routing result remains 5/25. Do not tune on or rescore these 25 sealed
+rows.
 
 The completed private sealed set was not read, regenerated, rescored, or used
 for prompt selection. Its commitment remains
@@ -46,26 +49,30 @@ previous one-time routing result remains 5/25. Do not tune on or rescore these
 
 ## Source Changes
 
-[JSONSchemaBench](https://arxiv.org/abs/2501.10868) separates constrained-output
-coverage, efficiency, and output quality. That distinction changes the local
-design: schema validity is measured independently from evidence/action quality,
-and deterministic copy-only query construction is enforced at runtime instead
-of treated as scientific model competence.
+The 2026 Bioinformatics study
+[Evaluating deep learning based structure prediction methods on antibody-antigen complexes](https://doi.org/10.1093/bioinformatics/btag136)
+provides a 110-complex unseen Ab-Ag benchmark, public score/code artifacts, and
+direct evidence that internal confidence often fails to select the best sampled
+model. [FoldBench](https://www.nature.com/articles/s41467-025-67127-3) adds
+low-homology general PPI and Ab-Ag strata under a common DockQ-style evaluation.
+Together they change the next ticket from new heavy prediction runs to a
+public-score intake and grouped calibration-transfer pilot.
 
 ## Next Decision
 
-Proceed with `stage_b_c5_manifest_prototype_after_stage_a_runtime_split`.
+Proceed with `stage_b_c5_source_backed_public_score_pilot`.
 
-1. Keep the Stage A tool-query compiler in the runtime layer and add no
-   corrective SFT for its current deterministic contract.
-2. Preserve routing as the learned decision surface, but do not start DPO/RLVR:
-   the frozen policy does not beat the static prior and the hybrid has no
-   decisive coverage.
-3. Build the first C5 antibody-antigen OOD manifest with typed calibration,
-   metric-scope, regime-match, baseline, hidden-interface-label, and expected
-   action fields.
-4. Compare `trust_all`, general gate, regime-specific gate, and fail-closed
-   behavior before any C5 model training.
+1. Keep the 12 synthetic rows as contract tests only; do not report their
+   policy scores as biological performance.
+2. Audit the Fromm et al. and FoldBench public score schemas, licenses, model
+   cutoffs, target IDs, chain mappings, and metric definitions before intake.
+3. Split by `complex_id`, never by sampled model, so predictions from one
+   target cannot cross calibration and evaluation partitions.
+4. Keep DockQ/interface success hidden. Fit any threshold on calibration
+   targets only, then compare general-PPI transfer, Ab-Ag-specific calibration,
+   trust-all, and fail-closed routing on frozen evaluation targets.
+5. Do not run model training or new structure prediction until public-score
+   intake, leakage checks, and deterministic calibration baselines pass.
 
 Raw generations, candidate scores, trainable states, scheduler logs, private
 manifests, and completed sealed rows remain uncommitted.

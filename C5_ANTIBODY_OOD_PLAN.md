@@ -27,6 +27,26 @@ fail closed into verify/defer.
 - Reusable trust engine:
   `<local-workspace>/bio-sfm-trust-core`
 
+## 2026-07-24 Prototype Checkpoint
+
+The first public no-API contract prototype is complete in this repository:
+
+```bash
+python -m c5_antibody_ood.manifest \
+  --out c5_antibody_ood/c5_policy_test_manifest_v1.jsonl
+python -m c5_antibody_ood.evaluate_baselines
+```
+
+- 12 synthetic policy-test rows are balanced across trust, baseline, verify,
+  and defer.
+- Hidden interface labels do not enter model-visible tasks or trajectories.
+- `trust_all` passes 3/12 with 9 unsafe trusts.
+- The generic threshold gate passes 3/12 with 8 unsafe trusts.
+- The regime-specific certifier passes 6/12 with zero unsafe trust.
+- The operational fail-closed router passes 12/12 with zero unsafe trust.
+
+These are fixture-defined contract results, not Ab-Ag performance estimates.
+
 ## Hypotheses
 
 ### H4.4 Boundary
@@ -137,28 +157,23 @@ Only run LLM/API arms after the no-API gate and QC checks are complete.
 - `LLM comparison`: if an LLM appears better, require the same leakage,
   cue-manipulation, and cost controls as Phase 4a before calling it recovery.
 
-## Immediate Next Local Checks
+## Immediate Next Research Checks
 
-Run these without API or HPC spend:
+Use public score artifacts before spending API or HPC compute:
 
-```bash
-cd <local-workspace>/bio-sfm-trust-core
-PYTHONPATH=src python3 -m unittest discover -s tests -v
+1. Audit the schema and license for the 110-complex benchmark from
+   https://doi.org/10.1093/bioinformatics/btag136 and
+   https://github.com/samuelfromm/abag-benchmark-set.
+2. Audit whether FoldBench exposes compatible per-sample confidence and DockQ
+   fields for general-PPI to Ab-Ag transfer.
+3. Freeze calibration/evaluation partitions by `complex_id`; sampled models
+   from one target must never cross partitions.
+4. Keep DockQ/interface labels hidden from model-visible records.
+5. Run trust-all, general-PPI transfer, Ab-Ag-specific calibration, shuffled or
+   inverted controls, and fail-closed routing from saved public scores.
 
-cd <local-workspace>/bio_sfm_designer
-PYTHONPATH=src:<local-workspace>/bio-sfm-trust-core/src \
-  python3 -m unittest discover -s tests -v
-
-PYTHONPATH=src:<local-workspace>/bio-sfm-trust-core/src \
-  python3 -m bio_sfm_designer.experiments.complex_target_manifest \
-  --manifest configs/template_complex_targets.json \
-  --min-targets 1 \
-  --out /tmp/template_complex_targets_check.json
-```
-
-If these pass, the next substantive work is curating
-`configs/c5_antibody_targets.json` in `bio_sfm_designer`, not writing a parallel
-engine in this folder.
+Only after this intake passes should Cayuga or Expanse be used for missing
+specialist outputs. No local heavy model compute is planned.
 
 ## Sanity Check Result
 
@@ -170,4 +185,3 @@ Completed 2026-06-25:
   -> `Ran 133 tests ... OK`.
 - Template manifest check:
   `targets=3 ready=3 ok=True`.
-

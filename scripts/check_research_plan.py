@@ -70,13 +70,13 @@ def main() -> int:
         "post-sealed method and publication gate",
     )
     for needle in (
-        "one-time source-separated sealed routing result remains 5/25",
-        "frozen routing is 35/180",
-        "runtime hybrid routing is 115/180",
-        "base and frozen placeholder-SFT tool-query policies are both 0/25 exact",
-        "150/150 malformed inputs rejected",
+        "12 rows are balanced across `trust`, `baseline`, `verify`, and `defer`",
+        "oracle and fail-closed trajectories pass 12/12",
+        "`trust_all` produces 9 unsafe trusts",
+        "source-backed C5 public-score pilot",
+        "groups every sampled prediction by `complex_id`",
     ):
-        require_contains(issues, plan, needle, "completed Stage A result")
+        require_contains(issues, plan, needle, "completed C5 prototype")
     for needle in (
         "`complex_id`",
         "metric type, scope, and value",
@@ -116,7 +116,7 @@ def main() -> int:
     require_contains(
         issues,
         public_status,
-        "stage_b_c5_manifest_prototype_after_stage_a_runtime_split",
+        "stage_b_c5_source_backed_public_score_pilot",
         "public STATUS C5 research decision",
     )
     require_pattern(
@@ -138,13 +138,11 @@ def main() -> int:
         "roadmap sealed commitment boundary",
     )
     for needle in (
-        "frozen routing is 35/180",
-        "runtime hybrid routing is 115/180",
-        "25/25 clean exact",
-        "150/150 malformed inputs rejected",
-        "Build the first Stage B C5",
+        "general-PPI transfer",
+        "Ab-Ag-specific calibration",
+        "no model training or new structure prediction",
     ):
-        require_contains(issues, plan, needle, "prospective Stage A checkpoint")
+        require_contains(issues, plan, needle, "source-backed C5 next gate")
 
     if issues:
         print(f"FAIL research plan check found {len(issues)} issue(s):")
@@ -155,6 +153,8 @@ def main() -> int:
     print("- component order: enum_action -> tool_query -> routing_after_loop")
     print("- Stage A checkpoint: tool_query 0/5; sealed routing 5/25; runtime oracle 25/25")
     print("- prospective Stage A: routing 35/180; hybrid 115/180; compiler 25/25 clean")
+    print("- C5 prototype: fail-closed 12/12; trust-all 9 unsafe trusts")
+    print("- C5 next gate: source-backed public scores grouped by complex_id")
     print("- DPO/RLVR/HF gate: useful routing coverage plus independent evaluation required")
     print("- sealed evaluation gate: completed rows cannot be tuned on or rescored")
     print("- C5 gate: calibration metadata required before trust")

@@ -99,6 +99,8 @@ score.
 | `post_training/stage_a_prospective_real_query_routing_perturbations_v1.jsonl` | 180 rows | Synthetic runtime routing perturbations |
 | `negbiodb_ct/tool_query_runtime.py` | 1 module | Fail-closed compiler for the fixed Stage A tool/query contract |
 | `post_training/stage_a_tool_query_runtime_compiler_result_2026-07-23.json` | 1 report | Clean and malformed-input compiler evaluation |
+| `c5_antibody_ood/c5_policy_test_manifest_v1.jsonl` | 12 cases | Synthetic Stage B C5 trust-routing contract manifest |
+| `c5_antibody_ood/c5_policy_baseline_result_2026-07-24.json` | 1 report | Aggregate no-API trust-all, general, regime-specific, and fail-closed comparison |
 
 Checksums and record counts are registered in
 `release/public_release_manifest.json`.
@@ -131,6 +133,18 @@ The public Stage A smoke result is:
 
 This verifies that the evaluator catches shortcut trajectories before live API,
 HPC, or model-training spend.
+
+The public Stage B C5 policy-test result is:
+
+| Baseline | Exact pass | Unsafe trust |
+|---|---:|---:|
+| `trust_all` | 3/12 | 9 |
+| `general_gate` | 3/12 | 8 |
+| `regime_specific_gate` | 6/12 | 0 |
+| `fail_closed` | 12/12 | 0 |
+
+The expected actions are fixture-defined, so these numbers validate policy
+contracts only. They do not estimate antibody-antigen calibration quality.
 
 ## Model Diagnostics
 

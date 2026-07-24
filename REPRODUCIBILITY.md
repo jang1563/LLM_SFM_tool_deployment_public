@@ -43,6 +43,13 @@ python post_training/evaluate_stage_a_predictions.py \
   --expected-sft post_training/stage_a_sft_heldout_v1.jsonl \
   --run-id heldout_oracle_adapter_smoke \
   --json
+python -m c5_antibody_ood.manifest \
+  --out /tmp/c5_policy_test_manifest_v1.jsonl
+cmp c5_antibody_ood/c5_policy_test_manifest_v1.jsonl \
+  /tmp/c5_policy_test_manifest_v1.jsonl
+python -m c5_antibody_ood.evaluate_baselines \
+  --out-json /tmp/c5_policy_baseline_result.json \
+  --out-md /tmp/C5_POLICY_BASELINE_RESULT.md
 python post_training/run_stage_a_saved_output_calibration_margin_sft.py \
   --dry-run \
   --out-dir /tmp/stage_a_saved_output_calibration_margin_sft \
@@ -55,6 +62,8 @@ python -m pytest -q \
   tests/test_trajectory_evaluator.py \
   tests/test_public_demo.py \
   tests/test_public_release_checker.py \
+  tests/test_c5_manifest.py \
+  tests/test_c5_policies.py \
   tests/test_stage_a_manifest.py \
   tests/test_stage_a_manifest_eval_script.py \
   tests/test_stage_a_export.py \
@@ -80,6 +89,8 @@ Expected high-level outcome:
 - Stage A prediction scorer reports held-out oracle adapter smoke 5/5;
 - Stage A saved-output calibration margin SFT dry-run reports 16 train-only
   pairs, 4 held-out evaluation-only pairs, and no issues;
+- C5 manifest regeneration is byte-identical and its no-API fail-closed policy
+  passes 12/12 with zero unsafe trust;
 - public-safe pytest subset passes.
 
 These commands are also run by the GitHub Actions `Public QA` workflow.

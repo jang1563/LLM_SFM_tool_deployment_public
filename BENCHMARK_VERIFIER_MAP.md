@@ -16,6 +16,8 @@ passed by a valid `tool -> evidence packet -> terminal action` trajectory.
 | Evidence visibility audit | `post_training/analyze_stage_a_component_visibility.py` | Whether model-visible prompts expose the evidence needed for routing. | underconditioned routing targets, hidden-label dependence |
 | Tool-query runtime compiler | `negbiodb_ct/tool_query_runtime.py` | Exact tool order, typed query namespaces/values, required fields, and approved tools. | stringified IDs, aliases, reordered/unknown tools, missing or extra query fields |
 | Prospective runtime hybrid | `post_training/evaluate_stage_a_prospective_runtime_hybrid.py` | Frozen routing versus deterministic evidence gates under eight tool-state perturbations. | unsafe grounding, decisive disagreement, fail-closed coverage loss |
+| Stage B C5 manifest boundary | `c5_antibody_ood/manifest.py` | Complex/chain schema, metric and calibration extraction, hidden interface-label isolation, complex-group split overlap, and fail-closed trust requirements. | hidden truth leakage, missing metric scope, missing calibration dataset or RCPS threshold, regime mismatch |
+| Stage B C5 policy baselines | `c5_antibody_ood/evaluate_baselines.py` | Trust-all, generic threshold, regime-specific certification, and operational fallback routing through the canonical trajectory evaluator. | unsafe OOD trust, no-threshold trust, baseline dominance, safe-but-incomplete certifier behavior |
 | Routing evidence gate | `post_training/evaluate_stage_a_routing_evidence_gate.py` | Deterministic routing from prompt-visible tool-result fields. | unsupported trust, insufficient-as-negative, invalid-value misses |
 | Baseline comparison | `post_training/evaluate_stage_a_routing_gate_baseline_comparison.py` | Runtime gate versus oracle, collapse, citationless, and empty-object routing. | unsafe `ground` / `supported` collapse, incomplete evidence packets |
 | Model-readiness gate | `post_training/evaluate_stage_a_routing_model_readiness.py` | Existing compact model summaries against deterministic baselines. | premature `tool_query`, DPO/RLVR, HF, or release escalation |
@@ -72,6 +74,7 @@ passed by a valid `tool -> evidence packet -> terminal action` trajectory.
 | Prospective runtime hybrid | 115/180; 0 unsafe grounding; 0 decisive coverage | Fail-closed enforcement prevents unsafe actions but does not turn the frozen policy into a useful router. |
 | Real-query model transfer | base 0/25; frozen placeholder SFT 0/25; explicit-contract base 0/25 | Prompt/schema movement is not exact executable tool use. |
 | Tool-query runtime compiler | 25/25 clean; 150/150 malformed rejected for intended reasons | Approve runtime compilation for the current fixed copy-only operation; do not spend corrective SFT on it. |
+| Stage B C5 synthetic policy test | trust-all 3/12 with 9 unsafe trusts; general gate 3/12 with 8; regime gate 6/12 with 0; fail-closed 12/12 with 0 | Contract prototype passes. Treat it as a positive-control fixture and move to target-grouped public-score calibration transfer before model training. |
 
 ## Escalation Rule
 

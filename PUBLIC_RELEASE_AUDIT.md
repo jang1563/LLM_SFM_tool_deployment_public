@@ -1,6 +1,6 @@
 # Public Release Audit
 
-Last checked: 2026-07-23.
+Last checked: 2026-07-24.
 
 ## Redaction Applied
 
@@ -166,6 +166,12 @@ Last checked: 2026-07-23.
   private-state references.
 - Added a deterministic tool-query runtime compiler and malformed-input report;
   neither reads private predictions nor emits source-row identifiers.
+- Added a synthetic C5 policy-test manifest. Its interface labels are generated
+  evaluator fixtures, not private experimental labels, and are excluded from
+  `model_visible_task` and generated trajectories.
+- Added the compact C5 policy baseline result with aggregate counts only. It
+  contains no PDB structures, biological sequences, row-level result table,
+  raw model output, local path, or cluster metadata.
 
 ## Current Public-Release Rule
 
@@ -184,6 +190,10 @@ runtime gate results and dry-run margin-SFT plans are publish candidates only as
 benchmark/verifier baselines.
 They should still be presented as
 benchmark substrate, not as clinical evidence or live model behavior.
+
+The C5 manifest and compact result are publish candidates only as synthetic
+policy-contract tests. They must not be described as antibody-antigen
+calibration, structure-prediction, or generalization results.
 
 Publish only the validated clean-snapshot history. Live repository visibility
 and hosted CI state are verified separately from this file-backed release gate.

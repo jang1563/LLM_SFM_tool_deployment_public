@@ -3,7 +3,7 @@
   "project": "LLM-SFM Tool Deployment",
   "release_profile": "benchmark_public_surface",
   "status": "public_clean_snapshot_release_surface",
-  "last_updated": "2026-07-23",
+  "last_updated": "2026-07-24",
   "benchmark_scope": {
     "primary_release_object": "Stage A biology tool-use trajectory benchmark substrate",
     "primary_claim": "Agents should be evaluated on tool -> evidence packet -> terminal action trajectories with hidden labels separated from model-visible prompts.",
@@ -1447,6 +1447,25 @@
       "kind": "stage_a_tool_query_runtime_compiler_report",
       "sha256": "bc3683a4e6a85851d84a904afd72f97ec308d28760112779566f89a7b90498b7",
       "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_policy_test_manifest_v1.jsonl",
+      "kind": "c5_synthetic_policy_test_manifest",
+      "records": 12,
+      "sha256": "d8675fa73658fc8fd6e719e1e7a9f04d18431fdc3b56e1de1420b4af2d87d67b",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_policy_baseline_result_2026-07-24.json",
+      "kind": "c5_synthetic_policy_baseline_result",
+      "sha256": "e5e6d8505b53e1a7b00ed55327f64321418c1062a6a52a561c8536d9898058e8",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/C5_POLICY_BASELINE_RESULT_2026-07-24.md",
+      "kind": "c5_synthetic_policy_baseline_report",
+      "sha256": "5a95eae8e232530c3d9e1e79d802180831286b558502be5dbc783958ce1a3be8",
+      "safe_to_publish": true
     }
   ],
   "validation_commands": [
@@ -1454,6 +1473,8 @@
     "python scripts/check_public_git_history.py",
     "python scripts/check_research_plan.py",
     "python post_training/evaluate_stage_a_tool_query_runtime_compiler.py --out-json /tmp/stage_a_tool_query_runtime_compiler_result.json --out-md /tmp/STAGE_A_TOOL_QUERY_RUNTIME_COMPILER_RESULT.md",
+    "python -m c5_antibody_ood.manifest --out /tmp/c5_policy_test_manifest_v1.jsonl",
+    "python -m c5_antibody_ood.evaluate_baselines --out-json /tmp/c5_policy_baseline_result.json --out-md /tmp/C5_POLICY_BASELINE_RESULT.md",
     "python examples/run_public_demo.py",
     "python post_training/run_stage_a_sft_smoke_eval.py --json",
     "python post_training/run_stage_a_strict_component_diagnostics.py --compact",
