@@ -19,4 +19,6 @@ def test_research_plan_checker_passes() -> None:
     assert "OK research plan check passed" in result.stdout
     assert "enum_action -> tool_query -> routing_after_loop" in result.stdout
     assert "tool_query 0/5; sealed routing 5/25; runtime oracle 25/25" in result.stdout
+    assert "fail-closed 12/12; trust-all 9 unsafe trusts" in result.stdout
+    assert "source-backed public scores grouped by complex_id" in result.stdout
     assert "completed rows cannot be tuned on or rescored" in result.stdout

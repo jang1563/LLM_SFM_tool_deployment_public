@@ -84,12 +84,15 @@ Stage A is now code-backed:
   rows per action family, and has zero source-task, split-group, or normalized
   claim overlap against the declared public task and manifest exclusions.
 
-Stage B is designed but not yet built:
+Stage B now has a synthetic no-API contract prototype:
 
-- C5 antibody-antigen OOD trust routing should reuse the same action/evidence
-  schema.
+- 12 balanced policy-test rows reuse the same action/evidence schema;
 - Specialist trust must depend on metric type, metric scope, calibration dataset,
   regime match, baseline result, and fail-closed policy.
+- `trust_all` and a generic threshold produce unsafe trusts; the strict
+  regime-specific certifier has zero unsafe trust but no operational fallback;
+  the fail-closed router passes all 12 fixture-defined actions.
+- This is contract validation, not biological calibration evidence.
 
 ## Drift Guard
 
@@ -420,34 +423,28 @@ it changes at least one of:
 
 ## Next Concrete Ticket
 
-Build the first Stage B C5 antibody-antigen OOD trust-routing manifest and
-fail-closed gate prototype.
+Build a source-backed C5 public-score pilot without new model inference.
 
-The prospective July 23 Stage A checkpoint is complete:
+The July 24 synthetic C5 checkpoint is complete:
 
-- 25 public development tasks expose case-specific typed query IDs without
-  reading or reusing completed sealed rows;
-- 180 synthetic routing states cover eight tool/evidence perturbations;
-- the previous one-time source-separated sealed routing result remains 5/25
-  and is not reused in this checkpoint;
-- frozen routing is 35/180 and below the 80/180 static prior;
-- runtime hybrid routing is 115/180 with zero unsafe grounding but zero
-  decisive coverage;
-- base and frozen placeholder-SFT tool-query policies are both 0/25 exact;
-- explicit prompting fixes top-level keys but remains 0/25 strict exact;
-- the fixed-order copy-only query operation is now a fail-closed runtime
-  compiler: 25/25 clean exact and 150/150 malformed inputs rejected.
+- 12 rows are balanced across `trust`, `baseline`, `verify`, and `defer`;
+- oracle and fail-closed trajectories pass 12/12;
+- `trust_all` produces 9 unsafe trusts and the general gate produces 8;
+- the regime-specific certifier produces zero unsafe trust but only 6/12 exact
+  because it returns no trusted set instead of choosing a fallback;
+- hidden interface labels remain outside model-visible tasks and trajectories.
 
 Minimum next output:
 
-- a small public C5 manifest with `complex_id`, chain-role mapping, metric
-  type/scope/value, calibration dataset, regime match, baseline result, hidden
-  interface-label status, and expected terminal action;
-- deterministic `trust_all`, general-gate, regime-specific-gate, and
-  fail-closed baselines;
-- tests showing missing calibration, metric scope, threshold, or regime match
-  cannot produce a trust action;
-- no model training until the C5 manifest and gates pass no-API validation.
+- a documented schema/license audit for the 2026 110-complex Ab-Ag benchmark
+  and FoldBench score artifacts;
+- an adapter that groups every sampled prediction by `complex_id`;
+- frozen calibration/evaluation splits with no target crossing partitions;
+- DockQ/interface success held only in evaluator metadata;
+- general-PPI transfer, Ab-Ag-specific calibration, trust-all, and fail-closed
+  aggregate baselines;
+- no model training or new structure prediction until these public-score
+  baselines pass leakage and deterministic calibration checks.
 
 Do not repeat or tune on the completed 25-row sealed set. Keep DPO, RLVR, and
 Hugging Face publication closed until a learned routing repair beats static

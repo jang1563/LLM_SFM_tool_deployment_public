@@ -27,4 +27,4 @@ dev = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["llm_sfm_tool_deployment*", "negbiodb_ct*"]
+include = ["c5_antibody_ood*", "llm_sfm_tool_deployment*", "negbiodb_ct*"]

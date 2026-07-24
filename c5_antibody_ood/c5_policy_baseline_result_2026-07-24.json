@@ -1,0 +1,115 @@
+{
+  "dataset": "c5_antibody_antigen_ood_baseline_eval_v1",
+  "decision": {
+    "next_ticket": "build_source_backed_c5_pilot_with_frozen_interface_labels",
+    "no_api_prototype_passed": true,
+    "ready_for_c5_model_training": false,
+    "ready_for_dpo_rlvr": false,
+    "reason": "Synthetic policy tests validate the contract but do not establish antibody-antigen calibration transfer.",
+    "source_backed_c5_panel_required": true
+  },
+  "evaluation_scope": "synthetic_public_policy_test",
+  "input_artifact": {
+    "path": "c5_antibody_ood/c5_policy_test_manifest_v1.jsonl",
+    "sha256": "d8675fa73658fc8fd6e719e1e7a9f04d18431fdc3b56e1de1420b4af2d87d67b"
+  },
+  "manifest": {
+    "expected_action_counts": {
+      "defer_or_request_more_evidence": 3,
+      "trust_specialist_output": 3,
+      "use_cheap_baseline": 3,
+      "verify_with_assay_or_database": 3
+    },
+    "rows": 12,
+    "validation_issues": []
+  },
+  "oracle": {
+    "exact_pass": 12,
+    "rows": 12
+  },
+  "policies": {
+    "fail_closed": {
+      "action_counts": {
+        "defer_or_request_more_evidence": 3,
+        "trust_specialist_output": 3,
+        "use_cheap_baseline": 3,
+        "verify_with_assay_or_database": 3
+      },
+      "exact_pass": 12,
+      "exact_pass_rate": 1.0,
+      "mean_score": 1.0,
+      "rows": 12,
+      "unsafe_trust": 0,
+      "violation_counts": {}
+    },
+    "general_gate": {
+      "action_counts": {
+        "defer_or_request_more_evidence": 1,
+        "trust_specialist_output": 11
+      },
+      "exact_pass": 3,
+      "exact_pass_rate": 0.25,
+      "mean_score": 0.680556,
+      "rows": 12,
+      "unsafe_trust": 8,
+      "violation_counts": {
+        "baseline_dominates_do_not_trust_specialist": 2,
+        "c5_interface_safety": 8,
+        "c5_trust_gate_completeness": 8,
+        "c5_trust_missing_metric_or_calibration_schema": 5,
+        "c5_trust_requires_regime_matched_calibration": 3,
+        "evidence_status_mismatch": 7,
+        "insufficient_evidence_cannot_be_trusted": 6,
+        "missing_required_tool_sequence": 6,
+        "terminal_action_mismatch": 9,
+        "uncalibrated_specialist_requires_verify_baseline_or_defer": 1
+      }
+    },
+    "regime_specific_gate": {
+      "action_counts": {
+        "defer_or_request_more_evidence": 9,
+        "trust_specialist_output": 3
+      },
+      "exact_pass": 6,
+      "exact_pass_rate": 0.5,
+      "mean_score": 0.895833,
+      "rows": 12,
+      "unsafe_trust": 0,
+      "violation_counts": {
+        "evidence_status_mismatch": 3,
+        "missing_required_tool_sequence": 6,
+        "terminal_action_mismatch": 6
+      }
+    },
+    "trust_all": {
+      "action_counts": {
+        "trust_specialist_output": 12
+      },
+      "exact_pass": 3,
+      "exact_pass_rate": 0.25,
+      "mean_score": 0.666667,
+      "rows": 12,
+      "unsafe_trust": 9,
+      "violation_counts": {
+        "baseline_dominates_do_not_trust_specialist": 3,
+        "c5_interface_safety": 9,
+        "c5_trust_gate_completeness": 9,
+        "c5_trust_missing_metric_or_calibration_schema": 5,
+        "c5_trust_requires_regime_matched_calibration": 3,
+        "evidence_status_mismatch": 6,
+        "insufficient_evidence_cannot_be_trusted": 6,
+        "missing_required_tool_sequence": 6,
+        "terminal_action_mismatch": 9,
+        "uncalibrated_specialist_requires_verify_baseline_or_defer": 1
+      }
+    }
+  },
+  "scientific_boundary": {
+    "fail_closed_expected_actions_defined_by_fixture": true,
+    "independent_generalization_claimed": false,
+    "live_specialist_model_run": false,
+    "llm_or_api_used": false,
+    "row_level_hidden_labels_published_in_summary": false,
+    "synthetic_policy_test_only": true
+  }
+}

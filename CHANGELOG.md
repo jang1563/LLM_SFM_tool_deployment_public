@@ -2,7 +2,19 @@
 
 All notable public-facing changes are tracked here.
 
-## Unreleased - 2026-07-23
+## Unreleased - 2026-07-24
+
+- Add a 12-row synthetic Stage B C5 antibody-antigen OOD policy-test manifest
+  with visible metric/calibration cards and hidden interface labels.
+- Reuse the canonical trajectory schema for C5 extraction, safety, trust-gate,
+  and fail-closed-reason scoring.
+- Add deterministic trust-all, general-gate, regime-specific-gate, and
+  fail-closed baselines. The first no-API result is 3/12 with 9 unsafe trusts,
+  3/12 with 8, 6/12 with 0, and 12/12 with 0, respectively.
+- Add leakage, complex-group overlap, missing-calibration, metric-scope,
+  RCPS-threshold, regime-match, and malformed-manifest tests.
+- Select a source-backed public-score pilot as the next C5 ticket; keep model
+  training and new structure-prediction compute closed.
 
 - Add a prospective Stage A public development slice with 25 case-specific
   typed query targets and 180 routing states across eight perturbations,

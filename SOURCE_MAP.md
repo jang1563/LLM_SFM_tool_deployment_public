@@ -1,6 +1,6 @@
 # Source Map
 
-Last source audit: 2026-06-25.
+Last source audit: 2026-07-24.
 
 This file is deliberately compact. It records the source landscape without
 reproducing full source text.
@@ -42,8 +42,17 @@ reproducing full source text.
 | `<local-workspace>/bio-sfm-trust-core/src/bio_sfm_trust/gate.py` | target-verified | Implements `confidence_to_risk`, raw and leave-one-out calibrated gates, shuffled/inverted controls, and the `verify iff risk > lambda` policy. |
 | `<local-workspace>/bio-sfm-trust-core/src/bio_sfm_trust/conformal.py` | target-verified | Implements RCPS/Hoeffding thresholding so the trusted set can carry a controlled false-accept bound. |
 
+## C5 Source Refresh
+
+| source | status | deployment relevance |
+| --- | --- | --- |
+| Fromm, Ludaic, and Elofsson, `Evaluating deep learning based structure prediction methods on antibody-antigen complexes`, Bioinformatics 2026, https://doi.org/10.1093/bioinformatics/btag136 | target-verified | Supplies 110 unseen Ab-Ag complexes, target-grouped sampling/ranking analyses, DockQ/interface metrics, and public code/data. Internal estimates often fail to select the best sampled model, making it the primary source-backed C5 pilot candidate. |
+| `samuelfromm/abag-benchmark-set`, https://github.com/samuelfromm/abag-benchmark-set | target-verified | Public score tables and benchmarking workflow can support a no-new-prediction intake. Preserve target grouping because each complex has many sampled models. |
+| Xu et al., `Benchmarking all-atom biomolecular structure prediction with FoldBench`, Nature Communications 2025, https://www.nature.com/articles/s41467-025-67127-3 | target-verified | Provides low-homology PPI and Ab-Ag strata under common interface metrics. Candidate substrate for testing whether a general PPI gate transfers to Ab-Ag before fitting a regime-specific gate. |
+
 ## Next Lookup Boundary
 
 No unresolved sibling repo remains from the first recovery scan. Next source
-lookup should be narrower: C5 antibody-antigen target curation and
-`bio_sfm_designer` manifest/records scripts.
+lookup should be narrower: public score-schema and license audit for the 2026
+Ab-Ag benchmark and FoldBench, followed by target-grouped calibration/evaluation
+splits. No new structure-prediction compute is justified yet.

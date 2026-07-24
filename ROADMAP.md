@@ -165,7 +165,13 @@ Completed:
   both 0/25 exact, with explicit prompting fixing top-level keys but not strict
   tool-call shape;
 - fail-closed Stage A tool-query runtime compiler: 25/25 clean exact and
-  150/150 malformed inputs rejected for the intended reason.
+  150/150 malformed inputs rejected for the intended reason;
+- Stage B C5 synthetic policy-test manifest with 12 balanced rows, hidden
+  interface-label isolation, canonical trajectory projection, and deterministic
+  trust-all, general-gate, regime-gate, and fail-closed baselines;
+- C5 no-API baseline result: trust-all 3/12 with 9 unsafe trusts, general gate
+  3/12 with 8 unsafe trusts, regime-specific certifier 6/12 with zero unsafe
+  trust, and fail-closed routing 12/12 with zero unsafe trust.
 
 Not completed:
 
@@ -173,14 +179,16 @@ Not completed:
 - Hugging Face dataset/model/Space publication;
 - a future release beyond the existing v0.1.0 reproducibility snapshot;
 - public demo video or GIF;
-- Stage B C5 antibody-antigen OOD transfer package.
+- source-backed Stage B C5 calibration-transfer result.
 
 Current checkpoint:
 
 - keep fixed-order query construction in the runtime layer;
 - keep routing as the learned decision surface;
 - do not start corrective tool-query SFT, DPO, or RLVR;
-- build the first Stage B C5 manifest and fail-closed gate prototype next.
+- keep the synthetic C5 result scoped to contract validation;
+- build the source-backed C5 public-score pilot next, grouped by complex ID and
+  without new model inference.
 
 ## Near-Term Milestones
 
@@ -547,6 +555,14 @@ Exit criteria:
 - uncalibrated specialist outputs route to verify, baseline, or defer;
 - calibrated regime-matched records may pass only with complete metadata;
 - fail-closed behavior is tested.
+
+Current checkpoint:
+
+- the 12-row synthetic policy-test manifest passes all no-API contract checks;
+- general and trust-all policies expose unsafe transfer behavior;
+- strict regime gating removes unsafe trust but needs operational fallback;
+- fail-closed routing passes all fixture-defined actions;
+- the next gate is source-backed calibration transfer, not model training.
 
 ### 6. Release v0.1 And Hugging Face Package
 

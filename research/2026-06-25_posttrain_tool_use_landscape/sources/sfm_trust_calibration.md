@@ -50,6 +50,36 @@ schema.
 - Claim boundary: exact performance numbers should be rechecked from the paper
   before publication; use here as a regime-boundary source.
 
+## 2026 Unseen Antibody-Antigen Benchmark
+
+- Type: `paper` / `public code and data`
+- URLs:
+  - https://doi.org/10.1093/bioinformatics/btag136
+  - https://github.com/samuelfromm/abag-benchmark-set
+- Domain: antibody-antigen structure sampling, ranking, and confidence
+- Verifier/reward signal: 110 complexes filtered against the training-era set,
+  multiple sampled predictions per target, DockQ interface truth, and internal
+  or derived confidence/ranking metrics.
+- Project relevance: concrete source-backed C5 intake candidate. Its central
+  ranking failure means the split must be target-grouped and the trust action
+  must be calibrated against hidden interface success, not inferred from a
+  high internal score.
+- Claim boundary: the published benchmark evaluates model ranking and structure
+  quality. It does not itself certify this project's RCPS deployment gate.
+
+## FoldBench General-to-Ab-Ag Transfer Candidate
+
+- Type: `paper` / `public benchmark`
+- URL: https://www.nature.com/articles/s41467-025-67127-3
+- Domain: low-homology all-atom structure prediction
+- Verifier/reward signal: common DockQ-style interface evaluation across 279
+  protein-protein and 172 antibody-antigen targets, with train-similarity
+  controls.
+- Project relevance: candidate substrate for calibrating a general PPI gate and
+  testing transfer to Ab-Ag before fitting a regime-specific gate.
+- Claim boundary: schema, license, per-sample confidence availability, and
+  target identifiers must be audited before data ingestion.
+
 ## Boltz-2
 
 - Type: `official` / `paper`
