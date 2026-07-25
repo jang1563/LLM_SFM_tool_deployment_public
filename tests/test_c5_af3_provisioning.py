@@ -43,7 +43,8 @@ def test_cayuga_build_job_is_clean_source_and_atomic_output_guarded():
     assert 'mv "${PARTIAL_SIF}" "${AF3_SIF_OUT}"' in script
     assert "apptainer build --fakeroot" in script
     assert 'apptainer test "${PARTIAL_SIF}"' in script
-    assert "uv run --no-sync python3 run_alphafold.py --help" in script
+    assert 'uv run --no-sync python3 -c "import run_alphafold"' in script
+    assert "run_alphafold.py --help" not in script
     assert '"local_paths_emitted": false' in script
     assert "/Users/" not in script
     assert "/home/" not in script
