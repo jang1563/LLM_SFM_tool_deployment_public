@@ -6,6 +6,9 @@ DEFINITION = ROOT / "c5_antibody_ood/alphafold3_v3_0_3.def"
 BUILD_JOB = (
     ROOT / "c5_antibody_ood/build_c5_af3_container_cayuga.sbatch"
 )
+DATABASE_JOB = (
+    ROOT / "c5_antibody_ood/fetch_c5_af3_databases_cayuga.sbatch"
+)
 AF3_COMMIT = "7b197fe859790fc3e04d03ea70dd0b9ba48881c9"
 
 
@@ -49,6 +52,25 @@ def test_cayuga_build_job_is_clean_source_and_atomic_output_guarded():
     assert 'uv run --no-sync python3 -c "import run_alphafold"' in script
     assert "run_alphafold.py --help" not in script
     assert '"local_paths_emitted": false' in script
+    assert "/Users/" not in script
+    assert "/home/" not in script
+    assert "/" + "scratch/" not in script
+
+
+def test_cayuga_database_job_is_content_hashed_and_atomic():
+    script = DATABASE_JOB.read_text()
+
+    assert "#SBATCH --cpus-per-task=12" in script
+    assert "#SBATCH --time=08:00:00" in script
+    assert "MINIMUM_FREE_BYTES=750000000000" in script
+    assert "AF3_SIF_SHA256" in script
+    assert "fetch_databases.sh /root/public_databases" in script
+    assert "c5_antibody_ood.af3_preflight inventory" in script
+    assert "uv run --no-sync python3" in script
+    assert 'STAGE="${AF3_DB_OUT}.partial.${SLURM_JOB_ID}"' in script
+    assert 'mv "${STAGE}" "${AF3_DB_OUT}"' in script
+    assert 'mv "${MANIFEST_PARTIAL}" "${AF3_DB_MANIFEST_OUT}"' in script
+    assert "private database outputs must be outside" in script
     assert "/Users/" not in script
     assert "/home/" not in script
     assert "/" + "scratch/" not in script
