@@ -93,6 +93,11 @@ export APPTAINER_TMPDIR="${BUILD_TMP}/tmp"
 cd "${AF3_SOURCE_DIR}"
 apptainer build --fakeroot "${PARTIAL_SIF}" "${DEFINITION}"
 apptainer test "${PARTIAL_SIF}"
+test "$(
+  apptainer inspect --labels "${PARTIAL_SIF}" \
+    | awk -F': ' \
+        '$1 == "org.llm_sfm_tool_deployment.af3.version" {print $2}'
+)" = "${AF3_TAG}"
 apptainer exec \
   --pwd /app/alphafold \
   "${PARTIAL_SIF}" \

@@ -16,6 +16,8 @@ def test_apptainer_definition_pins_official_af3_build_inputs():
     assert "From: nvidia/cuda:12.6.3-base-ubuntu24.04" in definition
     assert AF3_COMMIT in definition
     assert "v3.0.3" in definition
+    assert "org.llm_sfm_tool_deployment.af3.version v3.0.3" in definition
+    assert "org.opencontainers.image.version v3.0.3" not in definition
     assert "uv sync --frozen --all-groups --no-editable" in definition
     assert "uv run build_data" in definition
     assert "UV_CACHE_DIR=/tmp/uv-cache" in definition
@@ -43,6 +45,7 @@ def test_cayuga_build_job_is_clean_source_and_atomic_output_guarded():
     assert 'mv "${PARTIAL_SIF}" "${AF3_SIF_OUT}"' in script
     assert "apptainer build --fakeroot" in script
     assert 'apptainer test "${PARTIAL_SIF}"' in script
+    assert "org.llm_sfm_tool_deployment.af3.version" in script
     assert 'uv run --no-sync python3 -c "import run_alphafold"' in script
     assert "run_alphafold.py --help" not in script
     assert '"local_paths_emitted": false' in script
