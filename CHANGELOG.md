@@ -4,6 +4,19 @@ All notable public-facing changes are tracked here.
 
 ## Unreleased - 2026-07-25
 
+- Add a commit-pinned Hitawala-Gray AF3 adapter for independent-source C5
+  calibration with exact hash/shape validation and no raw-source
+  redistribution.
+- Exclude all PDB IDs found in the Fromm panel before calibration: 9 overlapping
+  PDB IDs / 11 complex copies are removed, leaving 44 antibody and 53 nanobody
+  targets.
+- Reuse the frozen 0.50-0.99 Hoeffding/union-bound grid separately by antibody
+  format. Neither ranking-score gate is certified at `alpha <= 0.30`.
+- Add a 97-row canonical derived manifest, compact result, source provenance,
+  and overlap/privacy/certificate regression tests. The locked Fromm replay
+  remains 0/55 trusted and 55/55 verified.
+- Keep this result bounded as independent-source published-label evidence, not
+  a blinded hidden test, new structure prediction, or general-PPI transfer.
 - Add the source-backed C5 AF3 adapter with exact archive/checksum/shape
   validation, a nine-column privacy allowlist, deterministic target selection,
   and a frozen 55/55 target-group split.

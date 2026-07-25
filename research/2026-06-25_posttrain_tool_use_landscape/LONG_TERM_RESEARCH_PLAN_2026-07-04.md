@@ -109,6 +109,22 @@ Stage B now also has a source-backed published-label replay:
   `0.20`, or `0.10`, so the runtime policy fails closed to verification;
 - this is not an independent hidden test or new structure-prediction result.
 
+Stage B now also has independent-source published-label calibration evidence:
+
+- the Hitawala-Gray AF3 table is commit pinned and checksum verified;
+- 1,565 complete bound predictions cover 108 Ab-Ag/Nb-Ag targets;
+- 9 PDB IDs representing 11 complex copies shared with Fromm are excluded
+  before calibration;
+- 97 targets remain: 44 antibodies and 53 nanobodies;
+- the source ranking protocol is deterministic: ranking score, then ipTM-HA,
+  then lexical sample ID;
+- neither format has a uniformly corrected ranking-score trust certificate at
+  `alpha = 0.30`, `0.20`, or `0.10`;
+- the locked Fromm evaluation therefore remains 0/55 trusted and 55/55 routed
+  to verify;
+- this is not a blinded hidden test, new structure prediction, or general-PPI
+  transfer result.
+
 ## Drift Guard
 
 Do not drift into:
@@ -404,8 +420,11 @@ Status:
 
 - synthetic contract prototype complete;
 - source-backed public-score intake complete;
+- independent-source calibration replay complete with zero residual PDB
+  overlap;
 - regime-specific trust not certified;
-- next evidence gate is independent calibration, not model training.
+- next evidence gate is a larger antibody-only panel or pre-registered
+  prospective Cayuga panel, not model training.
 
 ### Sprint 5: Public Research Snapshot
 
@@ -465,25 +484,37 @@ The July 25 source-backed output completes the former minimum ticket:
   aggregate baselines;
 - no model training or new structure prediction during intake.
 
+The July 25 independent-source output completes the next evidence ticket:
+
+- the Gray input is commit pinned and source-shape validated;
+- all Fromm PDB IDs are blocked before selecting calibration targets;
+- 44 antibody and 53 nanobody targets remain after overlap exclusion;
+- antibody and nanobody ranking-score gates are calibrated separately over the
+  existing finite threshold family;
+- neither format certifies a trusted set, so the locked Fromm gate remains
+  fail closed;
+- no model training or new structure prediction was used.
+
 General-PPI transfer remains unmeasured because no validated full per-sample
 PPI/Ab-Ag confidence table is available through the audited FoldBench
 GitHub/Zenodo release.
 
 ## Next Concrete Ticket
 
-Obtain independent calibration evidence without tuning on the frozen 55-target
-evaluation split.
+Pre-register the next prospective C5 evidence panel without tuning on the
+frozen 55-target evaluation split.
 
 Minimum next output:
 
-- a license-compatible per-sample PPI/Ab-Ag confidence export or independently
-  defined Ab-Ag panel;
-- pre-registered target grouping, confidence metric, threshold family, alpha,
-  delta, and multiple-threshold correction;
-- general-PPI transfer and Ab-Ag-specific calibration evaluated against
-  trust-all, shuffled/inverted, and fail-closed controls;
-- Cayuga first and Expanse second only if compatible saved public scores cannot
-  supply the missing specialist outputs;
+- one larger non-overlapping antibody-only public panel or an author-supplied
+  paired FoldBench confidence export is attempted first;
+- if saved public scores remain insufficient, pre-register target inclusion,
+  overlap exclusions, AF3 version, sample count, ranking metric, DockQ
+  evaluator, threshold family, alpha, delta, correction, and stopping rule
+  before Cayuga execution;
+- evaluate trust-all, fixed-threshold, shuffled/inverted, certified, and
+  fail-closed controls;
+- Cayuga first and Expanse second for any required structure-prediction work;
 - no DPO/RLVR or model training while the blocker is calibration evidence.
 
 Do not repeat or tune on the completed 25-row sealed set. Keep DPO, RLVR, and

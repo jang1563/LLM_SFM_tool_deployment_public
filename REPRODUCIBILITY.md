@@ -51,6 +51,7 @@ python -m c5_antibody_ood.evaluate_baselines \
   --out-json /tmp/c5_policy_baseline_result.json \
   --out-md /tmp/C5_POLICY_BASELINE_RESULT.md
 python -m pytest -q tests/test_c5_source_pilot.py
+python -m pytest -q tests/test_c5_independent_calibration.py
 python post_training/run_stage_a_saved_output_calibration_margin_sft.py \
   --dry-run \
   --out-dir /tmp/stage_a_saved_output_calibration_margin_sft \
@@ -66,6 +67,7 @@ python -m pytest -q \
   tests/test_c5_manifest.py \
   tests/test_c5_policies.py \
   tests/test_c5_source_pilot.py \
+  tests/test_c5_independent_calibration.py \
   tests/test_stage_a_manifest.py \
   tests/test_stage_a_manifest_eval_script.py \
   tests/test_stage_a_export.py \
@@ -96,6 +98,9 @@ Expected high-level outcome:
 - C5 source-pilot tests verify source hash/schema failure, target-grouped
   splitting, deterministic tie handling, hidden-label isolation, and privacy
   projection without downloading the external score table;
+- C5 independent-calibration tests verify source identity, source-protocol tie
+  handling, PDB-level overlap exclusion, format-specific certificates, locked
+  Fromm transfer, hidden-label isolation, and privacy projection;
 - public-safe pytest subset passes.
 
 These commands are also run by the GitHub Actions `Public QA` workflow.
@@ -120,6 +125,27 @@ cmp c5_antibody_ood/c5_source_backed_manifest_v1.jsonl \
 The adapter fails on a source checksum, row/target/sample count, preset,
 required-field, duplicate-ID, or unit-interval mismatch. The compact report
 stores source fingerprints and aggregates, never the local input path.
+
+## External C5 Independent Calibration
+
+The raw Hitawala-Gray table is not redistributed. Obtain the pinned
+`datafiles/final_af3_rmsds.csv` documented in
+`c5_antibody_ood/INDEPENDENT_CALIBRATION_PROVENANCE.md`, then reproduce the
+tracked overlap-excluded manifest and compact report with:
+
+```bash
+python -m c5_antibody_ood.evaluate_independent_calibration \
+  --gray-scores /external/path/final_af3_rmsds.csv \
+  --out-manifest /tmp/c5_gray_independent_calibration_manifest_v1.jsonl \
+  --out-json /tmp/c5_gray_independent_calibration_result.json \
+  --out-md /tmp/C5_GRAY_INDEPENDENT_CALIBRATION_RESULT.md
+cmp c5_antibody_ood/c5_gray_independent_calibration_manifest_v1.jsonl \
+  /tmp/c5_gray_independent_calibration_manifest_v1.jsonl
+```
+
+The adapter fails on source drift, malformed scientific values, missing bound
+labels, duplicate sample IDs, or residual PDB overlap with Fromm. The external
+CSV path and source filenames are never emitted.
 
 ## Full Local Checks
 

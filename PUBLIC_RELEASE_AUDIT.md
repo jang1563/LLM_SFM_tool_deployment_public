@@ -1,6 +1,6 @@
 # Public Release Audit
 
-Last checked: 2026-07-24.
+Last checked: 2026-07-25.
 
 ## Redaction Applied
 
@@ -181,6 +181,16 @@ Last checked: 2026-07-24.
   sequences, features, raw paths, or unhashed sample IDs.
 - The exact input member was verified inside Zenodo record `17978681` and is
   attributed as `CC-BY-4.0`. Derived-data provenance is explicit.
+- Added the independent Hitawala-Gray C5 adapter and a 97-row derived manifest.
+  The raw 1,900-row CSV, archive structures, sequences, and source filenames
+  remain external and untracked.
+- Excluded 9 PDB IDs representing 11 complex copies shared with the Fromm panel
+  before calibration. Public rows contain only complex IDs, standardized chain
+  roles, selected confidence values, hidden published labels, salted sample-ID
+  hashes, and source fingerprints.
+- Added a compact independent-calibration result with aggregate risk/coverage
+  counts and certificate bounds only. It contains no raw score table, local
+  path, cluster metadata, model output, or source sample filename.
 
 ## Current Public-Release Rule
 
@@ -203,8 +213,10 @@ benchmark substrate, not as clinical evidence or live model behavior.
 The 12-row C5 manifest and its compact result are publish candidates only as
 synthetic policy-contract tests. The 110-row source-backed manifest and compact
 result are publish candidates only as a published-label replay and negative
-calibration result. They must not be described as an independent hidden test,
-new structure prediction, general-PPI transfer, or certified trusted set.
+calibration result. The 97-row Gray manifest is publishable only as
+independent-source published-label calibration evidence with explicit PDB
+overlap exclusion. None may be described as a blinded hidden test, new
+structure prediction, general-PPI transfer, or certified trusted set.
 
 Publish only the validated clean-snapshot history. Live repository visibility
 and hosted CI state are verified separately from this file-backed release gate.

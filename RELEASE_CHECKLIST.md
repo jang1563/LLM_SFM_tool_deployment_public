@@ -129,14 +129,17 @@ surface. Earlier private development history is not part of the release.
 - [x] Synthetic Stage B C5 manifest and aggregate no-API baseline result
   registered with checksums; no real structures, sequences, row-level result
   table, model output, or cluster metadata are included.
+- [x] Independent-source Stage B C5 adapter excludes PDB overlap against all
+  Fromm targets and publishes only a derived 97-row manifest, compact aggregate
+  result, salted sample hashes, and source fingerprints.
 - [ ] Decide final license: all-rights-reserved, MIT, Apache-2.0, or lab-approved release.
 - [x] Build a clean-snapshot release surface from the validated current tree.
 - [x] Verify live public visibility for `jang1563/LLM_SFM_tool_deployment_public`.
 - [x] Verify the public-safe GitHub Actions QA workflow on the clean root commit.
 - [x] Add pull-request checklist for benchmark leakage and public-surface hygiene.
 - [x] Publish the v0.1.0 GitHub reproducibility snapshot.
-- [ ] Publish a future scientific-result release only after a source-backed C5
-  calibration-transfer pilot passes grouped-split and leakage checks.
+- [ ] Publish a future scientific-result release only after a prospective or
+  blinded C5 calibration-transfer gate passes overlap, risk, and leakage checks.
 
 ## Hugging Face Readiness
 

@@ -1,0 +1,293 @@
+{
+  "calibration": {
+    "candidate_thresholds": {
+      "count": 50,
+      "maximum": 0.99,
+      "minimum": 0.5,
+      "step": 0.01
+    },
+    "confidence_metric": "af3_ranking_score",
+    "format_specific_certificates": {
+      "antibody": {
+        "alpha_0.10": {
+          "alpha": 0.1,
+          "calibration_empirical_risk": null,
+          "calibration_failures": 0,
+          "calibration_risk_upper_bound": null,
+          "calibration_trusted": 0,
+          "candidate_count": 50,
+          "certified": false,
+          "closest_candidate": {
+            "empirical_risk": 0.25,
+            "failures": 5,
+            "risk_upper_bound": 0.644164,
+            "threshold": 0.71,
+            "trusted": 20
+          },
+          "delta": 0.1,
+          "threshold": null
+        },
+        "alpha_0.20": {
+          "alpha": 0.2,
+          "calibration_empirical_risk": null,
+          "calibration_failures": 0,
+          "calibration_risk_upper_bound": null,
+          "calibration_trusted": 0,
+          "candidate_count": 50,
+          "certified": false,
+          "closest_candidate": {
+            "empirical_risk": 0.25,
+            "failures": 5,
+            "risk_upper_bound": 0.644164,
+            "threshold": 0.71,
+            "trusted": 20
+          },
+          "delta": 0.1,
+          "threshold": null
+        },
+        "alpha_0.30": {
+          "alpha": 0.3,
+          "calibration_empirical_risk": null,
+          "calibration_failures": 0,
+          "calibration_risk_upper_bound": null,
+          "calibration_trusted": 0,
+          "candidate_count": 50,
+          "certified": false,
+          "closest_candidate": {
+            "empirical_risk": 0.25,
+            "failures": 5,
+            "risk_upper_bound": 0.644164,
+            "threshold": 0.71,
+            "trusted": 20
+          },
+          "delta": 0.1,
+          "threshold": null
+        }
+      },
+      "nanobody": {
+        "alpha_0.10": {
+          "alpha": 0.1,
+          "calibration_empirical_risk": null,
+          "calibration_failures": 0,
+          "calibration_risk_upper_bound": null,
+          "calibration_trusted": 0,
+          "candidate_count": 50,
+          "certified": false,
+          "closest_candidate": {
+            "empirical_risk": 0.222222,
+            "failures": 4,
+            "risk_upper_bound": 0.637707,
+            "threshold": 0.66,
+            "trusted": 18
+          },
+          "delta": 0.1,
+          "threshold": null
+        },
+        "alpha_0.20": {
+          "alpha": 0.2,
+          "calibration_empirical_risk": null,
+          "calibration_failures": 0,
+          "calibration_risk_upper_bound": null,
+          "calibration_trusted": 0,
+          "candidate_count": 50,
+          "certified": false,
+          "closest_candidate": {
+            "empirical_risk": 0.222222,
+            "failures": 4,
+            "risk_upper_bound": 0.637707,
+            "threshold": 0.66,
+            "trusted": 18
+          },
+          "delta": 0.1,
+          "threshold": null
+        },
+        "alpha_0.30": {
+          "alpha": 0.3,
+          "calibration_empirical_risk": null,
+          "calibration_failures": 0,
+          "calibration_risk_upper_bound": null,
+          "calibration_trusted": 0,
+          "candidate_count": 50,
+          "certified": false,
+          "closest_candidate": {
+            "empirical_risk": 0.222222,
+            "failures": 4,
+            "risk_upper_bound": 0.637707,
+            "threshold": 0.66,
+            "trusted": 18
+          },
+          "delta": 0.1,
+          "threshold": null
+        }
+      }
+    },
+    "interface_metric": "heavy_antigen_predicted_tm_score",
+    "method": "uniform_hoeffding_union_bound",
+    "success_label": "DockQ >= 0.23"
+  },
+  "dataset": "c5_gray_independent_calibration_eval_v1",
+  "decision": {
+    "antibody_ranking_gate_certified": false,
+    "external_trust_enabled": false,
+    "independent_source_adapter_passed": true,
+    "nanobody_ranking_gate_certified": false,
+    "next_ticket": "expand_independent_antibody_calibration_or_run_preregistered_cayuga_panel",
+    "ready_for_c5_model_training": false,
+    "ready_for_dpo_rlvr": false
+  },
+  "derived_manifest": {
+    "path": "c5_antibody_ood/c5_gray_independent_calibration_manifest_v1.jsonl",
+    "rows": 97,
+    "sha256": "f29db5fe5ee5c6dfc6c426a2f7eb3dfeffeffd327ce6a16d9f50f6392b242142"
+  },
+  "evaluation_scope": "independent_source_published_label_calibration_and_locked_external_replay",
+  "locked_fromm_evaluation": {
+    "fixed_ranking_score_0_80": {
+      "coverage": 0.381818,
+      "failure_rate_among_trusted": 0.190476,
+      "failures_among_trusted": 4,
+      "targets": 55,
+      "trusted": 21,
+      "verify_or_defer": 34
+    },
+    "independent_calibration_gate": {
+      "certified": false,
+      "coverage": 0.0,
+      "failure_rate_among_trusted": 0.0,
+      "failures_among_trusted": 0,
+      "targets": 55,
+      "threshold": null,
+      "trusted": 0,
+      "verify_or_defer": 55
+    },
+    "manifest_sha256": "8de4a31cd927b9dadf2d9bf5bd4f21d4a46f46f4bc4c62c30b2c21b42c426d9e",
+    "metric_alignment": "af3_score_names_and_ranges_aligned_exact_model_version_equivalence_unverified",
+    "pdb_overlap_with_gray_calibration": 0,
+    "targets": 55,
+    "trust_all": {
+      "coverage": 1.0,
+      "failure_rate_among_trusted": 0.509091,
+      "failures_among_trusted": 28,
+      "targets": 55,
+      "trusted": 55,
+      "verify_or_defer": 0
+    }
+  },
+  "manifest": {
+    "hidden_label_isolation": true,
+    "rows": 97,
+    "validation_issues": []
+  },
+  "overlap_and_selection": {
+    "dockq_success_threshold": 0.23,
+    "overlapping_complexes_excluded": 11,
+    "overlapping_pdb_ids_excluded": 9,
+    "residual_pdb_overlap": 0,
+    "selected_after_overlap": 97,
+    "selected_before_overlap": 108,
+    "selected_by_format": {
+      "antibody": 44,
+      "nanobody": 53
+    },
+    "selected_interface_success_rate": 0.391753,
+    "selected_interface_successes": 38,
+    "selection_rule": "max_ranking_score_then_max_iptm_ha_then_lexical_sample_id",
+    "targets_with_post_iptm_ties": 30,
+    "targets_with_top_ranking_ties": 55
+  },
+  "scientific_boundary": {
+    "blinded_evaluation_claimed": false,
+    "independent_hidden_test_claimed": false,
+    "independent_source_dataset_used": true,
+    "llm_or_api_used": false,
+    "new_structure_prediction_run": false,
+    "published_labels_used": true,
+    "raw_paths_structures_or_sequences_published": false,
+    "source_model_version_equivalence_claimed": false,
+    "source_sample_ids_published": false,
+    "source_target_overlap_after_exclusion": 0
+  },
+  "source": {
+    "allowlisted_column_count": 10,
+    "archive_doi": "10.5281/zenodo.16426003",
+    "archive_file": "revised_Compiled_Benchmark_Data.zip",
+    "archive_license": "CC-BY-4.0",
+    "archive_md5": "6d0c48b4c30b75a6e331c0d3aba4c010",
+    "archive_url": "https://zenodo.org/records/16426003",
+    "bound_rows_retained": 1565,
+    "bound_targets_retained": 108,
+    "bytes": 749147,
+    "excluded_column_count": 24,
+    "paper_doi": "10.1080/19420862.2025.2545601",
+    "raw_filenames_emitted": false,
+    "raw_paths_or_sequences_emitted": false,
+    "repository": "NooriFatima/AF3_AbNb_Benchmark",
+    "repository_license": "MIT",
+    "rows": 1900,
+    "sha256": "c012928f1bd36ac255a43b6a3abc33d4f59033b97f6655d9b7c300850e0c433b",
+    "source_column_count": 34,
+    "source_file": "datafiles/final_af3_rmsds.csv",
+    "source_url": "https://raw.githubusercontent.com/NooriFatima/AF3_AbNb_Benchmark/749933edc2b7b5f841f453a667bd2204d3e31e56/datafiles/final_af3_rmsds.csv",
+    "targets": 130,
+    "unbound_rows_excluded": 335,
+    "upstream_commit": "749933edc2b7b5f841f453a667bd2204d3e31e56"
+  },
+  "source_cohort_policies": {
+    "antibody": {
+      "certified_gate": {
+        "certified": false,
+        "coverage": 0.0,
+        "failure_rate_among_trusted": 0.0,
+        "failures_among_trusted": 0,
+        "targets": 44,
+        "threshold": null,
+        "trusted": 0,
+        "verify_or_defer": 44
+      },
+      "fixed_ranking_score_0_80": {
+        "coverage": 0.386364,
+        "failure_rate_among_trusted": 0.294118,
+        "failures_among_trusted": 5,
+        "targets": 44,
+        "trusted": 17,
+        "verify_or_defer": 27
+      },
+      "trust_all": {
+        "coverage": 1.0,
+        "failure_rate_among_trusted": 0.568182,
+        "failures_among_trusted": 25,
+        "targets": 44,
+        "trusted": 44,
+        "verify_or_defer": 0
+      }
+    },
+    "nanobody": {
+      "certified_gate": {
+        "certified": false,
+        "coverage": 0.0,
+        "failure_rate_among_trusted": 0.0,
+        "failures_among_trusted": 0,
+        "targets": 53,
+        "threshold": null,
+        "trusted": 0,
+        "verify_or_defer": 53
+      },
+      "fixed_ranking_score_0_80": {
+        "coverage": 0.188679,
+        "failure_rate_among_trusted": 0.2,
+        "failures_among_trusted": 2,
+        "targets": 53,
+        "trusted": 10,
+        "verify_or_defer": 43
+      },
+      "trust_all": {
+        "coverage": 1.0,
+        "failure_rate_among_trusted": 0.641509,
+        "failures_among_trusted": 34,
+        "targets": 53,
+        "trusted": 53,
+        "verify_or_defer": 0
+      }
+    }
+  }
+}

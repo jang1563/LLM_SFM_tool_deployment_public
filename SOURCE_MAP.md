@@ -48,12 +48,13 @@ reproducing full source text.
 | --- | --- | --- |
 | Fromm, Ludaic, and Elofsson, `Evaluating deep learning based structure prediction methods on antibody-antigen complexes`, Bioinformatics 2026, https://doi.org/10.1093/bioinformatics/btag136 | target-verified | Supplies 110 unseen Ab-Ag complexes, target-grouped sampling/ranking analyses, DockQ/interface metrics, and public code/data. Internal estimates often fail to select the best sampled model, making it the primary source-backed C5 pilot candidate. |
 | `samuelfromm/abag-benchmark-set`, https://github.com/samuelfromm/abag-benchmark-set; Zenodo `10.5281/zenodo.17978681` | target-verified | The exact AF3 score member was verified byte-identical inside the `CC-BY-4.0` archive. It supplies 22,000 samples over 110 targets for the source-backed replay; 64 targets have tied top ranking confidence. |
+| Hitawala and Gray, `What does AlphaFold3 learn about antibody and nanobody docking, and what remains unsolved?`, https://doi.org/10.1080/19420862.2025.2545601; Zenodo `10.5281/zenodo.16426003`; `NooriFatima/AF3_AbNb_Benchmark` | target-verified | Supplies the independent post-cutoff AF3 confidence/DockQ panel. The pinned table has 1,565 complete bound predictions across 108 targets. After excluding 9 PDB IDs shared with Fromm, 44 antibody and 53 nanobody targets remain for format-specific calibration. Neither ranking-score gate is certified at `alpha=0.30`. |
 | Xu et al., `Benchmarking all-atom biomolecular structure prediction with FoldBench`, Nature Communications 2025, https://www.nature.com/articles/s41467-025-67127-3; Zenodo `10.5281/zenodo.17180806` | target-verified | Confirms 279 low-homology PPI and 172 Ab-Ag targets, 25 samples per model/target, and DockQ success at 0.23. The MIT repository/archive contains targets, evaluator code, and examples. Read-only Source Data audit finds target-level PPI/Ab-Ag DockQ but no paired per-sample ranking/confidence fields, so it cannot support the current transfer adapter. |
 
 ## Next Lookup Boundary
 
-The Fromm public-score intake is complete. The next source lookup is narrow:
-obtain a license-compatible FoldBench per-sample confidence/score export or an
-independently defined Ab-Ag calibration panel. Do not tune on the frozen
-55-target Fromm evaluation split. New structure-prediction compute is justified
-only for evidence that compatible saved public scores cannot supply.
+The Fromm replay and first independent Gray calibration are complete. The next
+lookup is narrow: seek a larger, non-overlapping antibody-only calibration
+panel or a license-compatible per-sample FoldBench confidence export. If public
+scores remain insufficient, pre-register a small Cayuga prediction panel before
+running it. Do not tune on the frozen 55-target Fromm evaluation split.

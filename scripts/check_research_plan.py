@@ -22,6 +22,14 @@ C5_SOURCE_REPORT = (
 C5_PROVENANCE = (
     ROOT / "c5_antibody_ood" / "SOURCE_BACKED_PILOT_PROVENANCE.md"
 )
+C5_INDEPENDENT_REPORT = (
+    ROOT
+    / "c5_antibody_ood"
+    / "c5_gray_independent_calibration_result_2026-07-25.json"
+)
+C5_INDEPENDENT_PROVENANCE = (
+    ROOT / "c5_antibody_ood" / "INDEPENDENT_CALIBRATION_PROVENANCE.md"
+)
 
 
 def read(path: Path) -> str:
@@ -49,6 +57,8 @@ def main() -> int:
     public_status = read(PUBLIC_STATUS)
     c5_provenance = read(C5_PROVENANCE)
     c5_report = json.loads(read(C5_SOURCE_REPORT))
+    c5_independent_provenance = read(C5_INDEPENDENT_PROVENANCE)
+    c5_independent_report = json.loads(read(C5_INDEPENDENT_REPORT))
 
     require_contains(
         issues,
@@ -92,9 +102,16 @@ def main() -> int:
         "frozen 55/55 target-group split",
         "trust-all has 28 failures",
         "certifies no trusted set",
-        "independent calibration evidence",
     ):
         require_contains(issues, plan, needle, "source-backed C5 checkpoint")
+    for needle in (
+        "1,565 complete bound predictions",
+        "9 PDB IDs representing 11 complex copies",
+        "44 antibodies and 53 nanobodies",
+        "0/55 trusted and 55/55 routed",
+        "Pre-register the next prospective C5 evidence panel",
+    ):
+        require_contains(issues, plan, needle, "independent C5 checkpoint")
     for needle in (
         "`complex_id`",
         "metric type, scope, and value",
@@ -134,7 +151,7 @@ def main() -> int:
     require_contains(
         issues,
         public_status,
-        "stage_b_c5_independent_calibration_evidence",
+        "stage_b_c5_prospective_panel_preregistration",
         "public STATUS C5 research decision",
     )
     require_pattern(
@@ -156,11 +173,12 @@ def main() -> int:
         "roadmap sealed commitment boundary",
     )
     for needle in (
-        "general-PPI transfer",
-        "Ab-Ag-specific calibration",
-        "no model training or new structure prediction",
+        "larger non-overlapping antibody-only public panel",
+        "pre-register target inclusion",
+        "Cayuga first and Expanse second",
+        "no DPO/RLVR or model training",
     ):
-        require_contains(issues, plan, needle, "source-backed C5 next gate")
+        require_contains(issues, plan, needle, "prospective C5 next gate")
     for needle in (
         "10.5281/zenodo.17978681",
         "CC-BY-4.0",
@@ -196,6 +214,60 @@ def main() -> int:
         if not passed:
             issues.append(f"C5 source report invariant failed: {label}")
 
+    for needle in (
+        "10.5281/zenodo.16426003",
+        "749933edc2b7b5f841f453a667bd2204d3e31e56",
+        "c012928f1bd36ac255a43b6a3abc33d4f59033b97f6655d9b7c300850e0c433b",
+        "9 overlapping PDB",
+        "11 Gray complex",
+        "44 antibodies",
+        "53 nanobodies",
+    ):
+        require_contains(
+            issues,
+            c5_independent_provenance,
+            needle,
+            "independent C5 provenance",
+        )
+
+    independent_selection = c5_independent_report["overlap_and_selection"]
+    independent_decision = c5_independent_report["decision"]
+    independent_transfer = c5_independent_report["locked_fromm_evaluation"]
+    expected_independent_values = {
+        "source.rows": c5_independent_report["source"].get("rows") == 1_900,
+        "source.bound_rows": (
+            c5_independent_report["source"].get("bound_rows_retained") == 1_565
+        ),
+        "source.bound_targets": (
+            c5_independent_report["source"].get("bound_targets_retained") == 108
+        ),
+        "overlap.pdb_ids": (
+            independent_selection.get("overlapping_pdb_ids_excluded") == 9
+        ),
+        "overlap.complexes": (
+            independent_selection.get("overlapping_complexes_excluded") == 11
+        ),
+        "selection.retained": (
+            independent_selection.get("selected_after_overlap") == 97
+        ),
+        "antibody.not_certified": (
+            independent_decision.get("antibody_ranking_gate_certified") is False
+        ),
+        "nanobody.not_certified": (
+            independent_decision.get("nanobody_ranking_gate_certified") is False
+        ),
+        "transfer.disabled": (
+            independent_decision.get("external_trust_enabled") is False
+        ),
+        "transfer.trusted_zero": (
+            independent_transfer["independent_calibration_gate"].get("trusted")
+            == 0
+        ),
+    }
+    for label, passed in expected_independent_values.items():
+        if not passed:
+            issues.append(f"C5 independent report invariant failed: {label}")
+
     if issues:
         print(f"FAIL research plan check found {len(issues)} issue(s):")
         for issue in issues:
@@ -208,7 +280,9 @@ def main() -> int:
     print("- C5 prototype: fail-closed 12/12; trust-all 9 unsafe trusts")
     print("- C5 source replay: trust-all 28/55 failures; fixed gate 3/20")
     print("- C5 certification: no trusted set at alpha <= 0.30")
-    print("- C5 next gate: independent calibration evidence")
+    print("- C5 independent calibration: 97 targets; 0 residual PDB overlap")
+    print("- C5 independent certificates: antibody and nanobody both fail")
+    print("- C5 next gate: prospective panel preregistration")
     print("- DPO/RLVR/HF gate: useful routing coverage plus independent evaluation required")
     print("- sealed evaluation gate: completed rows cannot be tuned on or rescored")
     print("- C5 gate: calibration metadata required before trust")
