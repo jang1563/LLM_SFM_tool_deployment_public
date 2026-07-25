@@ -94,6 +94,21 @@ Stage B now has a synthetic no-API contract prototype:
   the fail-closed router passes all 12 fixture-defined actions.
 - This is contract validation, not biological calibration evidence.
 
+Stage B now also has a source-backed published-label replay:
+
+- the exact `CC-BY-4.0` Fromm et al. archive member is checksum-verified;
+- 22,000 AF3 samples over 110 targets pass strict schema and shape validation;
+- a nine-column allowlist prevents raw path, structure, sequence, feature, and
+  source sample-ID publication;
+- confidence-ranked target selection and a frozen 55/55 target-group split are
+  deterministic, with zero overlap;
+- trust-all has 28 failures among 55 evaluation targets;
+- fixed `ipTM >= 0.80` has 3 failures among 20 trusted evaluation targets and
+  is not labeled as general-PPI calibration;
+- a uniform Hoeffding search certifies no trusted set at `alpha = 0.30`,
+  `0.20`, or `0.10`, so the runtime policy fails closed to verification;
+- this is not an independent hidden test or new structure-prediction result.
+
 ## Drift Guard
 
 Do not drift into:
@@ -385,6 +400,13 @@ Decision:
 - If calibration metadata is missing, do not continue to trust experiments.
   Improve the manifest/gate first.
 
+Status:
+
+- synthetic contract prototype complete;
+- source-backed public-score intake complete;
+- regime-specific trust not certified;
+- next evidence gate is independent calibration, not model training.
+
 ### Sprint 5: Public Research Snapshot
 
 Question:
@@ -421,11 +443,9 @@ it changes at least one of:
 - benchmark split/leakage design;
 - calibration or fail-closed logic.
 
-## Next Concrete Ticket
+## Completed C5 Public-Score Ticket
 
-Build a source-backed C5 public-score pilot without new model inference.
-
-The July 24 synthetic C5 checkpoint is complete:
+The July 24 synthetic C5 checkpoint established the contract:
 
 - 12 rows are balanced across `trust`, `baseline`, `verify`, and `defer`;
 - oracle and fail-closed trajectories pass 12/12;
@@ -434,17 +454,37 @@ The July 24 synthetic C5 checkpoint is complete:
   because it returns no trusted set instead of choosing a fallback;
 - hidden interface labels remain outside model-visible tasks and trajectories.
 
-Minimum next output:
+The July 25 source-backed output completes the former minimum ticket:
 
-- a documented schema/license audit for the 2026 110-complex Ab-Ag benchmark
-  and FoldBench score artifacts;
+- documented schema/license audit for the 2026 110-complex Ab-Ag benchmark and
+  FoldBench artifacts;
 - an adapter that groups every sampled prediction by `complex_id`;
 - frozen calibration/evaluation splits with no target crossing partitions;
 - DockQ/interface success held only in evaluator metadata;
-- general-PPI transfer, Ab-Ag-specific calibration, trust-all, and fail-closed
+- trust-all, fixed-threshold, regime-specific certification, and fail-closed
   aggregate baselines;
-- no model training or new structure prediction until these public-score
-  baselines pass leakage and deterministic calibration checks.
+- no model training or new structure prediction during intake.
+
+General-PPI transfer remains unmeasured because no validated full per-sample
+PPI/Ab-Ag confidence table is available through the audited FoldBench
+GitHub/Zenodo release.
+
+## Next Concrete Ticket
+
+Obtain independent calibration evidence without tuning on the frozen 55-target
+evaluation split.
+
+Minimum next output:
+
+- a license-compatible per-sample PPI/Ab-Ag confidence export or independently
+  defined Ab-Ag panel;
+- pre-registered target grouping, confidence metric, threshold family, alpha,
+  delta, and multiple-threshold correction;
+- general-PPI transfer and Ab-Ag-specific calibration evaluated against
+  trust-all, shuffled/inverted, and fail-closed controls;
+- Cayuga first and Expanse second only if compatible saved public scores cannot
+  supply the missing specialist outputs;
+- no DPO/RLVR or model training while the blocker is calibration evidence.
 
 Do not repeat or tune on the completed 25-row sealed set. Keep DPO, RLVR, and
 Hugging Face publication closed until a learned routing repair beats static

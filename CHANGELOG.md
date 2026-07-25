@@ -2,8 +2,21 @@
 
 All notable public-facing changes are tracked here.
 
-## Unreleased - 2026-07-24
+## Unreleased - 2026-07-25
 
+- Add the source-backed C5 AF3 adapter with exact archive/checksum/shape
+  validation, a nine-column privacy allowlist, deterministic target selection,
+  and a frozen 55/55 target-group split.
+- Add a 110-row derived C5 manifest, compact aggregate result, and
+  `CC-BY-4.0` provenance record without redistributing the raw 24.6 MB source.
+- Record the first source-backed negative calibration result: trust-all has
+  28/55 failures, fixed `ipTM >= 0.80` has 3 failures among 20 trusted targets,
+  and a uniformly corrected Hoeffding search certifies no trusted set at
+  `alpha <= 0.30`.
+- Add source hash/schema, split leakage, deterministic tie, canonical
+  trajectory, and public-artifact privacy tests.
+- Keep model training, DPO/RLVR, and general-PPI transfer claims closed; select
+  independent calibration evidence as the next C5 milestone.
 - Add a 12-row synthetic Stage B C5 antibody-antigen OOD policy-test manifest
   with visible metric/calibration cards and hidden interface labels.
 - Reuse the canonical trajectory schema for C5 extraction, safety, trust-gate,
@@ -13,8 +26,8 @@ All notable public-facing changes are tracked here.
   3/12 with 8, 6/12 with 0, and 12/12 with 0, respectively.
 - Add leakage, complex-group overlap, missing-calibration, metric-scope,
   RCPS-threshold, regime-match, and malformed-manifest tests.
-- Select a source-backed public-score pilot as the next C5 ticket; keep model
-  training and new structure-prediction compute closed.
+- Select a source-backed public-score pilot as the next C5 ticket; this ticket
+  is superseded by the completed 2026-07-25 checkpoint above.
 
 - Add a prospective Stage A public development slice with 25 case-specific
   typed query targets and 180 routing states across eight perturbations,

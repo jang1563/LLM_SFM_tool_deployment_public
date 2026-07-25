@@ -3,7 +3,7 @@
   "project": "LLM-SFM Tool Deployment",
   "release_profile": "benchmark_public_surface",
   "status": "public_clean_snapshot_release_surface",
-  "last_updated": "2026-07-24",
+  "last_updated": "2026-07-25",
   "benchmark_scope": {
     "primary_release_object": "Stage A biology tool-use trajectory benchmark substrate",
     "primary_claim": "Agents should be evaluated on tool -> evidence packet -> terminal action trajectories with hidden labels separated from model-visible prompts.",
@@ -1466,6 +1466,31 @@
       "kind": "c5_synthetic_policy_baseline_report",
       "sha256": "5a95eae8e232530c3d9e1e79d802180831286b558502be5dbc783958ce1a3be8",
       "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_source_backed_manifest_v1.jsonl",
+      "kind": "c5_source_backed_derived_manifest",
+      "records": 110,
+      "sha256": "8de4a31cd927b9dadf2d9bf5bd4f21d4a46f46f4bc4c62c30b2c21b42c426d9e",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_source_backed_pilot_result_2026-07-25.json",
+      "kind": "c5_source_backed_compact_result",
+      "sha256": "621902b8eb6d7bb4f3612b6159acfac001aee4531f3780fce8c4387a622214d3",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/C5_SOURCE_BACKED_PILOT_RESULT_2026-07-25.md",
+      "kind": "c5_source_backed_compact_report",
+      "sha256": "492b625d25d0b5b155bc440375fb54d7dd5ab5e4b6cfca8b8c01ba23e4be1c29",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/SOURCE_BACKED_PILOT_PROVENANCE.md",
+      "kind": "c5_source_backed_provenance",
+      "sha256": "573ff3b3ed19f58d3e29e2b4108af8f95f9c39476f6a22b4f5833bb9d0e8fa8a",
+      "safe_to_publish": true
     }
   ],
   "validation_commands": [
@@ -1475,6 +1500,7 @@
     "python post_training/evaluate_stage_a_tool_query_runtime_compiler.py --out-json /tmp/stage_a_tool_query_runtime_compiler_result.json --out-md /tmp/STAGE_A_TOOL_QUERY_RUNTIME_COMPILER_RESULT.md",
     "python -m c5_antibody_ood.manifest --out /tmp/c5_policy_test_manifest_v1.jsonl",
     "python -m c5_antibody_ood.evaluate_baselines --out-json /tmp/c5_policy_baseline_result.json --out-md /tmp/C5_POLICY_BASELINE_RESULT.md",
+    "python -m pytest -q tests/test_c5_source_pilot.py",
     "python examples/run_public_demo.py",
     "python post_training/run_stage_a_sft_smoke_eval.py --json",
     "python post_training/run_stage_a_strict_component_diagnostics.py --compact",

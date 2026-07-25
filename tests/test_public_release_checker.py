@@ -46,9 +46,14 @@ def test_public_release_checker_catches_common_release_secrets() -> None:
     patterns = {label: pattern for label, pattern in SENSITIVE_PATTERNS}
     fake_hf_token = "hf_" + "abcdefghijklmnopqrstuvwx"
     fake_private_key_marker = "-----BEGIN " + "OPENSSH PRIVATE KEY-----"
+    fake_hpc_path = "/" + "proj" + "/example/run/output.json"
 
     assert patterns["huggingface token"].search(fake_hf_token)
     assert patterns["private key marker"].search(fake_private_key_marker)
+    assert patterns["shared HPC absolute path"].search(fake_hpc_path)
+    assert not patterns["shared HPC absolute path"].search(
+        "/" + "scratch" + "/${USER}/job_${SLURM_JOB_ID}"
+    )
 
 
 def test_public_release_checker_rejects_career_framing_and_scheduler_ids() -> None:

@@ -37,6 +37,18 @@ def _fragment(*parts: str) -> str:
 
 SENSITIVE_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("personal absolute path", re.compile(r"/Users/[A-Za-z0-9._-]+")),
+    (
+        "shared HPC absolute path",
+        re.compile(
+            _fragment(
+                r"/(?:",
+                "proj",
+                r"|",
+                "scratch",
+                r")/(?!\$\{?USER\}?)",
+            )
+        ),
+    ),
     ("home-relative private path", re.compile(r"(?<![A-Za-z0-9_])~/(?:Dropbox|\\.config|\\.ssh|\\.cache)")),
     (
         "local key-file breadcrumb",

@@ -66,6 +66,10 @@ schema.
   high internal score.
 - Claim boundary: the published benchmark evaluates model ranking and structure
   quality. It does not itself certify this project's RCPS deployment gate.
+- Local checkpoint: exact `CC-BY-4.0` archive intake yields 22,000 AF3 samples
+  over 110 targets. A frozen 55/55 target split finds 28 failures under
+  trust-all, 3 failures among 20 targets selected by fixed `ipTM >= 0.80`, and
+  no Hoeffding-certified trusted set at primary `alpha = 0.30`.
 
 ## FoldBench General-to-Ab-Ag Transfer Candidate
 
@@ -77,8 +81,14 @@ schema.
   controls.
 - Project relevance: candidate substrate for calibrating a general PPI gate and
   testing transfer to Ab-Ag before fitting a regime-specific gate.
-- Claim boundary: schema, license, per-sample confidence availability, and
-  target identifiers must be audited before data ingestion.
+- Source audit: paper DOI `10.1038/s41467-025-67127-3`; MIT code/target archive
+  DOI `10.5281/zenodo.17180806`; GitHub commit
+  `4273f6877d82bd0b2fa476d1b2f34d121cbccc70`.
+- Claim boundary: the public code/archive exposes target tables, evaluation
+  code, and examples. The article Source Data workbook has target-level
+  PPI/Ab-Ag DockQ sheets but no paired per-sample ranking/confidence fields for
+  those strata; it also has a different redistribution boundary. General-PPI
+  transfer remains deferred.
 
 ## Boltz-2
 

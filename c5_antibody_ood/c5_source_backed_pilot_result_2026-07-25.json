@@ -1,0 +1,160 @@
+{
+  "calibration": {
+    "candidate_thresholds": {
+      "count": 50,
+      "maximum": 0.99,
+      "minimum": 0.5,
+      "step": 0.01
+    },
+    "certificates": {
+      "alpha_0.10": {
+        "alpha": 0.1,
+        "calibration_empirical_risk": null,
+        "calibration_failures": 0,
+        "calibration_risk_upper_bound": null,
+        "calibration_trusted": 0,
+        "candidate_count": 50,
+        "certified": false,
+        "delta": 0.1,
+        "threshold": null
+      },
+      "alpha_0.20": {
+        "alpha": 0.2,
+        "calibration_empirical_risk": null,
+        "calibration_failures": 0,
+        "calibration_risk_upper_bound": null,
+        "calibration_trusted": 0,
+        "candidate_count": 50,
+        "certified": false,
+        "delta": 0.1,
+        "threshold": null
+      },
+      "alpha_0.30": {
+        "alpha": 0.3,
+        "calibration_empirical_risk": null,
+        "calibration_failures": 0,
+        "calibration_risk_upper_bound": null,
+        "calibration_trusted": 0,
+        "candidate_count": 50,
+        "certified": false,
+        "delta": 0.1,
+        "threshold": null
+      }
+    },
+    "method": "uniform_hoeffding_union_bound"
+  },
+  "dataset": "c5_abag_af3_source_backed_pilot_eval_v1",
+  "decision": {
+    "next_ticket": "obtain_validated_general_ppi_per_sample_confidence_or_expand_independent_abag_calibration",
+    "ready_for_c5_model_training": false,
+    "ready_for_dpo_rlvr": false,
+    "regime_specific_trust_certified": false,
+    "source_backed_pilot_passed": true
+  },
+  "derived_manifest": {
+    "path": "c5_antibody_ood/c5_source_backed_manifest_v1.jsonl",
+    "rows": 110,
+    "sha256": "8de4a31cd927b9dadf2d9bf5bd4f21d4a46f46f4bc4c62c30b2c21b42c426d9e"
+  },
+  "evaluation_scope": "published_label_replay_target_grouped",
+  "manifest": {
+    "hidden_label_isolation": true,
+    "rows": 110,
+    "validation_issues": []
+  },
+  "policies": {
+    "fail_closed": {
+      "action": "verify_with_assay_or_database",
+      "coverage": 0.0,
+      "failure_rate_among_trusted": 0.0,
+      "failures_among_trusted": 0,
+      "targets": 55,
+      "trusted": 0,
+      "verify_or_defer": 55
+    },
+    "free_form_llm": {
+      "reason": "no_saved_source_backed_model_outputs",
+      "status": "not_run"
+    },
+    "general_ppi_transfer": {
+      "reason": "no_public_full_per_sample_ppi_and_abag_confidence_table_validated_for_intake",
+      "status": "deferred"
+    },
+    "generic_fixed_iptm_0_80": {
+      "coverage": 0.363636,
+      "failure_rate_among_trusted": 0.15,
+      "failures_among_trusted": 3,
+      "targets": 55,
+      "trusted": 20,
+      "verify_or_defer": 35
+    },
+    "regime_specific_hoeffding": {
+      "alpha": 0.3,
+      "certified": false,
+      "coverage": 0.0,
+      "delta": 0.1,
+      "failure_rate_among_trusted": 0.0,
+      "failures_among_trusted": 0,
+      "targets": 55,
+      "threshold": null,
+      "trusted": 0,
+      "verify_or_defer": 55
+    },
+    "trust_all": {
+      "coverage": 1.0,
+      "failure_rate_among_trusted": 0.509091,
+      "failures_among_trusted": 28,
+      "targets": 55,
+      "trusted": 55,
+      "verify_or_defer": 0
+    }
+  },
+  "scientific_boundary": {
+    "general_ppi_transfer_claimed": false,
+    "independent_hidden_test_claimed": false,
+    "llm_or_api_used": false,
+    "new_structure_prediction_run": false,
+    "published_labels_used": true,
+    "raw_paths_or_sequences_published": false,
+    "source_sample_ids_published": false
+  },
+  "selection": {
+    "dockq_success_threshold": 0.23,
+    "rule": "max_ranking_confidence_then_lexical_sample_id_tiebreak_with_id_hashed_on_export",
+    "selected_interface_success_rate": 0.5,
+    "selected_interface_successes": 55,
+    "selected_targets": 110,
+    "targets_with_top_score_ties": 64
+  },
+  "source": {
+    "absolute_path_values_emitted": false,
+    "allowlisted_column_count": 9,
+    "archive_doi": "10.5281/zenodo.17978681",
+    "archive_file": "abag-benchmark-set-main.zip",
+    "archive_md5": "2933fb1bb66903469d02c64a9d21f5d9",
+    "archive_member_byte_identity_verified": true,
+    "archive_member_verification_date": "2026-07-25",
+    "archive_url": "https://zenodo.org/records/17978681",
+    "bytes": 24588543,
+    "excluded_absolute_path_cells": 132000,
+    "excluded_column_count": 47,
+    "license": "CC-BY-4.0",
+    "paper_doi": "10.1093/bioinformatics/btag136",
+    "rows": 22000,
+    "samples_per_target": 200,
+    "sha256": "56259a84f1e8cc216e5ee91a96584f824ca46f062ef4f2c06aa4674472daf1c8",
+    "source_column_count": 56,
+    "source_member": "abag-benchmark-set-main/data/scores/alphafold3/scores_alphafold3.csv",
+    "targets": 110,
+    "upstream_commit": "06b21927bcacf6fb0612e56cdc110c206d9eebdc"
+  },
+  "split": {
+    "calibration_successes": 28,
+    "calibration_targets": 55,
+    "evaluation_successes": 27,
+    "evaluation_targets": 55,
+    "method": "sha256_target_group_sort",
+    "salt": "c5-abag-af3-v1",
+    "target_overlap": 0
+  }
+}

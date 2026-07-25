@@ -47,6 +47,36 @@ python -m c5_antibody_ood.evaluate_baselines
 
 These are fixture-defined contract results, not Ab-Ag performance estimates.
 
+## 2026-07-25 Source-Backed Checkpoint
+
+The first public-score pilot is complete without API calls, model loading, or
+new structure prediction:
+
+```bash
+python -m c5_antibody_ood.evaluate_source_pilot \
+  --scores /external/path/scores_alphafold3.csv
+```
+
+- The canonical source is the exact 24,588,543-byte AF3 CSV in Fromm et al.
+  Zenodo record `17978681` (`CC-BY-4.0`), verified by SHA-256.
+- Intake validates 22,000 rows, 110 targets, 200 samples per target, required
+  columns, unit-interval metrics, sample uniqueness, and the `alphafold3`
+  preset.
+- A nine-column allowlist excludes source paths, structures, sequences, raw
+  features, and unhashed source sample IDs.
+- Maximum ranking confidence selects one sample per target; lexical sample ID
+  resolves ties. Sixty-four targets have tied top scores.
+- SHA-256 target grouping freezes 55 calibration and 55 evaluation targets
+  with zero overlap.
+- On evaluation, trust-all has 28 failures among 55 trusted targets. A fixed
+  `ipTM >= 0.80` baseline has 3 failures among 20 trusted targets.
+- A 50-threshold uniform Hoeffding search certifies no trusted set at
+  `alpha = 0.30`, `0.20`, or `0.10`; fail-closed verification is the correct
+  current policy.
+
+This is a published-label replay. The source-backed intake is valid, but
+regime-specific trust is not certified.
+
 ## Hypotheses
 
 ### H4.4 Boundary
@@ -159,21 +189,23 @@ Only run LLM/API arms after the no-API gate and QC checks are complete.
 
 ## Immediate Next Research Checks
 
-Use public score artifacts before spending API or HPC compute:
+The public-score intake gate has passed. The next missing evidence is
+independent calibration, not model learning:
 
-1. Audit the schema and license for the 110-complex benchmark from
-   https://doi.org/10.1093/bioinformatics/btag136 and
-   https://github.com/samuelfromm/abag-benchmark-set.
-2. Audit whether FoldBench exposes compatible per-sample confidence and DockQ
-   fields for general-PPI to Ab-Ag transfer.
-3. Freeze calibration/evaluation partitions by `complex_id`; sampled models
-   from one target must never cross partitions.
-4. Keep DockQ/interface labels hidden from model-visible records.
-5. Run trust-all, general-PPI transfer, Ab-Ag-specific calibration, shuffled or
-   inverted controls, and fail-closed routing from saved public scores.
+1. Do not inspect or tune on the frozen 55-target evaluation labels.
+2. Request or locate a license-compatible FoldBench export containing
+   per-sample target ID, interaction regime, confidence metric, ranking score,
+   and DockQ for both PPI and Ab-Ag.
+3. If compatible scores remain unavailable, pre-register an independent
+   Ab-Ag panel and run only the missing specialist outputs on Cayuga first,
+   Expanse second.
+4. Freeze threshold candidates, risk definition, alpha, delta, and
+   multiple-threshold correction before reading the new labels.
+5. Compare general-PPI transfer, Ab-Ag-specific calibration, trust-all,
+   shuffled/inverted controls, and fail-closed routing on target-grouped data.
 
-Only after this intake passes should Cayuga or Expanse be used for missing
-specialist outputs. No local heavy model compute is planned.
+No local heavy model compute is planned. DPO/RLVR is unrelated to the current
+calibration-data gap and remains closed.
 
 ## Sanity Check Result
 
