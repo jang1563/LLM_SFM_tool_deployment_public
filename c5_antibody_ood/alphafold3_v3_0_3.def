@@ -50,6 +50,7 @@ Stage: final
     make install
     cd easel
     make install
+    cd /
     rm -rf /hmmer_build
 
     export UV_COMPILE_BYTECODE=1

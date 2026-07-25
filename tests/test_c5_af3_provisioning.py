@@ -19,6 +19,7 @@ def test_apptainer_definition_pins_official_af3_build_inputs():
     assert "uv sync --frozen --all-groups --no-editable" in definition
     assert "uv run build_data" in definition
     assert "ca70d94fd0cf271bd7063423aabb116d42de533117343a9b27a65c17ff06fbf3" in definition
+    assert "cd /\n    rm -rf /hmmer_build" in definition
     assert "XLA_CLIENT_MEM_FRACTION=0.95" in definition
     assert "Model parameters and" in definition
     assert "genetic databases are not included." in definition
