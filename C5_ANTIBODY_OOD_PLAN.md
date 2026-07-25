@@ -77,6 +77,43 @@ python -m c5_antibody_ood.evaluate_source_pilot \
 This is a published-label replay. The source-backed intake is valid, but
 regime-specific trust is not certified.
 
+## 2026-07-25 Independent Calibration Checkpoint
+
+The Hitawala-Gray published-score replay adds a second source:
+
+- 1,565 complete bound predictions across 108 source targets pass intake;
+- all Fromm PDB IDs are blocked before calibration;
+- 9 overlapping PDB IDs representing 11 complex copies are excluded;
+- 44 antibody and 53 nanobody targets remain;
+- neither cohort earns a uniformly corrected ranking-score certificate at
+  `alpha <= 0.30`;
+- the locked Fromm evaluation therefore remains 0/55 trusted and 55/55
+  verified.
+
+This is independent-source published-label evidence, not a hidden test.
+
+## 2026-07-25 Prospective Freeze Checkpoint
+
+The next C5 evidence layer is now preregistered before prediction:
+
+- protocol SHA:
+  `9c3fd6784fecef3b8971daedb8bfbfc3a1ca725f0353e05f0b7420a30f06e17a`;
+- exact SAbDab2 v0.1.0 source and official sequence-aware split;
+- 80 calibration, 20 calibration-reserve, 40 evaluation, and 10
+  evaluation-reserve targets;
+- 150 unique PDB/SAbDab IDs, zero prior C5 PDB overlap, and zero
+  source-cluster overlap between calibration and evaluation;
+- Cayuga structure QC 150/150, no promotions, and 120 frozen template-free AF3
+  inputs;
+- AF3 v3.0.3 and DockQ v2.1.3 commit pins;
+- fixed threshold family, risk correction, label scope, output-selection rule,
+  and stopping rule.
+
+The Cayuga preflight passes the runtime, source, and 120-input checks but
+blocks prediction until the container, authorized AF3 parameters, and database
+inventory are checksum locked. See
+`c5_antibody_ood/C5_PROSPECTIVE_PANEL_PREREGISTRATION_2026-07-25.md`.
+
 ## Hypotheses
 
 ### H4.4 Boundary
@@ -99,73 +136,48 @@ than the generic claim "gate wins"; it says where trust has earned calibration.
 
 ## Dataset Build
 
-1. Curate a small antibody-antigen complex panel.
-   - For each target: source PDB, antigen chain, antibody/binder chain, notes on
-     missing residues and interface contacts.
-   - Start with at least 3 targets for manifest validation; scale only after QC.
-2. Prepare clean two-chain PDBs with:
+The panel is no longer ad hoc. `prospective_source.py` validates the exact
+SAbDab2 split file, projects metadata through a strict allowlist, excludes all
+prior Fromm/Gray PDB IDs, and deterministically selects the locked primary and
+reserve roles. `prospective_inputs.py` performs private native-structure and
+chain-sequence QC, promotes only same-split reserves, and emits hash
+commitments rather than raw sequence or structure content.
 
-```bash
-python hpc/prep_hetdimer.py \
-  --pdb /path/to/source.pdb \
-  --target-chain A \
-  --binder-chain H \
-  --out hpc_outputs/targets/prepared_TARGET_AH.pdb \
-  --report hpc_outputs/targets/prepared_TARGET_AH.report.json
-```
+Public panel validation fails closed on:
 
-3. Build a manifest based on:
-
-```text
-<local-workspace>/bio_sfm_designer/configs/template_complex_targets.json
-```
-
-4. Validate before compute:
-
-```bash
-python -m bio_sfm_designer.experiments.complex_target_manifest \
-  --manifest configs/c5_antibody_targets.json \
-  --require-files \
-  --min-targets 3 \
-  --out results/c5_antibody_manifest.json \
-  --emit-plan results/c5_antibody_submit.sh
-```
+- source checksum/schema/count drift;
+- PDB or SAbDab duplication;
+- prior C5 PDB overlap;
+- calibration/evaluation source-cluster overlap;
+- missing chain-role or source-split fields;
+- leaked sequences, DockQ labels, confidence values, or local paths.
 
 ## Compute Pattern
 
-Use the existing HPC-first pattern:
+Use the pinned prospective path:
 
 ```text
-Cayuga/Expanse GPU job -> JSONL records -> local Precomputed adapter -> local gate/eval
+Cayuga AF3 array -> immutable prediction freeze -> calibration label reveal
+-> threshold or verify-all freeze -> evaluation label reveal
 ```
 
-For each ready target, the generated submit plan should call:
+Before submission, run `c5_antibody_ood.af3_preflight` against the private
+environment. It verifies:
 
-```bash
-sbatch hpc/run_generate_proteinmpnn_complex.sbatch
-sbatch hpc/run_predict_boltz_complex.sbatch
-```
+- AF3 source commit and tag;
+- Singularity image checksum;
+- one official parameter-set checksum;
+- all required databases plus a checksum-locked private inventory;
+- the 120-file input-set checksum;
+- a clean output boundary.
 
-For a pure OOD calibration check, also allow a no-redesign/native-complex panel
-if the prediction script can emit the same record schema. Do not spend scale-up
-compute before verifying the records pass QC and the label definition is stable.
+The 120-task Cayuga array verifies the passed private attestation SHA before
+starting. Expanse remains fallback only. No local heavy model compute is
+allowed.
 
 ## Evaluation
 
-Run the existing posthoc bundle and alpha planner first:
-
-```bash
-python -m bio_sfm_designer.experiments.complex_posthoc_bundle \
-  --records hpc_outputs/predict/records_boltz_complex_antibody.jsonl \
-  --alphas 0.3,0.2,0.1 \
-  --out-dir results/c5_antibody_posthoc
-
-python -m bio_sfm_designer.experiments.complex_alpha_plan \
-  --records hpc_outputs/predict/records_boltz_complex_antibody.jsonl \
-  --alphas 0.3,0.2,0.1
-```
-
-Then compare four routing conditions:
+After the prediction and label-reveal gates pass, compare:
 
 | condition | meaning |
 | --- | --- |
@@ -189,23 +201,20 @@ Only run LLM/API arms after the no-API gate and QC checks are complete.
 
 ## Immediate Next Research Checks
 
-The public-score intake gate has passed. The next missing evidence is
-independent calibration, not model learning:
+The method, source, and input gates have passed. The next work is execution and
+staged reveal, not model learning:
 
-1. Do not inspect or tune on the frozen 55-target evaluation labels.
-2. Request or locate a license-compatible FoldBench export containing
-   per-sample target ID, interaction regime, confidence metric, ranking score,
-   and DockQ for both PPI and Ab-Ag.
-3. If compatible scores remain unavailable, pre-register an independent
-   Ab-Ag panel and run only the missing specialist outputs on Cayuga first,
-   Expanse second.
-4. Freeze threshold candidates, risk definition, alpha, delta, and
-   multiple-threshold correction before reading the new labels.
-5. Compare general-PPI transfer, Ab-Ag-specific calibration, trust-all,
-   shuffled/inverted controls, and fail-closed routing on target-grouped data.
+1. Obtain the authorized official AF3 3.0.x parameters.
+2. Build and checksum the v3.0.3 container.
+3. Install the official databases and freeze a private inventory checksum.
+4. Rerun preflight; submit no GPU task unless every component passes.
+5. Freeze all five outputs per retained target and select one output by the
+   preregistered rule before DockQ calculation.
+6. Reveal calibration labels, freeze the certificate or `verify_all`, then
+   reveal evaluation labels once.
 
-No local heavy model compute is planned. DPO/RLVR is unrelated to the current
-calibration-data gap and remains closed.
+No local heavy model compute, evaluation tuning, DPO/RLVR, or model training is
+planned. General-PPI transfer remains a separate evidence gap.
 
 ## Sanity Check Result
 

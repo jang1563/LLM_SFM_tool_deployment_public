@@ -1,0 +1,81 @@
+{
+  "decision": {
+    "external_specialist_trust_enabled": false,
+    "ready_for_dpo_rlvr": false,
+    "ready_for_model_training": false,
+    "ready_for_prediction": true
+  },
+  "eligibility": {
+    "excluded_by_reason": {
+      "before_release_date_cutoff": 5542,
+      "candidate_metadata_missing": 1386,
+      "no_protein_antigen": 1295,
+      "not_antibody_antigen_complex": 1739,
+      "not_paired_chain_antibody": 3262
+    },
+    "retained_by_split": {
+      "test": 420,
+      "train": 1997
+    },
+    "retained_rows": 2417
+  },
+  "preregistration_id": "c5-sabdab2-af3-prospective-2026-07-25-v1",
+  "privacy": {
+    "dockq_values_read": false,
+    "native_interface_labels_read": false,
+    "raw_numbering_or_cdr_fields_emitted": false,
+    "raw_sequences_emitted": false,
+    "raw_structures_or_paths_emitted": false
+  },
+  "protocol_sha256": "9c3fd6784fecef3b8971daedb8bfbfc3a1ca725f0353e05f0b7420a30f06e17a",
+  "schema_version": "c5_prospective_source_intake_audit_v1",
+  "selection": {
+    "blocked_overlap_rows_excluded": 129,
+    "blocked_pdb_ids": 197,
+    "duplicate_pdb_rows_skipped": 11,
+    "duplicate_sabdab_rows_skipped": 32,
+    "eligible_rows_before_overlap_exclusion": 2417,
+    "selected_by_role": {
+      "calibration": 80,
+      "calibration_reserve": 20,
+      "evaluation": 40,
+      "evaluation_reserve": 10
+    },
+    "selected_rows": 150,
+    "selected_source_cluster_overlap": 0,
+    "selected_unique_pdb_ids": 150,
+    "selected_unique_sabdab_ids": 150
+  },
+  "source": {
+    "allowlisted_column_count": 14,
+    "allowlisted_columns": [
+      "Hchain",
+      "INSTANCE",
+      "Lchain",
+      "PDB_ID",
+      "PDBdepo",
+      "SABDAB_ID",
+      "ab_ag_cluster",
+      "ab_ag_split",
+      "agchains",
+      "agtypes",
+      "holo",
+      "method",
+      "resolution",
+      "type"
+    ],
+    "bytes": 140769855,
+    "columns": 48,
+    "excluded_column_count": 34,
+    "rows": 15641,
+    "sha256": "01414df16af9d3343994f527e13e81a25bf8da08198858018493a96f173a8cfb",
+    "split_counts": {
+      "test": 3128,
+      "train": 12513
+    }
+  },
+  "validation": {
+    "issues": [],
+    "passed": true
+  }
+}

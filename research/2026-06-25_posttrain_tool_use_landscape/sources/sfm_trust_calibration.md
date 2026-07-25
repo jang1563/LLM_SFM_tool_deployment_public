@@ -169,3 +169,24 @@ schema.
   `defer`.
 - Claim boundary: guarantees depend on calibration assumptions and the
   exchangeability/shift model; OOD regimes must be handled explicitly.
+
+## SAbDab2 Prospective C5 Substrate
+
+- Type: `official data` / `official code releases`
+- URLs:
+  - https://doi.org/10.5281/zenodo.20083995
+  - https://sabdab.opig.stats.ox.ac.uk/about
+  - https://github.com/google-deepmind/alphafold3/releases/tag/v3.0.3
+  - https://github.com/google-deepmind/alphafold3/blob/v3.0.3/docs/installation.md
+  - https://github.com/wallnerlab/DockQ/releases/tag/v2.1.3
+- Domain: prospective antibody-antigen confidence calibration.
+- Verifier/reward signal: official sequence-aware source split, exact
+  source/code/evaluator fingerprints, checksum-bound prediction inputs,
+  pre-prediction environment attestation, and staged DockQ reveal.
+- Project relevance: replaces post-hoc public-score reuse with a method-locked
+  80-target calibration and 40-target evaluation panel on Cayuga. It also makes
+  authorized model parameters, full databases, and container identity explicit
+  execution gates.
+- Claim boundary: native structures are public and this is not an independent
+  hidden test. Before prediction and label reveal, the only supported claim is
+  reproducible prospective method/source/input freezing.

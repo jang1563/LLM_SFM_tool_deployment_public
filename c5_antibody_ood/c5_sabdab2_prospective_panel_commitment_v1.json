@@ -1,0 +1,31 @@
+{
+  "decision": {
+    "external_specialist_trust_enabled": false,
+    "ready_for_dpo_rlvr": false,
+    "ready_for_model_training": false,
+    "ready_for_prediction": true
+  },
+  "panel": {
+    "blocked_pdb_overlap": 0,
+    "manifest_sha256": "d1bb1352d58345ac3c45ad6bd229df4a19aa9d0789c0ab3fbec94fca4cdbf7ea",
+    "roles": {
+      "calibration": 80,
+      "calibration_reserve": 20,
+      "evaluation": 40,
+      "evaluation_reserve": 10
+    },
+    "rows": 150,
+    "source_cluster_overlap_between_splits": 0
+  },
+  "preregistration_id": "c5-sabdab2-af3-prospective-2026-07-25-v1",
+  "protocol_sha256": "9c3fd6784fecef3b8971daedb8bfbfc3a1ca725f0353e05f0b7420a30f06e17a",
+  "schema_version": "c5_prospective_panel_commitment_v1",
+  "source": {
+    "archive_md5": "0dbb4cc499e9eb77f14008b232f2c38c",
+    "doi": "10.5281/zenodo.20083995"
+  },
+  "validation": {
+    "issues": [],
+    "passed": true
+  }
+}

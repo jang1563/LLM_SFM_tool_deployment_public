@@ -28,7 +28,7 @@ should verify, and when it should defer instead of hallucinating certainty?
 | `llm_sfm_tool_deployment/` | Generic trajectory evaluator for tool-use decisions. | Scores whether the model used the right action, evidence, source, and deferral behavior. |
 | `negbiodb_ct/` | NegBioDB-CT task builder and tool-use runners. | Creates balanced drug/condition packets for ground, reject, verify, defer, and flag decisions. |
 | `negbiodb_ct/stage_a_mini_manifest.jsonl` | Public-safe Stage A benchmark manifest. | Separates model-visible tasks from hidden labels for trajectory evaluation. |
-| `c5_antibody_ood/` | Stage B C5 antibody-antigen OOD contract tests, source-backed AF3 adapters, overlap-audited independent calibration, and fail-closed baselines. | Reuses the canonical trajectory schema and blocks specialist trust when finite-sample calibration cannot certify a trusted set. |
+| `c5_antibody_ood/` | Stage B C5 antibody-antigen OOD contract tests, published-score replays, and a source/input-frozen prospective AF3 panel. | Reuses the canonical trajectory schema and blocks specialist trust or cluster execution when calibration or environment attestations fail. |
 | `post_training/` | SFT, preference, process-supervision, guardrail, split, and validation artifacts. | Converts clean tool-use trajectories into training/evaluation data and checks schema integrity before training. |
 | `a2_freetext/` | Free-text drug/disease resolver plus MONDO band reranker. | Handles the deployment bottleneck: messy names must resolve before retrieval can work. |
 | `research/2026-06-25_posttrain_tool_use_landscape/` | Source notes and synthesis for post-training/tool-use methods. | Keeps the literature/context scan separate from measured project artifacts. |
@@ -39,7 +39,7 @@ should verify, and when it should defer instead of hallucinating certainty?
 |---|---|---|
 | 5 minutes | [REVIEWER_GUIDE.md](REVIEWER_GUIDE.md) | Understand the claim, runnable path, and limitations. |
 | 15 minutes | [BENCHMARK_CARD.md](BENCHMARK_CARD.md) and [REPRODUCIBILITY.md](REPRODUCIBILITY.md) | Check the evaluator gates and public-safe validation path. |
-| 30+ minutes | `tests/`, `negbiodb_ct/stage_a_manifest.py`, `c5_antibody_ood/source_pilot.py`, `c5_antibody_ood/independent_calibration.py`, `post_training/validate_post_training_data.py` | Audit hidden-label isolation, source intake, overlap exclusion, data exports, and failure modes. |
+| 30+ minutes | `tests/`, `negbiodb_ct/stage_a_manifest.py`, `c5_antibody_ood/prospective_panel.py`, `c5_antibody_ood/af3_preflight.py`, `post_training/validate_post_training_data.py` | Audit hidden-label isolation, prospective method locks, source/input commitments, execution gates, and failure modes. |
 
 ## Key Results
 
@@ -49,6 +49,7 @@ should verify, and when it should defer instead of hallucinating certainty?
 | Stage A post-training artifacts | 25 SFT rows, 150 preference pairs, 25 process rows; train/held-out split has 0 source overlap | The benchmark now has validated trajectory data for local SFT/preference smoke tests. |
 | Stage B C5 source-backed pilot | 22,000 AF3 samples / 110 targets; frozen 55/55 target split; trust-all fails on 28/55 trusted evaluation targets; fixed `ipTM >= 0.80` fails on 3/20; Hoeffding gate certifies no trusted set | Source intake and privacy projection pass, but Ab-Ag trust is not certified. Fail-closed verification remains the correct policy while independent calibration evidence is obtained. |
 | Stage B C5 independent calibration | Gray AF3 source: 1,565 complete bound rows / 108 targets; 9 overlapping PDB IDs (11 complex copies) removed; 97 targets retained (44 Ab, 53 Nb); no ranking-score gate certified | Independent-source evidence closes the source-availability gap but not the trust gate. The locked Fromm replay remains 0/55 trusted and 55/55 verified. |
+| Stage B C5 prospective freeze | SAbDab2 source intake 15,641 rows; 150 selected targets; structure QC 150/150; 120 AF3 inputs frozen; zero prior-PDB or source-cluster overlap | Method/source/input preregistration passes. Cayuga prediction remains correctly blocked until the container, authorized model parameters, and database inventory pass checksum attestation. |
 | Stage A prediction-output scorer | Held-out oracle adapter smoke 5/5 pass; missing/extra prediction rows fail closed in tests | Saved API, cluster, or prompt-only outputs can be scored offline with the same evaluator. |
 | Stage A saved-prediction producer | Self-answer artifact smoke writes 5 rows and scores 0/5 | Prompt-only/API/cluster outputs now have an artifact-first entrypoint before interpretation. |
 | Stage A v3 tool-trace prompt contract | Requires an ordered four-tool JSON trace with `drug_id` and `condition_id` arguments while keeping hidden labels/source IDs out of the prompt | Next Cayuga saved-output smoke can isolate tool/query compliance from evidence-label supervision. |
@@ -323,6 +324,9 @@ post-training, prompt-only, and reranker experiments.
   paths.
 - [Roadmap](ROADMAP.md): research-first Stage A component gates, C5 transfer,
   and release milestones.
+- [C5 Prospective Preregistration](c5_antibody_ood/C5_PROSPECTIVE_PANEL_PREREGISTRATION_2026-07-25.md):
+  method/source/input commitments, statistical scope, execution gate, and
+  claim boundary.
 - [Changelog](CHANGELOG.md): public-facing release history.
 - [Release Manifest](release/public_release_manifest.json): record counts,
   checksums, and publishability flags for public artifacts.

@@ -126,6 +126,11 @@ PROHIBITED_PUBLIC_PATH_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
         re.compile(r"(^|/)(?:PORTFOLIO_SUMMARY|SESSION_RECOVERY_\d{4}-\d{2}-\d{2}|WORKTREE_TRIAGE_\d{4}-\d{2}-\d{2})\.md$"),
     ),
     ("ignored run directory", re.compile(r"(^|/)post_training/runs($|/)")),
+    ("ignored C5 run directory", re.compile(r"(^|/)c5_antibody_ood/runs($|/)")),
+    (
+        "private C5 input directory",
+        re.compile(r"(^|/)c5_antibody_ood/private_inputs($|/)"),
+    ),
     ("python bytecode/cache", re.compile(r"(^|/)(__pycache__|.*\.py[cod])($|/)")),
     ("pytest cache", re.compile(r"(^|/)\.pytest_cache($|/)")),
     ("virtual environment", re.compile(r"(^|/)(\.venv|venv)($|/)")),
@@ -138,6 +143,11 @@ PROHIBITED_PUBLIC_PATH_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
 
 PROHIBITED_PUBLIC_ARTIFACT_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("ignored run directory", re.compile(r"(^|/)post_training/runs($|/)")),
+    ("ignored C5 run directory", re.compile(r"(^|/)c5_antibody_ood/runs($|/)")),
+    (
+        "private C5 input directory",
+        re.compile(r"(^|/)c5_antibody_ood/private_inputs($|/)"),
+    ),
     (
         "raw saved predictions",
         re.compile(r"(^|[/_-])raw[/_-](?:saved[/_-])?predictions?($|[._/-])", re.IGNORECASE),

@@ -499,23 +499,50 @@ General-PPI transfer remains unmeasured because no validated full per-sample
 PPI/Ab-Ag confidence table is available through the audited FoldBench
 GitHub/Zenodo release.
 
+## Completed Prospective C5 Freeze Ticket
+
+The next evidence panel is now locked without reading prediction scores or
+DockQ/interface labels:
+
+- SAbDab2 v0.1.0 and its official antibody-and-antigen sequence-aware split are
+  checksum and schema locked;
+- target inclusion, all prior Fromm/Gray PDB exclusions, AF3 v3.0.3, five
+  samples, ranking metric, DockQ v2.1.3, threshold family, alpha, delta,
+  correction, reveal order, and stopping rule are preregistered;
+- deterministic metadata-only selection yields 80 calibration, 40 evaluation,
+  20 calibration-reserve, and 10 evaluation-reserve targets;
+- 150/150 native structures pass private chain/sequence QC with no reserve
+  promotions;
+- 120 template-free AF3 inputs are frozen by an aggregate checksum, with no
+  raw sequence, structure, local path, or label in the public artifacts;
+- the 80-target calibration panel can support a zero-failure certificate at
+  primary `alpha = 0.30` and potentially 0.20, but cannot support 0.10 under
+  the preregistered uniform bound.
+
+This is prospective method/source/input evidence, not an AF3 result or a
+blinded hidden test.
+
 ## Next Concrete Ticket
 
-Pre-register the next prospective C5 evidence panel without tuning on the
-frozen 55-target evaluation split.
+Complete `stage_b_c5_af3_environment_attestation_and_prediction`.
 
 Minimum next output:
 
-- one larger non-overlapping antibody-only public panel or an author-supplied
-  paired FoldBench confidence export is attempted first;
-- if saved public scores remain insufficient, pre-register target inclusion,
-  overlap exclusions, AF3 version, sample count, ranking metric, DockQ
-  evaluator, threshold family, alpha, delta, correction, and stopping rule
-  before Cayuga execution;
+- obtain authorized official AF3 3.0.x parameters;
+- build and checksum the pinned v3.0.3 container;
+- install the official databases and freeze a private inventory checksum;
+- rerun the fail-closed Cayuga preflight until every source, container,
+  parameter, database, input, and output-boundary component passes;
+- submit the 120-target Cayuga array only from a checksum-frozen private
+  attestation, with Expanse as fallback;
+- freeze five outputs per target and select one by the preregistered rule before
+  any DockQ computation;
+- reveal calibration labels first, freeze a certificate or `verify_all`, then
+  reveal the evaluation labels once;
 - evaluate trust-all, fixed-threshold, shuffled/inverted, certified, and
   fail-closed controls;
-- Cayuga first and Expanse second for any required structure-prediction work;
-- no DPO/RLVR or model training while the blocker is calibration evidence.
+- no DPO/RLVR, model training, evaluation tuning, or external specialist trust
+  while prediction and calibration evidence remain incomplete.
 
 Do not repeat or tune on the completed 25-row sealed set. Keep DPO, RLVR, and
 Hugging Face publication closed until a learned routing repair beats static
