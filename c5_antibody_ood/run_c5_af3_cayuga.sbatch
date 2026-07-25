@@ -17,7 +17,7 @@
 #
 #   mkdir -p c5_antibody_ood/runs/slurm
 #   sbatch --account=<allocation> --partition=scu-gpu --gres=gpu:a100:1 \
-#     --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_MODEL_DIR=<models>,AF3_DB_DIR=<databases>,AF3_INPUT_DIR=<inputs>,AF3_OUTPUT_DIR=<outputs>,AF3_ATTESTATION=<attestation>,AF3_ATTESTATION_SHA256=<sha256> \
+#     --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_MODEL_DIR=<models>,AF3_DB_DIR=<databases>,AF3_DB_MANIFEST=<database-manifest>,AF3_INPUT_DIR=<inputs>,AF3_OUTPUT_DIR=<outputs>,AF3_ATTESTATION=<attestation>,AF3_ATTESTATION_SHA256=<sha256> \
 #     c5_antibody_ood/run_c5_af3_cayuga.sbatch
 #
 # Raw inputs, model parameters, databases, predictions, and scheduler logs are
@@ -29,11 +29,13 @@ WORK="${WORK:-${SLURM_SUBMIT_DIR:-$PWD}}"
 PREREGISTRATION="${PREREGISTRATION:-c5_antibody_ood/c5_prospective_panel_preregistration_v1.json}"
 INPUT_FREEZE="${INPUT_FREEZE:-c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json}"
 RETAINED_MANIFEST="${RETAINED_MANIFEST:-c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl}"
+AF3_RUNTIME_VERIFY_MODE="${AF3_RUNTIME_VERIFY_MODE:-quick}"
 
 for required in \
   AF3_SIF \
   AF3_MODEL_DIR \
   AF3_DB_DIR \
+  AF3_DB_MANIFEST \
   AF3_INPUT_DIR \
   AF3_OUTPUT_DIR \
   AF3_ATTESTATION \
@@ -46,15 +48,46 @@ do
 done
 
 cd "${WORK}"
-export PYTHONPATH="${WORK}:${PYTHONPATH:-}"
+if [ "${AF3_RUNTIME_VERIFY_MODE}" != "quick" ] \
+  && [ "${AF3_RUNTIME_VERIFY_MODE}" != "full" ]
+then
+  echo "AF3_RUNTIME_VERIFY_MODE must be quick or full" >&2
+  exit 2
+fi
+for tracked_path in \
+  "${PREREGISTRATION}" \
+  "${INPUT_FREEZE}" \
+  "${RETAINED_MANIFEST}"
+do
+  if [[ "${tracked_path}" = /* || "${tracked_path}" = *".."* ]]; then
+    echo "tracked benchmark paths must be repo-relative" >&2
+    exit 2
+  fi
+done
 
-python -m c5_antibody_ood.af3_preflight verify \
-  --attestation "${AF3_ATTESTATION}" \
+singularity exec \
+  --pwd /app/alphafold \
+  --bind "${WORK}:/root/benchmark:ro" \
+  --bind "${AF3_INPUT_DIR}:/root/af_input:ro" \
+  --bind "${AF3_MODEL_DIR}:/root/models:ro" \
+  --bind "${AF3_DB_DIR}:/root/public_databases:ro" \
+  --bind "${AF3_SIF}:/root/c5_af3.sif:ro" \
+  --bind "${AF3_ATTESTATION}:/root/c5_attestation.json:ro" \
+  --bind "${AF3_DB_MANIFEST}:/root/c5_database_manifest.json:ro" \
+  "${AF3_SIF}" \
+  env PYTHONPATH=/root/benchmark \
+  uv run python3 -m c5_antibody_ood.af3_preflight verify-runtime \
+  --attestation /root/c5_attestation.json \
   --expected-attestation-sha256 "${AF3_ATTESTATION_SHA256}" \
-  --preregistration "${PREREGISTRATION}" \
-  --input-freeze "${INPUT_FREEZE}" \
-  --retained-manifest "${RETAINED_MANIFEST}" \
-  --input-dir "${AF3_INPUT_DIR}"
+  --preregistration "/root/benchmark/${PREREGISTRATION}" \
+  --input-freeze "/root/benchmark/${INPUT_FREEZE}" \
+  --retained-manifest "/root/benchmark/${RETAINED_MANIFEST}" \
+  --input-dir /root/af_input \
+  --container /root/c5_af3.sif \
+  --model-dir /root/models \
+  --database-dir /root/public_databases \
+  --database-manifest /root/c5_database_manifest.json \
+  --mode "${AF3_RUNTIME_VERIFY_MODE}"
 
 mapfile -t AF3_INPUTS < <(
   find "${AF3_INPUT_DIR}" -maxdepth 1 -type f -name '*.json' -print \
@@ -83,12 +116,13 @@ mkdir -p "${AF3_OUTPUT_DIR}"
 
 singularity exec \
   --nv \
+  --pwd /app/alphafold \
   --bind "${AF3_INPUT_DIR}:/root/af_input:ro" \
   --bind "${AF3_OUTPUT_DIR}:/root/af_output" \
   --bind "${AF3_MODEL_DIR}:/root/models:ro" \
   --bind "${AF3_DB_DIR}:/root/public_databases:ro" \
   "${AF3_SIF}" \
-  python run_alphafold.py \
+  uv run python3 run_alphafold.py \
   --json_path="/root/af_input/${INPUT_NAME}" \
   --model_dir=/root/models \
   --db_dir=/root/public_databases \

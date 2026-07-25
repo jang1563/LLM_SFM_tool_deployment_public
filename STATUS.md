@@ -36,6 +36,15 @@ now frozen before prediction or label reveal.
   enforce source commit/tag, container checksum, official parameter-set
   checksum, database inventory checksum, input count/checksum, clean output
   boundary, and immutable private attestation.
+- Cayuga access testing exposed a host-runtime mismatch: the login Python is
+  too old for this package, and an attestation checksum alone did not bind the
+  paths mounted by each array task. The array now runs verification inside the
+  pinned AF3 image using its `/app/alphafold` working directory and
+  `uv run python3`, requires the private database manifest, and rechecks
+  container/model/database identities against the attestation before
+  inference. Full mode rehashes container, parameter, and database content;
+  quick per-task mode uses content-attested sizes and nanosecond mtimes, a
+  model identity digest, and deterministic database sentinels.
 - The post-run phase gates are implemented and synthetic-tested before any
   prediction exists. The intake requires the exact AF3 v3.0.3 five-sample
   directory/file contract, cross-checks full-precision
@@ -85,11 +94,12 @@ antibody-antigen source with an official sequence-aware split and a
 `CC-BY-4.0` data boundary. AlphaFold 3 v3.0.3 fixes the prediction code at
 commit `7b197fe859790fc3e04d03ea70dd0b9ba48881c9`; its official installation
 guide makes model-parameter authorization, database installation, container
-identity, and A100/H100-class compute explicit dependencies. Its pinned output
-writer also fixes the sanitized job directory, five sample subdirectories,
-`ranking_scores.csv`, and summary-confidence schemas; the official ranking
-score is not restricted to `[0,1]` because disorder and clash terms are
-included. DockQ v2.1.3 fixes the evaluator at commit
+identity, and A100/H100-class compute explicit dependencies. Its pinned
+Dockerfile fixes `/app/alphafold` as the working directory and invokes
+`uv run python3`; the output writer fixes the sanitized job directory, five
+sample subdirectories, `ranking_scores.csv`, and summary-confidence schemas.
+The official ranking score is not restricted to `[0,1]` because disorder and
+clash terms are included. DockQ v2.1.3 fixes the evaluator at commit
 `d9cbb1940bb0f42db3257f7da3b0e96f162b94d9`.
 
 These sources change source selection, leakage control, execution preflight,
@@ -106,8 +116,9 @@ Proceed with `stage_b_c5_af3_environment_attestation_and_prediction`.
    process; do not substitute unofficial or untracked weights.
 2. Build the v3.0.3 container, install the official databases, create their
    private checksum inventory, and rerun the Cayuga preflight.
-3. Submit the 120-target array only after the private attestation has zero
-   violations and its SHA-256 is frozen.
+3. Run one full runtime dependency verification, then submit the 120-target
+   array only after the private attestation has zero violations and its
+   SHA-256 is frozen. Keep the per-task quick runtime binding enabled.
 4. Run `prospective_predictions.py` to freeze five outputs per retained target
    and the preregistered target-level selection before any DockQ calculation.
 5. Reconstruct the private native-structure lock against the existing

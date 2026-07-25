@@ -433,6 +433,10 @@ def main() -> int:
     for needle in (
         "--output_dir=/root/af_output",
         'TARGET_OUTPUT="${AF3_OUTPUT_DIR}/${JOB_NAME}"',
+        "AF3_DB_MANIFEST",
+        "af3_preflight verify-runtime",
+        "uv run python3",
+        "--pwd /app/alphafold",
     ):
         require_contains(
             issues,
