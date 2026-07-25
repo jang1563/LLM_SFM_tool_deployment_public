@@ -187,6 +187,15 @@ Completed:
   trusted set at `alpha <= 0.30`;
 - locked external replay keeps the Fromm evaluation at 0/55 trusted and 55/55
   routed to verify because the independent antibody certificate does not pass.
+- prospective C5 protocol lock over SAbDab2 v0.1.0, AF3 v3.0.3, DockQ v2.1.3,
+  fixed sample selection, finite threshold grid, risk correction, reveal order,
+  and stopping rules;
+- source/input-frozen C5 panel with 80 calibration, 40 evaluation, and 30
+  same-split reserve targets, zero prior-PDB/source-cluster overlap, 150/150
+  structure QC passes, and 120 checksum-bound AF3 inputs;
+- fail-closed AF3 environment attestation plus a Cayuga 120-task array path
+  that rejects missing or modified source, container, parameters, databases,
+  inputs, output boundaries, or private attestation.
 
 Not completed:
 
@@ -194,7 +203,8 @@ Not completed:
 - Hugging Face dataset/model/Space publication;
 - a future release beyond the existing v0.1.0 reproducibility snapshot;
 - public demo video or GIF;
-- blinded/prospective Stage B C5 evidence or general-PPI transfer evidence.
+- prospective Stage B C5 prediction/calibration result or general-PPI transfer
+  evidence.
 
 Current checkpoint:
 
@@ -204,8 +214,10 @@ Current checkpoint:
 - keep the synthetic C5 result scoped to contract validation;
 - keep the source-backed C5 result scoped to a published-label replay;
 - keep the independent Gray result scoped to published-label calibration;
-- seek a larger antibody-only panel or pre-register a small Cayuga panel before
-  any trust or model training.
+- keep the prospective panel scoped to method/source/input freeze until AF3
+  prediction, staged label reveal, and risk evaluation are complete;
+- obtain authorized AF3 parameters and checksum-lock the container/databases
+  before submitting the Cayuga array; keep trust and model training closed.
 
 ## Near-Term Milestones
 
@@ -588,8 +600,14 @@ Current checkpoint:
 - the locked Fromm evaluation therefore remains 0/55 trusted and 55/55
   verified;
 - fail-closed verification is active;
-- the next gate is a larger antibody-only public panel or a pre-registered
-  prospective Cayuga panel, not model training.
+- the prospective SAbDab2 method/source/input freeze passes with 150/150
+  structure QC, 120 retained inputs, zero prior-PDB overlap, and zero
+  calibration/evaluation source-cluster overlap;
+- the first Cayuga environment check passes runtime, AF3 source, and input
+  locks but blocks prediction on the absent container, authorized parameters,
+  and database inventory;
+- the next gate is a zero-violation private environment attestation followed by
+  the preregistered Cayuga prediction array, not model training.
 
 ### 6. Release v0.1 And Hugging Face Package
 

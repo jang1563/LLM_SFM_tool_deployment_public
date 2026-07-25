@@ -71,6 +71,11 @@
       "required": true
     },
     {
+      "path": "research/2026-06-25_posttrain_tool_use_landscape/SOURCE_LOG.md",
+      "role": "compact source changes that alter verifier or benchmark design",
+      "required": true
+    },
+    {
       "path": "CHANGELOG.md",
       "role": "public-facing release history",
       "required": true
@@ -1516,6 +1521,56 @@
       "kind": "c5_independent_calibration_provenance",
       "sha256": "a52ad12417eba19a360fff951e46b8bd355cdca6e044e8178d1f8999c0b1bf6e",
       "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_prospective_panel_preregistration_v1.json",
+      "kind": "c5_prospective_protocol_lock",
+      "sha256": "2edc594a51c6ddcdaea245f3118478a651f33ee528879f34255045c7a1d3f85f",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_sabdab2_prospective_panel_manifest_v1.jsonl",
+      "kind": "c5_prospective_candidate_panel",
+      "records": 150,
+      "sha256": "ea469aa3091e89285c101e72ef8fe33cc516ddd9ed6a1b9fbda17a687ecb9153",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_sabdab2_prospective_source_audit_2026-07-25.json",
+      "kind": "c5_prospective_source_audit",
+      "sha256": "d5cd9c88e2a683e344c9a9a1f5ca03b0ebaa81ec9ff8e564fd66b8ebff3109ea",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_sabdab2_prospective_panel_commitment_v1.json",
+      "kind": "c5_prospective_panel_commitment",
+      "sha256": "037ad89b68f013f3b0f489ede08b4f2c9297c4898056ac1c57c388e17387cfee",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl",
+      "kind": "c5_prospective_retained_panel",
+      "records": 120,
+      "sha256": "b1901cb852ba983f2b3a6268a439d2c5b8db6bcada674b3e3867559488c077c2",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json",
+      "kind": "c5_prospective_af3_input_freeze",
+      "sha256": "9c99358abf79230f8edbd420eadf30c0858b8fd42ec221f876ca763f25b01f37",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_af3_environment_readiness_2026-07-25.json",
+      "kind": "c5_af3_environment_readiness",
+      "sha256": "b00bfe0387fbb976e5bcb6b0cc7e8ede0b66b51c1d09fab20bfda945ca08b1cc",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/C5_PROSPECTIVE_PANEL_PREREGISTRATION_2026-07-25.md",
+      "kind": "c5_prospective_preregistration_report",
+      "sha256": "21e913de72c0bd5f900321772f818c7d571ef9ad946805d74f691f56742d35f2",
+      "safe_to_publish": true
     }
   ],
   "validation_commands": [
@@ -1527,6 +1582,8 @@
     "python -m c5_antibody_ood.evaluate_baselines --out-json /tmp/c5_policy_baseline_result.json --out-md /tmp/C5_POLICY_BASELINE_RESULT.md",
     "python -m pytest -q tests/test_c5_source_pilot.py",
     "python -m pytest -q tests/test_c5_independent_calibration.py",
+    "python -m c5_antibody_ood.prospective_panel --check c5_antibody_ood/c5_prospective_panel_preregistration_v1.json",
+    "python -m pytest -q tests/test_c5_prospective_panel.py tests/test_c5_prospective_source.py tests/test_c5_prospective_inputs.py tests/test_c5_af3_preflight.py",
     "python examples/run_public_demo.py",
     "python post_training/run_stage_a_sft_smoke_eval.py --json",
     "python post_training/run_stage_a_strict_component_diagnostics.py --compact",

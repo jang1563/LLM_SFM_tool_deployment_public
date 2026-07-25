@@ -22,5 +22,7 @@ def test_research_plan_checker_passes() -> None:
     assert "fail-closed 12/12; trust-all 9 unsafe trusts" in result.stdout
     assert "C5 source replay: trust-all 28/55 failures" in result.stdout
     assert "C5 independent calibration: 97 targets" in result.stdout
-    assert "C5 next gate: prospective panel preregistration" in result.stdout
+    assert "C5 prospective freeze: 150 targets QC-passed" in result.stdout
+    assert "container/parameters/databases blocked" in result.stdout
+    assert "C5 next gate: AF3 environment attestation" in result.stdout
     assert "completed rows cannot be tuned on or rescored" in result.stdout

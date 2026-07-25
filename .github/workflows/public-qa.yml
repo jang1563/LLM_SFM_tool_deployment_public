@@ -179,6 +179,11 @@ jobs:
             --out-json /tmp/c5_policy_baseline_result.json \
             --out-md /tmp/C5_POLICY_BASELINE_RESULT.md
 
+      - name: Validate Stage B C5 prospective protocol lock
+        run: |
+          python -m c5_antibody_ood.prospective_panel \
+            --check c5_antibody_ood/c5_prospective_panel_preregistration_v1.json
+
       - name: Run Stage A saved-prediction producer smoke test
         run: |
           python post_training/generate_stage_a_predictions.py \
@@ -212,6 +217,10 @@ jobs:
             tests/test_c5_policies.py \
             tests/test_c5_source_pilot.py \
             tests/test_c5_independent_calibration.py \
+            tests/test_c5_prospective_panel.py \
+            tests/test_c5_prospective_source.py \
+            tests/test_c5_prospective_inputs.py \
+            tests/test_c5_af3_preflight.py \
             tests/test_public_demo.py \
             tests/test_public_release_checker.py \
             tests/test_research_plan_checker.py \

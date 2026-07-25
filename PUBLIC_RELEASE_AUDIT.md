@@ -191,6 +191,19 @@ Last checked: 2026-07-25.
 - Added a compact independent-calibration result with aggregate risk/coverage
   counts and certificate bounds only. It contains no raw score table, local
   path, cluster metadata, model output, or source sample filename.
+- Added the prospective SAbDab2 C5 protocol, 150-row candidate panel, and
+  120-row retained panel. Public rows expose only public target identifiers,
+  chain roles, source splits, role/rank metadata, and salted row/cluster
+  commitments.
+- Kept all prospective sequences, structures, AF3 input JSON, DockQ/interface
+  labels, parameters, databases, predictions, private attestations, local
+  paths, and scheduler logs external and untracked.
+- Added aggregate source/input/environment reports with explicit
+  `raw_sequences_emitted=false`, `local_paths_emitted=false`, and no-label-read
+  fields. The environment readiness artifact contains booleans, counts, and
+  checksums only.
+- Added ignored and prohibited path rules for `c5_antibody_ood/runs/` and
+  `c5_antibody_ood/private_inputs/`.
 
 ## Current Public-Release Rule
 
@@ -215,8 +228,10 @@ synthetic policy-contract tests. The 110-row source-backed manifest and compact
 result are publish candidates only as a published-label replay and negative
 calibration result. The 97-row Gray manifest is publishable only as
 independent-source published-label calibration evidence with explicit PDB
-overlap exclusion. None may be described as a blinded hidden test, new
-structure prediction, general-PPI transfer, or certified trusted set.
+overlap exclusion. The prospective SAbDab2 panel and aggregate commitments are
+publishable only as method/source/input freeze evidence. None may be described
+as a blinded hidden test, completed structure-prediction result, general-PPI
+transfer, or certified trusted set.
 
 Publish only the validated clean-snapshot history. Live repository visibility
 and hosted CI state are verified separately from this file-backed release gate.

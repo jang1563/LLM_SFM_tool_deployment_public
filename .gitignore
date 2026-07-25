@@ -21,3 +21,5 @@ logs/
 *.log
 negbiodb_ct/agent_*.json
 post_training/runs/
+c5_antibody_ood/runs/
+c5_antibody_ood/private_inputs/

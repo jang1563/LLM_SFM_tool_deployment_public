@@ -52,6 +52,13 @@ python -m c5_antibody_ood.evaluate_baselines \
   --out-md /tmp/C5_POLICY_BASELINE_RESULT.md
 python -m pytest -q tests/test_c5_source_pilot.py
 python -m pytest -q tests/test_c5_independent_calibration.py
+python -m c5_antibody_ood.prospective_panel \
+  --check c5_antibody_ood/c5_prospective_panel_preregistration_v1.json
+python -m pytest -q \
+  tests/test_c5_prospective_panel.py \
+  tests/test_c5_prospective_source.py \
+  tests/test_c5_prospective_inputs.py \
+  tests/test_c5_af3_preflight.py
 python post_training/run_stage_a_saved_output_calibration_margin_sft.py \
   --dry-run \
   --out-dir /tmp/stage_a_saved_output_calibration_margin_sft \
@@ -101,6 +108,9 @@ Expected high-level outcome:
 - C5 independent-calibration tests verify source identity, source-protocol tie
   handling, PDB-level overlap exclusion, format-specific certificates, locked
   Fromm transfer, hidden-label isolation, and privacy projection;
+- C5 prospective tests verify protocol immutability, exact panel roles,
+  prior-PDB/source-cluster isolation, no-label-read boundaries, reserve
+  promotion, input commitments, and fail-closed AF3 environment attestation;
 - public-safe pytest subset passes.
 
 These commands are also run by the GitHub Actions `Public QA` workflow.
@@ -146,6 +156,52 @@ cmp c5_antibody_ood/c5_gray_independent_calibration_manifest_v1.jsonl \
 The adapter fails on source drift, malformed scientific values, missing bound
 labels, duplicate sample IDs, or residual PDB overlap with Fromm. The external
 CSV path and source filenames are never emitted.
+
+## Prospective C5 Freeze And Execution
+
+The public method, panel, retained-target, input-freeze, and readiness
+artifacts can be validated without raw SAbDab2 structures or AF3 dependencies:
+
+```bash
+python -m c5_antibody_ood.prospective_panel \
+  --check c5_antibody_ood/c5_prospective_panel_preregistration_v1.json
+python scripts/check_research_plan.py
+python -m pytest -q \
+  tests/test_c5_prospective_panel.py \
+  tests/test_c5_prospective_source.py \
+  tests/test_c5_prospective_inputs.py \
+  tests/test_c5_af3_preflight.py
+```
+
+Full prediction requires a private environment. Run the preflight with
+site-specific paths and the expected private checksums:
+
+```bash
+python -m c5_antibody_ood.af3_preflight inventory \
+  --database-dir <af3-database-dir> \
+  --out <private-database-inventory>
+
+python -m c5_antibody_ood.af3_preflight run \
+  --preregistration c5_antibody_ood/c5_prospective_panel_preregistration_v1.json \
+  --input-freeze c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json \
+  --retained-manifest c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl \
+  --input-dir <private-af3-input-dir> \
+  --source-dir <pinned-af3-source-dir> \
+  --container <af3-singularity-image> \
+  --expected-container-sha256 <sha256> \
+  --model-dir <authorized-model-parameter-dir> \
+  --expected-model-sha256 <sha256> \
+  --database-dir <af3-database-dir> \
+  --database-manifest <private-database-inventory> \
+  --expected-database-manifest-sha256 <sha256> \
+  --output-dir <new-output-dir> \
+  --attestation-out <private-attestation-json>
+```
+
+The command returns nonzero unless every component passes. The private
+attestation and its SHA-256 are then required by
+`c5_antibody_ood/run_c5_af3_cayuga.sbatch`. Parameters, databases, sequences,
+structures, predictions, paths, and scheduler logs must remain uncommitted.
 
 ## Full Local Checks
 

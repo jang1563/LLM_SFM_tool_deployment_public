@@ -1,0 +1,240 @@
+{
+  "commitment": {
+    "algorithm": "sha256-canonical-json",
+    "protocol_sha256": "9c3fd6784fecef3b8971daedb8bfbfc3a1ca725f0353e05f0b7420a30f06e17a",
+    "scope": "protocol"
+  },
+  "created_date": "2026-07-25",
+  "design_analysis": {
+    "alpha_0.10": {
+      "alpha": 0.1,
+      "minimum_zero_failure_trusted": 311
+    },
+    "alpha_0.20": {
+      "alpha": 0.2,
+      "minimum_zero_failure_trusted": 78
+    },
+    "alpha_0.30": {
+      "alpha": 0.3,
+      "minimum_zero_failure_trusted": 35
+    }
+  },
+  "preregistration_id": "c5-sabdab2-af3-prospective-2026-07-25-v1",
+  "protocol": {
+    "evidence_boundary": {
+      "independent_hidden_test_claimed": false,
+      "labels_must_remain_unread_until_prediction_freeze": true,
+      "llm_api_or_judge_used": false,
+      "model_training_on_panel_allowed": false,
+      "native_structures_are_public": true,
+      "prospective_method_lock_claimed": true,
+      "threshold_tuning_on_evaluation_allowed": false
+    },
+    "label": {
+      "code_commit": "d9cbb1940bb0f42db3257f7da3b0e96f162b94d9",
+      "evaluator": "DockQ",
+      "interface_success_rule": "DockQ >= 0.23",
+      "interface_success_threshold": 0.23,
+      "metric": "DockQ",
+      "metric_scope": "paired_antibody_chains_vs_all_antigen_chains",
+      "native_chain_mapping_must_match_committed_roles": true,
+      "version": "v2.1.3"
+    },
+    "phase_gates": [
+      {
+        "phase": "source_intake",
+        "requires": [
+          "archive byte count and MD5 pass",
+          "official split file present",
+          "zero Fromm/Gray PDB overlap",
+          "public panel manifest passes privacy validator"
+        ]
+      },
+      {
+        "phase": "prediction",
+        "requires": [
+          "80 calibration and 40 evaluation targets are frozen",
+          "source splits and target IDs are disjoint",
+          "no DockQ or native-interface labels were read",
+          "AF3 code and private parameter checksums are recorded"
+        ]
+      },
+      {
+        "phase": "label_reveal",
+        "requires": [
+          "five AF3 outputs exist for every retained target",
+          "one target-level output is selected and checksum frozen",
+          "prediction artifacts are immutable"
+        ]
+      },
+      {
+        "phase": "evaluation_reveal",
+        "requires": [
+          "calibration certificate and threshold are checksum frozen",
+          "evaluation labels have not been used for selection"
+        ]
+      }
+    ],
+    "prediction": {
+      "code_commit": "7b197fe859790fc3e04d03ea70dd0b9ba48881c9",
+      "code_tag": "v3.0.3",
+      "compute_order": [
+        "Cayuga",
+        "Expanse"
+      ],
+      "diffusion_samples_per_seed": 5,
+      "engine": "AlphaFold 3",
+      "input_dialect": "alphafold3",
+      "input_version": 1,
+      "local_model_compute_allowed": false,
+      "model_parameter_checksum_required_in_private_run_attestation": true,
+      "model_parameters": "official AlphaFold 3 3.0.x parameters",
+      "model_seeds": [
+        20260725
+      ],
+      "msa_mode": "official_data_pipeline_default",
+      "target_sample_selection": [
+        "maximum_ranking_score",
+        "maximum_iptm_for_exact_ranking_score_ties",
+        "lexical_output_id"
+      ],
+      "templates": "disabled_for_every_protein_chain"
+    },
+    "release_boundary": {
+      "private": [
+        "raw structures and sequences",
+        "AlphaFold parameter files and private paths",
+        "raw AF3 outputs and scheduler logs",
+        "per-target DockQ labels until the reveal gate"
+      ],
+      "public": [
+        "preregistration and protocol digest",
+        "PDB/SAbDab target IDs and chain roles",
+        "source and panel checksums",
+        "aggregate QC, calibration, and evaluation summaries"
+      ]
+    },
+    "research_question": "Can an AlphaFold 3 ranking-score gate earn regime-matched antibody-antigen trust on a sequence-separated prospective panel?",
+    "risk_control": {
+      "candidate_count": 50,
+      "candidate_thresholds": [
+        0.5,
+        0.51,
+        0.52,
+        0.53,
+        0.54,
+        0.55,
+        0.56,
+        0.57,
+        0.58,
+        0.59,
+        0.6,
+        0.61,
+        0.62,
+        0.63,
+        0.64,
+        0.65,
+        0.66,
+        0.67,
+        0.68,
+        0.69,
+        0.7,
+        0.71,
+        0.72,
+        0.73,
+        0.74,
+        0.75,
+        0.76,
+        0.77,
+        0.78,
+        0.79,
+        0.8,
+        0.81,
+        0.82,
+        0.83,
+        0.84,
+        0.85,
+        0.86,
+        0.87,
+        0.88,
+        0.89,
+        0.9,
+        0.91,
+        0.92,
+        0.93,
+        0.94,
+        0.95,
+        0.96,
+        0.97,
+        0.98,
+        0.99
+      ],
+      "certificate": "uniform Hoeffding upper bound with union correction",
+      "confidence_metric": "ranking_score",
+      "delta": 0.1,
+      "evaluation_upper_bound": "fixed-threshold Hoeffding bound without threshold-search multiplicity",
+      "minimum_evaluation_trusted_for_transfer_claim": 10,
+      "no_certificate_action": "verify_all",
+      "primary_alpha": 0.3,
+      "secondary_alphas": [
+        0.2,
+        0.1
+      ],
+      "threshold_selection": "highest coverage certified threshold; lower threshold wins coverage ties"
+    },
+    "source": {
+      "archive_bytes": 876381859,
+      "archive_file": "splits.tar.gz",
+      "archive_md5": "0dbb4cc499e9eb77f14008b232f2c38c",
+      "dataset": "SAbDab2 Machine Learning Dataset",
+      "doi": "10.5281/zenodo.20083995",
+      "license": "CC-BY-4.0",
+      "split_bytes": 140769855,
+      "split_column": "ab_ag_split",
+      "split_file": "abag_split.csv",
+      "split_semantics": "official antibody-and-antigen sequence-aware split",
+      "split_sha256": "01414df16af9d3343994f527e13e81a25bf8da08198858018493a96f173a8cfb",
+      "version": "0.1.0"
+    },
+    "stopping_rule": {
+      "adaptive_seed_extension_allowed": false,
+      "completion": "stop after all 120 retained targets have five outputs or abort when a same-split reserve is exhausted",
+      "insufficient_targets_action": "abort_without_trust_claim",
+      "maximum_prediction_attempts_per_target": 2,
+      "required_calibration_targets": 80,
+      "required_evaluation_targets": 40,
+      "retry_scope": "infrastructure_failure_only_same_locked_input",
+      "score_or_label_dependent_extension_allowed": false
+    },
+    "target_selection": {
+      "allowed_experimental_methods": [
+        "EM",
+        "XRAY"
+      ],
+      "antibody_format": "paired_chain",
+      "antigen_requirement": "one_or_more_protein_antigen_chains",
+      "calibration": {
+        "primary_targets": 80,
+        "reserve_targets": 20,
+        "source_split": "train"
+      },
+      "deduplicate_pdb_id": true,
+      "deduplicate_sabdab_id": true,
+      "evaluation": {
+        "primary_targets": 40,
+        "reserve_targets": 10,
+        "source_split": "test"
+      },
+      "exclude_all_fromm_pdb_ids": true,
+      "exclude_all_gray_pdb_ids": true,
+      "maximum_resolution_angstrom": 4.0,
+      "minimum_release_date": "2021-10-01",
+      "public_seed": "c5-sabdab2-prospective-v1-2026-07-25",
+      "replacement_rule": "promote the next same-split reserve only for a preregistered metadata, sequence, structure, or infrastructure QC failure",
+      "selection_algorithm": "sha256(public_seed + '|' + source_instance_id), then lexical source_instance_id",
+      "unit": "one paired-chain antibody-antigen instance per PDB"
+    }
+  },
+  "schema_version": "c5_prospective_panel_preregistration_v1",
+  "workflow_state": "panel_locked_prediction_pending"
+}

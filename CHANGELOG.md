@@ -4,6 +4,21 @@ All notable public-facing changes are tracked here.
 
 ## Unreleased - 2026-07-25
 
+- Add a checksum-locked prospective C5 protocol over SAbDab2 v0.1.0, AF3
+  v3.0.3, DockQ v2.1.3, fixed sample selection, risk correction, reveal order,
+  and stopping rules.
+- Deterministically freeze 80 calibration, 40 evaluation, and 30 same-split
+  reserve targets with zero prior-PDB/source-cluster overlap; record 150/150
+  structure QC passes and 120 template-free AF3 input commitments.
+- Add a fail-closed AF3 environment preflight and Cayuga array path. The first
+  readiness check passes source/runtime/input locks and blocks prediction on
+  missing container, authorized parameters, and database inventory.
+- Add prospective source, panel, input, environment, leakage, reserve,
+  checksum, and private-attestation regression tests. Raw sequences,
+  structures, parameters, databases, predictions, paths, and scheduler logs
+  remain outside the public surface.
+- Keep the checkpoint bounded as prospective method/source/input evidence, not
+  a new AF3 result, blinded hidden test, or specialist trust claim.
 - Add a commit-pinned Hitawala-Gray AF3 adapter for independent-source C5
   calibration with exact hash/shape validation and no raw-source
   redistribution.

@@ -30,6 +30,37 @@ C5_INDEPENDENT_REPORT = (
 C5_INDEPENDENT_PROVENANCE = (
     ROOT / "c5_antibody_ood" / "INDEPENDENT_CALIBRATION_PROVENANCE.md"
 )
+C5_PROSPECTIVE_PREREGISTRATION = (
+    ROOT
+    / "c5_antibody_ood"
+    / "c5_prospective_panel_preregistration_v1.json"
+)
+C5_PROSPECTIVE_SOURCE_AUDIT = (
+    ROOT
+    / "c5_antibody_ood"
+    / "c5_sabdab2_prospective_source_audit_2026-07-25.json"
+)
+C5_PROSPECTIVE_PANEL_COMMITMENT = (
+    ROOT
+    / "c5_antibody_ood"
+    / "c5_sabdab2_prospective_panel_commitment_v1.json"
+)
+C5_PROSPECTIVE_INPUT_FREEZE = (
+    ROOT
+    / "c5_antibody_ood"
+    / "c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json"
+)
+C5_AF3_READINESS = (
+    ROOT
+    / "c5_antibody_ood"
+    / "c5_af3_environment_readiness_2026-07-25.json"
+)
+PROSPECTIVE_PROTOCOL_SHA256 = (
+    "9c3fd6784fecef3b8971daedb8bfbfc3a1ca725f0353e05f0b7420a30f06e17a"
+)
+PROSPECTIVE_INPUT_SET_SHA256 = (
+    "3569fc8641613c5328a05c991942a576f9ba1f9ad24daf135ea2b62806a52b18"
+)
 
 
 def read(path: Path) -> str:
@@ -59,6 +90,11 @@ def main() -> int:
     c5_report = json.loads(read(C5_SOURCE_REPORT))
     c5_independent_provenance = read(C5_INDEPENDENT_PROVENANCE)
     c5_independent_report = json.loads(read(C5_INDEPENDENT_REPORT))
+    c5_preregistration = json.loads(read(C5_PROSPECTIVE_PREREGISTRATION))
+    c5_source_audit = json.loads(read(C5_PROSPECTIVE_SOURCE_AUDIT))
+    c5_panel_commitment = json.loads(read(C5_PROSPECTIVE_PANEL_COMMITMENT))
+    c5_input_freeze = json.loads(read(C5_PROSPECTIVE_INPUT_FREEZE))
+    c5_af3_readiness = json.loads(read(C5_AF3_READINESS))
 
     require_contains(
         issues,
@@ -109,7 +145,7 @@ def main() -> int:
         "9 PDB IDs representing 11 complex copies",
         "44 antibodies and 53 nanobodies",
         "0/55 trusted and 55/55 routed",
-        "Pre-register the next prospective C5 evidence panel",
+        "The next evidence panel is now locked",
     ):
         require_contains(issues, plan, needle, "independent C5 checkpoint")
     for needle in (
@@ -151,13 +187,13 @@ def main() -> int:
     require_contains(
         issues,
         public_status,
-        "stage_b_c5_prospective_panel_preregistration",
+        "stage_b_c5_af3_environment_attestation_and_prediction",
         "public STATUS C5 research decision",
     )
     require_pattern(
         issues,
         public_status,
-        r"[Dd]o not tune on or rescore these\s+25 sealed rows",
+        r"[Dd]o not tune on or rescore these\s+25\s+sealed\s+rows",
         "public STATUS sealed-set reuse prohibition",
     )
     require_contains(
@@ -173,12 +209,14 @@ def main() -> int:
         "roadmap sealed commitment boundary",
     )
     for needle in (
-        "larger non-overlapping antibody-only public panel",
-        "pre-register target inclusion",
-        "Cayuga first and Expanse second",
-        "no DPO/RLVR or model training",
+        "official antibody-and-antigen sequence-aware split",
+        "150/150 native structures pass",
+        "120 template-free AF3 inputs",
+        "cannot support 0.10",
+        "authorized official AF3 3.0.x parameters",
+        "submit the 120-target Cayuga array only",
     ):
-        require_contains(issues, plan, needle, "prospective C5 next gate")
+        require_contains(issues, plan, needle, "prospective C5 freeze/next gate")
     for needle in (
         "10.5281/zenodo.17978681",
         "CC-BY-4.0",
@@ -268,6 +306,111 @@ def main() -> int:
         if not passed:
             issues.append(f"C5 independent report invariant failed: {label}")
 
+    prospective_expected_values = {
+        "prereg.protocol_sha": (
+            c5_preregistration["commitment"].get("protocol_sha256")
+            == PROSPECTIVE_PROTOCOL_SHA256
+        ),
+        "prereg.workflow_state": (
+            c5_preregistration.get("workflow_state")
+            == "panel_locked_prediction_pending"
+        ),
+        "prereg.no_hidden_test_claim": (
+            c5_preregistration["protocol"]["evidence_boundary"].get(
+                "independent_hidden_test_claimed"
+            )
+            is False
+        ),
+        "prereg.no_evaluation_tuning": (
+            c5_preregistration["protocol"]["evidence_boundary"].get(
+                "threshold_tuning_on_evaluation_allowed"
+            )
+            is False
+        ),
+        "source.rows": c5_source_audit["source"].get("rows") == 15_641,
+        "source.eligible": (
+            c5_source_audit["eligibility"].get("retained_rows") == 2_417
+        ),
+        "source.selected": (
+            c5_source_audit["selection"].get("selected_rows") == 150
+        ),
+        "source.no_cluster_overlap": (
+            c5_source_audit["selection"].get(
+                "selected_source_cluster_overlap"
+            )
+            == 0
+        ),
+        "source.no_labels_read": (
+            c5_source_audit["privacy"].get("dockq_values_read") is False
+            and c5_source_audit["privacy"].get(
+                "native_interface_labels_read"
+            )
+            is False
+        ),
+        "panel.no_prior_overlap": (
+            c5_panel_commitment["panel"].get("blocked_pdb_overlap") == 0
+        ),
+        "panel.roles": (
+            c5_panel_commitment["panel"].get("roles")
+            == {
+                "calibration": 80,
+                "calibration_reserve": 20,
+                "evaluation": 40,
+                "evaluation_reserve": 10,
+            }
+        ),
+        "input.qc_passed": (
+            c5_input_freeze["structure_qc"].get("passed") == 150
+        ),
+        "input.retained": (
+            c5_input_freeze["retention"].get("rows") == 120
+        ),
+        "input.set_sha": (
+            c5_input_freeze["af3_inputs"].get("af3_input_set_sha256")
+            == PROSPECTIVE_INPUT_SET_SHA256
+        ),
+        "input.no_training": (
+            c5_input_freeze["decision"].get("ready_for_model_training")
+            is False
+        ),
+        "environment.not_ready": (
+            c5_af3_readiness.get("ready_for_af3_prediction") is False
+        ),
+        "environment.source_ready": (
+            c5_af3_readiness["components"].get("source_commit_matches")
+            is True
+            and c5_af3_readiness["components"].get("source_tag_matches")
+            is True
+        ),
+        "environment.inputs_ready": (
+            c5_af3_readiness["components"].get("input_set_complete") is True
+            and c5_af3_readiness["components"].get(
+                "input_set_checksum_matches"
+            )
+            is True
+        ),
+        "environment.dependencies_blocked": (
+            c5_af3_readiness["components"].get("container_present") is False
+            and c5_af3_readiness["components"].get(
+                "model_parameters_present"
+            )
+            is False
+            and c5_af3_readiness["components"].get(
+                "database_entries_complete"
+            )
+            is False
+        ),
+        "environment.no_paths": (
+            c5_af3_readiness["release_boundary"].get(
+                "local_paths_emitted"
+            )
+            is False
+        ),
+    }
+    for label, passed in prospective_expected_values.items():
+        if not passed:
+            issues.append(f"C5 prospective invariant failed: {label}")
+
     if issues:
         print(f"FAIL research plan check found {len(issues)} issue(s):")
         for issue in issues:
@@ -282,7 +425,9 @@ def main() -> int:
     print("- C5 certification: no trusted set at alpha <= 0.30")
     print("- C5 independent calibration: 97 targets; 0 residual PDB overlap")
     print("- C5 independent certificates: antibody and nanobody both fail")
-    print("- C5 next gate: prospective panel preregistration")
+    print("- C5 prospective freeze: 150 targets QC-passed; 120 AF3 inputs locked")
+    print("- C5 execution gate: source/input ready; container/parameters/databases blocked")
+    print("- C5 next gate: AF3 environment attestation and Cayuga prediction")
     print("- DPO/RLVR/HF gate: useful routing coverage plus independent evaluation required")
     print("- sealed evaluation gate: completed rows cannot be tuned on or rescored")
     print("- C5 gate: calibration metadata required before trust")

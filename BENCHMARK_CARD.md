@@ -105,6 +105,11 @@ score.
 | `c5_antibody_ood/c5_source_backed_pilot_result_2026-07-25.json` | 1 report | Aggregate source intake, split, calibration, privacy, and policy result |
 | `c5_antibody_ood/c5_gray_independent_calibration_manifest_v1.jsonl` | 97 cases | PDB-overlap-excluded independent-source AF3 calibration rows |
 | `c5_antibody_ood/c5_gray_independent_calibration_result_2026-07-25.json` | 1 report | Format-specific certificates and locked Fromm transfer replay |
+| `c5_antibody_ood/c5_prospective_panel_preregistration_v1.json` | 1 protocol | Method, source, prediction, label, risk, reveal, and stopping-rule lock |
+| `c5_antibody_ood/c5_sabdab2_prospective_panel_manifest_v1.jsonl` | 150 targets | Public-safe calibration/evaluation/reserve target commitment |
+| `c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl` | 120 targets | Structure-QC-passed AF3 prediction target commitment |
+| `c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json` | 1 report | Aggregate structure, sequence, and AF3 input-set commitments |
+| `c5_antibody_ood/c5_af3_environment_readiness_2026-07-25.json` | 1 report | Path-free Cayuga dependency status and fail-closed execution decision |
 
 Checksums and record counts are registered in
 `release/public_release_manifest.json`.
@@ -180,6 +185,15 @@ with Fromm before calibration. The retained 44-antibody and 53-nanobody
 cohorts are calibrated separately. Neither finite-grid certificate passes at
 `alpha = 0.30`, so the external policy remains fail closed. This is
 independent-source published-label evidence, not a blinded hidden test.
+
+The prospective C5 freeze adds no performance estimate. It validates the exact
+15,641-row SAbDab2 source, selects 150 non-overlapping targets, passes private
+structure QC on 150/150, and freezes 120 AF3 inputs before prediction or label
+access. The first Cayuga preflight verifies the AF3 source and input set but
+blocks GPU submission until the container, authorized model parameters, and
+database inventory are installed and checksum locked. The 80-target
+calibration slice cannot certify `alpha = 0.10` under the preregistered uniform
+bound even with zero observed failures.
 
 ## Model Diagnostics
 

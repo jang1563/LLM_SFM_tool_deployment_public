@@ -1,0 +1,62 @@
+{
+  "checksums": {
+    "af3_input_set_sha256": "3569fc8641613c5328a05c991942a576f9ba1f9ad24daf135ea2b62806a52b18",
+    "container_sha256": null,
+    "database_manifest_sha256": null,
+    "model_parameter_set_sha256": null,
+    "retained_manifest_sha256": "aa9f751affb5249e17e39894c9f7a3a1cdca61b9f819e694df0e288cf92db1a2",
+    "source_commit": "7b197fe859790fc3e04d03ea70dd0b9ba48881c9"
+  },
+  "components": {
+    "container_checksum_matches": false,
+    "container_present": false,
+    "database_entries_complete": false,
+    "database_inventory_matches": false,
+    "database_manifest_checksum_matches": false,
+    "database_manifest_present": false,
+    "input_freeze_preregistration_matches": true,
+    "input_freeze_protocol_matches": true,
+    "input_freeze_ready": true,
+    "input_set_checksum_matches": true,
+    "input_set_complete": true,
+    "model_checksum_matches": false,
+    "model_parameters_present": false,
+    "output_boundary_clean": true,
+    "retained_manifest_checksum_matches": true,
+    "runtime_available": true,
+    "single_model_parameter_set": false,
+    "source_commit_matches": true,
+    "source_tag_matches": true
+  },
+  "counts": {
+    "af3_input_files": 120,
+    "database_missing_entries": 9,
+    "database_required_entries": 9,
+    "model_parameter_bytes": 0,
+    "model_parameter_files": 0
+  },
+  "created_at_utc": "2026-07-25T19:16:13+00:00",
+  "preregistration_id": "c5-sabdab2-af3-prospective-2026-07-25-v1",
+  "protocol_sha256": "9c3fd6784fecef3b8971daedb8bfbfc3a1ca725f0353e05f0b7420a30f06e17a",
+  "ready_for_af3_prediction": false,
+  "release_boundary": {
+    "database_filenames_emitted": false,
+    "local_paths_emitted": false,
+    "model_filenames_emitted": false,
+    "parameter_or_database_bytes_emitted": false,
+    "raw_sequences_emitted": false
+  },
+  "schema_version": "c5_af3_environment_readiness_v1",
+  "violations": [
+    "container_checksum_matches",
+    "container_present",
+    "database_entries_complete",
+    "database_inventory_matches",
+    "database_manifest_checksum_matches",
+    "database_manifest_present",
+    "database_required_entry_missing",
+    "model_checksum_matches",
+    "model_parameters_present",
+    "single_model_parameter_set"
+  ]
+}
