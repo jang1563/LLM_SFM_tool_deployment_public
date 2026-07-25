@@ -18,6 +18,8 @@ def test_apptainer_definition_pins_official_af3_build_inputs():
     assert "v3.0.3" in definition
     assert "uv sync --frozen --all-groups --no-editable" in definition
     assert "uv run build_data" in definition
+    assert "UV_CACHE_DIR=/tmp/uv-cache" in definition
+    assert "uv run --no-sync python3" in definition
     assert "ca70d94fd0cf271bd7063423aabb116d42de533117343a9b27a65c17ff06fbf3" in definition
     assert "cd /\n    rm -rf /hmmer_build" in definition
     assert "XLA_CLIENT_MEM_FRACTION=0.95" in definition
@@ -41,7 +43,7 @@ def test_cayuga_build_job_is_clean_source_and_atomic_output_guarded():
     assert 'mv "${PARTIAL_SIF}" "${AF3_SIF_OUT}"' in script
     assert "apptainer build --fakeroot" in script
     assert 'apptainer test "${PARTIAL_SIF}"' in script
-    assert "run_alphafold.py --help" in script
+    assert "uv run --no-sync python3 run_alphafold.py --help" in script
     assert '"local_paths_emitted": false' in script
     assert "/Users/" not in script
     assert "/home/" not in script

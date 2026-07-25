@@ -76,7 +76,7 @@ singularity exec \
   --bind "${AF3_DB_MANIFEST}:/root/c5_database_manifest.json:ro" \
   "${AF3_SIF}" \
   env PYTHONPATH=/root/benchmark \
-  uv run python3 -m c5_antibody_ood.af3_preflight verify-runtime \
+  uv run --no-sync python3 -m c5_antibody_ood.af3_preflight verify-runtime \
   --attestation /root/c5_attestation.json \
   --expected-attestation-sha256 "${AF3_ATTESTATION_SHA256}" \
   --preregistration "/root/benchmark/${PREREGISTRATION}" \
@@ -122,7 +122,7 @@ singularity exec \
   --bind "${AF3_MODEL_DIR}:/root/models:ro" \
   --bind "${AF3_DB_DIR}:/root/public_databases:ro" \
   "${AF3_SIF}" \
-  uv run python3 run_alphafold.py \
+  uv run --no-sync python3 run_alphafold.py \
   --json_path="/root/af_input/${INPUT_NAME}" \
   --model_dir=/root/models \
   --db_dir=/root/public_databases \

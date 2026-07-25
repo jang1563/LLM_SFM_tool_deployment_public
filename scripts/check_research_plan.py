@@ -435,7 +435,7 @@ def main() -> int:
         'TARGET_OUTPUT="${AF3_OUTPUT_DIR}/${JOB_NAME}"',
         "AF3_DB_MANIFEST",
         "af3_preflight verify-runtime",
-        "uv run python3",
+        "uv run --no-sync python3",
         "--pwd /app/alphafold",
     ):
         require_contains(

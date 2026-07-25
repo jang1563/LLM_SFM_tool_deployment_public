@@ -96,7 +96,7 @@ apptainer test "${PARTIAL_SIF}"
 apptainer exec \
   --pwd /app/alphafold \
   "${PARTIAL_SIF}" \
-  uv run python3 run_alphafold.py --help >/dev/null
+  uv run --no-sync python3 run_alphafold.py --help >/dev/null
 
 readonly CONTAINER_SHA256="$(
   sha256sum "${PARTIAL_SIF}" | awk '{print $1}'

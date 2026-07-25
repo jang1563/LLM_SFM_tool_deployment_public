@@ -54,6 +54,7 @@ Stage: final
     rm -rf /hmmer_build
 
     export UV_COMPILE_BYTECODE=1
+    export UV_CACHE_DIR=/tmp/uv-cache
     export UV_PROJECT_ENVIRONMENT=/alphafold3_venv
     export PATH="/hmmer/bin:/alphafold3_venv/bin:${PATH}"
     uv venv "${UV_PROJECT_ENVIRONMENT}"
@@ -64,6 +65,7 @@ Stage: final
 
 %environment
     export UV_COMPILE_BYTECODE=1
+    export UV_CACHE_DIR=/tmp/uv-cache
     export UV_PROJECT_ENVIRONMENT=/alphafold3_venv
     export PATH="/hmmer/bin:/alphafold3_venv/bin:${PATH}"
     export XLA_FLAGS="--xla_gpu_enable_triton_gemm=false"
@@ -72,14 +74,15 @@ Stage: final
 
 %runscript
     cd /app/alphafold
-    exec uv run python3 run_alphafold.py "$@"
+    exec uv run --no-sync python3 run_alphafold.py "$@"
 
 %test
+    export UV_CACHE_DIR=/tmp/uv-cache
     cd /app/alphafold
     test "$(git rev-parse HEAD)" = \
         "7b197fe859790fc3e04d03ea70dd0b9ba48881c9"
     test "$(git describe --tags --exact-match)" = "v3.0.3"
-    uv run python3 -c \
+    uv run --no-sync python3 -c \
         'import importlib.metadata as m; assert m.version("alphafold3") == "3.0.3"'
 
 %help
