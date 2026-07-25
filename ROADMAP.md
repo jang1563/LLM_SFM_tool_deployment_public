@@ -177,7 +177,16 @@ Completed:
   overlap;
 - source-backed C5 negative calibration result: trust-all fails on 28/55
   evaluation targets, fixed `ipTM >= 0.80` fails on 3/20 trusted targets, and
-  no Hoeffding threshold certifies a trusted set at `alpha <= 0.30`.
+  no Hoeffding threshold certifies a trusted set at `alpha <= 0.30`;
+- independent Hitawala-Gray C5 intake with exact source hash/shape validation,
+  source-protocol ranking ties, and PDB-level exclusion against all Fromm
+  targets;
+- independent-source C5 negative calibration result: 9 overlapping PDB IDs
+  representing 11 complex copies are excluded, 44 antibody and 53 nanobody
+  targets remain, and neither format has a Hoeffding-certified ranking-score
+  trusted set at `alpha <= 0.30`;
+- locked external replay keeps the Fromm evaluation at 0/55 trusted and 55/55
+  routed to verify because the independent antibody certificate does not pass.
 
 Not completed:
 
@@ -185,7 +194,7 @@ Not completed:
 - Hugging Face dataset/model/Space publication;
 - a future release beyond the existing v0.1.0 reproducibility snapshot;
 - public demo video or GIF;
-- independent Stage B C5 calibration or general-PPI transfer evidence.
+- blinded/prospective Stage B C5 evidence or general-PPI transfer evidence.
 
 Current checkpoint:
 
@@ -194,8 +203,9 @@ Current checkpoint:
 - do not start corrective tool-query SFT, DPO, or RLVR;
 - keep the synthetic C5 result scoped to contract validation;
 - keep the source-backed C5 result scoped to a published-label replay;
-- obtain an independent, license-compatible calibration panel or per-sample
-  PPI/Ab-Ag confidence export before trust or model training.
+- keep the independent Gray result scoped to published-label calibration;
+- seek a larger antibody-only panel or pre-register a small Cayuga panel before
+  any trust or model training.
 
 ## Near-Term Milestones
 
@@ -571,8 +581,15 @@ Current checkpoint:
 - trust-all has 28/55 failures and fixed `ipTM >= 0.80` has 3/20 failures on
   frozen evaluation targets;
 - no regime-specific trusted set is certified at `alpha <= 0.30`;
+- the independent Gray adapter retains 97 non-overlapping targets after
+  excluding 9 PDB IDs / 11 complex copies shared with Fromm;
+- neither the 44-target antibody nor 53-target nanobody ranking-score cohort
+  certifies a trusted set at `alpha <= 0.30`;
+- the locked Fromm evaluation therefore remains 0/55 trusted and 55/55
+  verified;
 - fail-closed verification is active;
-- the next gate is independent calibration evidence, not model training.
+- the next gate is a larger antibody-only public panel or a pre-registered
+  prospective Cayuga panel, not model training.
 
 ### 6. Release v0.1 And Hugging Face Package
 
@@ -660,6 +677,7 @@ python post_training/evaluate_stage_a_saved_prediction_readiness.py \
 python post_training/evaluate_stage_a_tool_query_runtime_compiler.py \
   --out-json /tmp/stage_a_tool_query_runtime_compiler_result.json \
   --out-md /tmp/STAGE_A_TOOL_QUERY_RUNTIME_COMPILER_RESULT.md
+python -m pytest -q tests/test_c5_independent_calibration.py
 python -m pytest -q
 git diff --check
 ```

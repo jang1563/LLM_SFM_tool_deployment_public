@@ -19,6 +19,7 @@ from typing import Any, Iterable, Mapping, Sequence
 
 from llm_sfm_tool_deployment import Action, CalibrationStatus, EvidenceStatus
 
+from .calibration import select_hoeffding_certificate, threshold_policy_metrics
 from .manifest import (
     C5_ACTION_TOOL,
     C5_ALLOWED_ACTIONS,
@@ -331,73 +332,14 @@ def select_hoeffding_threshold(
 ) -> dict[str, Any]:
     """Select the highest-coverage threshold with a union-bound risk certificate."""
 
-    if not 0 < alpha < 1:
-        raise ValueError("alpha must be in (0, 1)")
-    if not 0 < delta < 1:
-        raise ValueError("delta must be in (0, 1)")
-    candidates = tuple(thresholds)
-    if not candidates:
-        raise ValueError("thresholds must be non-empty")
-
-    eligible: list[dict[str, Any]] = []
-    for threshold in candidates:
-        trusted = [
-            row for row in calibration_rows if row.sample.iptm >= threshold
-        ]
-        if not trusted:
-            continue
-        failures = sum(not row.success for row in trusted)
-        empirical_risk = failures / len(trusted)
-        radius = math.sqrt(
-            math.log(len(candidates) / delta) / (2 * len(trusted))
-        )
-        upper_bound = min(1.0, empirical_risk + radius)
-        if upper_bound <= alpha:
-            eligible.append(
-                {
-                    "threshold": threshold,
-                    "trusted": len(trusted),
-                    "failures": failures,
-                    "empirical_risk": empirical_risk,
-                    "risk_upper_bound": upper_bound,
-                }
-            )
-
-    if not eligible:
-        return {
-            "alpha": alpha,
-            "delta": delta,
-            "candidate_count": len(candidates),
-            "certified": False,
-            "threshold": None,
-            "calibration_trusted": 0,
-            "calibration_failures": 0,
-            "calibration_empirical_risk": None,
-            "calibration_risk_upper_bound": None,
-        }
-
-    best = min(
-        eligible,
-        key=lambda candidate: (
-            -candidate["trusted"],
-            candidate["threshold"],
-        ),
+    certificate = select_hoeffding_certificate(
+        [(row.sample.iptm, row.success) for row in calibration_rows],
+        alpha=alpha,
+        delta=delta,
+        thresholds=thresholds,
     )
-    return {
-        "alpha": alpha,
-        "delta": delta,
-        "candidate_count": len(candidates),
-        "certified": True,
-        "threshold": best["threshold"],
-        "calibration_trusted": best["trusted"],
-        "calibration_failures": best["failures"],
-        "calibration_empirical_risk": round(
-            best["empirical_risk"], 6
-        ),
-        "calibration_risk_upper_bound": round(
-            best["risk_upper_bound"], 6
-        ),
-    }
+    certificate.pop("closest_candidate", None)
+    return certificate
 
 
 def policy_metrics(
@@ -407,23 +349,10 @@ def policy_metrics(
 ) -> dict[str, Any]:
     """Return target-level trust risk and coverage for one threshold policy."""
 
-    trusted = (
-        list(rows)
-        if threshold is None
-        else [row for row in rows if row.sample.iptm >= threshold]
+    return threshold_policy_metrics(
+        [(row.sample.iptm, row.success) for row in rows],
+        threshold=threshold,
     )
-    failures = sum(not row.success for row in trusted)
-    count = len(rows)
-    return {
-        "targets": count,
-        "trusted": len(trusted),
-        "verify_or_defer": count - len(trusted),
-        "failures_among_trusted": failures,
-        "failure_rate_among_trusted": (
-            round(failures / len(trusted), 6) if trusted else 0.0
-        ),
-        "coverage": round(len(trusted) / count, 6) if count else 0.0,
-    }
 
 
 def build_source_manifest(

@@ -211,6 +211,7 @@ jobs:
             tests/test_c5_manifest.py \
             tests/test_c5_policies.py \
             tests/test_c5_source_pilot.py \
+            tests/test_c5_independent_calibration.py \
             tests/test_public_demo.py \
             tests/test_public_release_checker.py \
             tests/test_research_plan_checker.py \

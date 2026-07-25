@@ -112,6 +112,8 @@ Strong claims this repo supports:
 - saved model/API/local-SFT outputs can be scored offline against the same
   hidden-eval metadata and violation taxonomy;
 - public release safety is machine-checked through a manifest and scanner.
+- C5 independent calibration excludes source overlap at PDB level and keeps
+  specialist trust disabled when the corrected risk certificate fails.
 
 Claims this repo does not make:
 
@@ -120,6 +122,7 @@ Claims this repo does not make:
 - broad clinical benchmark coverage;
 - proof that RLVR solves scientific reasoning;
 - proof that explanation quality alone is a reliable reward.
+- a blinded C5 hidden test, certified Ab-Ag trust gate, or general-PPI transfer.
 
 ## Reviewer Heuristics
 

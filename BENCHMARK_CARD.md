@@ -103,6 +103,8 @@ score.
 | `c5_antibody_ood/c5_policy_baseline_result_2026-07-24.json` | 1 report | Aggregate no-API trust-all, general, regime-specific, and fail-closed comparison |
 | `c5_antibody_ood/c5_source_backed_manifest_v1.jsonl` | 110 cases | Target-grouped AF3 source-backed C5 replay with prompt/label isolation |
 | `c5_antibody_ood/c5_source_backed_pilot_result_2026-07-25.json` | 1 report | Aggregate source intake, split, calibration, privacy, and policy result |
+| `c5_antibody_ood/c5_gray_independent_calibration_manifest_v1.jsonl` | 97 cases | PDB-overlap-excluded independent-source AF3 calibration rows |
+| `c5_antibody_ood/c5_gray_independent_calibration_result_2026-07-25.json` | 1 report | Format-specific certificates and locked Fromm transfer replay |
 
 Checksums and record counts are registered in
 `release/public_release_manifest.json`.
@@ -163,6 +165,22 @@ checks. The fixed ipTM threshold is not general-PPI calibration. No threshold
 is certified at the primary `alpha = 0.30` gate, so this is a valid negative
 calibration result rather than permission to train or trust a model.
 
+The independent-source C5 calibration result is:
+
+| Cohort/policy | Trusted targets | Failures among trusted | Certified |
+|---|---:|---:|---:|
+| Gray antibody trust-all | 44/44 | 25 | no |
+| Gray antibody fixed ranking score 0.80 | 17/44 | 5 | no |
+| Gray nanobody trust-all | 53/53 | 34 | no |
+| Gray nanobody fixed ranking score 0.80 | 10/53 | 2 | no |
+| Gray-certified gate on locked Fromm evaluation | 0/55 | 0 | no |
+
+The source adapter excludes 9 PDB IDs representing 11 complex copies shared
+with Fromm before calibration. The retained 44-antibody and 53-nanobody
+cohorts are calibrated separately. Neither finite-grid certificate passes at
+`alpha = 0.30`, so the external policy remains fail closed. This is
+independent-source published-label evidence, not a blinded hidden test.
+
 ## Model Diagnostics
 
 The first source-separated model result is deliberately negative:
@@ -218,6 +236,7 @@ python post_training/evaluate_stage_a_predictions.py \
 python post_training/evaluate_stage_a_tool_query_runtime_compiler.py \
   --out-json /tmp/stage_a_tool_query_runtime_compiler_result.json \
   --out-md /tmp/STAGE_A_TOOL_QUERY_RUNTIME_COMPILER_RESULT.md
+python -m pytest -q tests/test_c5_independent_calibration.py
 python -m pytest -q \
   tests/test_trajectory_evaluator.py \
   tests/test_public_demo.py \
