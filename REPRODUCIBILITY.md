@@ -58,7 +58,10 @@ python -m pytest -q \
   tests/test_c5_prospective_panel.py \
   tests/test_c5_prospective_source.py \
   tests/test_c5_prospective_inputs.py \
-  tests/test_c5_af3_preflight.py
+  tests/test_c5_af3_preflight.py \
+  tests/test_c5_prospective_predictions.py \
+  tests/test_c5_prospective_native_lock.py \
+  tests/test_c5_prospective_reveal.py
 python post_training/run_stage_a_saved_output_calibration_margin_sft.py \
   --dry-run \
   --out-dir /tmp/stage_a_saved_output_calibration_margin_sft \
@@ -202,6 +205,60 @@ The command returns nonzero unless every component passes. The private
 attestation and its SHA-256 are then required by
 `c5_antibody_ood/run_c5_af3_cayuga.sbatch`. Parameters, databases, sequences,
 structures, predictions, paths, and scheduler logs must remain uncommitted.
+
+After the 120 jobs complete, freeze prediction outputs before opening any
+DockQ label file:
+
+```bash
+python -m c5_antibody_ood.prospective_predictions \
+  --preregistration c5_antibody_ood/c5_prospective_panel_preregistration_v1.json \
+  --input-freeze c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json \
+  --retained-manifest c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl \
+  --private-input-dir <private-af3-input-dir> \
+  --attestation <private-attestation-json> \
+  --expected-attestation-sha256 <sha256> \
+  --af3-output-root <private-af3-output-root> \
+  --private-lock-out <private-prediction-lock-json> \
+  --public-freeze-out <public-prediction-freeze-json>
+
+python -m c5_antibody_ood.prospective_native_lock \
+  --candidate-manifest c5_antibody_ood/c5_sabdab2_prospective_panel_manifest_v1.jsonl \
+  --retained-manifest c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl \
+  --input-freeze c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json \
+  --structures-dir <private-native-structure-dir> \
+  --private-out <private-native-structure-lock-json>
+```
+
+Only then reveal calibration labels. The second command remains blocked until
+the calibration lock exists and passes recomputation:
+
+```bash
+python -m c5_antibody_ood.prospective_reveal calibrate \
+  --preregistration c5_antibody_ood/c5_prospective_panel_preregistration_v1.json \
+  --input-freeze c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json \
+  --retained-manifest c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl \
+  --prediction-lock <private-prediction-lock-json> \
+  --native-structure-lock <private-native-structure-lock-json> \
+  --labels <private-calibration-dockq-jsonl> \
+  --private-out <private-calibration-lock-json> \
+  --public-out <public-calibration-freeze-json>
+
+python -m c5_antibody_ood.prospective_reveal evaluate \
+  --preregistration c5_antibody_ood/c5_prospective_panel_preregistration_v1.json \
+  --input-freeze c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json \
+  --retained-manifest c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl \
+  --prediction-lock <private-prediction-lock-json> \
+  --native-structure-lock <private-native-structure-lock-json> \
+  --calibration-lock <private-calibration-lock-json> \
+  --labels <private-evaluation-dockq-jsonl> \
+  --private-out <private-evaluation-lock-json> \
+  --public-out <public-evaluation-result-json>
+```
+
+The private label schema binds every DockQ value to the selected model
+checksum, native-structure checksum, committed chain mapping, metric scope,
+and pinned evaluator identity. Calibration and evaluation target sets must be
+exact and disjoint.
 
 ## Full Local Checks
 

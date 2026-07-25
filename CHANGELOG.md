@@ -13,6 +13,17 @@ All notable public-facing changes are tracked here.
 - Add a fail-closed AF3 environment preflight and Cayuga array path. The first
   readiness check passes source/runtime/input locks and blocks prediction on
   missing container, authorized parameters, and database inventory.
+- Align the Cayuga array with the official AF3 writer's common output-root
+  contract, then add exact five-sample intake, ranking CSV/summary
+  cross-checks, deterministic target selection, and immutable prediction
+  commitments.
+- Add a private native-structure checksum map and calibration-first reveal
+  gates. Exact calibration/evaluation target sets, selected model/native
+  binding, DockQ metadata, frozen Hoeffding policy, and no-certificate
+  `verify_all` behavior are synthetic-tested before real label access.
+- Permit finite AF3 ranking scores outside `[0,1]` while keeping the
+  preregistered threshold family fixed; the official score includes disorder
+  and clash terms.
 - Add prospective source, panel, input, environment, leakage, reserve,
   checksum, and private-attestation regression tests. Raw sequences,
   structures, parameters, databases, predictions, paths, and scheduler logs

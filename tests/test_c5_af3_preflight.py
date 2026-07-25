@@ -339,6 +339,7 @@ def test_cayuga_array_is_attestation_and_output_guarded():
     assert "--input-dir" in script
     assert 'if [ -e "${TARGET_OUTPUT}" ]' in script
     assert "--num_diffusion_samples=5" in script
+    assert "--output_dir=/root/af_output" in script
     assert "/Users/" not in script
     assert "/home/" not in script
     assert "/" + "scratch/" not in script

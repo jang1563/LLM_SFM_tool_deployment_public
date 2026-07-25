@@ -113,6 +113,8 @@ def test_public_release_checker_rejects_generated_or_private_paths() -> None:
         ROOT / "post_training" / "runs" / "unit" / "trainable_state.pt",
         ROOT / "c5_antibody_ood" / "runs" / "unit" / "prediction.json",
         ROOT / "c5_antibody_ood" / "private_inputs" / "target.json",
+        ROOT / "c5_antibody_ood" / "private_predictions" / "lock.json",
+        ROOT / "c5_antibody_ood" / "private_labels" / "dockq.jsonl",
         ROOT / "post_training" / "model.safetensors",
         ROOT / "PORTFOLIO_SUMMARY.md",
         ROOT / "SESSION_RECOVERY_2026-06-25.md",

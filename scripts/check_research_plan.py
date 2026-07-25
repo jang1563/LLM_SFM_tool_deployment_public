@@ -55,6 +55,16 @@ C5_AF3_READINESS = (
     / "c5_antibody_ood"
     / "c5_af3_environment_readiness_2026-07-25.json"
 )
+C5_AF3_ARRAY = ROOT / "c5_antibody_ood" / "run_c5_af3_cayuga.sbatch"
+C5_PROSPECTIVE_PREDICTIONS = (
+    ROOT / "c5_antibody_ood" / "prospective_predictions.py"
+)
+C5_PROSPECTIVE_NATIVE_LOCK = (
+    ROOT / "c5_antibody_ood" / "prospective_native_lock.py"
+)
+C5_PROSPECTIVE_REVEAL = (
+    ROOT / "c5_antibody_ood" / "prospective_reveal.py"
+)
 PROSPECTIVE_PROTOCOL_SHA256 = (
     "9c3fd6784fecef3b8971daedb8bfbfc3a1ca725f0353e05f0b7420a30f06e17a"
 )
@@ -95,6 +105,10 @@ def main() -> int:
     c5_panel_commitment = json.loads(read(C5_PROSPECTIVE_PANEL_COMMITMENT))
     c5_input_freeze = json.loads(read(C5_PROSPECTIVE_INPUT_FREEZE))
     c5_af3_readiness = json.loads(read(C5_AF3_READINESS))
+    c5_af3_array = read(C5_AF3_ARRAY)
+    c5_predictions = read(C5_PROSPECTIVE_PREDICTIONS)
+    c5_native_lock = read(C5_PROSPECTIVE_NATIVE_LOCK)
+    c5_reveal = read(C5_PROSPECTIVE_REVEAL)
 
     require_contains(
         issues,
@@ -327,6 +341,12 @@ def main() -> int:
             )
             is False
         ),
+        "prereg.no_certificate_action": (
+            c5_preregistration["protocol"]["risk_control"].get(
+                "no_certificate_action"
+            )
+            == "verify_all"
+        ),
         "source.rows": c5_source_audit["source"].get("rows") == 15_641,
         "source.eligible": (
             c5_source_audit["eligibility"].get("retained_rows") == 2_417
@@ -410,6 +430,59 @@ def main() -> int:
     for label, passed in prospective_expected_values.items():
         if not passed:
             issues.append(f"C5 prospective invariant failed: {label}")
+    for needle in (
+        "--output_dir=/root/af_output",
+        'TARGET_OUTPUT="${AF3_OUTPUT_DIR}/${JOB_NAME}"',
+    ):
+        require_contains(
+            issues,
+            c5_af3_array,
+            needle,
+            "C5 AF3 official output-root contract",
+        )
+    require_pattern(
+        issues,
+        c5_af3_array,
+        r"--output_dir=/root/af_output(?!/\$\{JOB_NAME\})",
+        "C5 AF3 non-nested output root",
+    )
+    for needle in (
+        "ranking_score_summary_csv_mismatch",
+        "selected_output_rule_mismatch",
+        "complete_five_sample_set_per_target",
+        "dockq_or_native_interface_labels_read",
+    ):
+        require_contains(
+            issues,
+            c5_predictions,
+            needle,
+            "C5 prediction freeze gate",
+        )
+    for needle in (
+        "native_structure_set_sha256_mismatch",
+        "ready_for_staged_label_reveal",
+        "dockq_or_interface_labels_read",
+    ):
+        require_contains(
+            issues,
+            c5_native_lock,
+            needle,
+            "C5 native-structure lock gate",
+        )
+    for needle in (
+        "calibration_label_target_set_mismatch",
+        "evaluation_label_target_set_mismatch",
+        "evaluation_threshold_tuned",
+        "calibration_dataset_id",
+        "confidence_metric_scope",
+        "evaluation_policy_recomputation_mismatch",
+    ):
+        require_contains(
+            issues,
+            c5_reveal,
+            needle,
+            "C5 staged reveal gate",
+        )
 
     if issues:
         print(f"FAIL research plan check found {len(issues)} issue(s):")
@@ -426,6 +499,7 @@ def main() -> int:
     print("- C5 independent calibration: 97 targets; 0 residual PDB overlap")
     print("- C5 independent certificates: antibody and nanobody both fail")
     print("- C5 prospective freeze: 150 targets QC-passed; 120 AF3 inputs locked")
+    print("- C5 phase gates: 600-sample prediction lock and staged 80/40 reveal implemented")
     print("- C5 execution gate: source/input ready; container/parameters/databases blocked")
     print("- C5 next gate: AF3 environment attestation and Cayuga prediction")
     print("- DPO/RLVR/HF gate: useful routing coverage plus independent evaluation required")

@@ -36,6 +36,21 @@ now frozen before prediction or label reveal.
   enforce source commit/tag, container checksum, official parameter-set
   checksum, database inventory checksum, input count/checksum, clean output
   boundary, and immutable private attestation.
+- The post-run phase gates are implemented and synthetic-tested before any
+  prediction exists. The intake requires the exact AF3 v3.0.3 five-sample
+  directory/file contract, cross-checks full-precision
+  `ranking_scores.csv` against summary confidence JSON, applies the frozen
+  score/ipTM/lexical tie rule, and checksum-locks all 600 samples plus the 120
+  selected models.
+- A private native-structure lock reconstructs the 150 target-specific hashes
+  behind the pre-label aggregate commitment. Calibration labels must match the
+  selected model, native structure, evaluator commit/version, metric scope,
+  and committed chain mapping.
+- Calibration and evaluation reveal commands enforce exact 80/40 target sets.
+  They freeze the finite-grid Hoeffding decision before evaluation, force
+  `verify_all` when no certificate exists, and reject evaluation-time
+  threshold changes. Synthetic tests exercise both certified and
+  uncertified paths; these are contract tests, not scientific results.
 - The first real Cayuga preflight passes runtime, AF3 source, input-set, and
   output-boundary checks. It correctly blocks prediction because the pinned
   container, official model parameters, and database manifest are not yet
@@ -47,8 +62,10 @@ now frozen before prediction or label reveal.
   raw prediction, or scheduler log is published. No model training, DPO, RLVR,
   or external specialist trust is enabled.
 
-This is prospective method/source/input evidence, not a new AF3 performance
-result, a blinded hidden test, or a trust claim.
+The tracked preregistration therefore remains
+`panel_locked_prediction_pending`. This is prospective
+method/source/input/phase-gate evidence, not a new AF3 performance result, a
+blinded hidden test, a completed label reveal, or a trust claim.
 
 The previous Stage A result remains unchanged: frozen routing is 35/180 versus
 an 80/180 static prior, the runtime hybrid is 115/180 with zero unsafe
@@ -68,12 +85,16 @@ antibody-antigen source with an official sequence-aware split and a
 `CC-BY-4.0` data boundary. AlphaFold 3 v3.0.3 fixes the prediction code at
 commit `7b197fe859790fc3e04d03ea70dd0b9ba48881c9`; its official installation
 guide makes model-parameter authorization, database installation, container
-identity, and A100/H100-class compute explicit dependencies. DockQ v2.1.3
-fixes the evaluator at commit
+identity, and A100/H100-class compute explicit dependencies. Its pinned output
+writer also fixes the sanitized job directory, five sample subdirectories,
+`ranking_scores.csv`, and summary-confidence schemas; the official ranking
+score is not restricted to `[0,1]` because disorder and clash terms are
+included. DockQ v2.1.3 fixes the evaluator at commit
 `d9cbb1940bb0f42db3257f7da3b0e96f162b94d9`.
 
 These sources change source selection, leakage control, execution preflight,
-and label reproducibility, so they are logged in
+prediction intake, score validation, and label reproducibility, so they are
+logged in
 `research/2026-06-25_posttrain_tool_use_landscape/SOURCE_LOG.md`. The prior
 Fromm, Hitawala-Gray, FoldBench, and RCPS conclusions remain unchanged.
 
@@ -87,11 +108,14 @@ Proceed with `stage_b_c5_af3_environment_attestation_and_prediction`.
    private checksum inventory, and rerun the Cayuga preflight.
 3. Submit the 120-target array only after the private attestation has zero
    violations and its SHA-256 is frozen.
-4. Freeze five prediction outputs per retained target and the preregistered
-   target-level selection before any DockQ calculation.
-5. Reveal calibration labels first, freeze the selected threshold or
-   `verify_all`, and only then reveal evaluation labels.
-6. Keep model training, DPO, RLVR, evaluation-threshold tuning, and external
+4. Run `prospective_predictions.py` to freeze five outputs per retained target
+   and the preregistered target-level selection before any DockQ calculation.
+5. Reconstruct the private native-structure lock against the existing
+   150-structure aggregate commitment.
+6. Run `prospective_reveal.py calibrate` on exactly 80 calibration labels,
+   freeze the selected threshold or `verify_all`, and only then run
+   `prospective_reveal.py evaluate` on the 40 evaluation labels once.
+7. Keep model training, DPO, RLVR, evaluation-threshold tuning, and external
    specialist trust closed.
 
 Raw structures, sequences, AF3 inputs, parameters, databases, predictions,
