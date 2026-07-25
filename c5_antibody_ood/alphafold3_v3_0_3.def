@@ -1,0 +1,87 @@
+Bootstrap: docker
+From: ghcr.io/astral-sh/uv:0.9.24
+Stage: uv
+
+Bootstrap: docker
+From: nvidia/cuda:12.6.3-base-ubuntu24.04
+Stage: final
+
+%labels
+    org.opencontainers.image.title AlphaFold 3 v3.0.3 for C5
+    org.opencontainers.image.source https://github.com/google-deepmind/alphafold3
+    org.opencontainers.image.revision 7b197fe859790fc3e04d03ea70dd0b9ba48881c9
+    org.opencontainers.image.version v3.0.3
+
+%files from uv
+    /uv /bin/uv
+    /uvx /bin/uvx
+
+%files
+    . /app/alphafold
+
+%post
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update --quiet
+    apt-get install --yes --quiet \
+        ca-certificates \
+        g++ \
+        gcc \
+        git \
+        make \
+        patch \
+        python3.12 \
+        python3.12-dev \
+        wget \
+        zlib1g-dev \
+        zstd
+
+    mkdir -p /hmmer_build /hmmer
+    wget \
+        http://eddylab.org/software/hmmer/hmmer-3.4.tar.gz \
+        --directory-prefix /hmmer_build
+    cd /hmmer_build
+    echo "ca70d94fd0cf271bd7063423aabb116d42de533117343a9b27a65c17ff06fbf3 hmmer-3.4.tar.gz" \
+        | sha256sum --check
+    tar zxf hmmer-3.4.tar.gz
+    patch -p0 < /app/alphafold/docker/jackhmmer_seq_limit.patch
+    cd /hmmer_build/hmmer-3.4
+    ./configure --prefix=/hmmer
+    make -j8
+    make install
+    cd easel
+    make install
+    rm -rf /hmmer_build
+
+    export UV_COMPILE_BYTECODE=1
+    export UV_PROJECT_ENVIRONMENT=/alphafold3_venv
+    export PATH="/hmmer/bin:/alphafold3_venv/bin:${PATH}"
+    uv venv "${UV_PROJECT_ENVIRONMENT}"
+    cd /app/alphafold
+    UV_LINK_MODE=copy uv sync --frozen --all-groups --no-editable
+    uv run build_data
+    rm -rf /root/.cache/uv /var/lib/apt/lists/*
+
+%environment
+    export UV_COMPILE_BYTECODE=1
+    export UV_PROJECT_ENVIRONMENT=/alphafold3_venv
+    export PATH="/hmmer/bin:/alphafold3_venv/bin:${PATH}"
+    export XLA_FLAGS="--xla_gpu_enable_triton_gemm=false"
+    export XLA_PYTHON_CLIENT_PREALLOCATE=true
+    export XLA_CLIENT_MEM_FRACTION=0.95
+
+%runscript
+    cd /app/alphafold
+    exec uv run python3 run_alphafold.py "$@"
+
+%test
+    cd /app/alphafold
+    test "$(git rev-parse HEAD)" = \
+        "7b197fe859790fc3e04d03ea70dd0b9ba48881c9"
+    test "$(git describe --tags --exact-match)" = "v3.0.3"
+    uv run python3 -c \
+        'import importlib.metadata as m; assert m.version("alphafold3") == "3.0.3"'
+
+%help
+    This image is built from the clean AlphaFold 3 v3.0.3 source tree at
+    commit 7b197fe859790fc3e04d03ea70dd0b9ba48881c9. Model parameters and
+    genetic databases are not included.
