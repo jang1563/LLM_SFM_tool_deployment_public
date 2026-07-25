@@ -606,6 +606,12 @@ Current checkpoint:
 - the first Cayuga environment check passes runtime, AF3 source, and input
   locks but blocks prediction on the absent container, authorized parameters,
   and database inventory;
+- exact AF3 v3.0.3 prediction intake, all-sample/selected-model commitments,
+  target-specific native-structure reconstruction, calibration-only reveal,
+  and frozen one-time evaluation are implemented with synthetic fail-closed
+  tests;
+- the tracked workflow remains prediction-pending; no real prediction,
+  calibration, evaluation, or trust result has been produced;
 - the next gate is a zero-violation private environment attestation followed by
   the preregistered Cayuga prediction array, not model training.
 

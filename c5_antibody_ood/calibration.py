@@ -15,7 +15,7 @@ def select_hoeffding_certificate(
 ) -> dict[str, Any]:
     """Select the highest-coverage threshold with a union-bound certificate.
 
-    Each observation is ``(confidence, success)``. The finite threshold family
+    Each observation is ``(score, success)``. The finite threshold family
     is treated as fixed before labels are scored, and the Hoeffding radius is
     corrected uniformly by the number of candidate thresholds.
     """
@@ -37,8 +37,8 @@ def select_hoeffding_certificate(
 
     normalized: list[tuple[float, bool]] = []
     for index, (confidence, success) in enumerate(observations):
-        if not math.isfinite(confidence) or not 0.0 <= confidence <= 1.0:
-            raise ValueError(f"observation[{index}] confidence outside [0, 1]")
+        if not math.isfinite(confidence):
+            raise ValueError(f"observation[{index}] score must be finite")
         if not isinstance(success, bool):
             raise ValueError(f"observation[{index}] success must be bool")
         normalized.append((confidence, success))
@@ -144,6 +144,48 @@ def threshold_policy_metrics(
             round(failures / len(trusted), 6) if trusted else 0.0
         ),
         "coverage": round(len(trusted) / count, 6) if count else 0.0,
+    }
+
+
+def fixed_threshold_hoeffding_metrics(
+    observations: Sequence[tuple[float, bool]],
+    *,
+    threshold: float | None,
+    delta: float,
+) -> dict[str, Any]:
+    """Return fixed-policy metrics with a non-search Hoeffding upper bound."""
+
+    if not 0 < delta < 1:
+        raise ValueError("delta must be in (0, 1)")
+    if threshold is not None and (
+        isinstance(threshold, bool)
+        or not isinstance(threshold, (int, float))
+        or math.isnan(threshold)
+    ):
+        raise ValueError("threshold must be numeric and not NaN")
+    if not observations:
+        raise ValueError("observations must be non-empty")
+    for index, (score, success) in enumerate(observations):
+        if not math.isfinite(score):
+            raise ValueError(f"observation[{index}] score must be finite")
+        if not isinstance(success, bool):
+            raise ValueError(f"observation[{index}] success must be bool")
+    metrics = threshold_policy_metrics(observations, threshold=threshold)
+    trusted = metrics["trusted"]
+    if trusted == 0:
+        risk_upper_bound = None
+    else:
+        risk_upper_bound = min(
+            1.0,
+            metrics["failures_among_trusted"] / trusted
+            + math.sqrt(math.log(1 / delta) / (2 * trusted)),
+        )
+        risk_upper_bound = round(risk_upper_bound, 6)
+    return {
+        **metrics,
+        "delta": delta,
+        "risk_upper_bound": risk_upper_bound,
+        "bound": "fixed-threshold Hoeffding",
     }
 
 

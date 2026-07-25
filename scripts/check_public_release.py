@@ -128,8 +128,11 @@ PROHIBITED_PUBLIC_PATH_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("ignored run directory", re.compile(r"(^|/)post_training/runs($|/)")),
     ("ignored C5 run directory", re.compile(r"(^|/)c5_antibody_ood/runs($|/)")),
     (
-        "private C5 input directory",
-        re.compile(r"(^|/)c5_antibody_ood/private_inputs($|/)"),
+        "private C5 data directory",
+        re.compile(
+            r"(^|/)c5_antibody_ood/"
+            r"private_(?:inputs|predictions|labels)($|/)"
+        ),
     ),
     ("python bytecode/cache", re.compile(r"(^|/)(__pycache__|.*\.py[cod])($|/)")),
     ("pytest cache", re.compile(r"(^|/)\.pytest_cache($|/)")),
@@ -145,8 +148,11 @@ PROHIBITED_PUBLIC_ARTIFACT_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("ignored run directory", re.compile(r"(^|/)post_training/runs($|/)")),
     ("ignored C5 run directory", re.compile(r"(^|/)c5_antibody_ood/runs($|/)")),
     (
-        "private C5 input directory",
-        re.compile(r"(^|/)c5_antibody_ood/private_inputs($|/)"),
+        "private C5 data directory",
+        re.compile(
+            r"(^|/)c5_antibody_ood/"
+            r"private_(?:inputs|predictions|labels)($|/)"
+        ),
     ),
     (
         "raw saved predictions",

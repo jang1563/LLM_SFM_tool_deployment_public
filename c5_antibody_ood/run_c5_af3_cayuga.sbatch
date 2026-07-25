@@ -95,6 +95,6 @@ singularity exec \
   --run_data_pipeline=true \
   --run_inference=true \
   --num_diffusion_samples=5 \
-  --output_dir="/root/af_output/${JOB_NAME}"
+  --output_dir=/root/af_output
 
 echo "completed array task ${TASK_ID}"

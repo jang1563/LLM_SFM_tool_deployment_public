@@ -522,6 +522,34 @@ DockQ/interface labels:
 This is prospective method/source/input evidence, not an AF3 result or a
 blinded hidden test.
 
+## Completed Prospective C5 Phase-Gate Implementation Ticket
+
+The code path after GPU execution is now fixed before any real prediction or
+label exists:
+
+- AF3 v3.0.3 intake requires one sanitized target directory, the exact five
+  seed/sample directories, official top-level artifacts, and no extra or
+  symlinked files;
+- full-precision ranking CSV values are cross-checked against the rounded
+  summary JSON, and target selection applies the preregistered
+  ranking-score/ipTM/lexical rule;
+- all 600 samples and 120 selected models receive immutable aggregate
+  commitments without public target-level scores or paths;
+- a private 150-target native-structure map must reconstruct the aggregate
+  checksum frozen before prediction;
+- calibration reveal accepts exactly the 80 calibration targets and binds each
+  DockQ value to the selected model, native structure, chain mapping, evaluator
+  version/commit, and metric scope;
+- the finite-grid certificate or `verify_all` action is frozen before the
+  40-target evaluation file can be opened;
+- evaluation applies only trust-all, fixed ranking-score 0.80,
+  regime-specific calibrated, and fail-closed preregistered policies.
+
+Synthetic tests cover certified, uncertified, target-mixing, model/native
+drift, partial-output, score-drift, and threshold-mutation paths. This closes a
+software phase-gate milestone only. The real workflow remains
+`panel_locked_prediction_pending`.
+
 ## Next Concrete Ticket
 
 Complete `stage_b_c5_af3_environment_attestation_and_prediction`.
@@ -539,8 +567,9 @@ Minimum next output:
   any DockQ computation;
 - reveal calibration labels first, freeze a certificate or `verify_all`, then
   reveal the evaluation labels once;
-- evaluate trust-all, fixed-threshold, shuffled/inverted, certified, and
-  fail-closed controls;
+- evaluate the preregistered trust-all, fixed-0.80, certified, and fail-closed
+  policies; keep any later shuffled/inverted diagnostics explicitly
+  non-primary;
 - no DPO/RLVR, model training, evaluation tuning, or external specialist trust
   while prediction and calibration evidence remain incomplete.
 
