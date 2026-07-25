@@ -614,6 +614,9 @@ Current checkpoint:
   frozen 120 private inputs plus 150 structures. The array no longer relies on
   the old host Python: it verifies mounted container/model/database identities
   from the pinned AF3 image before each task;
+- the AF3 v3.0.3 Apptainer image is now checksum-frozen after embedded
+  source/package tests, runner import, and a one-device JAX GPU smoke. Official
+  database provisioning and authorized parameters remain open dependencies;
 - the tracked workflow remains prediction-pending; no real prediction,
   calibration, evaluation, or trust result has been produced;
 - the next gate is a zero-violation private environment attestation followed by

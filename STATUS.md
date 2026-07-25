@@ -36,11 +36,18 @@ now frozen before prediction or label reveal.
   enforce source commit/tag, container checksum, official parameter-set
   checksum, database inventory checksum, input count/checksum, clean output
   boundary, and immutable private attestation.
+- The pinned AF3 v3.0.3 Apptainer build now passes on a Cayuga CPU node. The
+  3,699,896,320-byte SIF is frozen at SHA-256
+  `128a62b4849f3606a61a12fbe754e3f928bdbe43fe1c0894a231380f419fe7b2`;
+  embedded source/package tests, runner import, sidecar checksum replay, and a
+  one-device JAX GPU smoke all pass. The path-free compact result is
+  `c5_af3_container_readiness_2026-07-25.json`. This closes the container
+  blocker only; no parameters, databases, predictions, or labels are included.
 - Cayuga access testing exposed a host-runtime mismatch: the login Python is
   too old for this package, and an attestation checksum alone did not bind the
   paths mounted by each array task. The array now runs verification inside the
   pinned AF3 image using its `/app/alphafold` working directory and
-  `uv run python3`, requires the private database manifest, and rechecks
+  `uv run --no-sync python3`, requires the private database manifest, and rechecks
   container/model/database identities against the attestation before
   inference. Full mode rehashes container, parameter, and database content;
   quick per-task mode uses content-attested sizes and nanosecond mtimes, a
@@ -114,8 +121,9 @@ Proceed with `stage_b_c5_af3_environment_attestation_and_prediction`.
 
 1. Obtain the official AF3 3.0.x parameters through the authorized access
    process; do not substitute unofficial or untracked weights.
-2. Build the v3.0.3 container, install the official databases, create their
-   private checksum inventory, and rerun the Cayuga preflight.
+2. Complete the official database provisioning job, freeze its private
+   content-hash inventory, and rerun the Cayuga preflight against the new
+   checksum-locked SIF.
 3. Run one full runtime dependency verification, then submit the 120-target
    array only after the private attestation has zero violations and its
    SHA-256 is frozen. Keep the per-task quick runtime binding enabled.

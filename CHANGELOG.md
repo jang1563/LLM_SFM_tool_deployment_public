@@ -15,9 +15,14 @@ All notable public-facing changes are tracked here.
   missing container, authorized parameters, and database inventory.
 - Bind every Cayuga task to the dependencies recorded by that attestation.
   Runtime verification now executes from the pinned AF3 image with
-  `uv run python3`, checks the mounted container/model/database identities,
+  `uv run --no-sync python3`, checks the mounted
+  container/model/database identities,
   rehashes all required dependency content in full mode, and avoids relying
   on the cluster's incompatible host Python.
+- Add an official-Dockerfile-aligned Apptainer definition plus fail-closed
+  Cayuga CPU build and database-provisioning jobs. The first checksum-frozen
+  AF3 v3.0.3 SIF passes embedded, runner-import, checksum-replay, and JAX GPU
+  smokes without including parameters or databases.
 - Align the Cayuga array with the official AF3 writer's common output-root
   contract, then add exact five-sample intake, ranking CSV/summary
   cross-checks, deterministic target selection, and immutable prediction

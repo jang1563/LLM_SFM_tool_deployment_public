@@ -548,6 +548,10 @@ label exists:
   incompatible host Python, and each task verifies that the mounted
   container, model files, database manifest/sentinels, and input set match the
   passed private attestation before inference.
+- The official-Dockerfile-aligned v3.0.3 Apptainer build now completes on a
+  Cayuga CPU node. Its SIF checksum, embedded source/package tests,
+  runner-import test, and one-device JAX GPU smoke pass; the image includes no
+  parameters or databases.
 
 Synthetic tests cover certified, uncertified, target-mixing, model/native
 drift, partial-output, score-drift, and threshold-mutation paths. This closes a
@@ -561,8 +565,8 @@ Complete `stage_b_c5_af3_environment_attestation_and_prediction`.
 Minimum next output:
 
 - obtain authorized official AF3 3.0.x parameters;
-- build and checksum the pinned v3.0.3 container;
-- install the official databases and freeze a private inventory checksum;
+- complete the official database provisioning job and freeze its private
+  per-file content-hash inventory;
 - rerun the fail-closed Cayuga preflight until every source, container,
   parameter, database, input, and output-boundary component passes;
 - run the full mounted-dependency verification once and retain quick

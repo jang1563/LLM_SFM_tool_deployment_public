@@ -1,3 +1,5 @@
+import hashlib
+import json
 from pathlib import Path
 
 
@@ -8,6 +10,10 @@ BUILD_JOB = (
 )
 DATABASE_JOB = (
     ROOT / "c5_antibody_ood/fetch_c5_af3_databases_cayuga.sbatch"
+)
+CONTAINER_READINESS = (
+    ROOT
+    / "c5_antibody_ood/c5_af3_container_readiness_2026-07-25.json"
 )
 AF3_COMMIT = "7b197fe859790fc3e04d03ea70dd0b9ba48881c9"
 
@@ -74,3 +80,27 @@ def test_cayuga_database_job_is_content_hashed_and_atomic():
     assert "/Users/" not in script
     assert "/home/" not in script
     assert "/" + "scratch/" not in script
+
+
+def test_container_readiness_is_definition_bound_and_public_safe():
+    readiness = json.loads(CONTAINER_READINESS.read_text())
+    definition_sha256 = hashlib.sha256(DEFINITION.read_bytes()).hexdigest()
+
+    assert readiness["af3_source"]["commit"] == AF3_COMMIT
+    assert readiness["af3_source"]["tag"] == "v3.0.3"
+    assert (
+        readiness["build_identity"]["definition_sha256"]
+        == definition_sha256
+    )
+    assert readiness["decision"]["container_ready"] is True
+    assert readiness["decision"]["ready_for_af3_prediction"] is False
+    assert readiness["verification"]["jax_gpu_device_smoke"] == {
+        "status": "pass",
+        "devices": 1,
+    }
+    assert all(readiness["release_boundary"].values()) is False
+    rendered = json.dumps(readiness, sort_keys=True)
+    assert "/Users/" not in rendered
+    assert "/home/" not in rendered
+    assert "/" + "scratch/" not in rendered
+    assert "SLURM" not in rendered

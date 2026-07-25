@@ -181,15 +181,43 @@ site-specific paths and the expected private checksums:
 
 On Cayuga, do not use the login node's host Python for these module commands.
 Invoke them inside the pinned AF3 image with `--pwd /app/alphafold`,
-`PYTHONPATH` bound to this repository, and `uv run python3`, matching
+`PYTHONPATH` bound to this repository, and `uv run --no-sync python3`, matching
 `run_c5_af3_cayuga.sbatch`.
 
+Build the parameter-free v3.0.3 image on a CPU node from a clean pinned AF3
+source tree:
+
 ```bash
-uv run python3 -m c5_antibody_ood.af3_preflight inventory \
+sbatch --account=<allocation> --partition=scu-cpu \
+  --export=ALL,WORK=$PWD,AF3_SOURCE_DIR=<clean-v3.0.3-source>,AF3_SIF_OUT=<new-image.sif> \
+  c5_antibody_ood/build_c5_af3_container_cayuga.sbatch
+```
+
+The job writes a SIF, SHA-256 sidecar, and path-free private build manifest
+only after embedded source/package, provenance-label, and runner-import tests
+pass. `c5_af3_container_readiness_2026-07-25.json` is the public compact
+projection of the first completed build and GPU runtime smoke.
+
+Provision the official databases to a new private directory. The job requires
+at least 750 GB free, uses the official fetch script, hashes every completed
+database file into a private inventory, and promotes the staging directory
+only after validation:
+
+```bash
+sbatch --account=<allocation> --partition=scu-cpu \
+  --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_SIF_SHA256=<sha256>,AF3_DB_OUT=<new-database-dir>,AF3_DB_MANIFEST_OUT=<new-private-manifest> \
+  c5_antibody_ood/fetch_c5_af3_databases_cayuga.sbatch
+```
+
+After those private dependencies are present, run the following module
+commands inside the pinned image:
+
+```bash
+uv run --no-sync python3 -m c5_antibody_ood.af3_preflight inventory \
   --database-dir <af3-database-dir> \
   --out <private-database-inventory>
 
-uv run python3 -m c5_antibody_ood.af3_preflight run \
+uv run --no-sync python3 -m c5_antibody_ood.af3_preflight run \
   --preregistration c5_antibody_ood/c5_prospective_panel_preregistration_v1.json \
   --input-freeze c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json \
   --retained-manifest c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl \
@@ -217,7 +245,7 @@ The array repeats a lower-cost size, nanosecond-mtime, manifest, and
 deterministic-sentinel identity check for every target:
 
 ```bash
-uv run python3 -m c5_antibody_ood.af3_preflight verify-runtime \
+uv run --no-sync python3 -m c5_antibody_ood.af3_preflight verify-runtime \
   --attestation <private-attestation-json> \
   --expected-attestation-sha256 <sha256> \
   --preregistration c5_antibody_ood/c5_prospective_panel_preregistration_v1.json \

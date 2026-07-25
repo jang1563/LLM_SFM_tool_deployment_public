@@ -55,6 +55,11 @@ C5_AF3_READINESS = (
     / "c5_antibody_ood"
     / "c5_af3_environment_readiness_2026-07-25.json"
 )
+C5_AF3_CONTAINER_READINESS = (
+    ROOT
+    / "c5_antibody_ood"
+    / "c5_af3_container_readiness_2026-07-25.json"
+)
 C5_AF3_ARRAY = ROOT / "c5_antibody_ood" / "run_c5_af3_cayuga.sbatch"
 C5_PROSPECTIVE_PREDICTIONS = (
     ROOT / "c5_antibody_ood" / "prospective_predictions.py"
@@ -105,6 +110,9 @@ def main() -> int:
     c5_panel_commitment = json.loads(read(C5_PROSPECTIVE_PANEL_COMMITMENT))
     c5_input_freeze = json.loads(read(C5_PROSPECTIVE_INPUT_FREEZE))
     c5_af3_readiness = json.loads(read(C5_AF3_READINESS))
+    c5_af3_container_readiness = json.loads(
+        read(C5_AF3_CONTAINER_READINESS)
+    )
     c5_af3_array = read(C5_AF3_ARRAY)
     c5_predictions = read(C5_PROSPECTIVE_PREDICTIONS)
     c5_native_lock = read(C5_PROSPECTIVE_NATIVE_LOCK)
@@ -426,6 +434,28 @@ def main() -> int:
             )
             is False
         ),
+        "container.ready": (
+            c5_af3_container_readiness["decision"].get("container_ready")
+            is True
+        ),
+        "container.not_prediction_ready": (
+            c5_af3_container_readiness["decision"].get(
+                "ready_for_af3_prediction"
+            )
+            is False
+        ),
+        "container.gpu_smoke": (
+            c5_af3_container_readiness["verification"]
+            .get("jax_gpu_device_smoke", {})
+            .get("status")
+            == "pass"
+        ),
+        "container.no_paths": (
+            c5_af3_container_readiness["release_boundary"].get(
+                "local_paths_emitted"
+            )
+            is False
+        ),
     }
     for label, passed in prospective_expected_values.items():
         if not passed:
@@ -504,7 +534,7 @@ def main() -> int:
     print("- C5 independent certificates: antibody and nanobody both fail")
     print("- C5 prospective freeze: 150 targets QC-passed; 120 AF3 inputs locked")
     print("- C5 phase gates: 600-sample prediction lock and staged 80/40 reveal implemented")
-    print("- C5 execution gate: source/input ready; container/parameters/databases blocked")
+    print("- C5 execution gate: source/input/container ready; parameters/databases blocked")
     print("- C5 next gate: AF3 environment attestation and Cayuga prediction")
     print("- DPO/RLVR/HF gate: useful routing coverage plus independent evaluation required")
     print("- sealed evaluation gate: completed rows cannot be tuned on or rescored")

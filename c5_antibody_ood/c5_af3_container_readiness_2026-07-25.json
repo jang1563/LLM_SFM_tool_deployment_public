@@ -1,0 +1,39 @@
+{
+  "schema_version": "c5_af3_container_readiness_v1",
+  "created_at_utc": "2026-07-25T21:14:40Z",
+  "af3_source": {
+    "commit": "7b197fe859790fc3e04d03ea70dd0b9ba48881c9",
+    "tag": "v3.0.3"
+  },
+  "build_identity": {
+    "definition_sha256": "58122f0c83e6a064c78690867683fc27b103cf4a73e8c63ae2cdd67be13d9ff2",
+    "container_sha256": "128a62b4849f3606a61a12fbe754e3f928bdbe43fe1c0894a231380f419fe7b2",
+    "container_bytes": 3699896320,
+    "base_image_digest": "sha256:c87e78933f4c16e3272123bf2f75537306596d0fbaa395a29696a22786e5ee0e",
+    "apptainer_version": "1.5.0-1.el8"
+  },
+  "verification": {
+    "embedded_source_and_package_test": true,
+    "runner_import_smoke": true,
+    "jax_gpu_device_smoke": {
+      "status": "pass",
+      "devices": 1
+    },
+    "sidecar_checksum_recheck": true
+  },
+  "decision": {
+    "container_ready": true,
+    "ready_for_af3_prediction": false,
+    "remaining_blockers": [
+      "authorized_model_parameters_missing",
+      "official_database_inventory_missing"
+    ]
+  },
+  "release_boundary": {
+    "local_paths_emitted": false,
+    "scheduler_identifiers_emitted": false,
+    "model_parameters_included": false,
+    "database_content_included": false,
+    "raw_sequences_or_structures_included": false
+  }
+}
