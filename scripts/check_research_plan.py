@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -13,6 +14,14 @@ PLAN = ROOT / "research" / "2026-06-25_posttrain_tool_use_landscape" / "LONG_TER
 ROADMAP = ROOT / "ROADMAP.md"
 README = ROOT / "README.md"
 PUBLIC_STATUS = ROOT / "STATUS.md"
+C5_SOURCE_REPORT = (
+    ROOT
+    / "c5_antibody_ood"
+    / "c5_source_backed_pilot_result_2026-07-25.json"
+)
+C5_PROVENANCE = (
+    ROOT / "c5_antibody_ood" / "SOURCE_BACKED_PILOT_PROVENANCE.md"
+)
 
 
 def read(path: Path) -> str:
@@ -38,6 +47,8 @@ def main() -> int:
     roadmap = read(ROADMAP)
     readme = read(README)
     public_status = read(PUBLIC_STATUS)
+    c5_provenance = read(C5_PROVENANCE)
+    c5_report = json.loads(read(C5_SOURCE_REPORT))
 
     require_contains(
         issues,
@@ -73,10 +84,17 @@ def main() -> int:
         "12 rows are balanced across `trust`, `baseline`, `verify`, and `defer`",
         "oracle and fail-closed trajectories pass 12/12",
         "`trust_all` produces 9 unsafe trusts",
-        "source-backed C5 public-score pilot",
         "groups every sampled prediction by `complex_id`",
     ):
         require_contains(issues, plan, needle, "completed C5 prototype")
+    for needle in (
+        "22,000 AF3 samples over 110 targets",
+        "frozen 55/55 target-group split",
+        "trust-all has 28 failures",
+        "certifies no trusted set",
+        "independent calibration evidence",
+    ):
+        require_contains(issues, plan, needle, "source-backed C5 checkpoint")
     for needle in (
         "`complex_id`",
         "metric type, scope, and value",
@@ -116,7 +134,7 @@ def main() -> int:
     require_contains(
         issues,
         public_status,
-        "stage_b_c5_source_backed_public_score_pilot",
+        "stage_b_c5_independent_calibration_evidence",
         "public STATUS C5 research decision",
     )
     require_pattern(
@@ -143,6 +161,40 @@ def main() -> int:
         "no model training or new structure prediction",
     ):
         require_contains(issues, plan, needle, "source-backed C5 next gate")
+    for needle in (
+        "10.5281/zenodo.17978681",
+        "CC-BY-4.0",
+        "56259a84f1e8cc216e5ee91a96584f824ca46f062ef4f2c06aa4674472daf1c8",
+        "132,000 absolute compute-path",
+    ):
+        require_contains(issues, c5_provenance, needle, "C5 provenance")
+
+    expected_report_values = {
+        "source.rows": c5_report["source"].get("rows") == 22_000,
+        "source.targets": c5_report["source"].get("targets") == 110,
+        "split.calibration": c5_report["split"].get("calibration_targets") == 55,
+        "split.evaluation": c5_report["split"].get("evaluation_targets") == 55,
+        "trust_all.failures": (
+            c5_report["policies"]["trust_all"].get("failures_among_trusted")
+            == 28
+        ),
+        "fixed_gate.failures": (
+            c5_report["policies"]["generic_fixed_iptm_0_80"].get(
+                "failures_among_trusted"
+            )
+            == 3
+        ),
+        "regime_gate.not_certified": (
+            c5_report["decision"].get("regime_specific_trust_certified")
+            is False
+        ),
+        "pilot.passed": (
+            c5_report["decision"].get("source_backed_pilot_passed") is True
+        ),
+    }
+    for label, passed in expected_report_values.items():
+        if not passed:
+            issues.append(f"C5 source report invariant failed: {label}")
 
     if issues:
         print(f"FAIL research plan check found {len(issues)} issue(s):")
@@ -154,7 +206,9 @@ def main() -> int:
     print("- Stage A checkpoint: tool_query 0/5; sealed routing 5/25; runtime oracle 25/25")
     print("- prospective Stage A: routing 35/180; hybrid 115/180; compiler 25/25 clean")
     print("- C5 prototype: fail-closed 12/12; trust-all 9 unsafe trusts")
-    print("- C5 next gate: source-backed public scores grouped by complex_id")
+    print("- C5 source replay: trust-all 28/55 failures; fixed gate 3/20")
+    print("- C5 certification: no trusted set at alpha <= 0.30")
+    print("- C5 next gate: independent calibration evidence")
     print("- DPO/RLVR/HF gate: useful routing coverage plus independent evaluation required")
     print("- sealed evaluation gate: completed rows cannot be tuned on or rescored")
     print("- C5 gate: calibration metadata required before trust")

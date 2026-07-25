@@ -101,6 +101,8 @@ score.
 | `post_training/stage_a_tool_query_runtime_compiler_result_2026-07-23.json` | 1 report | Clean and malformed-input compiler evaluation |
 | `c5_antibody_ood/c5_policy_test_manifest_v1.jsonl` | 12 cases | Synthetic Stage B C5 trust-routing contract manifest |
 | `c5_antibody_ood/c5_policy_baseline_result_2026-07-24.json` | 1 report | Aggregate no-API trust-all, general, regime-specific, and fail-closed comparison |
+| `c5_antibody_ood/c5_source_backed_manifest_v1.jsonl` | 110 cases | Target-grouped AF3 source-backed C5 replay with prompt/label isolation |
+| `c5_antibody_ood/c5_source_backed_pilot_result_2026-07-25.json` | 1 report | Aggregate source intake, split, calibration, privacy, and policy result |
 
 Checksums and record counts are registered in
 `release/public_release_manifest.json`.
@@ -145,6 +147,21 @@ The public Stage B C5 policy-test result is:
 
 The expected actions are fixture-defined, so these numbers validate policy
 contracts only. They do not estimate antibody-antigen calibration quality.
+
+The source-backed C5 replay result is:
+
+| Policy | Trusted targets | Failures among trusted | Coverage |
+|---|---:|---:|---:|
+| `trust_all` | 55/55 | 28 | 1.000 |
+| fixed `ipTM >= 0.80` | 20/55 | 3 | 0.364 |
+| regime-specific Hoeffding gate | 0/55 | 0 | 0.000 |
+| fail-closed verification | 0/55 | 0 | 0.000 |
+
+The source adapter passes exact archive/checksum, 22,000-row shape,
+target-grouped 55/55 split, hidden-label isolation, and public-artifact privacy
+checks. The fixed ipTM threshold is not general-PPI calibration. No threshold
+is certified at the primary `alpha = 0.30` gate, so this is a valid negative
+calibration result rather than permission to train or trust a model.
 
 ## Model Diagnostics
 

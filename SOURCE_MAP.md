@@ -1,6 +1,6 @@
 # Source Map
 
-Last source audit: 2026-07-24.
+Last source audit: 2026-07-25.
 
 This file is deliberately compact. It records the source landscape without
 reproducing full source text.
@@ -47,12 +47,13 @@ reproducing full source text.
 | source | status | deployment relevance |
 | --- | --- | --- |
 | Fromm, Ludaic, and Elofsson, `Evaluating deep learning based structure prediction methods on antibody-antigen complexes`, Bioinformatics 2026, https://doi.org/10.1093/bioinformatics/btag136 | target-verified | Supplies 110 unseen Ab-Ag complexes, target-grouped sampling/ranking analyses, DockQ/interface metrics, and public code/data. Internal estimates often fail to select the best sampled model, making it the primary source-backed C5 pilot candidate. |
-| `samuelfromm/abag-benchmark-set`, https://github.com/samuelfromm/abag-benchmark-set | target-verified | Public score tables and benchmarking workflow can support a no-new-prediction intake. Preserve target grouping because each complex has many sampled models. |
-| Xu et al., `Benchmarking all-atom biomolecular structure prediction with FoldBench`, Nature Communications 2025, https://www.nature.com/articles/s41467-025-67127-3 | target-verified | Provides low-homology PPI and Ab-Ag strata under common interface metrics. Candidate substrate for testing whether a general PPI gate transfers to Ab-Ag before fitting a regime-specific gate. |
+| `samuelfromm/abag-benchmark-set`, https://github.com/samuelfromm/abag-benchmark-set; Zenodo `10.5281/zenodo.17978681` | target-verified | The exact AF3 score member was verified byte-identical inside the `CC-BY-4.0` archive. It supplies 22,000 samples over 110 targets for the source-backed replay; 64 targets have tied top ranking confidence. |
+| Xu et al., `Benchmarking all-atom biomolecular structure prediction with FoldBench`, Nature Communications 2025, https://www.nature.com/articles/s41467-025-67127-3; Zenodo `10.5281/zenodo.17180806` | target-verified | Confirms 279 low-homology PPI and 172 Ab-Ag targets, 25 samples per model/target, and DockQ success at 0.23. The MIT repository/archive contains targets, evaluator code, and examples. Read-only Source Data audit finds target-level PPI/Ab-Ag DockQ but no paired per-sample ranking/confidence fields, so it cannot support the current transfer adapter. |
 
 ## Next Lookup Boundary
 
-No unresolved sibling repo remains from the first recovery scan. Next source
-lookup should be narrower: public score-schema and license audit for the 2026
-Ab-Ag benchmark and FoldBench, followed by target-grouped calibration/evaluation
-splits. No new structure-prediction compute is justified yet.
+The Fromm public-score intake is complete. The next source lookup is narrow:
+obtain a license-compatible FoldBench per-sample confidence/score export or an
+independently defined Ab-Ag calibration panel. Do not tune on the frozen
+55-target Fromm evaluation split. New structure-prediction compute is justified
+only for evidence that compatible saved public scores cannot supply.

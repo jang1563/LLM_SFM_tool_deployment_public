@@ -172,6 +172,15 @@ Last checked: 2026-07-24.
 - Added the compact C5 policy baseline result with aggregate counts only. It
   contains no PDB structures, biological sequences, row-level result table,
   raw model output, local path, or cluster metadata.
+- Added a source-backed C5 adapter and 110-row derived manifest. The canonical
+  source uses 56 columns, but the adapter allowlists 9 and excludes 47,
+  including 132,000 absolute compute-path cells.
+- The public C5 replay contains PDB IDs, chain roles, selected confidence,
+  binary published interface labels, split assignments, salted sample-ID
+  hashes, and source fingerprints. It contains no raw source CSV, structures,
+  sequences, features, raw paths, or unhashed sample IDs.
+- The exact input member was verified inside Zenodo record `17978681` and is
+  attributed as `CC-BY-4.0`. Derived-data provenance is explicit.
 
 ## Current Public-Release Rule
 
@@ -191,9 +200,11 @@ benchmark/verifier baselines.
 They should still be presented as
 benchmark substrate, not as clinical evidence or live model behavior.
 
-The C5 manifest and compact result are publish candidates only as synthetic
-policy-contract tests. They must not be described as antibody-antigen
-calibration, structure-prediction, or generalization results.
+The 12-row C5 manifest and its compact result are publish candidates only as
+synthetic policy-contract tests. The 110-row source-backed manifest and compact
+result are publish candidates only as a published-label replay and negative
+calibration result. They must not be described as an independent hidden test,
+new structure prediction, general-PPI transfer, or certified trusted set.
 
 Publish only the validated clean-snapshot history. Live repository visibility
 and hosted CI state are verified separately from this file-backed release gate.

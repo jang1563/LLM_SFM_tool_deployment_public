@@ -50,6 +50,7 @@ cmp c5_antibody_ood/c5_policy_test_manifest_v1.jsonl \
 python -m c5_antibody_ood.evaluate_baselines \
   --out-json /tmp/c5_policy_baseline_result.json \
   --out-md /tmp/C5_POLICY_BASELINE_RESULT.md
+python -m pytest -q tests/test_c5_source_pilot.py
 python post_training/run_stage_a_saved_output_calibration_margin_sft.py \
   --dry-run \
   --out-dir /tmp/stage_a_saved_output_calibration_margin_sft \
@@ -64,6 +65,7 @@ python -m pytest -q \
   tests/test_public_release_checker.py \
   tests/test_c5_manifest.py \
   tests/test_c5_policies.py \
+  tests/test_c5_source_pilot.py \
   tests/test_stage_a_manifest.py \
   tests/test_stage_a_manifest_eval_script.py \
   tests/test_stage_a_export.py \
@@ -91,9 +93,33 @@ Expected high-level outcome:
   pairs, 4 held-out evaluation-only pairs, and no issues;
 - C5 manifest regeneration is byte-identical and its no-API fail-closed policy
   passes 12/12 with zero unsafe trust;
+- C5 source-pilot tests verify source hash/schema failure, target-grouped
+  splitting, deterministic tie handling, hidden-label isolation, and privacy
+  projection without downloading the external score table;
 - public-safe pytest subset passes.
 
 These commands are also run by the GitHub Actions `Public QA` workflow.
+
+## External C5 Source Replay
+
+The raw 24.6 MB source table is not redistributed. After obtaining
+`scores_alphafold3.csv` from the `CC-BY-4.0` Zenodo release documented in
+`c5_antibody_ood/SOURCE_BACKED_PILOT_PROVENANCE.md`, reproduce the tracked
+derived manifest and compact report with:
+
+```bash
+python -m c5_antibody_ood.evaluate_source_pilot \
+  --scores /external/path/scores_alphafold3.csv \
+  --out-manifest /tmp/c5_source_backed_manifest_v1.jsonl \
+  --out-json /tmp/c5_source_backed_pilot_result.json \
+  --out-md /tmp/C5_SOURCE_BACKED_PILOT_RESULT.md
+cmp c5_antibody_ood/c5_source_backed_manifest_v1.jsonl \
+  /tmp/c5_source_backed_manifest_v1.jsonl
+```
+
+The adapter fails on a source checksum, row/target/sample count, preset,
+required-field, duplicate-ID, or unit-interval mismatch. The compact report
+stores source fingerprints and aggregates, never the local input path.
 
 ## Full Local Checks
 

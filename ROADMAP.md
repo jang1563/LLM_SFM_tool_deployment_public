@@ -171,7 +171,13 @@ Completed:
   trust-all, general-gate, regime-gate, and fail-closed baselines;
 - C5 no-API baseline result: trust-all 3/12 with 9 unsafe trusts, general gate
   3/12 with 8 unsafe trusts, regime-specific certifier 6/12 with zero unsafe
-  trust, and fail-closed routing 12/12 with zero unsafe trust.
+  trust, and fail-closed routing 12/12 with zero unsafe trust;
+- source-backed AF3 intake: 22,000 samples over 110 targets, explicit
+  nine-column privacy allowlist, and frozen 55/55 target split with zero
+  overlap;
+- source-backed C5 negative calibration result: trust-all fails on 28/55
+  evaluation targets, fixed `ipTM >= 0.80` fails on 3/20 trusted targets, and
+  no Hoeffding threshold certifies a trusted set at `alpha <= 0.30`.
 
 Not completed:
 
@@ -179,7 +185,7 @@ Not completed:
 - Hugging Face dataset/model/Space publication;
 - a future release beyond the existing v0.1.0 reproducibility snapshot;
 - public demo video or GIF;
-- source-backed Stage B C5 calibration-transfer result.
+- independent Stage B C5 calibration or general-PPI transfer evidence.
 
 Current checkpoint:
 
@@ -187,8 +193,9 @@ Current checkpoint:
 - keep routing as the learned decision surface;
 - do not start corrective tool-query SFT, DPO, or RLVR;
 - keep the synthetic C5 result scoped to contract validation;
-- build the source-backed C5 public-score pilot next, grouped by complex ID and
-  without new model inference.
+- keep the source-backed C5 result scoped to a published-label replay;
+- obtain an independent, license-compatible calibration panel or per-sample
+  PPI/Ab-Ag confidence export before trust or model training.
 
 ## Near-Term Milestones
 
@@ -559,10 +566,13 @@ Exit criteria:
 Current checkpoint:
 
 - the 12-row synthetic policy-test manifest passes all no-API contract checks;
-- general and trust-all policies expose unsafe transfer behavior;
-- strict regime gating removes unsafe trust but needs operational fallback;
-- fail-closed routing passes all fixture-defined actions;
-- the next gate is source-backed calibration transfer, not model training.
+- the 110-row source-backed manifest passes source identity, target-group split,
+  canonical trajectory, and privacy checks;
+- trust-all has 28/55 failures and fixed `ipTM >= 0.80` has 3/20 failures on
+  frozen evaluation targets;
+- no regime-specific trusted set is certified at `alpha <= 0.30`;
+- fail-closed verification is active;
+- the next gate is independent calibration evidence, not model training.
 
 ### 6. Release v0.1 And Hugging Face Package
 

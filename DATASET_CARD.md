@@ -1,7 +1,7 @@
 # Dataset Card: LLM-SFM Tool Deployment Artifacts
 
 Draft Hugging Face dataset card for the Stage A trajectory benchmark, synthetic
-trajectory demo, synthetic Stage B C5 policy tests, and planned A2
+trajectory demo, Stage B C5 contract/source-backed replay, and planned A2
 entity-resolution release.
 
 ## Dataset Summary
@@ -27,6 +27,8 @@ Included public-safe subsets:
   `source_manifest_case_id`, `split_group`, or `source_task_id` overlap.
 - `c5_policy_test_manifest`: 12 synthetic antibody-antigen trust-routing
   contract cases balanced across trust, baseline, verify, and defer.
+- `c5_source_backed_manifest`: 110 target-grouped AlphaFold 3
+  antibody-antigen replay cases derived from Fromm et al. public scores.
 
 Planned or local-only subsets:
 
@@ -89,6 +91,24 @@ Each C5 fixture separates:
 The fixtures contain no real PDB structure, biological sequence, private model
 output, or experimental label. They test policy enforcement only.
 
+## Stage B C5 Source-Backed Schema
+
+The 110 source-backed rows reuse the same visible/hidden boundary:
+
+- `model_visible_task`: public PDB ID, chain-role mapping, selected ipTM and
+  ranking confidence, an explicitly non-source-fitted fixed threshold card,
+  calibration status, baseline availability, and allowed actions/tools;
+- `hidden_eval_metadata`: target-grouped split, binary DockQ interface status,
+  expected fail-closed action, hashed selected sample ID, and top-score tie
+  count;
+- `source_provenance`: paper/archive DOI, archive member, upstream commit,
+  source checksum, and `CC-BY-4.0` attribution.
+
+The adapter selects one of 200 samples per target by maximum ranking confidence
+and freezes a 55/55 target-level calibration/evaluation split. The raw source
+CSV, paths, structures, sequences, features, and source sample IDs are not
+redistributed.
+
 ## A2 Band Schema
 
 Each reranker record contains:
@@ -140,8 +160,13 @@ evaluation and reports the de-leaked metrics.
   full SQLite substrate is not bundled here.
 - Some post-training examples are oracle-derived scaffolds and should be treated
   as controlled evaluation/training artifacts.
-- C5 rows are synthetic policy tests. Their baseline scores are not evidence of
-  antibody-antigen model accuracy or calibration transfer.
+- Synthetic C5 rows are policy tests, not biological performance evidence.
+- Source-backed C5 rows are a published-label replay. They do not provide an
+  independent hidden test.
+- The fixed `ipTM >= 0.80` comparison is not a calibrated general-PPI transfer
+  gate. The current finite-sample search certifies no trusted set.
+- Source-backed C5 rows retain the upstream `CC-BY-4.0` attribution described
+  in `c5_antibody_ood/SOURCE_BACKED_PILOT_PROVENANCE.md`.
 
 ## Public Demo
 
