@@ -13,6 +13,11 @@ All notable public-facing changes are tracked here.
 - Add a fail-closed AF3 environment preflight and Cayuga array path. The first
   readiness check passes source/runtime/input locks and blocks prediction on
   missing container, authorized parameters, and database inventory.
+- Bind every Cayuga task to the dependencies recorded by that attestation.
+  Runtime verification now executes from the pinned AF3 image with
+  `uv run python3`, checks the mounted container/model/database identities,
+  rehashes all required dependency content in full mode, and avoids relying
+  on the cluster's incompatible host Python.
 - Align the Cayuga array with the official AF3 writer's common output-root
   contract, then add exact five-sample intake, ranking CSV/summary
   cross-checks, deterministic target selection, and immutable prediction

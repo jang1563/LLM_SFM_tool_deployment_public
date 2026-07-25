@@ -25,7 +25,7 @@ from .source_pilot import sha256_file
 
 ATTESTATION_SCHEMA = "c5_af3_environment_attestation_v1"
 READINESS_SCHEMA = "c5_af3_environment_readiness_v1"
-DATABASE_INVENTORY_SCHEMA = "c5_af3_database_inventory_v1"
+DATABASE_INVENTORY_SCHEMA = "c5_af3_database_inventory_v3"
 REQUIRED_DATABASE_ENTRIES = (
     "bfd-first_non_consensus_sequences.fasta",
     "mgy_clusters_2022_05.fa",
@@ -73,11 +73,17 @@ def _git_value(source_dir: Path, *args: str) -> str | None:
 
 
 def _aggregate_file_set(files: Sequence[Path]) -> tuple[str, int]:
+    records = _file_set_records(files)
+    return (
+        canonical_sha256(records),
+        sum(record["bytes"] for record in records),
+    )
+
+
+def _file_set_records(files: Sequence[Path]) -> list[dict[str, Any]]:
     records = []
-    total_bytes = 0
     for path in sorted(files, key=lambda item: item.name):
         size = path.stat().st_size
-        total_bytes += size
         records.append(
             {
                 "name": path.name,
@@ -85,7 +91,18 @@ def _aggregate_file_set(files: Sequence[Path]) -> tuple[str, int]:
                 "sha256": sha256_file(path),
             }
         )
-    return canonical_sha256(records), total_bytes
+    return records
+
+
+def _quick_file_set_records(files: Sequence[Path]) -> list[dict[str, Any]]:
+    return [
+        {
+            "name": path.name,
+            "bytes": path.stat().st_size,
+            "mtime_ns": path.stat().st_mtime_ns,
+        }
+        for path in sorted(files, key=lambda item: item.name)
+    ]
 
 
 def _select_model_files(model_dir: Path) -> tuple[list[Path], bool]:
@@ -121,13 +138,22 @@ def _database_entry_ready(path: Path) -> bool:
 
 def _database_entry_inventory(path: Path) -> dict[str, Any]:
     if path.is_file():
-        records = [{"relative_path": ".", "bytes": path.stat().st_size}]
+        records = [
+            {
+                "relative_path": ".",
+                "bytes": path.stat().st_size,
+                "mtime_ns": path.stat().st_mtime_ns,
+                "sha256": sha256_file(path),
+            }
+        ]
         kind = "file"
     elif path.is_dir():
         records = [
             {
                 "relative_path": child.relative_to(path).as_posix(),
                 "bytes": child.stat().st_size,
+                "mtime_ns": child.stat().st_mtime_ns,
+                "sha256": sha256_file(child),
             }
             for child in sorted(path.rglob("*"))
             if child.is_file()
@@ -137,11 +163,13 @@ def _database_entry_inventory(path: Path) -> dict[str, Any]:
         raise AF3PreflightError("database_required_entry_missing")
     if not records or any(record["bytes"] <= 0 for record in records):
         raise AF3PreflightError("database_required_entry_empty")
+    sentinel_indexes = sorted({0, len(records) // 2, len(records) - 1})
     return {
         "kind": kind,
         "files": len(records),
         "bytes": sum(record["bytes"] for record in records),
-        "relative_stat_sha256": canonical_sha256(records),
+        "relative_content_inventory_sha256": canonical_sha256(records),
+        "sentinels": [records[index] for index in sentinel_indexes],
     }
 
 
@@ -166,6 +194,7 @@ def build_database_inventory(database_dir: str | Path) -> dict[str, Any]:
         },
         "local_paths_emitted": False,
         "content_bytes_emitted": False,
+        "file_content_sha256_emitted": True,
     }
 
 
@@ -179,6 +208,73 @@ def _database_inventory_matches(
     except (OSError, ValueError, json.JSONDecodeError, AF3PreflightError):
         return False
     return expected == actual
+
+
+def _quick_database_inventory_matches(
+    database_dir: Path,
+    manifest_path: Path,
+) -> bool:
+    """Check the frozen manifest and deterministic file sentinels cheaply."""
+
+    try:
+        manifest = json.loads(manifest_path.read_text())
+    except (OSError, ValueError, json.JSONDecodeError):
+        return False
+    if (
+        manifest.get("schema_version") != DATABASE_INVENTORY_SCHEMA
+        or manifest.get("required_entries") != list(REQUIRED_DATABASE_ENTRIES)
+    ):
+        return False
+    entries = manifest.get("entries")
+    if not isinstance(entries, Mapping):
+        return False
+    for name in REQUIRED_DATABASE_ENTRIES:
+        expected = entries.get(name)
+        if not isinstance(expected, Mapping):
+            return False
+        root = database_dir / name
+        if expected.get("kind") == "file":
+            if (
+                not root.is_file()
+                or root.stat().st_size != expected.get("bytes")
+                or expected.get("files") != 1
+            ):
+                return False
+        elif expected.get("kind") == "directory":
+            if not root.is_dir():
+                return False
+        else:
+            return False
+        sentinels = expected.get("sentinels")
+        if not isinstance(sentinels, list) or not sentinels:
+            return False
+        for sentinel in sentinels:
+            if not isinstance(sentinel, Mapping):
+                return False
+            relative = sentinel.get("relative_path")
+            size = sentinel.get("bytes")
+            mtime_ns = sentinel.get("mtime_ns")
+            if (
+                not isinstance(relative, str)
+                or not relative
+                or Path(relative).is_absolute()
+                or ".." in Path(relative).parts
+                or not isinstance(size, int)
+                or isinstance(size, bool)
+                or size <= 0
+                or not isinstance(mtime_ns, int)
+                or isinstance(mtime_ns, bool)
+                or mtime_ns <= 0
+            ):
+                return False
+            path = root if relative == "." else root / relative
+            if (
+                not path.is_file()
+                or path.stat().st_size != size
+                or path.stat().st_mtime_ns != mtime_ns
+            ):
+                return False
+    return True
 
 
 def _input_set_commitment(
@@ -305,8 +401,11 @@ def run_preflight(
     model_present = bool(model_files)
     model_sha256: str | None = None
     model_bytes = 0
+    model_records: list[dict[str, Any]] = []
     if model_present:
-        model_sha256, model_bytes = _aggregate_file_set(model_files)
+        model_records = _file_set_records(model_files)
+        model_sha256 = canonical_sha256(model_records)
+        model_bytes = sum(record["bytes"] for record in model_records)
 
     database_root = Path(database_dir)
     missing_database_entries = [
@@ -402,11 +501,31 @@ def run_preflight(
             "af3_input_set_sha256": input_sha256,
         },
         "counts": {
+            "container_bytes": (
+                container_path.stat().st_size if container_present else 0
+            ),
             "model_parameter_files": len(model_files),
             "model_parameter_bytes": model_bytes,
             "database_required_entries": len(REQUIRED_DATABASE_ENTRIES),
             "database_missing_entries": len(missing_database_entries),
             "af3_input_files": input_count,
+        },
+        "runtime_identity": {
+            "container": {
+                "bytes": (
+                    container_path.stat().st_size if container_present else 0
+                ),
+                "mtime_ns": (
+                    container_path.stat().st_mtime_ns
+                    if container_present
+                    else 0
+                ),
+                "sha256": container_sha256,
+            },
+            "model_parameter_quick_sha256": canonical_sha256(
+                _quick_file_set_records(model_files)
+            ),
+            "database_inventory_schema": DATABASE_INVENTORY_SCHEMA,
         },
         "resume_requested": resume,
         "violations": violations,
@@ -525,6 +644,134 @@ def verify_attestation(
     }
 
 
+def verify_runtime_dependencies(
+    *,
+    attestation_path: str | Path,
+    expected_attestation_sha256: str,
+    preregistration: Mapping[str, Any],
+    input_freeze: Mapping[str, Any],
+    retained_manifest: str | Path,
+    input_dir: str | Path,
+    container: str | Path,
+    model_dir: str | Path,
+    database_dir: str | Path,
+    database_manifest: str | Path,
+    mode: str = "quick",
+) -> dict[str, Any]:
+    """Bind runtime dependency paths to the passed private attestation."""
+
+    if mode not in {"quick", "full"}:
+        raise AF3PreflightError("runtime_verification_mode_invalid")
+    base = verify_attestation(
+        attestation_path=attestation_path,
+        expected_attestation_sha256=expected_attestation_sha256,
+        preregistration=preregistration,
+        input_freeze=input_freeze,
+        retained_manifest=retained_manifest,
+        input_dir=input_dir,
+    )
+    value = _load_json(attestation_path)
+    identity = value.get("runtime_identity")
+    if not isinstance(identity, Mapping):
+        raise AF3PreflightError("attestation_runtime_identity_missing")
+    expected_container = identity.get("container")
+    expected_model_quick_sha256 = identity.get(
+        "model_parameter_quick_sha256"
+    )
+    if (
+        not isinstance(expected_container, Mapping)
+        or not isinstance(expected_model_quick_sha256, str)
+        or not SHA256_RE.fullmatch(expected_model_quick_sha256)
+        or identity.get("database_inventory_schema")
+        != DATABASE_INVENTORY_SCHEMA
+    ):
+        raise AF3PreflightError("attestation_runtime_identity_invalid")
+
+    container_path = Path(container)
+    model_path = Path(model_dir)
+    database_path = Path(database_dir)
+    database_manifest_path = Path(database_manifest)
+    model_files, multiple_models = _select_model_files(model_path)
+    actual_model_quick = _quick_file_set_records(model_files)
+    components = {
+        "container_present": (
+            container_path.is_file() and container_path.stat().st_size > 0
+        ),
+        "container_size_matches": (
+            container_path.is_file()
+            and container_path.stat().st_size == expected_container.get("bytes")
+        ),
+        "container_mtime_matches": (
+            container_path.is_file()
+            and container_path.stat().st_mtime_ns
+            == expected_container.get("mtime_ns")
+        ),
+        "single_model_parameter_set": (
+            bool(model_files) and not multiple_models
+        ),
+        "model_file_identity_matches": (
+            canonical_sha256(actual_model_quick)
+            == expected_model_quick_sha256
+        ),
+        "database_manifest_checksum_matches": (
+            database_manifest_path.is_file()
+            and sha256_file(database_manifest_path)
+            == value.get("checksums", {}).get("database_manifest_sha256")
+        ),
+        "database_quick_identity_matches": (
+            _quick_database_inventory_matches(
+                database_path,
+                database_manifest_path,
+            )
+        ),
+    }
+    if mode == "full":
+        components.update(
+            {
+                "container_content_matches": (
+                    components["container_present"]
+                    and sha256_file(container_path)
+                    == expected_container.get("sha256")
+                ),
+                "model_content_matches": (
+                    components["single_model_parameter_set"]
+                    and _aggregate_file_set(model_files)[0]
+                    == value.get("checksums", {}).get(
+                        "model_parameter_set_sha256"
+                    )
+                ),
+                "database_full_inventory_matches": (
+                    _database_inventory_matches(
+                        database_path,
+                        database_manifest_path,
+                    )
+                ),
+            }
+        )
+    violations = [
+        name for name, passed in components.items() if passed is not True
+    ]
+    if violations:
+        raise AF3PreflightError(
+            "runtime_dependency_mismatch:" + ",".join(sorted(violations))
+        )
+    return {
+        **base,
+        "runtime_dependencies_verified": True,
+        "verification_mode": mode,
+        "components": components,
+        "counts": {
+            "model_parameter_files": len(model_files),
+            "database_required_entries": len(REQUIRED_DATABASE_ENTRIES),
+        },
+        "release_boundary": {
+            "local_paths_emitted": False,
+            "dependency_filenames_emitted": False,
+            "content_bytes_emitted": False,
+        },
+    }
+
+
 def _load_json(path: str | Path) -> dict[str, Any]:
     value = json.loads(Path(path).read_text())
     if not isinstance(value, dict):
@@ -563,6 +810,38 @@ def _build_parser() -> argparse.ArgumentParser:
     verify.add_argument("--retained-manifest", type=Path, required=True)
     verify.add_argument("--input-dir", type=Path, required=True)
 
+    verify_runtime = subparsers.add_parser("verify-runtime")
+    verify_runtime.add_argument("--attestation", type=Path, required=True)
+    verify_runtime.add_argument(
+        "--expected-attestation-sha256",
+        required=True,
+    )
+    verify_runtime.add_argument(
+        "--preregistration",
+        type=Path,
+        required=True,
+    )
+    verify_runtime.add_argument("--input-freeze", type=Path, required=True)
+    verify_runtime.add_argument(
+        "--retained-manifest",
+        type=Path,
+        required=True,
+    )
+    verify_runtime.add_argument("--input-dir", type=Path, required=True)
+    verify_runtime.add_argument("--container", type=Path, required=True)
+    verify_runtime.add_argument("--model-dir", type=Path, required=True)
+    verify_runtime.add_argument("--database-dir", type=Path, required=True)
+    verify_runtime.add_argument(
+        "--database-manifest",
+        type=Path,
+        required=True,
+    )
+    verify_runtime.add_argument(
+        "--mode",
+        choices=("quick", "full"),
+        default="quick",
+    )
+
     inventory = subparsers.add_parser("inventory")
     inventory.add_argument("--database-dir", type=Path, required=True)
     inventory.add_argument("--out", type=Path, required=True)
@@ -596,6 +875,22 @@ def main() -> int:
             input_freeze=input_freeze,
             retained_manifest=args.retained_manifest,
             input_dir=args.input_dir,
+        )
+        print(json.dumps(result, sort_keys=True))
+        return 0
+    if args.command == "verify-runtime":
+        result = verify_runtime_dependencies(
+            attestation_path=args.attestation,
+            expected_attestation_sha256=args.expected_attestation_sha256,
+            preregistration=preregistration,
+            input_freeze=input_freeze,
+            retained_manifest=args.retained_manifest,
+            input_dir=args.input_dir,
+            container=args.container,
+            model_dir=args.model_dir,
+            database_dir=args.database_dir,
+            database_manifest=args.database_manifest,
+            mode=args.mode,
         )
         print(json.dumps(result, sort_keys=True))
         return 0

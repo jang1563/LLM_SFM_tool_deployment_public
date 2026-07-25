@@ -179,12 +179,17 @@ python -m pytest -q \
 Full prediction requires a private environment. Run the preflight with
 site-specific paths and the expected private checksums:
 
+On Cayuga, do not use the login node's host Python for these module commands.
+Invoke them inside the pinned AF3 image with `--pwd /app/alphafold`,
+`PYTHONPATH` bound to this repository, and `uv run python3`, matching
+`run_c5_af3_cayuga.sbatch`.
+
 ```bash
-python -m c5_antibody_ood.af3_preflight inventory \
+uv run python3 -m c5_antibody_ood.af3_preflight inventory \
   --database-dir <af3-database-dir> \
   --out <private-database-inventory>
 
-python -m c5_antibody_ood.af3_preflight run \
+uv run python3 -m c5_antibody_ood.af3_preflight run \
   --preregistration c5_antibody_ood/c5_prospective_panel_preregistration_v1.json \
   --input-freeze c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json \
   --retained-manifest c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl \
@@ -205,6 +210,31 @@ The command returns nonzero unless every component passes. The private
 attestation and its SHA-256 are then required by
 `c5_antibody_ood/run_c5_af3_cayuga.sbatch`. Parameters, databases, sequences,
 structures, predictions, paths, and scheduler logs must remain uncommitted.
+
+Before submission, rerun the mounted dependencies in full mode. Full mode
+rehashes the container, model parameters, and every required database file.
+The array repeats a lower-cost size, nanosecond-mtime, manifest, and
+deterministic-sentinel identity check for every target:
+
+```bash
+uv run python3 -m c5_antibody_ood.af3_preflight verify-runtime \
+  --attestation <private-attestation-json> \
+  --expected-attestation-sha256 <sha256> \
+  --preregistration c5_antibody_ood/c5_prospective_panel_preregistration_v1.json \
+  --input-freeze c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json \
+  --retained-manifest c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl \
+  --input-dir <private-af3-input-dir> \
+  --container <af3-singularity-image> \
+  --model-dir <authorized-model-parameter-dir> \
+  --database-dir <af3-database-dir> \
+  --database-manifest <private-database-inventory> \
+  --mode full
+```
+
+Submission must export `AF3_DB_MANIFEST` as well as the image, model, database,
+input, output, attestation, and attestation-SHA variables. Keep
+`AF3_RUNTIME_VERIFY_MODE=quick` for the array unless intentionally running a
+small full-verification diagnostic.
 
 After the 120 jobs complete, freeze prediction outputs before opening any
 DockQ label file:

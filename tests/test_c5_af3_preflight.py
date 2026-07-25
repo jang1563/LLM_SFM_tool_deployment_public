@@ -1,4 +1,5 @@
 import json
+import os
 import subprocess
 from pathlib import Path
 
@@ -11,6 +12,7 @@ from c5_antibody_ood.af3_preflight import (
     public_readiness_summary,
     run_preflight,
     verify_attestation,
+    verify_runtime_dependencies,
 )
 from c5_antibody_ood.manifest import load_c5_manifest, write_c5_manifest
 from c5_antibody_ood.prospective_panel import canonical_sha256
@@ -329,17 +331,148 @@ def test_private_attestation_rejects_runtime_input_drift(
         )
 
 
+def test_runtime_dependency_verification_passes_quick_and_full(
+    monkeypatch,
+    tmp_path,
+):
+    fixture = _build_fixture(tmp_path)
+    monkeypatch.setattr(
+        "c5_antibody_ood.af3_preflight.AF3_COMMIT",
+        subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=fixture["source_dir"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip(),
+    )
+    attestation = run_preflight(**fixture)
+    path = tmp_path / "attestation.json"
+    path.write_text(json.dumps(attestation, sort_keys=True))
+    common = {
+        "attestation_path": path,
+        "expected_attestation_sha256": sha256_file(path),
+        "preregistration": fixture["preregistration"],
+        "input_freeze": fixture["input_freeze"],
+        "retained_manifest": fixture["retained_manifest"],
+        "input_dir": fixture["input_dir"],
+        "container": fixture["container"],
+        "model_dir": fixture["model_dir"],
+        "database_dir": fixture["database_dir"],
+        "database_manifest": fixture["database_manifest"],
+    }
+
+    quick = verify_runtime_dependencies(**common, mode="quick")
+    full = verify_runtime_dependencies(**common, mode="full")
+
+    assert quick["runtime_dependencies_verified"] is True
+    assert quick["verification_mode"] == "quick"
+    assert full["runtime_dependencies_verified"] is True
+    assert full["verification_mode"] == "full"
+    assert all(full["components"].values())
+    rendered = json.dumps(full, sort_keys=True)
+    assert str(tmp_path) not in rendered
+    assert "af3.bin.zst" not in rendered
+
+
+def test_runtime_quick_catches_database_drift_and_full_catches_content_drift(
+    monkeypatch,
+    tmp_path,
+):
+    fixture = _build_fixture(tmp_path)
+    monkeypatch.setattr(
+        "c5_antibody_ood.af3_preflight.AF3_COMMIT",
+        subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=fixture["source_dir"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip(),
+    )
+    attestation = run_preflight(**fixture)
+    path = tmp_path / "attestation.json"
+    path.write_text(json.dumps(attestation, sort_keys=True))
+    common = {
+        "attestation_path": path,
+        "expected_attestation_sha256": sha256_file(path),
+        "preregistration": fixture["preregistration"],
+        "input_freeze": fixture["input_freeze"],
+        "retained_manifest": fixture["retained_manifest"],
+        "input_dir": fixture["input_dir"],
+        "container": fixture["container"],
+        "model_dir": fixture["model_dir"],
+        "database_dir": fixture["database_dir"],
+        "database_manifest": fixture["database_manifest"],
+    }
+    database_file = (
+        fixture["database_dir"] / "bfd-first_non_consensus_sequences.fasta"
+    )
+    database_stat = database_file.stat()
+    database_content = database_file.read_text()
+    database_file.write_text(">fixture\nACDEFG\n")
+
+    with pytest.raises(
+        AF3PreflightError,
+        match="database_quick_identity_matches",
+    ):
+        verify_runtime_dependencies(**common, mode="quick")
+
+    database_file.write_text(database_content)
+    os.utime(
+        database_file,
+        ns=(database_stat.st_atime_ns, database_stat.st_mtime_ns),
+    )
+    database_file.write_text(database_content.replace("ACDE", "ACDF"))
+    os.utime(
+        database_file,
+        ns=(database_stat.st_atime_ns, database_stat.st_mtime_ns),
+    )
+    quick = verify_runtime_dependencies(**common, mode="quick")
+    assert quick["runtime_dependencies_verified"] is True
+    with pytest.raises(
+        AF3PreflightError,
+        match="database_full_inventory_matches",
+    ):
+        verify_runtime_dependencies(**common, mode="full")
+
+    database_file.write_text(database_content)
+    os.utime(
+        database_file,
+        ns=(database_stat.st_atime_ns, database_stat.st_mtime_ns),
+    )
+    container_stat = fixture["container"].stat()
+    fixture["container"].write_bytes(b"containar")
+    os.utime(
+        fixture["container"],
+        ns=(container_stat.st_atime_ns, container_stat.st_mtime_ns),
+    )
+    quick = verify_runtime_dependencies(**common, mode="quick")
+    assert quick["runtime_dependencies_verified"] is True
+    with pytest.raises(
+        AF3PreflightError,
+        match="container_content_matches",
+    ):
+        verify_runtime_dependencies(**common, mode="full")
+
+
 def test_cayuga_array_is_attestation_and_output_guarded():
     script = SBATCH.read_text()
 
     assert "#SBATCH --array=0-119%8" in script
-    assert "c5_antibody_ood.af3_preflight verify" in script
+    assert "c5_antibody_ood.af3_preflight verify-runtime" in script
     assert "--expected-attestation-sha256" in script
     assert "--retained-manifest" in script
     assert "--input-dir" in script
     assert 'if [ -e "${TARGET_OUTPUT}" ]' in script
     assert "--num_diffusion_samples=5" in script
     assert "--output_dir=/root/af_output" in script
+    assert "AF3_DB_MANIFEST" in script
+    assert "--database-manifest /root/c5_database_manifest.json" in script
+    assert "--pwd /app/alphafold" in script
+    assert "uv run python3 -m c5_antibody_ood.af3_preflight" in script
+    assert "uv run python3 run_alphafold.py" in script
+    assert "\npython -m c5_antibody_ood.af3_preflight" not in script
     assert "/Users/" not in script
     assert "/home/" not in script
     assert "/" + "scratch/" not in script

@@ -544,6 +544,10 @@ label exists:
   40-target evaluation file can be opened;
 - evaluation applies only trust-all, fixed ranking-score 0.80,
   regime-specific calibrated, and fail-closed preregistered policies.
+- Cayuga runtime binding executes from the pinned AF3 image rather than the
+  incompatible host Python, and each task verifies that the mounted
+  container, model files, database manifest/sentinels, and input set match the
+  passed private attestation before inference.
 
 Synthetic tests cover certified, uncertified, target-mixing, model/native
 drift, partial-output, score-drift, and threshold-mutation paths. This closes a
@@ -561,6 +565,8 @@ Minimum next output:
 - install the official databases and freeze a private inventory checksum;
 - rerun the fail-closed Cayuga preflight until every source, container,
   parameter, database, input, and output-boundary component passes;
+- run the full mounted-dependency verification once and retain quick
+  verification inside every array task;
 - submit the 120-target Cayuga array only from a checksum-frozen private
   attestation, with Expanse as fallback;
 - freeze five outputs per target and select one by the preregistered rule before

@@ -610,6 +610,10 @@ Current checkpoint:
   target-specific native-structure reconstruction, calibration-only reveal,
   and frozen one-time evaluation are implemented with synthetic fail-closed
   tests;
+- Cayuga access confirms Singularity/Slurm and the pinned source, and finds the
+  frozen 120 private inputs plus 150 structures. The array no longer relies on
+  the old host Python: it verifies mounted container/model/database identities
+  from the pinned AF3 image before each task;
 - the tracked workflow remains prediction-pending; no real prediction,
   calibration, evaluation, or trust result has been produced;
 - the next gate is a zero-violation private environment attestation followed by
