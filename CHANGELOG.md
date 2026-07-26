@@ -27,6 +27,10 @@ All notable public-facing changes are tracked here.
   9 required entries, 195,867 files, and a private per-file SHA-256 inventory.
   Publish only a compact path-free readiness projection; authorized model
   parameters remain the sole runtime dependency blocking prediction.
+- Add split Cayuga execution: a CPU-only data-pipeline array validates and
+  atomically promotes one processed JSON per target, then a GPU inference array
+  uses the official `--run_data_pipeline=false --force_output_dir=true` path
+  and promotes only outputs that pass the canonical five-sample intake.
 - Align the Cayuga array with the official AF3 writer's common output-root
   contract, then add exact five-sample intake, ranking CSV/summary
   cross-checks, deterministic target selection, and immutable prediction

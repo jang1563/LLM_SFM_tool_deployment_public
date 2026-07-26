@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 from c5_antibody_ood.af3_preflight import ATTESTATION_SCHEMA
+from c5_antibody_ood.af3_phase_outputs import validate_inference_output
 from c5_antibody_ood.manifest import (
     load_c5_manifest,
     write_c5_manifest,
@@ -167,6 +168,17 @@ def test_output_intake_uses_score_iptm_then_lexical_tie_break(tmp_path):
     assert targets[0]["selected_output_id"] == "seed-20260725_sample-1"
     assert len(targets[0]["samples"]) == 5
     assert targets[0]["job_artifact_set_sha256"]
+
+    split_result = validate_inference_output(
+        retained_rows=[row],
+        preregistration=preregistration,
+        job_name=_safe_job_name(row["instance_id"]),
+        job_dir=output_root / _safe_job_name(row["instance_id"]),
+    )
+    assert split_result["phase"] == "inference"
+    assert split_result["verified"] is True
+    assert split_result["samples"] == 5
+    assert all(split_result["release_boundary"].values()) is False
 
 
 def test_output_intake_rejects_missing_sample_and_old_nested_layout(tmp_path):

@@ -73,6 +73,12 @@ now frozen before prediction or label reveal.
   `verify_all` when no certificate exists, and reject evaluation-time
   threshold changes. Synthetic tests exercise both certified and
   uncertified paths; these are contract tests, not scientific results.
+- The official v3.0.3 split-execution contract is now implemented. A CPU array
+  runs data-pipeline-only jobs into private staging and promotes only an exact,
+  label-free `<job>_data.json`; a GPU array runs inference-only with
+  `--force_output_dir=true`, validates the canonical five-sample target output,
+  and replaces the processed target only after validation. The combined array
+  remains a fallback, and the final prediction intake is unchanged.
 - The initial Cayuga preflight historically blocked on the container,
   parameters, and databases. The container and official database inventory are
   now checksum-frozen; authorized official model parameters are the sole
@@ -111,6 +117,9 @@ identity, and A100/H100-class compute explicit dependencies. Its pinned
 Dockerfile fixes `/app/alphafold` as the working directory and invokes
 `uv run python3`; the output writer fixes the sanitized job directory, five
 sample subdirectories, `ranking_scores.csv`, and summary-confidence schemas.
+The performance guide explicitly supports CPU data-pipeline-only output,
+inference-only reuse of processed JSON, and same-directory continuation via
+`--force_output_dir`.
 The official ranking score is not restricted to `[0,1]` because disorder and
 clash terms are included. DockQ v2.1.3 fixes the evaluator at commit
 `d9cbb1940bb0f42db3257f7da3b0e96f162b94d9`.
@@ -129,9 +138,10 @@ Proceed with `stage_b_c5_af3_environment_attestation_and_prediction`.
    process; do not substitute unofficial or untracked weights.
 2. Rerun the Cayuga preflight against the checksum-locked SIF, authorized
    parameters, and completed database inventory.
-3. Run one full runtime dependency verification, then submit the 120-target
-   array only after the private attestation has zero violations and its
-   SHA-256 is frozen. Keep the per-task quick runtime binding enabled.
+3. Run one full runtime dependency verification, then submit the 120-target CPU
+   data-pipeline array followed by the GPU inference array only after the
+   private attestation has zero violations and its SHA-256 is frozen. Keep the
+   per-task quick runtime binding enabled; retain the combined array as fallback.
 4. Run `prospective_predictions.py` to freeze five outputs per retained target
    and the preregistered target-level selection before any DockQ calculation.
 5. Reconstruct the private native-structure lock against the existing

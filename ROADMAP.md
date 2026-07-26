@@ -195,7 +195,10 @@ Completed:
   structure QC passes, and 120 checksum-bound AF3 inputs;
 - fail-closed AF3 environment attestation plus a Cayuga 120-task array path
   that rejects missing or modified source, container, parameters, databases,
-  inputs, output boundaries, or private attestation.
+  inputs, output boundaries, or private attestation;
+- staged 120-task CPU data-pipeline and GPU inference arrays that validate each
+  processed input and complete target before promotion while preserving the
+  canonical AF3 v3.0.3 final output contract.
 
 Not completed:
 
@@ -619,10 +622,13 @@ Current checkpoint:
 - the official AF3 database provisioning run is atomically complete with all 9
   required entries and 195,867 files bound by a private per-file content-hash
   inventory. Authorized model parameters are the sole open runtime dependency;
+- separate CPU data-pipeline and GPU inference arrays now stage and validate
+  each target before promotion. The final five-sample intake and label boundary
+  remain identical to the combined-array fallback;
 - the tracked workflow remains prediction-pending; no real prediction,
   calibration, evaluation, or trust result has been produced;
 - the next gate is a zero-violation private environment attestation followed by
-  the preregistered Cayuga prediction array, not model training.
+  the preregistered Cayuga CPU and GPU arrays, not model training.
 
 ### 6. Release v0.1 And Hugging Face Package
 

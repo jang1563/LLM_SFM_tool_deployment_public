@@ -66,6 +66,15 @@ C5_AF3_DATABASE_READINESS = (
     / "c5_af3_database_readiness_2026-07-26.json"
 )
 C5_AF3_ARRAY = ROOT / "c5_antibody_ood" / "run_c5_af3_cayuga.sbatch"
+C5_AF3_DATA_PIPELINE_ARRAY = (
+    ROOT / "c5_antibody_ood" / "run_c5_af3_data_pipeline_cayuga.sbatch"
+)
+C5_AF3_INFERENCE_ARRAY = (
+    ROOT / "c5_antibody_ood" / "run_c5_af3_inference_cayuga.sbatch"
+)
+C5_AF3_PHASE_OUTPUTS = (
+    ROOT / "c5_antibody_ood" / "af3_phase_outputs.py"
+)
 C5_PROSPECTIVE_PREDICTIONS = (
     ROOT / "c5_antibody_ood" / "prospective_predictions.py"
 )
@@ -122,6 +131,9 @@ def main() -> int:
         read(C5_AF3_DATABASE_READINESS)
     )
     c5_af3_array = read(C5_AF3_ARRAY)
+    c5_af3_data_pipeline_array = read(C5_AF3_DATA_PIPELINE_ARRAY)
+    c5_af3_inference_array = read(C5_AF3_INFERENCE_ARRAY)
+    c5_af3_phase_outputs = read(C5_AF3_PHASE_OUTPUTS)
     c5_predictions = read(C5_PROSPECTIVE_PREDICTIONS)
     c5_native_lock = read(C5_PROSPECTIVE_NATIVE_LOCK)
     c5_reveal = read(C5_PROSPECTIVE_REVEAL)
@@ -244,7 +256,7 @@ def main() -> int:
         "120 template-free AF3 inputs",
         "cannot support 0.10",
         "authorized official AF3 3.0.x parameters",
-        "submit the 120-target Cayuga array only",
+        "submit the 120-target Cayuga CPU data-pipeline array",
     ):
         require_contains(issues, plan, needle, "prospective C5 freeze/next gate")
     for needle in (
@@ -523,6 +535,44 @@ def main() -> int:
         "C5 AF3 non-nested output root",
     )
     for needle in (
+        "--run_data_pipeline=true",
+        "--run_inference=false",
+        "c5_antibody_ood.af3_phase_outputs",
+        'mv "${STAGE_TARGET}" "${TARGET_OUTPUT}"',
+    ):
+        require_contains(
+            issues,
+            c5_af3_data_pipeline_array,
+            needle,
+            "C5 AF3 CPU data-pipeline contract",
+        )
+    for needle in (
+        "--run_data_pipeline=false",
+        "--run_inference=true",
+        "--force_output_dir=true",
+        "c5_antibody_ood.af3_phase_outputs",
+        'mv "${TARGET_OUTPUT}" "${BACKUP_OUTPUT}"',
+        'mv "${STAGE_TARGET}" "${TARGET_OUTPUT}"',
+    ):
+        require_contains(
+            issues,
+            c5_af3_inference_array,
+            needle,
+            "C5 AF3 GPU inference contract",
+        )
+    for needle in (
+        "pipeline_job_entry_set_mismatch",
+        "pipeline_hidden_label_key_detected",
+        "collect_af3_target_output",
+        "prediction_scores_emitted",
+    ):
+        require_contains(
+            issues,
+            c5_af3_phase_outputs,
+            needle,
+            "C5 AF3 split-phase output validation",
+        )
+    for needle in (
         "ranking_score_summary_csv_mismatch",
         "selected_output_rule_mismatch",
         "complete_five_sample_set_per_target",
@@ -577,6 +627,7 @@ def main() -> int:
     print("- C5 prospective freeze: 150 targets QC-passed; 120 AF3 inputs locked")
     print("- C5 phase gates: 600-sample prediction lock and staged 80/40 reveal implemented")
     print("- C5 execution gate: source/input/container/databases ready; parameters blocked")
+    print("- C5 execution path: staged CPU data pipeline and GPU inference implemented")
     print("- C5 next gate: AF3 environment attestation and Cayuga prediction")
     print("- DPO/RLVR/HF gate: useful routing coverage plus independent evaluation required")
     print("- sealed evaluation gate: completed rows cannot be tuned on or rescored")
