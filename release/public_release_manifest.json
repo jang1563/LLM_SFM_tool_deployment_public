@@ -3,7 +3,7 @@
   "project": "LLM-SFM Tool Deployment",
   "release_profile": "benchmark_public_surface",
   "status": "public_clean_snapshot_release_surface",
-  "last_updated": "2026-07-25",
+  "last_updated": "2026-07-26",
   "benchmark_scope": {
     "primary_release_object": "Stage A biology tool-use trajectory benchmark substrate",
     "primary_claim": "Agents should be evaluated on tool -> evidence packet -> terminal action trajectories with hidden labels separated from model-visible prompts.",
@@ -1570,6 +1570,12 @@
       "path": "c5_antibody_ood/c5_af3_container_readiness_2026-07-25.json",
       "kind": "c5_af3_container_readiness",
       "sha256": "015b2fbb2d251e8e4764a709192307b5573e6e88ea139626fa7ab86c5a64df31",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_af3_database_readiness_2026-07-26.json",
+      "kind": "c5_af3_database_readiness",
+      "sha256": "9987ac5276e23bc6d3e3f0213b05f05434bd528887fad5f906a47b825763362a",
       "safe_to_publish": true
     },
     {

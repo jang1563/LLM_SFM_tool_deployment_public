@@ -209,6 +209,11 @@ sbatch --account=<allocation> --partition=scu-cpu \
   c5_antibody_ood/fetch_c5_af3_databases_cayuga.sbatch
 ```
 
+The first completed run atomically promoted all 9 required entries and bound
+195,867 files by content SHA-256. Its private sidecar recheck passes, while
+`c5_af3_database_readiness_2026-07-26.json` exposes only aggregate sizes,
+content identities, and gate status.
+
 After those private dependencies are present, run the following module
 commands inside the pinned image:
 

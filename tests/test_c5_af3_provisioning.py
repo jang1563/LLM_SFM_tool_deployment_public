@@ -15,7 +15,17 @@ CONTAINER_READINESS = (
     ROOT
     / "c5_antibody_ood/c5_af3_container_readiness_2026-07-25.json"
 )
+DATABASE_READINESS = (
+    ROOT
+    / "c5_antibody_ood/c5_af3_database_readiness_2026-07-26.json"
+)
 AF3_COMMIT = "7b197fe859790fc3e04d03ea70dd0b9ba48881c9"
+CONTAINER_SHA256 = (
+    "128a62b4849f3606a61a12fbe754e3f928bdbe43fe1c0894a231380f419fe7b2"
+)
+DATABASE_MANIFEST_SHA256 = (
+    "62a6a5a42e924c1b22e8e387936ad2c367b57a2d4b9b57d0e88bf38fd054527c"
+)
 
 
 def test_apptainer_definition_pins_official_af3_build_inputs():
@@ -97,6 +107,39 @@ def test_container_readiness_is_definition_bound_and_public_safe():
     assert readiness["verification"]["jax_gpu_device_smoke"] == {
         "status": "pass",
         "devices": 1,
+    }
+    assert all(readiness["release_boundary"].values()) is False
+    rendered = json.dumps(readiness, sort_keys=True)
+    assert "/Users/" not in rendered
+    assert "/home/" not in rendered
+    assert "/" + "scratch/" not in rendered
+    assert "SLURM" not in rendered
+
+
+def test_database_readiness_is_content_bound_and_public_safe():
+    readiness = json.loads(DATABASE_READINESS.read_text())
+
+    assert readiness["source"]["af3_commit"] == AF3_COMMIT
+    assert readiness["source"]["af3_tag"] == "v3.0.3"
+    assert readiness["binding"]["container_sha256"] == CONTAINER_SHA256
+    assert (
+        readiness["binding"]["database_manifest_sha256"]
+        == DATABASE_MANIFEST_SHA256
+    )
+    assert (
+        readiness["binding"]["inventory_schema"]
+        == "c5_af3_database_inventory_v3"
+    )
+    assert readiness["summary"] == {
+        "required_entries": 9,
+        "files": 195867,
+        "bytes": 672435030513,
+    }
+    assert all(readiness["verification"].values())
+    assert readiness["decision"] == {
+        "database_ready": True,
+        "ready_for_af3_prediction": False,
+        "remaining_blockers": ["authorized_model_parameters_missing"],
     }
     assert all(readiness["release_boundary"].values()) is False
     rendered = json.dumps(readiness, sort_keys=True)

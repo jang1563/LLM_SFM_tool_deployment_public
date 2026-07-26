@@ -24,7 +24,7 @@ def test_research_plan_checker_passes() -> None:
     assert "C5 independent calibration: 97 targets" in result.stdout
     assert "C5 prospective freeze: 150 targets QC-passed" in result.stdout
     assert (
-        "source/input/container ready; parameters/databases blocked"
+        "source/input/container/databases ready; parameters blocked"
         in result.stdout
     )
     assert "C5 next gate: AF3 environment attestation" in result.stdout

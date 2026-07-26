@@ -552,6 +552,11 @@ label exists:
   Cayuga CPU node. Its SIF checksum, embedded source/package tests,
   runner-import test, and one-device JAX GPU smoke pass; the image includes no
   parameters or databases.
+- The official AF3 database fetch now completes with atomic promotion. A
+  private v3 inventory content-hashes all 9 required entries and 195,867 files;
+  the public checkpoint contains only aggregate size, content identities, and
+  gate status. Authorized model parameters are now the sole unresolved runtime
+  dependency.
 
 Synthetic tests cover certified, uncertified, target-mixing, model/native
 drift, partial-output, score-drift, and threshold-mutation paths. This closes a
@@ -565,8 +570,6 @@ Complete `stage_b_c5_af3_environment_attestation_and_prediction`.
 Minimum next output:
 
 - obtain authorized official AF3 3.0.x parameters;
-- complete the official database provisioning job and freeze its private
-  per-file content-hash inventory;
 - rerun the fail-closed Cayuga preflight until every source, container,
   parameter, database, input, and output-boundary component passes;
 - run the full mounted-dependency verification once and retain quick
