@@ -562,6 +562,11 @@ label exists:
   inference-only in private staging, validates the canonical five-sample
   output, and then replaces the processed target. The combined path remains a
   fallback and final prediction intake is unchanged.
+- Authorized-parameter intake is implemented as a private atomic provisioning
+  gate: explicit direct-from-Google confirmation, one model family, no
+  symlinks, per-fragment content hashes, and copy verification are required.
+  No parameter artifact is present; the confirmation remains a user provenance
+  assertion rather than independent license verification.
 
 Synthetic tests cover certified, uncertified, target-mixing, model/native
 drift, partial-output, score-drift, and threshold-mutation paths. This closes a

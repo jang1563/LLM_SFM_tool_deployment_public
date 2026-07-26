@@ -1,14 +1,18 @@
 import json
 import os
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
 
 from c5_antibody_ood.af3_preflight import (
     AF3PreflightError,
+    MODEL_INVENTORY_SCHEMA,
     REQUIRED_DATABASE_ENTRIES,
     build_database_inventory,
+    build_model_inventory,
+    provision_model_parameters,
     public_readiness_summary,
     run_preflight,
     verify_attestation,
@@ -186,6 +190,119 @@ def test_missing_parameters_fail_closed_with_specific_violations(
     assert "model_parameters_present" in result["violations"]
     assert "single_model_parameter_set" in result["violations"]
     assert "model_checksum_matches" in result["violations"]
+
+
+def test_model_inventory_and_authorized_atomic_stage_are_content_bound(
+    tmp_path,
+):
+    source = tmp_path / "authorized_source"
+    source.mkdir()
+    (source / "af3.0.bin.zst").write_bytes(b"parameter-fragment-0")
+    (source / "af3.1.bin.zst").write_bytes(b"parameter-fragment-1")
+
+    inventory = build_model_inventory(source)
+
+    assert inventory["schema_version"] == MODEL_INVENTORY_SCHEMA
+    assert inventory["summary"] == {
+        "files": 2,
+        "bytes": 40,
+    }
+    assert len(inventory["model_parameter_set_sha256"]) == 64
+    assert inventory["local_paths_emitted"] is False
+    assert inventory["parameter_content_emitted"] is False
+
+    stage = tmp_path / "stage"
+    stage.mkdir()
+    with pytest.raises(
+        AF3PreflightError,
+        match="authorized_model_source_not_confirmed",
+    ):
+        provision_model_parameters(
+            source_dir=source,
+            stage_dir=stage,
+            authorized_source_confirmed=False,
+        )
+
+    staged = provision_model_parameters(
+        source_dir=source,
+        stage_dir=stage,
+        authorized_source_confirmed=True,
+    )
+    assert staged["model_parameter_set_sha256"] == inventory[
+        "model_parameter_set_sha256"
+    ]
+    assert staged["authorization"] == {
+        "received_directly_from_google_confirmed": True,
+        "authorization_is_user_asserted": True,
+    }
+    assert sorted(path.name for path in stage.iterdir()) == [
+        "af3.0.bin.zst",
+        "af3.1.bin.zst",
+    ]
+
+
+def test_model_inventory_rejects_multiple_families_and_symlinks(tmp_path):
+    multiple = tmp_path / "multiple"
+    multiple.mkdir()
+    (multiple / "af3.bin.zst").write_bytes(b"af3")
+    (multiple / "other.bin.zst").write_bytes(b"other")
+    with pytest.raises(
+        AF3PreflightError,
+        match="multiple_model_parameter_sets",
+    ):
+        build_model_inventory(multiple)
+
+    linked = tmp_path / "linked"
+    linked.mkdir()
+    external = tmp_path / "af3.bin.zst"
+    external.write_bytes(b"parameters")
+    (linked / "af3.bin.zst").symlink_to(external)
+    with pytest.raises(
+        AF3PreflightError,
+        match="model_parameter_symlink_forbidden",
+    ):
+        build_model_inventory(linked)
+
+
+def test_authorized_model_provisioning_cli_writes_private_inventory(tmp_path):
+    source = tmp_path / "source"
+    source.mkdir()
+    (source / "af3.bin.zst").write_bytes(b"authorized-parameters")
+    stage = tmp_path / "stage"
+    stage.mkdir()
+    manifest = tmp_path / "model_inventory.json"
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "c5_antibody_ood.af3_preflight",
+            "provision-model",
+            "--source-dir",
+            str(source),
+            "--stage-dir",
+            str(stage),
+            "--authorized-source-confirmed",
+            "--out",
+            str(manifest),
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    emitted = json.loads(result.stdout)
+    inventory = json.loads(manifest.read_text())
+    assert emitted["authorized_source_confirmed"] is True
+    assert emitted["model_parameter_set_sha256"] == inventory[
+        "model_parameter_set_sha256"
+    ]
+    assert inventory["authorization"][
+        "received_directly_from_google_confirmed"
+    ] is True
+    assert (stage / "af3.bin.zst").read_bytes() == b"authorized-parameters"
 
 
 def test_preexisting_output_and_checksum_mismatch_fail_closed(

@@ -31,6 +31,10 @@ All notable public-facing changes are tracked here.
   atomically promotes one processed JSON per target, then a GPU inference array
   uses the official `--run_data_pipeline=false --force_output_dir=true` path
   and promotes only outputs that pass the canonical five-sample intake.
+- Add fail-closed AF3 parameter provisioning for an authorized private source:
+  require explicit direct-from-Google confirmation, reject symlinks and
+  multiple model families, content-hash every selected fragment, and atomically
+  promote the private directory plus manifest.
 - Align the Cayuga array with the official AF3 writer's common output-root
   contract, then add exact five-sample intake, ranking CSV/summary
   cross-checks, deterministic target selection, and immutable prediction

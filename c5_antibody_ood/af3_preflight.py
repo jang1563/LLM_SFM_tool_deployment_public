@@ -26,6 +26,7 @@ from .source_pilot import sha256_file
 ATTESTATION_SCHEMA = "c5_af3_environment_attestation_v1"
 READINESS_SCHEMA = "c5_af3_environment_readiness_v1"
 DATABASE_INVENTORY_SCHEMA = "c5_af3_database_inventory_v3"
+MODEL_INVENTORY_SCHEMA = "c5_af3_model_inventory_v1"
 REQUIRED_DATABASE_ENTRIES = (
     "bfd-first_non_consensus_sequences.fasta",
     "mgy_clusters_2022_05.fa",
@@ -120,6 +121,72 @@ def _select_model_files(model_dir: Path) -> tuple[list[Path], bool]:
                 return [], True
             return sorted(next(iter(models.values()))), False
     return [], False
+
+
+def build_model_inventory(model_dir: str | Path) -> dict[str, Any]:
+    """Build a path-free content inventory for one AF3 parameter family."""
+
+    root = Path(model_dir)
+    if not root.is_dir() or root.is_symlink():
+        raise AF3PreflightError("model_parameter_directory_invalid")
+    model_files, multiple_models = _select_model_files(root)
+    if multiple_models:
+        raise AF3PreflightError("multiple_model_parameter_sets")
+    if not model_files:
+        raise AF3PreflightError("model_parameters_missing")
+    if any(path.is_symlink() for path in model_files):
+        raise AF3PreflightError("model_parameter_symlink_forbidden")
+    records = _file_set_records(model_files)
+    if any(record["bytes"] <= 0 for record in records):
+        raise AF3PreflightError("model_parameter_file_empty")
+    return {
+        "schema_version": MODEL_INVENTORY_SCHEMA,
+        "files": records,
+        "summary": {
+            "files": len(records),
+            "bytes": sum(record["bytes"] for record in records),
+        },
+        "model_parameter_set_sha256": canonical_sha256(records),
+        "local_paths_emitted": False,
+        "parameter_content_emitted": False,
+    }
+
+
+def provision_model_parameters(
+    *,
+    source_dir: str | Path,
+    stage_dir: str | Path,
+    authorized_source_confirmed: bool,
+) -> dict[str, Any]:
+    """Copy one authorized AF3 parameter family into a clean staging dir."""
+
+    if authorized_source_confirmed is not True:
+        raise AF3PreflightError("authorized_model_source_not_confirmed")
+    source = Path(source_dir)
+    stage = Path(stage_dir)
+    source_inventory = build_model_inventory(source)
+    if (
+        not stage.is_dir()
+        or stage.is_symlink()
+        or any(stage.iterdir())
+        or source.resolve() == stage.resolve()
+    ):
+        raise AF3PreflightError("model_parameter_stage_invalid")
+    source_files, multiple_models = _select_model_files(source)
+    if multiple_models or not source_files:
+        raise AF3PreflightError("model_parameter_source_invalid")
+    for path in source_files:
+        shutil.copy2(path, stage / path.name)
+    staged_inventory = build_model_inventory(stage)
+    if staged_inventory != source_inventory:
+        raise AF3PreflightError("model_parameter_copy_mismatch")
+    return {
+        **staged_inventory,
+        "authorization": {
+            "received_directly_from_google_confirmed": True,
+            "authorization_is_user_asserted": True,
+        },
+    }
 
 
 def _database_entry_ready(path: Path) -> bool:
@@ -845,6 +912,19 @@ def _build_parser() -> argparse.ArgumentParser:
     inventory = subparsers.add_parser("inventory")
     inventory.add_argument("--database-dir", type=Path, required=True)
     inventory.add_argument("--out", type=Path, required=True)
+
+    model_inventory = subparsers.add_parser("model-inventory")
+    model_inventory.add_argument("--model-dir", type=Path, required=True)
+    model_inventory.add_argument("--out", type=Path, required=True)
+
+    provision_model = subparsers.add_parser("provision-model")
+    provision_model.add_argument("--source-dir", type=Path, required=True)
+    provision_model.add_argument("--stage-dir", type=Path, required=True)
+    provision_model.add_argument(
+        "--authorized-source-confirmed",
+        action="store_true",
+    )
+    provision_model.add_argument("--out", type=Path, required=True)
     return parser
 
 
@@ -859,6 +939,43 @@ def main() -> int:
                     "database_manifest_sha256": sha256_file(args.out),
                     "entries": inventory["summary"]["entries"],
                     "files": inventory["summary"]["files"],
+                },
+                sort_keys=True,
+            )
+        )
+        return 0
+    if args.command == "model-inventory":
+        inventory = build_model_inventory(args.model_dir)
+        write_json(args.out, inventory)
+        print(
+            json.dumps(
+                {
+                    "model_parameter_set_sha256": inventory[
+                        "model_parameter_set_sha256"
+                    ],
+                    "files": inventory["summary"]["files"],
+                    "bytes": inventory["summary"]["bytes"],
+                },
+                sort_keys=True,
+            )
+        )
+        return 0
+    if args.command == "provision-model":
+        inventory = provision_model_parameters(
+            source_dir=args.source_dir,
+            stage_dir=args.stage_dir,
+            authorized_source_confirmed=args.authorized_source_confirmed,
+        )
+        write_json(args.out, inventory)
+        print(
+            json.dumps(
+                {
+                    "model_parameter_set_sha256": inventory[
+                        "model_parameter_set_sha256"
+                    ],
+                    "files": inventory["summary"]["files"],
+                    "bytes": inventory["summary"]["bytes"],
+                    "authorized_source_confirmed": True,
                 },
                 sort_keys=True,
             )

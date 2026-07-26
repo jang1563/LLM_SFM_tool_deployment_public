@@ -11,6 +11,9 @@ BUILD_JOB = (
 DATABASE_JOB = (
     ROOT / "c5_antibody_ood/fetch_c5_af3_databases_cayuga.sbatch"
 )
+PARAMETER_JOB = (
+    ROOT / "c5_antibody_ood/provision_c5_af3_parameters_cayuga.sbatch"
+)
 CONTAINER_READINESS = (
     ROOT
     / "c5_antibody_ood/c5_af3_container_readiness_2026-07-25.json"
@@ -87,6 +90,25 @@ def test_cayuga_database_job_is_content_hashed_and_atomic():
     assert 'mv "${STAGE}" "${AF3_DB_OUT}"' in script
     assert 'mv "${MANIFEST_PARTIAL}" "${AF3_DB_MANIFEST_OUT}"' in script
     assert "private database outputs must be outside" in script
+    assert "/Users/" not in script
+    assert "/home/" not in script
+    assert "/" + "scratch/" not in script
+
+
+def test_cayuga_parameter_job_requires_authorization_and_atomic_inventory():
+    script = PARAMETER_JOB.read_text()
+
+    assert "#SBATCH --cpus-per-task=4" in script
+    assert "AF3_AUTHORIZED_SOURCE_CONFIRMED" in script
+    assert '!= "YES"' in script
+    assert "AF3_SIF_SHA256" in script
+    assert "c5_antibody_ood.af3_preflight" in script
+    assert "provision-model" in script
+    assert "--authorized-source-confirmed" in script
+    assert 'STAGE="${AF3_MODEL_OUT}.partial.${SLURM_JOB_ID}"' in script
+    assert 'mv "${STAGE}" "${AF3_MODEL_OUT}"' in script
+    assert 'mv "${MANIFEST_PARTIAL}" "${AF3_MODEL_MANIFEST_OUT}"' in script
+    assert "model source and outputs must be outside" in script
     assert "/Users/" not in script
     assert "/home/" not in script
     assert "/" + "scratch/" not in script
