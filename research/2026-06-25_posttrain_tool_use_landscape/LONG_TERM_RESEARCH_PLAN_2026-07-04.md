@@ -567,6 +567,12 @@ label exists:
   symlinks, per-fragment content hashes, and copy verification are required.
   No parameter artifact is present; the confirmation remains a user provenance
   assertion rather than independent license verification.
+- The v2 private runtime-attestation path is implemented before parameter
+  access. One Cayuga CPU job binds the clean benchmark commit, clean AF3 source,
+  container, authorized-model manifest, database inventory, frozen inputs, and
+  output boundary; it then performs a same-job quick mount recheck before
+  sidecar-first atomic promotion. Arrays and the final prediction lock reject
+  benchmark or model-manifest drift.
 
 Synthetic tests cover certified, uncertified, target-mixing, model/native
 drift, partial-output, score-drift, and threshold-mutation paths. This closes a
@@ -580,10 +586,11 @@ Complete `stage_b_c5_af3_environment_attestation_and_prediction`.
 Minimum next output:
 
 - obtain authorized official AF3 3.0.x parameters;
-- rerun the fail-closed Cayuga preflight until every source, container,
-  parameter, database, input, and output-boundary component passes;
-- run the full mounted-dependency verification once and retain quick
-  verification inside every array task;
+- run the dedicated Cayuga attestation job until every benchmark, source,
+  container, authorized-model manifest, parameter, database, input, and
+  output-boundary component passes;
+- retain quick mounted-dependency verification inside every array task after
+  the attestation job's full scan and immediate quick recheck;
 - submit the 120-target Cayuga CPU data-pipeline array and then the GPU
   inference array only from a checksum-frozen private attestation, with the
   combined array and Expanse retained as fallbacks;

@@ -19,6 +19,12 @@ All notable public-facing changes are tracked here.
   container/model/database identities,
   rehashes all required dependency content in full mode, and avoids relying
   on the cluster's incompatible host Python.
+- Upgrade the private AF3 attestation to v2 and add an atomic Cayuga
+  attestation job. The contract now requires a clean benchmark commit, clean
+  AF3 source, checksum-bound user-asserted authorization manifest, full
+  dependency scan, and same-job quick mount rebinding before its completion
+  marker is promoted. Every array and the final prediction lock require the
+  same benchmark commit and model manifest.
 - Add an official-Dockerfile-aligned Apptainer definition plus fail-closed
   Cayuga CPU build and database-provisioning jobs. The first checksum-frozen
   AF3 v3.0.3 SIF passes embedded, runner-import, checksum-replay, and JAX GPU

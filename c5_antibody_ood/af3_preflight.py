@@ -23,7 +23,7 @@ from .prospective_panel import (
 from .source_pilot import sha256_file
 
 
-ATTESTATION_SCHEMA = "c5_af3_environment_attestation_v1"
+ATTESTATION_SCHEMA = "c5_af3_environment_attestation_v2"
 READINESS_SCHEMA = "c5_af3_environment_readiness_v1"
 DATABASE_INVENTORY_SCHEMA = "c5_af3_database_inventory_v3"
 MODEL_INVENTORY_SCHEMA = "c5_af3_model_inventory_v1"
@@ -50,6 +50,34 @@ MODEL_PATTERNS = tuple(
     )
 )
 SHA256_RE = re.compile(r"^[a-f0-9]{64}$")
+GIT_COMMIT_RE = re.compile(r"^[a-f0-9]{40}$")
+REQUIRED_ATTESTATION_COMPONENTS = (
+    "runtime_available",
+    "benchmark_commit_recorded",
+    "benchmark_source_clean",
+    "source_commit_matches",
+    "source_tag_matches",
+    "source_tree_clean",
+    "container_present",
+    "container_checksum_matches",
+    "model_parameters_present",
+    "single_model_parameter_set",
+    "model_checksum_matches",
+    "model_manifest_present",
+    "model_manifest_checksum_matches",
+    "model_inventory_matches",
+    "database_entries_complete",
+    "database_manifest_present",
+    "database_manifest_checksum_matches",
+    "database_inventory_matches",
+    "input_freeze_protocol_matches",
+    "input_freeze_preregistration_matches",
+    "input_freeze_ready",
+    "retained_manifest_checksum_matches",
+    "input_set_complete",
+    "input_set_checksum_matches",
+    "output_boundary_clean",
+)
 
 
 class AF3PreflightError(ValueError):
@@ -71,6 +99,19 @@ def _git_value(source_dir: Path, *args: str) -> str | None:
     except (OSError, subprocess.CalledProcessError):
         return None
     return result.stdout.strip() or None
+
+
+def _git_clean(source_dir: Path) -> bool:
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(source_dir), "status", "--porcelain"],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return False
+    return result.stdout.strip() == ""
 
 
 def _aggregate_file_set(files: Sequence[Path]) -> tuple[str, int]:
@@ -187,6 +228,53 @@ def provision_model_parameters(
             "authorization_is_user_asserted": True,
         },
     }
+
+
+def _model_inventory_matches(
+    model_dir: Path,
+    manifest_path: Path,
+) -> bool:
+    try:
+        expected = json.loads(manifest_path.read_text())
+        authorization = expected.pop("authorization")
+        actual = build_model_inventory(model_dir)
+    except (
+        OSError,
+        KeyError,
+        ValueError,
+        json.JSONDecodeError,
+        AF3PreflightError,
+    ):
+        return False
+    return (
+        expected == actual
+        and authorization
+        == {
+            "received_directly_from_google_confirmed": True,
+            "authorization_is_user_asserted": True,
+        }
+    )
+
+
+def _model_manifest_contract_matches(
+    manifest_path: Path,
+    *,
+    model_parameter_set_sha256: Any,
+) -> bool:
+    try:
+        manifest = json.loads(manifest_path.read_text())
+    except (OSError, ValueError, json.JSONDecodeError):
+        return False
+    return (
+        manifest.get("schema_version") == MODEL_INVENTORY_SCHEMA
+        and manifest.get("model_parameter_set_sha256")
+        == model_parameter_set_sha256
+        and manifest.get("authorization")
+        == {
+            "received_directly_from_google_confirmed": True,
+            "authorization_is_user_asserted": True,
+        }
+    )
 
 
 def _database_entry_ready(path: Path) -> bool:
@@ -401,11 +489,14 @@ def run_preflight(
     input_freeze: Mapping[str, Any],
     retained_manifest: str | Path,
     input_dir: str | Path,
+    benchmark_dir: str | Path,
     source_dir: str | Path,
     container: str | Path,
     expected_container_sha256: str,
     model_dir: str | Path,
     expected_model_sha256: str,
+    model_manifest: str | Path,
+    expected_model_manifest_sha256: str,
     database_dir: str | Path,
     database_manifest: str | Path,
     expected_database_manifest_sha256: str,
@@ -415,14 +506,21 @@ def run_preflight(
 ) -> dict[str, Any]:
     """Inspect all locked AF3 dependencies and return a path-free attestation."""
 
-    for label, value in (
+    expected_hashes = (
         ("expected_container_sha256", expected_container_sha256),
         ("expected_model_sha256", expected_model_sha256),
+        (
+            "expected_model_manifest_sha256",
+            expected_model_manifest_sha256,
+        ),
         (
             "expected_database_manifest_sha256",
             expected_database_manifest_sha256,
         ),
-    ):
+    )
+    for label, value in expected_hashes:
+        if not isinstance(value, str):
+            raise AF3PreflightError(f"{label}_invalid")
         if not SHA256_RE.fullmatch(value):
             raise AF3PreflightError(f"{label}_invalid")
 
@@ -454,7 +552,11 @@ def run_preflight(
     source_path = Path(source_dir)
     actual_commit = _git_value(source_path, "rev-parse", "HEAD")
     actual_tag = _git_value(source_path, "describe", "--tags", "--exact-match")
+    source_clean = _git_clean(source_path)
     expected_tag = preregistration["protocol"]["prediction"]["code_tag"]
+    benchmark_path = Path(benchmark_dir)
+    benchmark_commit = _git_value(benchmark_path, "rev-parse", "HEAD")
+    benchmark_clean = _git_clean(benchmark_path)
 
     container_path = Path(container)
     container_present = (
@@ -473,6 +575,21 @@ def run_preflight(
         model_records = _file_set_records(model_files)
         model_sha256 = canonical_sha256(model_records)
         model_bytes = sum(record["bytes"] for record in model_records)
+    model_manifest_path = Path(model_manifest)
+    model_manifest_present = (
+        model_manifest_path.is_file()
+        and model_manifest_path.stat().st_size > 0
+    )
+    model_manifest_sha256 = (
+        sha256_file(model_manifest_path)
+        if model_manifest_present
+        else None
+    )
+    model_inventory_matches = (
+        model_present
+        and model_manifest_present
+        and _model_inventory_matches(Path(model_dir), model_manifest_path)
+    )
 
     database_root = Path(database_dir)
     missing_database_entries = [
@@ -516,8 +633,14 @@ def run_preflight(
 
     components = {
         "runtime_available": shutil.which(runtime_command) is not None,
+        "benchmark_commit_recorded": (
+            isinstance(benchmark_commit, str)
+            and GIT_COMMIT_RE.fullmatch(benchmark_commit) is not None
+        ),
+        "benchmark_source_clean": benchmark_clean,
         "source_commit_matches": actual_commit == AF3_COMMIT,
         "source_tag_matches": actual_tag == expected_tag,
+        "source_tree_clean": source_clean,
         "container_present": container_present,
         "container_checksum_matches": (
             container_sha256 == expected_container_sha256
@@ -525,6 +648,11 @@ def run_preflight(
         "model_parameters_present": model_present,
         "single_model_parameter_set": model_present and not multiple_models,
         "model_checksum_matches": model_sha256 == expected_model_sha256,
+        "model_manifest_present": model_manifest_present,
+        "model_manifest_checksum_matches": (
+            model_manifest_sha256 == expected_model_manifest_sha256
+        ),
+        "model_inventory_matches": model_inventory_matches,
         "database_entries_complete": database_entries_complete,
         "database_manifest_present": database_manifest_present,
         "database_manifest_checksum_matches": (
@@ -560,9 +688,11 @@ def run_preflight(
         "ready_for_af3_prediction": not violations,
         "components": components,
         "checksums": {
+            "benchmark_commit": benchmark_commit,
             "source_commit": actual_commit,
             "container_sha256": container_sha256,
             "model_parameter_set_sha256": model_sha256,
+            "model_manifest_sha256": model_manifest_sha256,
             "database_manifest_sha256": database_manifest_sha256,
             "retained_manifest_sha256": retained_manifest_sha256,
             "af3_input_set_sha256": input_sha256,
@@ -592,6 +722,7 @@ def run_preflight(
             "model_parameter_quick_sha256": canonical_sha256(
                 _quick_file_set_records(model_files)
             ),
+            "model_inventory_schema": MODEL_INVENTORY_SCHEMA,
             "database_inventory_schema": DATABASE_INVENTORY_SCHEMA,
         },
         "resume_requested": resume,
@@ -633,6 +764,7 @@ def verify_attestation(
     input_freeze: Mapping[str, Any],
     retained_manifest: str | Path,
     input_dir: str | Path,
+    benchmark_dir: str | Path,
 ) -> dict[str, Any]:
     """Verify a passed private attestation before an array task starts."""
 
@@ -675,9 +807,47 @@ def verify_attestation(
         "protocol_sha256"
     ):
         raise AF3PreflightError("attestation_protocol_mismatch")
-    if value["checksums"].get("source_commit") != AF3_COMMIT:
+    components = value.get("components")
+    if (
+        not isinstance(components, Mapping)
+        or any(
+            components.get(name) is not True
+            for name in REQUIRED_ATTESTATION_COMPONENTS
+        )
+        or any(passed is not True for passed in components.values())
+    ):
+        raise AF3PreflightError("attestation_components_invalid")
+    checksums = value.get("checksums")
+    if not isinstance(checksums, Mapping):
+        raise AF3PreflightError("attestation_checksums_invalid")
+    if checksums.get("source_commit") != AF3_COMMIT:
         raise AF3PreflightError("attestation_source_commit_mismatch")
-    if value["checksums"].get(
+    expected_benchmark_commit = checksums.get("benchmark_commit")
+    if (
+        not isinstance(expected_benchmark_commit, str)
+        or not GIT_COMMIT_RE.fullmatch(expected_benchmark_commit)
+    ):
+        raise AF3PreflightError("attestation_benchmark_commit_invalid")
+    for name in (
+        "container_sha256",
+        "model_parameter_set_sha256",
+        "model_manifest_sha256",
+        "database_manifest_sha256",
+        "retained_manifest_sha256",
+        "af3_input_set_sha256",
+    ):
+        digest = checksums.get(name)
+        if not isinstance(digest, str) or not SHA256_RE.fullmatch(digest):
+            raise AF3PreflightError(f"attestation_{name}_invalid")
+    benchmark_path = Path(benchmark_dir)
+    if (
+        _git_value(benchmark_path, "rev-parse", "HEAD")
+        != expected_benchmark_commit
+    ):
+        raise AF3PreflightError("runtime_benchmark_commit_mismatch")
+    if not _git_clean(benchmark_path):
+        raise AF3PreflightError("runtime_benchmark_source_dirty")
+    if checksums.get(
         "af3_input_set_sha256"
     ) != input_freeze["af3_inputs"].get("af3_input_set_sha256"):
         raise AF3PreflightError("attestation_input_set_mismatch")
@@ -705,6 +875,7 @@ def verify_attestation(
         "attestation_verified": True,
         "attestation_sha256": expected_attestation_sha256,
         "protocol_sha256": value["protocol_sha256"],
+        "benchmark_commit": expected_benchmark_commit,
         "af3_input_set_sha256": value["checksums"][
             "af3_input_set_sha256"
         ],
@@ -719,8 +890,10 @@ def verify_runtime_dependencies(
     input_freeze: Mapping[str, Any],
     retained_manifest: str | Path,
     input_dir: str | Path,
+    benchmark_dir: str | Path,
     container: str | Path,
     model_dir: str | Path,
+    model_manifest: str | Path,
     database_dir: str | Path,
     database_manifest: str | Path,
     mode: str = "quick",
@@ -736,6 +909,7 @@ def verify_runtime_dependencies(
         input_freeze=input_freeze,
         retained_manifest=retained_manifest,
         input_dir=input_dir,
+        benchmark_dir=benchmark_dir,
     )
     value = _load_json(attestation_path)
     identity = value.get("runtime_identity")
@@ -749,6 +923,7 @@ def verify_runtime_dependencies(
         not isinstance(expected_container, Mapping)
         or not isinstance(expected_model_quick_sha256, str)
         or not SHA256_RE.fullmatch(expected_model_quick_sha256)
+        or identity.get("model_inventory_schema") != MODEL_INVENTORY_SCHEMA
         or identity.get("database_inventory_schema")
         != DATABASE_INVENTORY_SCHEMA
     ):
@@ -756,6 +931,7 @@ def verify_runtime_dependencies(
 
     container_path = Path(container)
     model_path = Path(model_dir)
+    model_manifest_path = Path(model_manifest)
     database_path = Path(database_dir)
     database_manifest_path = Path(database_manifest)
     model_files, multiple_models = _select_model_files(model_path)
@@ -779,6 +955,20 @@ def verify_runtime_dependencies(
         "model_file_identity_matches": (
             canonical_sha256(actual_model_quick)
             == expected_model_quick_sha256
+        ),
+        "model_manifest_checksum_matches": (
+            model_manifest_path.is_file()
+            and sha256_file(model_manifest_path)
+            == value.get("checksums", {}).get("model_manifest_sha256")
+        ),
+        "model_manifest_contract_matches": (
+            model_manifest_path.is_file()
+            and _model_manifest_contract_matches(
+                model_manifest_path,
+                model_parameter_set_sha256=value.get("checksums", {}).get(
+                    "model_parameter_set_sha256"
+                ),
+            )
         ),
         "database_manifest_checksum_matches": (
             database_manifest_path.is_file()
@@ -855,11 +1045,14 @@ def _build_parser() -> argparse.ArgumentParser:
     run.add_argument("--input-freeze", type=Path, required=True)
     run.add_argument("--retained-manifest", type=Path, required=True)
     run.add_argument("--input-dir", type=Path, required=True)
+    run.add_argument("--benchmark-dir", type=Path, required=True)
     run.add_argument("--source-dir", type=Path, required=True)
     run.add_argument("--container", type=Path, required=True)
     run.add_argument("--expected-container-sha256", required=True)
     run.add_argument("--model-dir", type=Path, required=True)
     run.add_argument("--expected-model-sha256", required=True)
+    run.add_argument("--model-manifest", type=Path, required=True)
+    run.add_argument("--expected-model-manifest-sha256", required=True)
     run.add_argument("--database-dir", type=Path, required=True)
     run.add_argument("--database-manifest", type=Path, required=True)
     run.add_argument("--expected-database-manifest-sha256", required=True)
@@ -876,6 +1069,7 @@ def _build_parser() -> argparse.ArgumentParser:
     verify.add_argument("--input-freeze", type=Path, required=True)
     verify.add_argument("--retained-manifest", type=Path, required=True)
     verify.add_argument("--input-dir", type=Path, required=True)
+    verify.add_argument("--benchmark-dir", type=Path, required=True)
 
     verify_runtime = subparsers.add_parser("verify-runtime")
     verify_runtime.add_argument("--attestation", type=Path, required=True)
@@ -895,8 +1089,14 @@ def _build_parser() -> argparse.ArgumentParser:
         required=True,
     )
     verify_runtime.add_argument("--input-dir", type=Path, required=True)
+    verify_runtime.add_argument("--benchmark-dir", type=Path, required=True)
     verify_runtime.add_argument("--container", type=Path, required=True)
     verify_runtime.add_argument("--model-dir", type=Path, required=True)
+    verify_runtime.add_argument(
+        "--model-manifest",
+        type=Path,
+        required=True,
+    )
     verify_runtime.add_argument("--database-dir", type=Path, required=True)
     verify_runtime.add_argument(
         "--database-manifest",
@@ -992,6 +1192,7 @@ def main() -> int:
             input_freeze=input_freeze,
             retained_manifest=args.retained_manifest,
             input_dir=args.input_dir,
+            benchmark_dir=args.benchmark_dir,
         )
         print(json.dumps(result, sort_keys=True))
         return 0
@@ -1003,8 +1204,10 @@ def main() -> int:
             input_freeze=input_freeze,
             retained_manifest=args.retained_manifest,
             input_dir=args.input_dir,
+            benchmark_dir=args.benchmark_dir,
             container=args.container,
             model_dir=args.model_dir,
+            model_manifest=args.model_manifest,
             database_dir=args.database_dir,
             database_manifest=args.database_manifest,
             mode=args.mode,
@@ -1017,11 +1220,16 @@ def main() -> int:
         input_freeze=input_freeze,
         retained_manifest=args.retained_manifest,
         input_dir=args.input_dir,
+        benchmark_dir=args.benchmark_dir,
         source_dir=args.source_dir,
         container=args.container,
         expected_container_sha256=args.expected_container_sha256,
         model_dir=args.model_dir,
         expected_model_sha256=args.expected_model_sha256,
+        model_manifest=args.model_manifest,
+        expected_model_manifest_sha256=(
+            args.expected_model_manifest_sha256
+        ),
         database_dir=args.database_dir,
         database_manifest=args.database_manifest,
         expected_database_manifest_sha256=(

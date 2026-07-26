@@ -56,6 +56,15 @@ now frozen before prediction or label reveal.
   hashes the staged family, and promotes it atomically with a private manifest.
   The authorization assertion records provenance intent; it is not independent
   license verification.
+- The private runtime attestation contract is now versioned as
+  `c5_af3_environment_attestation_v2`. A dedicated Cayuga CPU job binds a clean
+  benchmark commit, clean pinned AF3 source, container content, authorized
+  model inventory plus its user-asserted provenance manifest, complete database
+  inventory, frozen input set, and clean output boundary. It performs the
+  expensive content scan once, immediately rebinds the mounted runtime in quick
+  mode, and promotes the checksum sidecar before the attestation completion
+  marker. Missing benchmark identity, manifest authorization, or any required
+  component fails closed.
 - Cayuga access testing exposed a host-runtime mismatch: the login Python is
   too old for this package, and an attestation checksum alone did not bind the
   paths mounted by each array task. The array now runs verification inside the
@@ -144,12 +153,13 @@ Proceed with `stage_b_c5_af3_environment_attestation_and_prediction`.
 1. Obtain the official AF3 3.0.x parameters through the authorized access
    process linked from the pinned installation guide; do not substitute
    unofficial or untracked weights.
-2. Rerun the Cayuga preflight against the checksum-locked SIF, authorized
-   parameters, and completed database inventory.
-3. Run one full runtime dependency verification, then submit the 120-target CPU
-   data-pipeline array followed by the GPU inference array only after the
-   private attestation has zero violations and its SHA-256 is frozen. Keep the
-   per-task quick runtime binding enabled; retain the combined array as fallback.
+2. Run `attest_c5_af3_runtime_cayuga.sbatch` from a clean benchmark checkout
+   against the checksum-locked SIF, authorized parameter manifest, and
+   completed database inventory.
+3. Submit the 120-target CPU data-pipeline array followed by the GPU inference
+   array only after the v2 private attestation has zero violations and its
+   SHA-256 sidecar is frozen. Keep the per-task quick runtime binding enabled;
+   retain the combined array as fallback.
 4. Run `prospective_predictions.py` to freeze five outputs per retained target
    and the preregistered target-level selection before any DockQ calculation.
 5. Reconstruct the private native-structure lock against the existing

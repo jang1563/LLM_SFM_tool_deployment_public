@@ -134,6 +134,7 @@ def build_prediction_lock(
     attestation_path: str | Path,
     expected_attestation_sha256: str,
     output_root: str | Path,
+    benchmark_dir: str | Path,
     created_at_utc: str | None = None,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     """Bind complete AF3 outputs to the pre-label method and input locks."""
@@ -195,6 +196,7 @@ def build_prediction_lock(
             input_freeze=input_freeze,
             retained_manifest=retained_manifest_path,
             input_dir=private_input_dir,
+            benchmark_dir=benchmark_dir,
         )
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         raise ProspectivePredictionError(
@@ -935,6 +937,7 @@ def main() -> int:
     parser.add_argument("--input-freeze", type=Path, required=True)
     parser.add_argument("--retained-manifest", type=Path, required=True)
     parser.add_argument("--private-input-dir", type=Path, required=True)
+    parser.add_argument("--benchmark-dir", type=Path, required=True)
     parser.add_argument("--attestation", type=Path, required=True)
     parser.add_argument(
         "--expected-attestation-sha256",
@@ -957,6 +960,7 @@ def main() -> int:
         attestation_path=args.attestation,
         expected_attestation_sha256=args.expected_attestation_sha256,
         output_root=args.af3_output_root,
+        benchmark_dir=args.benchmark_dir,
     )
     write_json(args.private_lock_out, private_lock)
     write_json(args.public_freeze_out, public_freeze)
