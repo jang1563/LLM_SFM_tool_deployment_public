@@ -27,5 +27,9 @@ def test_research_plan_checker_passes() -> None:
         "source/input/container/databases ready; parameters blocked"
         in result.stdout
     )
+    assert (
+        "staged CPU data pipeline and GPU inference implemented"
+        in result.stdout
+    )
     assert "C5 next gate: AF3 environment attestation" in result.stdout
     assert "completed rows cannot be tuned on or rescored" in result.stdout

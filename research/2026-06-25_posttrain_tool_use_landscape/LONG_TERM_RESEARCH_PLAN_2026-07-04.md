@@ -557,6 +557,11 @@ label exists:
   the public checkpoint contains only aggregate size, content identities, and
   gate status. Authorized model parameters are now the sole unresolved runtime
   dependency.
+- The official split-stage path is implemented before execution: the CPU array
+  promotes only an exact processed data JSON, and the GPU array runs
+  inference-only in private staging, validates the canonical five-sample
+  output, and then replaces the processed target. The combined path remains a
+  fallback and final prediction intake is unchanged.
 
 Synthetic tests cover certified, uncertified, target-mixing, model/native
 drift, partial-output, score-drift, and threshold-mutation paths. This closes a
@@ -574,8 +579,9 @@ Minimum next output:
   parameter, database, input, and output-boundary component passes;
 - run the full mounted-dependency verification once and retain quick
   verification inside every array task;
-- submit the 120-target Cayuga array only from a checksum-frozen private
-  attestation, with Expanse as fallback;
+- submit the 120-target Cayuga CPU data-pipeline array and then the GPU
+  inference array only from a checksum-frozen private attestation, with the
+  combined array and Expanse retained as fallbacks;
 - freeze five outputs per target and select one by the preregistered rule before
   any DockQ computation;
 - reveal calibration labels first, freeze a certificate or `verify_all`, then

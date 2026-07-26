@@ -61,14 +61,6 @@ def collect_af3_predictions(
 ) -> list[dict[str, Any]]:
     """Validate every official AF3 sample and return a private target lock."""
 
-    prediction = preregistration["protocol"]["prediction"]
-    seeds = tuple(int(seed) for seed in prediction["model_seeds"])
-    samples_per_seed = int(prediction["diffusion_samples_per_seed"])
-    expected_sample_keys = {
-        (seed, sample)
-        for seed in seeds
-        for sample in range(samples_per_seed)
-    }
     root = Path(output_root)
     if not root.is_dir():
         raise ProspectivePredictionError("af3_output_root_missing")
@@ -92,17 +84,44 @@ def collect_af3_predictions(
         raise ProspectivePredictionError("af3_output_root_contains_files")
 
     targets = [
-        _collect_target(
+        collect_af3_target_output(
             row=expected_jobs[job_name],
-            job_name=job_name,
+            preregistration=preregistration,
             job_dir=root / job_name,
-            expected_sample_keys=expected_sample_keys,
         )
         for job_name in sorted(expected_jobs)
     ]
     if len(targets) != len(retained_rows):
         raise ProspectivePredictionError("af3_target_count_mismatch")
     return targets
+
+
+def collect_af3_target_output(
+    *,
+    row: Mapping[str, Any],
+    preregistration: Mapping[str, Any],
+    job_dir: str | Path,
+) -> dict[str, Any]:
+    """Validate one target using the canonical full-output intake contract."""
+
+    prediction = preregistration["protocol"]["prediction"]
+    expected_sample_keys = {
+        (int(seed), sample)
+        for seed in prediction["model_seeds"]
+        for sample in range(int(prediction["diffusion_samples_per_seed"]))
+    }
+    job_name = _safe_job_name(str(row["instance_id"]))
+    path = Path(job_dir)
+    if path.name != job_name:
+        raise ProspectivePredictionError("af3_job_directory_name_mismatch")
+    if not path.is_dir() or path.is_symlink():
+        raise ProspectivePredictionError("af3_job_directory_invalid")
+    return _collect_target(
+        row=row,
+        job_name=job_name,
+        job_dir=path,
+        expected_sample_keys=expected_sample_keys,
+    )
 
 
 def build_prediction_lock(

@@ -1597,6 +1597,7 @@
     "python -m c5_antibody_ood.prospective_panel --check c5_antibody_ood/c5_prospective_panel_preregistration_v1.json",
     "python -m pytest -q tests/test_c5_prospective_panel.py tests/test_c5_prospective_source.py tests/test_c5_prospective_inputs.py tests/test_c5_af3_preflight.py tests/test_c5_prospective_predictions.py tests/test_c5_prospective_native_lock.py tests/test_c5_prospective_reveal.py",
     "python -m pytest -q tests/test_c5_af3_provisioning.py",
+    "python -m pytest -q tests/test_c5_af3_split_pipeline.py",
     "python examples/run_public_demo.py",
     "python post_training/run_stage_a_sft_smoke_eval.py --json",
     "python post_training/run_stage_a_strict_component_diagnostics.py --compact",

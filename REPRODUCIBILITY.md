@@ -269,6 +269,25 @@ input, output, attestation, and attestation-SHA variables. Keep
 `AF3_RUNTIME_VERIFY_MODE=quick` for the array unless intentionally running a
 small full-verification diagnostic.
 
+Prefer the split path so CPU-heavy MSA/template search does not consume GPU
+allocations. The first array promotes only a validated `<job>_data.json`; the
+second stages inference from that file and replaces the processed target only
+after the canonical five-sample intake passes:
+
+```bash
+sbatch --account=<allocation> --partition=scu-cpu \
+  --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_MODEL_DIR=<models>,AF3_DB_DIR=<databases>,AF3_DB_MANIFEST=<database-manifest>,AF3_INPUT_DIR=<inputs>,AF3_OUTPUT_DIR=<outputs>,AF3_ATTESTATION=<attestation>,AF3_ATTESTATION_SHA256=<sha256> \
+  c5_antibody_ood/run_c5_af3_data_pipeline_cayuga.sbatch
+
+sbatch --account=<allocation> --partition=scu-gpu --gres=gpu:a100:1 \
+  --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_MODEL_DIR=<models>,AF3_DB_DIR=<databases>,AF3_DB_MANIFEST=<database-manifest>,AF3_INPUT_DIR=<inputs>,AF3_OUTPUT_DIR=<outputs>,AF3_ATTESTATION=<attestation>,AF3_ATTESTATION_SHA256=<sha256> \
+  c5_antibody_ood/run_c5_af3_inference_cayuga.sbatch
+```
+
+Both arrays rebind the private attestation before every task. The original
+`run_c5_af3_cayuga.sbatch` remains a combined-stage fallback; both paths produce
+the same output tree consumed below.
+
 After the 120 jobs complete, freeze prediction outputs before opening any
 DockQ label file:
 
