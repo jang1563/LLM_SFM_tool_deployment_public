@@ -30,6 +30,7 @@ readonly OFFICIAL_MODEL_OBJECT_GENERATION="1780568696389861"
 readonly OFFICIAL_MODEL_OBJECT_BYTES=1020545840
 readonly OFFICIAL_MODEL_INSTRUCTION_COMMIT="dd1a7badb62cbb0d4571666002159842c8c578c5"
 readonly OFFICIAL_MODEL_DOWNLOAD_URL="${OFFICIAL_MODEL_SOURCE_URL}?generation=${OFFICIAL_MODEL_OBJECT_GENERATION}"
+readonly MAX_DOWNLOAD_ATTEMPTS=6
 
 for required in \
   AF3_SIF \
@@ -112,20 +113,28 @@ then
 fi
 mkdir "${DOWNLOAD_STAGE}" "${MODEL_STAGE}"
 
-curl \
+# Cayuga's system curl needs a portable all-error retry loop.
+download_attempt=1
+until curl \
   --fail \
   --location \
   --silent \
   --show-error \
-  --retry 5 \
-  --retry-delay 5 \
-  --retry-all-errors \
   --proto '=https' \
   --proto-redir '=https' \
   --tlsv1.2 \
   --dump-header "${HEADER_PARTIAL}" \
   --output "${DOWNLOAD_FILE}" \
   "${OFFICIAL_MODEL_DOWNLOAD_URL}"
+do
+  if [ "${download_attempt}" -ge "${MAX_DOWNLOAD_ATTEMPTS}" ]; then
+    echo "official model download failed after ${download_attempt} attempts" >&2
+    exit 5
+  fi
+  download_attempt=$((download_attempt + 1))
+  echo "retrying official model download (attempt ${download_attempt})" >&2
+  sleep 5
+done
 
 readonly ACTUAL_GENERATION="$(
   awk -F ': ' '

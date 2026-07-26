@@ -140,7 +140,10 @@ def test_cayuga_official_parameter_job_is_generation_and_terms_bound():
     assert "--proto '=https'" in script
     assert "--proto-redir '=https'" in script
     assert "--tlsv1.2" in script
-    assert "--retry-all-errors" in script
+    assert "MAX_DOWNLOAD_ATTEMPTS=6" in script
+    assert "until curl" in script
+    assert "download failed after" in script
+    assert "--retry-all-errors" not in script
     assert 'x-goog-generation' in script
     assert "--official-google-storage-download-confirmed" in script
     assert "--model-terms-accepted" in script
