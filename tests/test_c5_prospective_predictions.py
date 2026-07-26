@@ -1,11 +1,15 @@
 import csv
 import json
+import subprocess
 from copy import deepcopy
 from pathlib import Path
 
 import pytest
 
-from c5_antibody_ood.af3_preflight import ATTESTATION_SCHEMA
+from c5_antibody_ood.af3_preflight import (
+    ATTESTATION_SCHEMA,
+    REQUIRED_ATTESTATION_COMPONENTS,
+)
 from c5_antibody_ood.af3_phase_outputs import validate_inference_output
 from c5_antibody_ood.manifest import (
     load_c5_manifest,
@@ -274,14 +278,50 @@ def test_prediction_lock_is_attested_complete_and_public_projection_is_compact(
     input_freeze["af3_inputs"]["files"] = len(rows)
     input_freeze["af3_inputs"]["af3_input_set_sha256"] = input_set_sha256
 
+    benchmark_dir = tmp_path / "benchmark"
+    benchmark_dir.mkdir()
+    subprocess.run(["git", "init", "-q"], cwd=benchmark_dir, check=True)
+    subprocess.run(
+        ["git", "config", "user.email", "test@example.org"],
+        cwd=benchmark_dir,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "config", "user.name", "Test"],
+        cwd=benchmark_dir,
+        check=True,
+    )
+    (benchmark_dir / "README").write_text("benchmark fixture\n")
+    subprocess.run(["git", "add", "README"], cwd=benchmark_dir, check=True)
+    subprocess.run(
+        ["git", "commit", "-qm", "fixture"],
+        cwd=benchmark_dir,
+        check=True,
+    )
+    benchmark_commit = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=benchmark_dir,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
     attestation = {
         "schema_version": ATTESTATION_SCHEMA,
         "ready_for_af3_prediction": True,
         "violations": [],
         "preregistration_id": preregistration["preregistration_id"],
         "protocol_sha256": preregistration["commitment"]["protocol_sha256"],
+        "components": {
+            name: True for name in REQUIRED_ATTESTATION_COMPONENTS
+        },
         "checksums": {
+            "benchmark_commit": benchmark_commit,
             "source_commit": AF3_COMMIT,
+            "container_sha256": "1" * 64,
+            "model_parameter_set_sha256": "2" * 64,
+            "model_manifest_sha256": "3" * 64,
+            "database_manifest_sha256": "4" * 64,
+            "retained_manifest_sha256": "5" * 64,
             "af3_input_set_sha256": input_set_sha256,
         },
     }
@@ -302,6 +342,7 @@ def test_prediction_lock_is_attested_complete_and_public_projection_is_compact(
         attestation_path=attestation_path,
         expected_attestation_sha256=sha256_file(attestation_path),
         output_root=output_root,
+        benchmark_dir=benchmark_dir,
         created_at_utc="2026-07-25T12:00:00+00:00",
     )
 

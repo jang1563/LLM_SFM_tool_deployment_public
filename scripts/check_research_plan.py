@@ -75,6 +75,9 @@ C5_AF3_INFERENCE_ARRAY = (
 C5_AF3_PARAMETER_JOB = (
     ROOT / "c5_antibody_ood" / "provision_c5_af3_parameters_cayuga.sbatch"
 )
+C5_AF3_ATTESTATION_JOB = (
+    ROOT / "c5_antibody_ood" / "attest_c5_af3_runtime_cayuga.sbatch"
+)
 C5_AF3_PHASE_OUTPUTS = (
     ROOT / "c5_antibody_ood" / "af3_phase_outputs.py"
 )
@@ -137,6 +140,7 @@ def main() -> int:
     c5_af3_data_pipeline_array = read(C5_AF3_DATA_PIPELINE_ARRAY)
     c5_af3_inference_array = read(C5_AF3_INFERENCE_ARRAY)
     c5_af3_parameter_job = read(C5_AF3_PARAMETER_JOB)
+    c5_af3_attestation_job = read(C5_AF3_ATTESTATION_JOB)
     c5_af3_phase_outputs = read(C5_AF3_PHASE_OUTPUTS)
     c5_predictions = read(C5_PROSPECTIVE_PREDICTIONS)
     c5_native_lock = read(C5_PROSPECTIVE_NATIVE_LOCK)
@@ -235,6 +239,12 @@ def main() -> int:
         public_status,
         "stage_b_c5_af3_environment_attestation_and_prediction",
         "public STATUS C5 research decision",
+    )
+    require_contains(
+        issues,
+        public_status,
+        "c5_af3_environment_attestation_v2",
+        "public STATUS benchmark/model attestation contract",
     )
     require_pattern(
         issues,
@@ -521,8 +531,11 @@ def main() -> int:
     for needle in (
         "--output_dir=/root/af_output",
         'TARGET_OUTPUT="${AF3_OUTPUT_DIR}/${JOB_NAME}"',
+        "AF3_MODEL_MANIFEST",
         "AF3_DB_MANIFEST",
         "af3_preflight verify-runtime",
+        "--benchmark-dir /root/benchmark",
+        "--model-manifest /root/c5_model_manifest.json",
         "uv run --no-sync python3",
         "--pwd /app/alphafold",
     ):
@@ -590,10 +603,29 @@ def main() -> int:
             "C5 AF3 authorized-parameter provisioning",
         )
     for needle in (
+        "AF3_MODEL_MANIFEST_SHA256",
+        "AF3_DB_MANIFEST_SHA256",
+        "--benchmark-dir /root/benchmark",
+        "--model-manifest /root/c5_model_manifest.json",
+        "--expected-model-manifest-sha256",
+        "--runtime-command uv",
+        "af3_preflight verify-runtime",
+        "--mode quick",
+        'mv "${SIDECAR_PARTIAL}" "${AF3_ATTESTATION_OUT}.sha256"',
+        'mv "${ATTESTATION_PARTIAL}" "${AF3_ATTESTATION_OUT}"',
+    ):
+        require_contains(
+            issues,
+            c5_af3_attestation_job,
+            needle,
+            "C5 AF3 runtime-attestation binding",
+        )
+    for needle in (
         "ranking_score_summary_csv_mismatch",
         "selected_output_rule_mismatch",
         "complete_five_sample_set_per_target",
         "dockq_or_native_interface_labels_read",
+        "--benchmark-dir",
     ):
         require_contains(
             issues,
@@ -646,6 +678,7 @@ def main() -> int:
     print("- C5 execution gate: source/input/container/databases ready; parameters blocked")
     print("- C5 execution path: staged CPU data pipeline and GPU inference implemented")
     print("- C5 parameter intake: atomic verifier ready; authorized artifact absent")
+    print("- C5 attestation: v2 binds clean benchmark and model manifest")
     print("- C5 next gate: AF3 environment attestation and Cayuga prediction")
     print("- DPO/RLVR/HF gate: useful routing coverage plus independent evaluation required")
     print("- sealed evaluation gate: completed rows cannot be tuned on or rescored")

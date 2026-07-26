@@ -151,6 +151,9 @@ def test_split_cayuga_jobs_preserve_phase_and_runtime_contracts():
     for script in (data_script, inference_script):
         assert "c5_antibody_ood.af3_preflight verify-runtime" in script
         assert "--expected-attestation-sha256" in script
+        assert "AF3_MODEL_MANIFEST" in script
+        assert "--model-manifest /root/c5_model_manifest.json" in script
+        assert "--benchmark-dir /root/benchmark" in script
         assert "AF3_DB_MANIFEST" in script
         assert "uv run --no-sync python3" in script
         assert "--pwd /app/alphafold" in script

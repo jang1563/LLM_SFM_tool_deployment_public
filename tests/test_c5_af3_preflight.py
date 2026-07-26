@@ -99,6 +99,15 @@ def _build_fixture(tmp_path: Path) -> dict:
     model_dir.mkdir()
     model = model_dir / "af3.bin.zst"
     model.write_bytes(b"parameters")
+    model_inventory = build_model_inventory(model_dir)
+    model_inventory["authorization"] = {
+        "received_directly_from_google_confirmed": True,
+        "authorization_is_user_asserted": True,
+    }
+    model_manifest = tmp_path / "model_inventory.json"
+    model_manifest.write_text(
+        json.dumps(model_inventory, indent=2, sort_keys=True) + "\n"
+    )
     database_dir = tmp_path / "databases"
     database_dir.mkdir()
     for entry in REQUIRED_DATABASE_ENTRIES:
@@ -123,19 +132,16 @@ def _build_fixture(tmp_path: Path) -> dict:
         "input_freeze": input_freeze,
         "retained_manifest": retained_manifest,
         "input_dir": input_dir,
+        "benchmark_dir": source_dir,
         "source_dir": source_dir,
         "container": container,
         "expected_container_sha256": sha256_file(container),
         "model_dir": model_dir,
-        "expected_model_sha256": canonical_sha256(
-            [
-                {
-                    "name": model.name,
-                    "bytes": model.stat().st_size,
-                    "sha256": sha256_file(model),
-                }
-            ]
-        ),
+        "expected_model_sha256": model_inventory[
+            "model_parameter_set_sha256"
+        ],
+        "model_manifest": model_manifest,
+        "expected_model_manifest_sha256": sha256_file(model_manifest),
         "database_dir": database_dir,
         "database_manifest": database_manifest,
         "expected_database_manifest_sha256": sha256_file(database_manifest),
@@ -401,6 +407,7 @@ def test_private_attestation_verification_is_checksum_bound(
         input_freeze=fixture["input_freeze"],
         retained_manifest=fixture["retained_manifest"],
         input_dir=fixture["input_dir"],
+        benchmark_dir=fixture["benchmark_dir"],
     )
 
     assert result["attestation_verified"] is True
@@ -412,6 +419,7 @@ def test_private_attestation_verification_is_checksum_bound(
             input_freeze=fixture["input_freeze"],
             retained_manifest=fixture["retained_manifest"],
             input_dir=fixture["input_dir"],
+            benchmark_dir=fixture["benchmark_dir"],
         )
 
 
@@ -445,6 +453,133 @@ def test_private_attestation_rejects_runtime_input_drift(
             input_freeze=fixture["input_freeze"],
             retained_manifest=fixture["retained_manifest"],
             input_dir=fixture["input_dir"],
+            benchmark_dir=fixture["benchmark_dir"],
+        )
+
+
+def test_private_attestation_binds_clean_benchmark_commit(
+    monkeypatch,
+    tmp_path,
+):
+    fixture = _build_fixture(tmp_path)
+    commit = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=fixture["source_dir"],
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    monkeypatch.setattr(
+        "c5_antibody_ood.af3_preflight.AF3_COMMIT",
+        commit,
+    )
+    attestation = run_preflight(**fixture)
+    assert attestation["checksums"]["benchmark_commit"] == commit
+    path = tmp_path / "attestation.json"
+    path.write_text(json.dumps(attestation, sort_keys=True))
+    common = {
+        "attestation_path": path,
+        "expected_attestation_sha256": sha256_file(path),
+        "preregistration": fixture["preregistration"],
+        "input_freeze": fixture["input_freeze"],
+        "retained_manifest": fixture["retained_manifest"],
+        "input_dir": fixture["input_dir"],
+        "benchmark_dir": fixture["benchmark_dir"],
+    }
+
+    (fixture["benchmark_dir"] / "README").write_text("dirty\n")
+    with pytest.raises(
+        AF3PreflightError,
+        match="runtime_benchmark_source_dirty",
+    ):
+        verify_attestation(**common)
+
+    (fixture["benchmark_dir"] / "README").write_text("fixture\n")
+    (fixture["benchmark_dir"] / "NEXT").write_text("next commit\n")
+    subprocess.run(
+        ["git", "add", "NEXT"],
+        cwd=fixture["benchmark_dir"],
+        check=True,
+    )
+    subprocess.run(
+        ["git", "commit", "-qm", "next"],
+        cwd=fixture["benchmark_dir"],
+        check=True,
+    )
+    with pytest.raises(
+        AF3PreflightError,
+        match="runtime_benchmark_commit_mismatch",
+    ):
+        verify_attestation(**common)
+
+
+def test_private_attestation_rejects_missing_benchmark_commit(
+    monkeypatch,
+    tmp_path,
+):
+    fixture = _build_fixture(tmp_path)
+    monkeypatch.setattr(
+        "c5_antibody_ood.af3_preflight.AF3_COMMIT",
+        subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=fixture["source_dir"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip(),
+    )
+    attestation = run_preflight(**fixture)
+    attestation["checksums"].pop("benchmark_commit")
+    path = tmp_path / "attestation.json"
+    path.write_text(json.dumps(attestation, sort_keys=True))
+
+    with pytest.raises(
+        AF3PreflightError,
+        match="attestation_benchmark_commit_invalid",
+    ):
+        verify_attestation(
+            attestation_path=path,
+            expected_attestation_sha256=sha256_file(path),
+            preregistration=fixture["preregistration"],
+            input_freeze=fixture["input_freeze"],
+            retained_manifest=fixture["retained_manifest"],
+            input_dir=fixture["input_dir"],
+            benchmark_dir=fixture["benchmark_dir"],
+        )
+
+
+def test_private_attestation_rejects_missing_required_component(
+    monkeypatch,
+    tmp_path,
+):
+    fixture = _build_fixture(tmp_path)
+    monkeypatch.setattr(
+        "c5_antibody_ood.af3_preflight.AF3_COMMIT",
+        subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=fixture["source_dir"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip(),
+    )
+    attestation = run_preflight(**fixture)
+    attestation["components"].pop("model_inventory_matches")
+    path = tmp_path / "attestation.json"
+    path.write_text(json.dumps(attestation, sort_keys=True))
+
+    with pytest.raises(
+        AF3PreflightError,
+        match="attestation_components_invalid",
+    ):
+        verify_attestation(
+            attestation_path=path,
+            expected_attestation_sha256=sha256_file(path),
+            preregistration=fixture["preregistration"],
+            input_freeze=fixture["input_freeze"],
+            retained_manifest=fixture["retained_manifest"],
+            input_dir=fixture["input_dir"],
+            benchmark_dir=fixture["benchmark_dir"],
         )
 
 
@@ -473,8 +608,10 @@ def test_runtime_dependency_verification_passes_quick_and_full(
         "input_freeze": fixture["input_freeze"],
         "retained_manifest": fixture["retained_manifest"],
         "input_dir": fixture["input_dir"],
+        "benchmark_dir": fixture["benchmark_dir"],
         "container": fixture["container"],
         "model_dir": fixture["model_dir"],
+        "model_manifest": fixture["model_manifest"],
         "database_dir": fixture["database_dir"],
         "database_manifest": fixture["database_manifest"],
     }
@@ -490,6 +627,56 @@ def test_runtime_dependency_verification_passes_quick_and_full(
     rendered = json.dumps(full, sort_keys=True)
     assert str(tmp_path) not in rendered
     assert "af3.bin.zst" not in rendered
+
+
+def test_runtime_rejects_rebound_model_manifest_authorization(
+    monkeypatch,
+    tmp_path,
+):
+    fixture = _build_fixture(tmp_path)
+    monkeypatch.setattr(
+        "c5_antibody_ood.af3_preflight.AF3_COMMIT",
+        subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=fixture["source_dir"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip(),
+    )
+    attestation = run_preflight(**fixture)
+    model_manifest = json.loads(fixture["model_manifest"].read_text())
+    model_manifest["authorization"][
+        "received_directly_from_google_confirmed"
+    ] = False
+    fixture["model_manifest"].write_text(
+        json.dumps(model_manifest, indent=2, sort_keys=True) + "\n"
+    )
+    attestation["checksums"]["model_manifest_sha256"] = sha256_file(
+        fixture["model_manifest"]
+    )
+    path = tmp_path / "attestation.json"
+    path.write_text(json.dumps(attestation, sort_keys=True))
+
+    with pytest.raises(
+        AF3PreflightError,
+        match="model_manifest_contract_matches",
+    ):
+        verify_runtime_dependencies(
+            attestation_path=path,
+            expected_attestation_sha256=sha256_file(path),
+            preregistration=fixture["preregistration"],
+            input_freeze=fixture["input_freeze"],
+            retained_manifest=fixture["retained_manifest"],
+            input_dir=fixture["input_dir"],
+            benchmark_dir=fixture["benchmark_dir"],
+            container=fixture["container"],
+            model_dir=fixture["model_dir"],
+            model_manifest=fixture["model_manifest"],
+            database_dir=fixture["database_dir"],
+            database_manifest=fixture["database_manifest"],
+            mode="quick",
+        )
 
 
 def test_runtime_quick_catches_database_drift_and_full_catches_content_drift(
@@ -517,8 +704,10 @@ def test_runtime_quick_catches_database_drift_and_full_catches_content_drift(
         "input_freeze": fixture["input_freeze"],
         "retained_manifest": fixture["retained_manifest"],
         "input_dir": fixture["input_dir"],
+        "benchmark_dir": fixture["benchmark_dir"],
         "container": fixture["container"],
         "model_dir": fixture["model_dir"],
+        "model_manifest": fixture["model_manifest"],
         "database_dir": fixture["database_dir"],
         "database_manifest": fixture["database_manifest"],
     }
@@ -581,6 +770,9 @@ def test_cayuga_array_is_attestation_and_output_guarded():
     assert "--expected-attestation-sha256" in script
     assert "--retained-manifest" in script
     assert "--input-dir" in script
+    assert "--benchmark-dir /root/benchmark" in script
+    assert "AF3_MODEL_MANIFEST" in script
+    assert "--model-manifest /root/c5_model_manifest.json" in script
     assert 'if [ -e "${TARGET_OUTPUT}" ]' in script
     assert "--num_diffusion_samples=5" in script
     assert "--output_dir=/root/af_output" in script

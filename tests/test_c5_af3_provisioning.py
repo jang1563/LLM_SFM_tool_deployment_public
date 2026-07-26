@@ -14,6 +14,9 @@ DATABASE_JOB = (
 PARAMETER_JOB = (
     ROOT / "c5_antibody_ood/provision_c5_af3_parameters_cayuga.sbatch"
 )
+ATTESTATION_JOB = (
+    ROOT / "c5_antibody_ood/attest_c5_af3_runtime_cayuga.sbatch"
+)
 CONTAINER_READINESS = (
     ROOT
     / "c5_antibody_ood/c5_af3_container_readiness_2026-07-25.json"
@@ -109,6 +112,32 @@ def test_cayuga_parameter_job_requires_authorization_and_atomic_inventory():
     assert 'mv "${STAGE}" "${AF3_MODEL_OUT}"' in script
     assert 'mv "${MANIFEST_PARTIAL}" "${AF3_MODEL_MANIFEST_OUT}"' in script
     assert "model source and outputs must be outside" in script
+    assert "/Users/" not in script
+    assert "/home/" not in script
+    assert "/" + "scratch/" not in script
+
+
+def test_cayuga_attestation_job_binds_runtime_and_promotes_atomically():
+    script = ATTESTATION_JOB.read_text()
+
+    assert "#SBATCH --cpus-per-task=12" in script
+    assert "#SBATCH --mem=64G" in script
+    assert "status --porcelain" in script
+    assert "AF3_SIF_SHA256" in script
+    assert "AF3_MODEL_SHA256" in script
+    assert "AF3_MODEL_MANIFEST_SHA256" in script
+    assert "AF3_DB_MANIFEST_SHA256" in script
+    assert "--benchmark-dir /root/benchmark" in script
+    assert "--model-manifest /root/c5_model_manifest.json" in script
+    assert "--expected-model-manifest-sha256" in script
+    assert "--runtime-command uv" in script
+    assert "af3_preflight verify-runtime" in script
+    assert "--mode quick" in script
+    assert 'ATTESTATION_PARTIAL="${ATTESTATION_PARENT}/' in script
+    assert 'SIDECAR_PARTIAL="${AF3_ATTESTATION_OUT}.sha256.partial.' in script
+    assert 'mv "${SIDECAR_PARTIAL}" "${AF3_ATTESTATION_OUT}.sha256"' in script
+    assert 'mv "${ATTESTATION_PARTIAL}" "${AF3_ATTESTATION_OUT}"' in script
+    assert "private runtime dependencies and outputs must be outside" in script
     assert "/Users/" not in script
     assert "/home/" not in script
     assert "/" + "scratch/" not in script

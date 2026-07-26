@@ -14,7 +14,7 @@
 #
 #   mkdir -p c5_antibody_ood/runs/slurm
 #   sbatch --account=<allocation> --partition=scu-cpu \
-#     --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_MODEL_DIR=<models>,AF3_DB_DIR=<databases>,AF3_DB_MANIFEST=<database-manifest>,AF3_INPUT_DIR=<inputs>,AF3_OUTPUT_DIR=<outputs>,AF3_ATTESTATION=<attestation>,AF3_ATTESTATION_SHA256=<sha256> \
+#     --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_MODEL_DIR=<models>,AF3_MODEL_MANIFEST=<model-manifest>,AF3_DB_DIR=<databases>,AF3_DB_MANIFEST=<database-manifest>,AF3_INPUT_DIR=<inputs>,AF3_OUTPUT_DIR=<outputs>,AF3_ATTESTATION=<attestation>,AF3_ATTESTATION_SHA256=<sha256> \
 #     c5_antibody_ood/run_c5_af3_data_pipeline_cayuga.sbatch
 #
 # Raw inputs, model parameters, databases, processed inputs, and scheduler logs
@@ -31,6 +31,7 @@ AF3_RUNTIME_VERIFY_MODE="${AF3_RUNTIME_VERIFY_MODE:-quick}"
 for required in \
   AF3_SIF \
   AF3_MODEL_DIR \
+  AF3_MODEL_MANIFEST \
   AF3_DB_DIR \
   AF3_DB_MANIFEST \
   AF3_INPUT_DIR \
@@ -67,6 +68,7 @@ singularity exec \
   --bind "${WORK}:/root/benchmark:ro" \
   --bind "${AF3_INPUT_DIR}:/root/af_input:ro" \
   --bind "${AF3_MODEL_DIR}:/root/models:ro" \
+  --bind "${AF3_MODEL_MANIFEST}:/root/c5_model_manifest.json:ro" \
   --bind "${AF3_DB_DIR}:/root/public_databases:ro" \
   --bind "${AF3_SIF}:/root/c5_af3.sif:ro" \
   --bind "${AF3_ATTESTATION}:/root/c5_attestation.json:ro" \
@@ -80,8 +82,10 @@ singularity exec \
   --input-freeze "/root/benchmark/${INPUT_FREEZE}" \
   --retained-manifest "/root/benchmark/${RETAINED_MANIFEST}" \
   --input-dir /root/af_input \
+  --benchmark-dir /root/benchmark \
   --container /root/c5_af3.sif \
   --model-dir /root/models \
+  --model-manifest /root/c5_model_manifest.json \
   --database-dir /root/public_databases \
   --database-manifest /root/c5_database_manifest.json \
   --mode "${AF3_RUNTIME_VERIFY_MODE}"

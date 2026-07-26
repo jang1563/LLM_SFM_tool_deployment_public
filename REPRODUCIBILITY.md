@@ -230,60 +230,31 @@ families, dirty output boundaries, and copy drift. It promotes only a
 content-hashed private model directory and manifest. The confirmation is a
 user assertion of provenance, not independent license verification.
 
-After those private dependencies are present, run the following module
-commands inside the pinned image:
+After those private dependencies are present, generate the v2 private runtime
+attestation from a clean benchmark checkout. This CPU job performs the full
+container, model, database, and input content scan once, then immediately
+rechecks the mounted paths in quick mode before promoting the checksum sidecar
+and attestation completion marker:
 
 ```bash
-uv run --no-sync python3 -m c5_antibody_ood.af3_preflight inventory \
-  --database-dir <af3-database-dir> \
-  --out <private-database-inventory>
-
-uv run --no-sync python3 -m c5_antibody_ood.af3_preflight run \
-  --preregistration c5_antibody_ood/c5_prospective_panel_preregistration_v1.json \
-  --input-freeze c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json \
-  --retained-manifest c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl \
-  --input-dir <private-af3-input-dir> \
-  --source-dir <pinned-af3-source-dir> \
-  --container <af3-singularity-image> \
-  --expected-container-sha256 <sha256> \
-  --model-dir <authorized-model-parameter-dir> \
-  --expected-model-sha256 <sha256> \
-  --database-dir <af3-database-dir> \
-  --database-manifest <private-database-inventory> \
-  --expected-database-manifest-sha256 <sha256> \
-  --output-dir <new-output-dir> \
-  --attestation-out <private-attestation-json>
+sbatch --account=<allocation> --partition=scu-cpu \
+  --export=ALL,WORK=$PWD,AF3_SOURCE_DIR=<clean-v3.0.3-source>,AF3_SIF=<image>,AF3_SIF_SHA256=<sha256>,AF3_MODEL_DIR=<models>,AF3_MODEL_SHA256=<model-set-sha256>,AF3_MODEL_MANIFEST=<model-manifest>,AF3_MODEL_MANIFEST_SHA256=<manifest-sha256>,AF3_DB_DIR=<databases>,AF3_DB_MANIFEST=<database-manifest>,AF3_DB_MANIFEST_SHA256=<manifest-sha256>,AF3_INPUT_DIR=<inputs>,AF3_OUTPUT_DIR=<new-output-dir>,AF3_ATTESTATION_OUT=<new-attestation-json> \
+  c5_antibody_ood/attest_c5_af3_runtime_cayuga.sbatch
 ```
 
-The command returns nonzero unless every component passes. The private
-attestation and its SHA-256 are then required by
-`c5_antibody_ood/run_c5_af3_cayuga.sbatch`. Parameters, databases, sequences,
-structures, predictions, paths, and scheduler logs must remain uncommitted.
+The job returns nonzero unless every component passes. Its private manifest
+records a clean benchmark commit and AF3 source, the authorized-model manifest
+checksum and user provenance assertion, and the frozen runtime dependencies.
+Parameters, databases, sequences, structures, predictions, attestations, paths,
+and scheduler logs must remain uncommitted.
 
-Before submission, rerun the mounted dependencies in full mode. Full mode
-rehashes the container, model parameters, and every required database file.
-The array repeats a lower-cost size, nanosecond-mtime, manifest, and
-deterministic-sentinel identity check for every target:
-
-```bash
-uv run --no-sync python3 -m c5_antibody_ood.af3_preflight verify-runtime \
-  --attestation <private-attestation-json> \
-  --expected-attestation-sha256 <sha256> \
-  --preregistration c5_antibody_ood/c5_prospective_panel_preregistration_v1.json \
-  --input-freeze c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json \
-  --retained-manifest c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl \
-  --input-dir <private-af3-input-dir> \
-  --container <af3-singularity-image> \
-  --model-dir <authorized-model-parameter-dir> \
-  --database-dir <af3-database-dir> \
-  --database-manifest <private-database-inventory> \
-  --mode full
-```
-
-Submission must export `AF3_DB_MANIFEST` as well as the image, model, database,
-input, output, attestation, and attestation-SHA variables. Keep
-`AF3_RUNTIME_VERIFY_MODE=quick` for the array unless intentionally running a
-small full-verification diagnostic.
+Submission must export `AF3_MODEL_MANIFEST` and `AF3_DB_MANIFEST` as well as
+the image, model, database, input, output, attestation, and attestation-SHA
+variables. Keep `AF3_RUNTIME_VERIFY_MODE=quick` for the arrays: each task
+rechecks the clean benchmark commit, authorization manifest, content-attested
+sizes and nanosecond mtimes, model identity digest, and deterministic database
+sentinels. Use `full` only for a bounded diagnostic because it rehashes all
+dependency content.
 
 Prefer the split path so CPU-heavy MSA/template search does not consume GPU
 allocations. The first array promotes only a validated `<job>_data.json`; the
@@ -292,11 +263,11 @@ after the canonical five-sample intake passes:
 
 ```bash
 sbatch --account=<allocation> --partition=scu-cpu \
-  --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_MODEL_DIR=<models>,AF3_DB_DIR=<databases>,AF3_DB_MANIFEST=<database-manifest>,AF3_INPUT_DIR=<inputs>,AF3_OUTPUT_DIR=<outputs>,AF3_ATTESTATION=<attestation>,AF3_ATTESTATION_SHA256=<sha256> \
+  --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_MODEL_DIR=<models>,AF3_MODEL_MANIFEST=<model-manifest>,AF3_DB_DIR=<databases>,AF3_DB_MANIFEST=<database-manifest>,AF3_INPUT_DIR=<inputs>,AF3_OUTPUT_DIR=<outputs>,AF3_ATTESTATION=<attestation>,AF3_ATTESTATION_SHA256=<sha256> \
   c5_antibody_ood/run_c5_af3_data_pipeline_cayuga.sbatch
 
 sbatch --account=<allocation> --partition=scu-gpu --gres=gpu:a100:1 \
-  --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_MODEL_DIR=<models>,AF3_DB_DIR=<databases>,AF3_DB_MANIFEST=<database-manifest>,AF3_INPUT_DIR=<inputs>,AF3_OUTPUT_DIR=<outputs>,AF3_ATTESTATION=<attestation>,AF3_ATTESTATION_SHA256=<sha256> \
+  --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_MODEL_DIR=<models>,AF3_MODEL_MANIFEST=<model-manifest>,AF3_DB_DIR=<databases>,AF3_DB_MANIFEST=<database-manifest>,AF3_INPUT_DIR=<inputs>,AF3_OUTPUT_DIR=<outputs>,AF3_ATTESTATION=<attestation>,AF3_ATTESTATION_SHA256=<sha256> \
   c5_antibody_ood/run_c5_af3_inference_cayuga.sbatch
 ```
 
@@ -313,6 +284,7 @@ python -m c5_antibody_ood.prospective_predictions \
   --input-freeze c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json \
   --retained-manifest c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v1.jsonl \
   --private-input-dir <private-af3-input-dir> \
+  --benchmark-dir . \
   --attestation <private-attestation-json> \
   --expected-attestation-sha256 <sha256> \
   --af3-output-root <private-af3-output-root> \
