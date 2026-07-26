@@ -9,7 +9,14 @@ import pytest
 from c5_antibody_ood.af3_preflight import (
     AF3PreflightError,
     MODEL_INVENTORY_SCHEMA,
+    OFFICIAL_MODEL_INSTRUCTION_COMMIT,
+    OFFICIAL_MODEL_OBJECT_BYTES,
+    OFFICIAL_MODEL_OBJECT_GENERATION,
+    OFFICIAL_MODEL_SOURCE_URL,
+    OFFICIAL_MODEL_TERMS_URL,
+    OFFICIAL_STORAGE_MODEL_AUTHORIZATION,
     REQUIRED_DATABASE_ENTRIES,
+    USER_ASSERTED_MODEL_AUTHORIZATION,
     build_database_inventory,
     build_model_inventory,
     provision_model_parameters,
@@ -100,10 +107,9 @@ def _build_fixture(tmp_path: Path) -> dict:
     model = model_dir / "af3.bin.zst"
     model.write_bytes(b"parameters")
     model_inventory = build_model_inventory(model_dir)
-    model_inventory["authorization"] = {
-        "received_directly_from_google_confirmed": True,
-        "authorization_is_user_asserted": True,
-    }
+    model_inventory["authorization"] = dict(
+        USER_ASSERTED_MODEL_AUTHORIZATION
+    )
     model_manifest = tmp_path / "model_inventory.json"
     model_manifest.write_text(
         json.dumps(model_inventory, indent=2, sort_keys=True) + "\n"
@@ -173,6 +179,36 @@ def test_preflight_passes_only_with_all_locks(monkeypatch, tmp_path):
     assert "af3.bin.zst" not in rendered
 
 
+def test_preflight_accepts_generation_pinned_official_model_provenance(
+    monkeypatch,
+    tmp_path,
+):
+    fixture = _build_fixture(tmp_path)
+    monkeypatch.setattr(
+        "c5_antibody_ood.af3_preflight.AF3_COMMIT",
+        subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=fixture["source_dir"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip(),
+    )
+    manifest = json.loads(fixture["model_manifest"].read_text())
+    manifest["authorization"] = dict(OFFICIAL_STORAGE_MODEL_AUTHORIZATION)
+    fixture["model_manifest"].write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n"
+    )
+    fixture["expected_model_manifest_sha256"] = sha256_file(
+        fixture["model_manifest"]
+    )
+
+    result = run_preflight(**fixture)
+
+    assert result["ready_for_af3_prediction"] is True
+    assert result["components"]["model_inventory_matches"] is True
+
+
 def test_missing_parameters_fail_closed_with_specific_violations(
     monkeypatch,
     tmp_path,
@@ -237,14 +273,52 @@ def test_model_inventory_and_authorized_atomic_stage_are_content_bound(
     assert staged["model_parameter_set_sha256"] == inventory[
         "model_parameter_set_sha256"
     ]
-    assert staged["authorization"] == {
-        "received_directly_from_google_confirmed": True,
-        "authorization_is_user_asserted": True,
-    }
+    assert staged["authorization"] == USER_ASSERTED_MODEL_AUTHORIZATION
     assert sorted(path.name for path in stage.iterdir()) == [
         "af3.0.bin.zst",
         "af3.1.bin.zst",
     ]
+
+    with pytest.raises(
+        AF3PreflightError,
+        match="model_parameter_provenance_ambiguous",
+    ):
+        provision_model_parameters(
+            source_dir=source,
+            stage_dir=tmp_path / "unused",
+            authorized_source_confirmed=True,
+            official_google_storage_download_confirmed=True,
+        )
+
+    official_stage = tmp_path / "official_stage"
+    official_stage.mkdir()
+    with pytest.raises(
+        AF3PreflightError,
+        match="model_parameter_terms_not_accepted",
+    ):
+        provision_model_parameters(
+            source_dir=source,
+            stage_dir=official_stage,
+            official_google_storage_download_confirmed=True,
+        )
+    official = provision_model_parameters(
+        source_dir=source,
+        stage_dir=official_stage,
+        official_google_storage_download_confirmed=True,
+        model_terms_accepted=True,
+    )
+    assert official["authorization"] == OFFICIAL_STORAGE_MODEL_AUTHORIZATION
+    assert official["authorization"] == {
+        "received_directly_from_google_confirmed": True,
+        "authorization_is_user_asserted": False,
+        "terms_acceptance_is_user_asserted": True,
+        "terms_url": OFFICIAL_MODEL_TERMS_URL,
+        "acquisition_method": "official_google_storage_generation",
+        "source_url": OFFICIAL_MODEL_SOURCE_URL,
+        "object_generation": OFFICIAL_MODEL_OBJECT_GENERATION,
+        "object_bytes": OFFICIAL_MODEL_OBJECT_BYTES,
+        "source_instruction_commit": OFFICIAL_MODEL_INSTRUCTION_COMMIT,
+    }
 
 
 def test_model_inventory_rejects_multiple_families_and_symlinks(tmp_path):
@@ -309,6 +383,44 @@ def test_authorized_model_provisioning_cli_writes_private_inventory(tmp_path):
         "received_directly_from_google_confirmed"
     ] is True
     assert (stage / "af3.bin.zst").read_bytes() == b"authorized-parameters"
+
+    official_stage = tmp_path / "official_stage"
+    official_stage.mkdir()
+    official_manifest = tmp_path / "official_model_inventory.json"
+    official_result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "c5_antibody_ood.af3_preflight",
+            "provision-model",
+            "--source-dir",
+            str(source),
+            "--stage-dir",
+            str(official_stage),
+            "--official-google-storage-download-confirmed",
+            "--model-terms-accepted",
+            "--out",
+            str(official_manifest),
+        ],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    assert (
+        official_result.returncode == 0
+    ), official_result.stdout + official_result.stderr
+    official_emitted = json.loads(official_result.stdout)
+    official_inventory = json.loads(official_manifest.read_text())
+    assert official_emitted["authorization_is_user_asserted"] is False
+    assert (
+        official_emitted["acquisition_method"]
+        == "official_google_storage_generation"
+    )
+    assert (
+        official_inventory["authorization"]
+        == OFFICIAL_STORAGE_MODEL_AUTHORIZATION
+    )
 
 
 def test_preexisting_output_and_checksum_mismatch_fail_closed(

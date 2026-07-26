@@ -197,8 +197,11 @@ Completed:
   that rejects missing or modified source, container, parameters, databases,
   inputs, output boundaries, or private attestation;
 - v2 private runtime attestation that additionally binds the clean benchmark
-  commit and user-asserted authorized-model manifest, with one full scan,
-  same-job quick mount verification, and sidecar-first atomic completion;
+  commit and provenance-bound model manifest, with one full scan, same-job
+  quick mount verification, and sidecar-first atomic completion;
+- terms-gated official parameter intake pinned to the 2026-07-23 source
+  instruction, Google Storage object generation, expected byte count, and
+  HTTPS-only transport before private content hashing;
 - staged 120-task CPU data-pipeline and GPU inference arrays that validate each
   processed input and complete target before promotion while preserving the
   canonical AF3 v3.0.3 final output contract.
@@ -222,9 +225,10 @@ Current checkpoint:
 - keep the independent Gray result scoped to published-label calibration;
 - keep the prospective panel scoped to method/source/input freeze until AF3
   prediction, staged label reveal, and risk evaluation are complete;
-- obtain authorized AF3 parameters and complete a zero-violation attestation
-  against the checksum-locked container/databases before submitting the Cayuga
-  array; keep trust and model training closed.
+- confirm the current parameter terms, materialize the generation-pinned
+  official AF3 object, and complete a zero-violation attestation against the
+  checksum-locked container/databases before submitting the Cayuga array; keep
+  trust and model training closed.
 
 ## Near-Term Milestones
 
@@ -611,7 +615,7 @@ Current checkpoint:
   structure QC, 120 retained inputs, zero prior-PDB overlap, and zero
   calibration/evaluation source-cluster overlap;
 - the first Cayuga environment check historically blocked on the container,
-  authorized parameters, and database inventory;
+  model parameters, and database inventory;
 - exact AF3 v3.0.3 prediction intake, all-sample/selected-model commitments,
   target-specific native-structure reconstruction, calibration-only reveal,
   and frozen one-time evaluation are implemented with synthetic fail-closed
@@ -624,13 +628,15 @@ Current checkpoint:
   source/package tests, runner import, and a one-device JAX GPU smoke;
 - the official AF3 database provisioning run is atomically complete with all 9
   required entries and 195,867 files bound by a private per-file content-hash
-  inventory. Authorized model parameters are the sole open runtime dependency;
-- authorized-parameter provisioning now requires an explicit direct-from-Google
-  assertion, rejects symlinks/multiple model families, and atomically promotes
-  a content-hashed private inventory. No authorized artifact is currently
-  present, and the assertion is not treated as independent license proof;
+  inventory. Materialized official model parameters are the sole open runtime
+  dependency;
+- the official 2026-07-23 distribution update replaces the closed request form
+  with a direct Google Storage object. A new job requires explicit terms
+  acceptance, pins the source commit/object generation/byte count, rejects
+  symlinks or multiple model families, and atomically promotes a content-hashed
+  private inventory. No parameter artifact is currently present;
 - a dedicated Cayuga CPU attestation job now binds the clean benchmark commit,
-  pinned source, image, authorized-model manifest, database inventory, and
+  pinned source, image, provenance-bound model manifest, database inventory, and
   frozen inputs before sidecar-first atomic promotion. Arrays and final output
   locking reject benchmark or model-manifest drift;
 - separate CPU data-pipeline and GPU inference arrays now stage and validate
@@ -638,9 +644,9 @@ Current checkpoint:
   remain identical to the combined-array fallback;
 - the tracked workflow remains prediction-pending; no real prediction,
   calibration, evaluation, or trust result has been produced;
-- the next gate is authorized parameter intake followed by a zero-violation v2
-  private environment attestation and the preregistered Cayuga CPU/GPU arrays,
-  not model training.
+- the next gate is terms-confirmed official parameter download followed by a
+  zero-violation v2 private environment attestation and the preregistered
+  Cayuga CPU/GPU arrays, not model training.
 
 ### 6. Release v0.1 And Hugging Face Package
 

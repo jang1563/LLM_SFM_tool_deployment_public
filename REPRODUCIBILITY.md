@@ -214,21 +214,29 @@ The first completed run atomically promoted all 9 required entries and bound
 `c5_af3_database_readiness_2026-07-26.json` exposes only aggregate sizes,
 content identities, and gate status.
 
-Model parameters must be requested through the
-[official AlphaFold 3 access form](https://forms.gle/svvpY4u2jsHEwWYS6) and
-received directly from Google under its terms. After placing the authorized
-download in a private source directory, provision it atomically:
+On 2026-07-23, the official AlphaFold 3 repository
+[replaced the request form with a direct Google Storage download](https://github.com/google-deepmind/alphafold3/commit/dd1a7badb62cbb0d4571666002159842c8c578c5).
+Review the current
+[Model Parameters Terms of Use](https://github.com/google-deepmind/alphafold3/blob/main/WEIGHTS_TERMS_OF_USE.md)
+before downloading. Setting `AF3_MODEL_TERMS_ACCEPTED=YES` records the
+operator's terms acceptance; the job then pins the documented URL, exact
+object generation and byte count, and HTTPS transport before private content
+hashing:
 
 ```bash
 sbatch --account=<allocation> --partition=scu-cpu \
-  --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_SIF_SHA256=<sha256>,AF3_MODEL_SOURCE=<authorized-download-dir>,AF3_MODEL_OUT=<new-model-dir>,AF3_MODEL_MANIFEST_OUT=<new-private-manifest>,AF3_AUTHORIZED_SOURCE_CONFIRMED=YES \
-  c5_antibody_ood/provision_c5_af3_parameters_cayuga.sbatch
+  --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_SIF_SHA256=<sha256>,AF3_MODEL_OUT=<new-model-dir>,AF3_MODEL_MANIFEST_OUT=<new-private-manifest>,AF3_MODEL_TERMS_ACCEPTED=YES \
+  c5_antibody_ood/fetch_c5_af3_parameters_cayuga.sbatch
 ```
 
-The job rejects an absent authorization assertion, symlinks, multiple parameter
-families, dirty output boundaries, and copy drift. It promotes only a
-content-hashed private model directory and manifest. The confirmation is a
-user assertion of provenance, not independent license verification.
+The job uses private file permissions and rejects absent terms acceptance,
+non-HTTPS redirects, source-generation or byte-count drift, symlinks, multiple
+parameter families, dirty or nested output boundaries, and copy drift. It
+promotes only a content-hashed private model directory, checksum sidecar, and
+provenance manifest. The legacy
+`provision_c5_af3_parameters_cayuga.sbatch` remains available for a previously
+received direct-from-Google source; its provenance confirmation is user
+asserted.
 
 After those private dependencies are present, generate the v2 private runtime
 attestation from a clean benchmark checkout. This CPU job performs the full
@@ -243,8 +251,9 @@ sbatch --account=<allocation> --partition=scu-cpu \
 ```
 
 The job returns nonzero unless every component passes. Its private manifest
-records a clean benchmark commit and AF3 source, the authorized-model manifest
-checksum and user provenance assertion, and the frozen runtime dependencies.
+records a clean benchmark commit and AF3 source, the provenance-bound model
+manifest checksum and acquisition contract, and the frozen runtime
+dependencies.
 Parameters, databases, sequences, structures, predictions, attestations, paths,
 and scheduler logs must remain uncommitted.
 

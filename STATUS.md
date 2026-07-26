@@ -49,13 +49,18 @@ now frozen before prediction or label reveal.
   replay passes and no partial staging remains. The path-free projection is
   `c5_af3_database_readiness_2026-07-26.json`. No filename, database content,
   private path, or scheduler identifier is published.
-- Authorized-parameter intake is now fail-closed and ready before any weight is
-  present. The Cayuga provisioning job requires an explicit assertion that the
-  files were received directly from Google, rejects symlinks and multiple model
-  families, copies only recognized fragments into private staging, content
-  hashes the staged family, and promotes it atomically with a private manifest.
-  The authorization assertion records provenance intent; it is not independent
-  license verification.
+- The official parameter-distribution mechanism changed on 2026-07-23 at
+  source commit `dd1a7badb62cbb0d4571666002159842c8c578c5`: the closed access
+  form was replaced by a direct Google Storage object. A new Cayuga job pins
+  the documented URL, object generation `1780568696389861`, expected
+  1,020,545,840-byte size, HTTPS-only transport, terms acceptance, and source
+  instruction commit before content hashing and atomic private promotion. The
+  object has not yet been downloaded.
+- The prior manual direct-from-Google intake remains a fail-closed fallback. It
+  rejects symlinks and multiple model families, copies only recognized
+  fragments into private staging, content hashes the staged family, and records
+  that its source provenance is user asserted rather than independently
+  verified.
 - The private runtime attestation contract is now versioned as
   `c5_af3_environment_attestation_v2`. A dedicated Cayuga CPU job binds a clean
   benchmark commit, clean pinned AF3 source, container content, authorized
@@ -97,8 +102,8 @@ now frozen before prediction or label reveal.
   remains a fallback, and the final prediction intake is unchanged.
 - The initial Cayuga preflight historically blocked on the container,
   parameters, and databases. The container and official database inventory are
-  now checksum-frozen; authorized official model parameters are the sole
-  unresolved runtime dependency.
+  now checksum-frozen; terms-confirmed materialization of the generation-pinned
+  official model object is the sole unresolved runtime dependency.
 - For zero observed failures, this design needs at least 35 trusted calibration
   targets at `alpha = 0.30`, 78 at 0.20, and 311 at 0.10. The 80-target
   calibration slice cannot certify 0.10 under the preregistered bound.
@@ -136,6 +141,13 @@ sample subdirectories, `ranking_scores.csv`, and summary-confidence schemas.
 The performance guide explicitly supports CPU data-pipeline-only output,
 inference-only reuse of processed JSON, and same-directory continuation via
 `--force_output_dir`.
+The current official AlphaFold 3 README changed parameter acquisition on
+2026-07-23 from a discretionary request form to a direct Google Storage object.
+Its parameter terms remain non-commercial and prohibit redistribution and use
+of output to train similar biomolecular structure-prediction technology. This
+changes the provisioning verifier and removes the approval-wait assumption; it
+does not change the frozen v3.0.3 prediction code, trust policy, or release
+boundary.
 The official ranking score is not restricted to `[0,1]` because disorder and
 clash terms are included. DockQ v2.1.3 fixes the evaluator at commit
 `d9cbb1940bb0f42db3257f7da3b0e96f162b94d9`.
@@ -150,9 +162,10 @@ Fromm, Hitawala-Gray, FoldBench, and RCPS conclusions remain unchanged.
 
 Proceed with `stage_b_c5_af3_environment_attestation_and_prediction`.
 
-1. Obtain the official AF3 3.0.x parameters through the authorized access
-   process linked from the pinned installation guide; do not substitute
-   unofficial or untracked weights.
+1. Confirm the current AlphaFold 3 Model Parameters Terms of Use, then run
+   `fetch_c5_af3_parameters_cayuga.sbatch` against the generation-pinned
+   official Google Storage object; do not substitute mirrors or untracked
+   weights.
 2. Run `attest_c5_af3_runtime_cayuga.sbatch` from a clean benchmark checkout
    against the checksum-locked SIF, authorized parameter manifest, and
    completed database inventory.

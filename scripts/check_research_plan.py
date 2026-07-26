@@ -75,6 +75,9 @@ C5_AF3_INFERENCE_ARRAY = (
 C5_AF3_PARAMETER_JOB = (
     ROOT / "c5_antibody_ood" / "provision_c5_af3_parameters_cayuga.sbatch"
 )
+C5_AF3_OFFICIAL_PARAMETER_JOB = (
+    ROOT / "c5_antibody_ood" / "fetch_c5_af3_parameters_cayuga.sbatch"
+)
 C5_AF3_ATTESTATION_JOB = (
     ROOT / "c5_antibody_ood" / "attest_c5_af3_runtime_cayuga.sbatch"
 )
@@ -140,6 +143,7 @@ def main() -> int:
     c5_af3_data_pipeline_array = read(C5_AF3_DATA_PIPELINE_ARRAY)
     c5_af3_inference_array = read(C5_AF3_INFERENCE_ARRAY)
     c5_af3_parameter_job = read(C5_AF3_PARAMETER_JOB)
+    c5_af3_official_parameter_job = read(C5_AF3_OFFICIAL_PARAMETER_JOB)
     c5_af3_attestation_job = read(C5_AF3_ATTESTATION_JOB)
     c5_af3_phase_outputs = read(C5_AF3_PHASE_OUTPUTS)
     c5_predictions = read(C5_PROSPECTIVE_PREDICTIONS)
@@ -246,6 +250,12 @@ def main() -> int:
         "c5_af3_environment_attestation_v2",
         "public STATUS benchmark/model attestation contract",
     )
+    require_contains(
+        issues,
+        public_status,
+        "dd1a7badb62cbb0d4571666002159842c8c578c5",
+        "public STATUS official parameter-distribution update",
+    )
     require_pattern(
         issues,
         public_status,
@@ -269,7 +279,7 @@ def main() -> int:
         "150/150 native structures pass",
         "120 template-free AF3 inputs",
         "cannot support 0.10",
-        "authorized official AF3 3.0.x parameters",
+        "generation-pinned object in private Cayuga storage",
         "submit the 120-target Cayuga CPU data-pipeline array",
     ):
         require_contains(issues, plan, needle, "prospective C5 freeze/next gate")
@@ -603,6 +613,25 @@ def main() -> int:
             "C5 AF3 authorized-parameter provisioning",
         )
     for needle in (
+        "AF3_MODEL_TERMS_ACCEPTED",
+        "https://storage.googleapis.com/alphafold3/af3.bin.zst",
+        "1780568696389861",
+        "1020545840",
+        "dd1a7badb62cbb0d4571666002159842c8c578c5",
+        "--proto '=https'",
+        "--proto-redir '=https'",
+        "--official-google-storage-download-confirmed",
+        "--model-terms-accepted",
+        'mv "${SIDECAR_PARTIAL}" "${AF3_MODEL_MANIFEST_OUT}.sha256"',
+        'mv "${MANIFEST_PARTIAL}" "${AF3_MODEL_MANIFEST_OUT}"',
+    ):
+        require_contains(
+            issues,
+            c5_af3_official_parameter_job,
+            needle,
+            "C5 AF3 official-parameter download",
+        )
+    for needle in (
         "AF3_MODEL_MANIFEST_SHA256",
         "AF3_DB_MANIFEST_SHA256",
         "--benchmark-dir /root/benchmark",
@@ -677,7 +706,7 @@ def main() -> int:
     print("- C5 phase gates: 600-sample prediction lock and staged 80/40 reveal implemented")
     print("- C5 execution gate: source/input/container/databases ready; parameters blocked")
     print("- C5 execution path: staged CPU data pipeline and GPU inference implemented")
-    print("- C5 parameter intake: atomic verifier ready; authorized artifact absent")
+    print("- C5 parameter intake: official generation-pinned fetch ready; artifact absent")
     print("- C5 attestation: v2 binds clean benchmark and model manifest")
     print("- C5 next gate: AF3 environment attestation and Cayuga prediction")
     print("- DPO/RLVR/HF gate: useful routing coverage plus independent evaluation required")
