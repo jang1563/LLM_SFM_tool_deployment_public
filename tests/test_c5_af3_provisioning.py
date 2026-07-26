@@ -14,6 +14,9 @@ DATABASE_JOB = (
 PARAMETER_JOB = (
     ROOT / "c5_antibody_ood/provision_c5_af3_parameters_cayuga.sbatch"
 )
+OFFICIAL_PARAMETER_JOB = (
+    ROOT / "c5_antibody_ood/fetch_c5_af3_parameters_cayuga.sbatch"
+)
 ATTESTATION_JOB = (
     ROOT / "c5_antibody_ood/attest_c5_af3_runtime_cayuga.sbatch"
 )
@@ -112,6 +115,41 @@ def test_cayuga_parameter_job_requires_authorization_and_atomic_inventory():
     assert 'mv "${STAGE}" "${AF3_MODEL_OUT}"' in script
     assert 'mv "${MANIFEST_PARTIAL}" "${AF3_MODEL_MANIFEST_OUT}"' in script
     assert "model source and outputs must be outside" in script
+    assert "/Users/" not in script
+    assert "/home/" not in script
+    assert "/" + "scratch/" not in script
+
+
+def test_cayuga_official_parameter_job_is_generation_and_terms_bound():
+    script = OFFICIAL_PARAMETER_JOB.read_text()
+
+    assert "#SBATCH --cpus-per-task=4" in script
+    assert "#SBATCH --mem=16G" in script
+    assert "AF3_MODEL_TERMS_ACCEPTED" in script
+    assert '!= "YES"' in script
+    assert (
+        'OFFICIAL_MODEL_SOURCE_URL="https://storage.googleapis.com/'
+        'alphafold3/af3.bin.zst"' in script
+    )
+    assert (
+        'OFFICIAL_MODEL_OBJECT_GENERATION="1780568696389861"' in script
+    )
+    assert "OFFICIAL_MODEL_OBJECT_BYTES=1020545840" in script
+    assert "dd1a7badb62cbb0d4571666002159842c8c578c5" in script
+    assert "umask 077" in script
+    assert "--proto '=https'" in script
+    assert "--proto-redir '=https'" in script
+    assert "--tlsv1.2" in script
+    assert "--retry-all-errors" in script
+    assert 'x-goog-generation' in script
+    assert "--official-google-storage-download-confirmed" in script
+    assert "--model-terms-accepted" in script
+    assert 'DOWNLOAD_STAGE="${AF3_MODEL_OUT}.download.partial.' in script
+    assert 'MODEL_STAGE="${AF3_MODEL_OUT}.partial.' in script
+    assert 'mv "${SIDECAR_PARTIAL}" "${AF3_MODEL_MANIFEST_OUT}.sha256"' in script
+    assert 'mv "${MANIFEST_PARTIAL}" "${AF3_MODEL_MANIFEST_OUT}"' in script
+    assert "model outputs must be outside" in script
+    assert "model manifest must be outside the model directory" in script
     assert "/Users/" not in script
     assert "/home/" not in script
     assert "/" + "scratch/" not in script

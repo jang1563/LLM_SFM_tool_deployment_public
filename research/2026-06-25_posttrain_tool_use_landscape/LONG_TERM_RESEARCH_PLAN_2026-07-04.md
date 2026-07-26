@@ -555,21 +555,23 @@ label exists:
 - The official AF3 database fetch now completes with atomic promotion. A
   private v3 inventory content-hashes all 9 required entries and 195,867 files;
   the public checkpoint contains only aggregate size, content identities, and
-  gate status. Authorized model parameters are now the sole unresolved runtime
-  dependency.
+  gate status. Terms-confirmed materialization of the official model object is
+  now the sole unresolved runtime dependency.
 - The official split-stage path is implemented before execution: the CPU array
   promotes only an exact processed data JSON, and the GPU array runs
   inference-only in private staging, validates the canonical five-sample
   output, and then replaces the processed target. The combined path remains a
   fallback and final prediction intake is unchanged.
-- Authorized-parameter intake is implemented as a private atomic provisioning
-  gate: explicit direct-from-Google confirmation, one model family, no
-  symlinks, per-fragment content hashes, and copy verification are required.
-  No parameter artifact is present; the confirmation remains a user provenance
-  assertion rather than independent license verification.
+- The 2026-07-23 official distribution change is implemented as a private
+  atomic provisioning gate. The Cayuga job requires action-time terms
+  acceptance, pins the official Google Storage object generation and expected
+  byte count, restricts the transfer and redirects to HTTPS, rejects symlinks
+  and multiple model families, and content-hashes the private copy. No
+  parameter artifact is present. The earlier user-asserted direct-from-Google
+  path remains a legacy fallback.
 - The v2 private runtime-attestation path is implemented before parameter
   access. One Cayuga CPU job binds the clean benchmark commit, clean AF3 source,
-  container, authorized-model manifest, database inventory, frozen inputs, and
+  container, provenance-bound model manifest, database inventory, frozen inputs, and
   output boundary; it then performs a same-job quick mount recheck before
   sidecar-first atomic promotion. Arrays and the final prediction lock reject
   benchmark or model-manifest drift.
@@ -585,9 +587,10 @@ Complete `stage_b_c5_af3_environment_attestation_and_prediction`.
 
 Minimum next output:
 
-- obtain authorized official AF3 3.0.x parameters;
+- confirm the current official AlphaFold 3 Model Parameters Terms of Use and
+  materialize the generation-pinned object in private Cayuga storage;
 - run the dedicated Cayuga attestation job until every benchmark, source,
-  container, authorized-model manifest, parameter, database, input, and
+  container, provenance-bound model manifest, parameter, database, input, and
   output-boundary component passes;
 - retain quick mounted-dependency verification inside every array task after
   the attestation job's full scan and immediate quick recheck;

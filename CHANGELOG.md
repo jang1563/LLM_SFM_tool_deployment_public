@@ -41,6 +41,11 @@ All notable public-facing changes are tracked here.
   require explicit direct-from-Google confirmation, reject symlinks and
   multiple model families, content-hash every selected fragment, and atomically
   promote the private directory plus manifest.
+- Track the 2026-07-23 official parameter-distribution change that retired the
+  request form. Add a terms-gated Cayuga job that pins the official Google
+  Storage URL, object generation, expected byte count, and source-instruction
+  commit before hashing and atomically promoting a private v2 parameter
+  manifest that records the current terms URL.
 - Align the Cayuga array with the official AF3 writer's common output-root
   contract, then add exact five-sample intake, ranking CSV/summary
   cross-checks, deterministic target selection, and immutable prediction

@@ -26,7 +26,34 @@ from .source_pilot import sha256_file
 ATTESTATION_SCHEMA = "c5_af3_environment_attestation_v2"
 READINESS_SCHEMA = "c5_af3_environment_readiness_v1"
 DATABASE_INVENTORY_SCHEMA = "c5_af3_database_inventory_v3"
-MODEL_INVENTORY_SCHEMA = "c5_af3_model_inventory_v1"
+MODEL_INVENTORY_SCHEMA = "c5_af3_model_inventory_v2"
+OFFICIAL_MODEL_SOURCE_URL = (
+    "https://storage.googleapis.com/alphafold3/af3.bin.zst"
+)
+OFFICIAL_MODEL_TERMS_URL = (
+    "https://github.com/google-deepmind/alphafold3/blob/main/"
+    "WEIGHTS_TERMS_OF_USE.md"
+)
+OFFICIAL_MODEL_OBJECT_GENERATION = "1780568696389861"
+OFFICIAL_MODEL_OBJECT_BYTES = 1_020_545_840
+OFFICIAL_MODEL_INSTRUCTION_COMMIT = (
+    "dd1a7badb62cbb0d4571666002159842c8c578c5"
+)
+USER_ASSERTED_MODEL_AUTHORIZATION = {
+    "received_directly_from_google_confirmed": True,
+    "authorization_is_user_asserted": True,
+}
+OFFICIAL_STORAGE_MODEL_AUTHORIZATION = {
+    "received_directly_from_google_confirmed": True,
+    "authorization_is_user_asserted": False,
+    "terms_acceptance_is_user_asserted": True,
+    "terms_url": OFFICIAL_MODEL_TERMS_URL,
+    "acquisition_method": "official_google_storage_generation",
+    "source_url": OFFICIAL_MODEL_SOURCE_URL,
+    "object_generation": OFFICIAL_MODEL_OBJECT_GENERATION,
+    "object_bytes": OFFICIAL_MODEL_OBJECT_BYTES,
+    "source_instruction_commit": OFFICIAL_MODEL_INSTRUCTION_COMMIT,
+}
 REQUIRED_DATABASE_ENTRIES = (
     "bfd-first_non_consensus_sequences.fasta",
     "mgy_clusters_2022_05.fa",
@@ -197,12 +224,32 @@ def provision_model_parameters(
     *,
     source_dir: str | Path,
     stage_dir: str | Path,
-    authorized_source_confirmed: bool,
+    authorized_source_confirmed: bool = False,
+    official_google_storage_download_confirmed: bool = False,
+    model_terms_accepted: bool = False,
 ) -> dict[str, Any]:
     """Copy one authorized AF3 parameter family into a clean staging dir."""
 
-    if authorized_source_confirmed is not True:
+    if (
+        authorized_source_confirmed is True
+        and official_google_storage_download_confirmed is True
+    ):
+        raise AF3PreflightError("model_parameter_provenance_ambiguous")
+    if (
+        authorized_source_confirmed is not True
+        and official_google_storage_download_confirmed is not True
+    ):
         raise AF3PreflightError("authorized_model_source_not_confirmed")
+    if (
+        official_google_storage_download_confirmed is True
+        and model_terms_accepted is not True
+    ):
+        raise AF3PreflightError("model_parameter_terms_not_accepted")
+    authorization = (
+        OFFICIAL_STORAGE_MODEL_AUTHORIZATION
+        if official_google_storage_download_confirmed
+        else USER_ASSERTED_MODEL_AUTHORIZATION
+    )
     source = Path(source_dir)
     stage = Path(stage_dir)
     source_inventory = build_model_inventory(source)
@@ -223,11 +270,15 @@ def provision_model_parameters(
         raise AF3PreflightError("model_parameter_copy_mismatch")
     return {
         **staged_inventory,
-        "authorization": {
-            "received_directly_from_google_confirmed": True,
-            "authorization_is_user_asserted": True,
-        },
+        "authorization": dict(authorization),
     }
+
+
+def _model_authorization_contract_matches(value: Any) -> bool:
+    return value in (
+        USER_ASSERTED_MODEL_AUTHORIZATION,
+        OFFICIAL_STORAGE_MODEL_AUTHORIZATION,
+    )
 
 
 def _model_inventory_matches(
@@ -246,13 +297,8 @@ def _model_inventory_matches(
         AF3PreflightError,
     ):
         return False
-    return (
-        expected == actual
-        and authorization
-        == {
-            "received_directly_from_google_confirmed": True,
-            "authorization_is_user_asserted": True,
-        }
+    return expected == actual and _model_authorization_contract_matches(
+        authorization
     )
 
 
@@ -269,11 +315,9 @@ def _model_manifest_contract_matches(
         manifest.get("schema_version") == MODEL_INVENTORY_SCHEMA
         and manifest.get("model_parameter_set_sha256")
         == model_parameter_set_sha256
-        and manifest.get("authorization")
-        == {
-            "received_directly_from_google_confirmed": True,
-            "authorization_is_user_asserted": True,
-        }
+        and _model_authorization_contract_matches(
+            manifest.get("authorization")
+        )
     )
 
 
@@ -1124,6 +1168,14 @@ def _build_parser() -> argparse.ArgumentParser:
         "--authorized-source-confirmed",
         action="store_true",
     )
+    provision_model.add_argument(
+        "--official-google-storage-download-confirmed",
+        action="store_true",
+    )
+    provision_model.add_argument(
+        "--model-terms-accepted",
+        action="store_true",
+    )
     provision_model.add_argument("--out", type=Path, required=True)
     return parser
 
@@ -1165,6 +1217,10 @@ def main() -> int:
             source_dir=args.source_dir,
             stage_dir=args.stage_dir,
             authorized_source_confirmed=args.authorized_source_confirmed,
+            official_google_storage_download_confirmed=(
+                args.official_google_storage_download_confirmed
+            ),
+            model_terms_accepted=args.model_terms_accepted,
         )
         write_json(args.out, inventory)
         print(
@@ -1176,6 +1232,13 @@ def main() -> int:
                     "files": inventory["summary"]["files"],
                     "bytes": inventory["summary"]["bytes"],
                     "authorized_source_confirmed": True,
+                    "authorization_is_user_asserted": inventory[
+                        "authorization"
+                    ]["authorization_is_user_asserted"],
+                    "acquisition_method": inventory["authorization"].get(
+                        "acquisition_method",
+                        "user_asserted_direct_from_google",
+                    ),
                 },
                 sort_keys=True,
             )
