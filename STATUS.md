@@ -49,6 +49,13 @@ now frozen before prediction or label reveal.
   replay passes and no partial staging remains. The path-free projection is
   `c5_af3_database_readiness_2026-07-26.json`. No filename, database content,
   private path, or scheduler identifier is published.
+- Authorized-parameter intake is now fail-closed and ready before any weight is
+  present. The Cayuga provisioning job requires an explicit assertion that the
+  files were received directly from Google, rejects symlinks and multiple model
+  families, copies only recognized fragments into private staging, content
+  hashes the staged family, and promotes it atomically with a private manifest.
+  The authorization assertion records provenance intent; it is not independent
+  license verification.
 - Cayuga access testing exposed a host-runtime mismatch: the login Python is
   too old for this package, and an attestation checksum alone did not bind the
   paths mounted by each array task. The array now runs verification inside the
@@ -135,7 +142,8 @@ Fromm, Hitawala-Gray, FoldBench, and RCPS conclusions remain unchanged.
 Proceed with `stage_b_c5_af3_environment_attestation_and_prediction`.
 
 1. Obtain the official AF3 3.0.x parameters through the authorized access
-   process; do not substitute unofficial or untracked weights.
+   process linked from the pinned installation guide; do not substitute
+   unofficial or untracked weights.
 2. Rerun the Cayuga preflight against the checksum-locked SIF, authorized
    parameters, and completed database inventory.
 3. Run one full runtime dependency verification, then submit the 120-target CPU

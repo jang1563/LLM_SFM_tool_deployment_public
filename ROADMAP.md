@@ -622,6 +622,10 @@ Current checkpoint:
 - the official AF3 database provisioning run is atomically complete with all 9
   required entries and 195,867 files bound by a private per-file content-hash
   inventory. Authorized model parameters are the sole open runtime dependency;
+- authorized-parameter provisioning now requires an explicit direct-from-Google
+  assertion, rejects symlinks/multiple model families, and atomically promotes
+  a content-hashed private inventory. No authorized artifact is currently
+  present, and the assertion is not treated as independent license proof;
 - separate CPU data-pipeline and GPU inference arrays now stage and validate
   each target before promotion. The final five-sample intake and label boundary
   remain identical to the combined-array fallback;

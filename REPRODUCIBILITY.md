@@ -214,6 +214,22 @@ The first completed run atomically promoted all 9 required entries and bound
 `c5_af3_database_readiness_2026-07-26.json` exposes only aggregate sizes,
 content identities, and gate status.
 
+Model parameters must be requested through the
+[official AlphaFold 3 access form](https://forms.gle/svvpY4u2jsHEwWYS6) and
+received directly from Google under its terms. After placing the authorized
+download in a private source directory, provision it atomically:
+
+```bash
+sbatch --account=<allocation> --partition=scu-cpu \
+  --export=ALL,WORK=$PWD,AF3_SIF=<image>,AF3_SIF_SHA256=<sha256>,AF3_MODEL_SOURCE=<authorized-download-dir>,AF3_MODEL_OUT=<new-model-dir>,AF3_MODEL_MANIFEST_OUT=<new-private-manifest>,AF3_AUTHORIZED_SOURCE_CONFIRMED=YES \
+  c5_antibody_ood/provision_c5_af3_parameters_cayuga.sbatch
+```
+
+The job rejects an absent authorization assertion, symlinks, multiple parameter
+families, dirty output boundaries, and copy drift. It promotes only a
+content-hashed private model directory and manifest. The confirmation is a
+user assertion of provenance, not independent license verification.
+
 After those private dependencies are present, run the following module
 commands inside the pinned image:
 

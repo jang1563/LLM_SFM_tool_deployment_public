@@ -72,6 +72,9 @@ C5_AF3_DATA_PIPELINE_ARRAY = (
 C5_AF3_INFERENCE_ARRAY = (
     ROOT / "c5_antibody_ood" / "run_c5_af3_inference_cayuga.sbatch"
 )
+C5_AF3_PARAMETER_JOB = (
+    ROOT / "c5_antibody_ood" / "provision_c5_af3_parameters_cayuga.sbatch"
+)
 C5_AF3_PHASE_OUTPUTS = (
     ROOT / "c5_antibody_ood" / "af3_phase_outputs.py"
 )
@@ -133,6 +136,7 @@ def main() -> int:
     c5_af3_array = read(C5_AF3_ARRAY)
     c5_af3_data_pipeline_array = read(C5_AF3_DATA_PIPELINE_ARRAY)
     c5_af3_inference_array = read(C5_AF3_INFERENCE_ARRAY)
+    c5_af3_parameter_job = read(C5_AF3_PARAMETER_JOB)
     c5_af3_phase_outputs = read(C5_AF3_PHASE_OUTPUTS)
     c5_predictions = read(C5_PROSPECTIVE_PREDICTIONS)
     c5_native_lock = read(C5_PROSPECTIVE_NATIVE_LOCK)
@@ -573,6 +577,19 @@ def main() -> int:
             "C5 AF3 split-phase output validation",
         )
     for needle in (
+        "AF3_AUTHORIZED_SOURCE_CONFIRMED",
+        "AF3_SIF_SHA256",
+        "provision-model",
+        "--authorized-source-confirmed",
+        'mv "${STAGE}" "${AF3_MODEL_OUT}"',
+    ):
+        require_contains(
+            issues,
+            c5_af3_parameter_job,
+            needle,
+            "C5 AF3 authorized-parameter provisioning",
+        )
+    for needle in (
         "ranking_score_summary_csv_mismatch",
         "selected_output_rule_mismatch",
         "complete_five_sample_set_per_target",
@@ -628,6 +645,7 @@ def main() -> int:
     print("- C5 phase gates: 600-sample prediction lock and staged 80/40 reveal implemented")
     print("- C5 execution gate: source/input/container/databases ready; parameters blocked")
     print("- C5 execution path: staged CPU data pipeline and GPU inference implemented")
+    print("- C5 parameter intake: atomic verifier ready; authorized artifact absent")
     print("- C5 next gate: AF3 environment attestation and Cayuga prediction")
     print("- DPO/RLVR/HF gate: useful routing coverage plus independent evaluation required")
     print("- sealed evaluation gate: completed rows cannot be tuned on or rescored")

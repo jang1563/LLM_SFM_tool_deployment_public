@@ -31,5 +31,6 @@ def test_research_plan_checker_passes() -> None:
         "staged CPU data pipeline and GPU inference implemented"
         in result.stdout
     )
+    assert "atomic verifier ready; authorized artifact absent" in result.stdout
     assert "C5 next gate: AF3 environment attestation" in result.stdout
     assert "completed rows cannot be tuned on or rescored" in result.stdout
