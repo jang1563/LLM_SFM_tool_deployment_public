@@ -2,7 +2,7 @@
 
 All notable public-facing changes are tracked here.
 
-## Unreleased - 2026-07-25
+## Unreleased - 2026-07-26
 
 - Add a checksum-locked prospective C5 protocol over SAbDab2 v0.1.0, AF3
   v3.0.3, DockQ v2.1.3, fixed sample selection, risk correction, reveal order,
@@ -15,9 +15,18 @@ All notable public-facing changes are tracked here.
   missing container, authorized parameters, and database inventory.
 - Bind every Cayuga task to the dependencies recorded by that attestation.
   Runtime verification now executes from the pinned AF3 image with
-  `uv run python3`, checks the mounted container/model/database identities,
+  `uv run --no-sync python3`, checks the mounted
+  container/model/database identities,
   rehashes all required dependency content in full mode, and avoids relying
   on the cluster's incompatible host Python.
+- Add an official-Dockerfile-aligned Apptainer definition plus fail-closed
+  Cayuga CPU build and database-provisioning jobs. The first checksum-frozen
+  AF3 v3.0.3 SIF passes embedded, runner-import, checksum-replay, and JAX GPU
+  smokes without including parameters or databases.
+- Complete the official AF3 database provisioning path with atomic promotion,
+  9 required entries, 195,867 files, and a private per-file SHA-256 inventory.
+  Publish only a compact path-free readiness projection; authorized model
+  parameters remain the sole runtime dependency blocking prediction.
 - Align the Cayuga array with the official AF3 writer's common output-root
   contract, then add exact five-sample intake, ranking CSV/summary
   cross-checks, deterministic target selection, and immutable prediction

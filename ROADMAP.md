@@ -216,8 +216,9 @@ Current checkpoint:
 - keep the independent Gray result scoped to published-label calibration;
 - keep the prospective panel scoped to method/source/input freeze until AF3
   prediction, staged label reveal, and risk evaluation are complete;
-- obtain authorized AF3 parameters and checksum-lock the container/databases
-  before submitting the Cayuga array; keep trust and model training closed.
+- obtain authorized AF3 parameters and complete a zero-violation attestation
+  against the checksum-locked container/databases before submitting the Cayuga
+  array; keep trust and model training closed.
 
 ## Near-Term Milestones
 
@@ -603,9 +604,8 @@ Current checkpoint:
 - the prospective SAbDab2 method/source/input freeze passes with 150/150
   structure QC, 120 retained inputs, zero prior-PDB overlap, and zero
   calibration/evaluation source-cluster overlap;
-- the first Cayuga environment check passes runtime, AF3 source, and input
-  locks but blocks prediction on the absent container, authorized parameters,
-  and database inventory;
+- the first Cayuga environment check historically blocked on the container,
+  authorized parameters, and database inventory;
 - exact AF3 v3.0.3 prediction intake, all-sample/selected-model commitments,
   target-specific native-structure reconstruction, calibration-only reveal,
   and frozen one-time evaluation are implemented with synthetic fail-closed
@@ -614,6 +614,11 @@ Current checkpoint:
   frozen 120 private inputs plus 150 structures. The array no longer relies on
   the old host Python: it verifies mounted container/model/database identities
   from the pinned AF3 image before each task;
+- the AF3 v3.0.3 Apptainer image is now checksum-frozen after embedded
+  source/package tests, runner import, and a one-device JAX GPU smoke;
+- the official AF3 database provisioning run is atomically complete with all 9
+  required entries and 195,867 files bound by a private per-file content-hash
+  inventory. Authorized model parameters are the sole open runtime dependency;
 - the tracked workflow remains prediction-pending; no real prediction,
   calibration, evaluation, or trust result has been produced;
 - the next gate is a zero-violation private environment attestation followed by

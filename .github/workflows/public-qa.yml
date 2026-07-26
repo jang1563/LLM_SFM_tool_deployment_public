@@ -221,6 +221,7 @@ jobs:
             tests/test_c5_prospective_source.py \
             tests/test_c5_prospective_inputs.py \
             tests/test_c5_af3_preflight.py \
+            tests/test_c5_af3_provisioning.py \
             tests/test_c5_prospective_predictions.py \
             tests/test_c5_prospective_native_lock.py \
             tests/test_c5_prospective_reveal.py \

@@ -470,8 +470,8 @@ def test_cayuga_array_is_attestation_and_output_guarded():
     assert "AF3_DB_MANIFEST" in script
     assert "--database-manifest /root/c5_database_manifest.json" in script
     assert "--pwd /app/alphafold" in script
-    assert "uv run python3 -m c5_antibody_ood.af3_preflight" in script
-    assert "uv run python3 run_alphafold.py" in script
+    assert "uv run --no-sync python3 -m c5_antibody_ood.af3_preflight" in script
+    assert "uv run --no-sync python3 run_alphafold.py" in script
     assert "\npython -m c5_antibody_ood.af3_preflight" not in script
     assert "/Users/" not in script
     assert "/home/" not in script

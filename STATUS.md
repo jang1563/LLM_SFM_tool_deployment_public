@@ -1,6 +1,6 @@
 # Project Status
 
-Last updated: 2026-07-25
+Last updated: 2026-07-26
 
 ## Current Thesis
 
@@ -36,11 +36,24 @@ now frozen before prediction or label reveal.
   enforce source commit/tag, container checksum, official parameter-set
   checksum, database inventory checksum, input count/checksum, clean output
   boundary, and immutable private attestation.
+- The pinned AF3 v3.0.3 Apptainer build now passes on a Cayuga CPU node. The
+  3,699,896,320-byte SIF is frozen at SHA-256
+  `128a62b4849f3606a61a12fbe754e3f928bdbe43fe1c0894a231380f419fe7b2`;
+  embedded source/package tests, runner import, sidecar checksum replay, and a
+  one-device JAX GPU smoke all pass. The path-free compact result is
+  `c5_af3_container_readiness_2026-07-25.json`. This closes the container
+  blocker only; no parameters, databases, predictions, or labels are included.
+- The official AF3 database fetch has now completed and atomically promoted
+  after validation. Its private inventory binds all 9 required entries and
+  195,867 files (672,435,030,513 bytes) by per-file content SHA-256; sidecar
+  replay passes and no partial staging remains. The path-free projection is
+  `c5_af3_database_readiness_2026-07-26.json`. No filename, database content,
+  private path, or scheduler identifier is published.
 - Cayuga access testing exposed a host-runtime mismatch: the login Python is
   too old for this package, and an attestation checksum alone did not bind the
   paths mounted by each array task. The array now runs verification inside the
   pinned AF3 image using its `/app/alphafold` working directory and
-  `uv run python3`, requires the private database manifest, and rechecks
+  `uv run --no-sync python3`, requires the private database manifest, and rechecks
   container/model/database identities against the attestation before
   inference. Full mode rehashes container, parameter, and database content;
   quick per-task mode uses content-attested sizes and nanosecond mtimes, a
@@ -60,10 +73,10 @@ now frozen before prediction or label reveal.
   `verify_all` when no certificate exists, and reject evaluation-time
   threshold changes. Synthetic tests exercise both certified and
   uncertified paths; these are contract tests, not scientific results.
-- The first real Cayuga preflight passes runtime, AF3 source, input-set, and
-  output-boundary checks. It correctly blocks prediction because the pinned
-  container, official model parameters, and database manifest are not yet
-  installed.
+- The initial Cayuga preflight historically blocked on the container,
+  parameters, and databases. The container and official database inventory are
+  now checksum-frozen; authorized official model parameters are the sole
+  unresolved runtime dependency.
 - For zero observed failures, this design needs at least 35 trusted calibration
   targets at `alpha = 0.30`, 78 at 0.20, and 311 at 0.10. The 80-target
   calibration slice cannot certify 0.10 under the preregistered bound.
@@ -114,8 +127,8 @@ Proceed with `stage_b_c5_af3_environment_attestation_and_prediction`.
 
 1. Obtain the official AF3 3.0.x parameters through the authorized access
    process; do not substitute unofficial or untracked weights.
-2. Build the v3.0.3 container, install the official databases, create their
-   private checksum inventory, and rerun the Cayuga preflight.
+2. Rerun the Cayuga preflight against the checksum-locked SIF, authorized
+   parameters, and completed database inventory.
 3. Run one full runtime dependency verification, then submit the 120-target
    array only after the private attestation has zero violations and its
    SHA-256 is frozen. Keep the per-task quick runtime binding enabled.
