@@ -50,6 +50,26 @@ C5_PROSPECTIVE_INPUT_FREEZE = (
     / "c5_antibody_ood"
     / "c5_sabdab2_prospective_af3_input_freeze_2026-07-25.json"
 )
+C5_PROSPECTIVE_PREREGISTRATION_V2 = (
+    ROOT
+    / "c5_antibody_ood"
+    / "c5_prospective_panel_preregistration_v2.json"
+)
+C5_PROSPECTIVE_SOURCE_AUDIT_V2 = (
+    ROOT
+    / "c5_antibody_ood"
+    / "c5_sabdab2_prospective_source_audit_2026-08-02_v2.json"
+)
+C5_PROSPECTIVE_PANEL_COMMITMENT_V2 = (
+    ROOT
+    / "c5_antibody_ood"
+    / "c5_sabdab2_prospective_panel_commitment_v2.json"
+)
+C5_PROSPECTIVE_INPUT_FREEZE_V2 = (
+    ROOT
+    / "c5_antibody_ood"
+    / "c5_sabdab2_prospective_af3_input_freeze_2026-08-02_v2.json"
+)
 C5_AF3_READINESS = (
     ROOT
     / "c5_antibody_ood"
@@ -132,6 +152,14 @@ def main() -> int:
     c5_source_audit = json.loads(read(C5_PROSPECTIVE_SOURCE_AUDIT))
     c5_panel_commitment = json.loads(read(C5_PROSPECTIVE_PANEL_COMMITMENT))
     c5_input_freeze = json.loads(read(C5_PROSPECTIVE_INPUT_FREEZE))
+    c5_preregistration_v2 = json.loads(
+        read(C5_PROSPECTIVE_PREREGISTRATION_V2)
+    )
+    c5_source_audit_v2 = json.loads(read(C5_PROSPECTIVE_SOURCE_AUDIT_V2))
+    c5_panel_commitment_v2 = json.loads(
+        read(C5_PROSPECTIVE_PANEL_COMMITMENT_V2)
+    )
+    c5_input_freeze_v2 = json.loads(read(C5_PROSPECTIVE_INPUT_FREEZE_V2))
     c5_af3_readiness = json.loads(read(C5_AF3_READINESS))
     c5_af3_container_readiness = json.loads(
         read(C5_AF3_CONTAINER_READINESS)
@@ -241,20 +269,14 @@ def main() -> int:
     require_contains(
         issues,
         public_status,
-        "stage_b_c5_af3_environment_attestation_and_prediction",
+        "stage_b_c5_v2_runtime_attestation_and_task0_smoke",
         "public STATUS C5 research decision",
     )
     require_contains(
         issues,
         public_status,
-        "c5_af3_environment_attestation_v2",
-        "public STATUS benchmark/model attestation contract",
-    )
-    require_contains(
-        issues,
-        public_status,
-        "dd1a7badb62cbb0d4571666002159842c8c578c5",
-        "public STATUS official parameter-distribution update",
+        "v2_inputs_frozen_runtime_attestation_pending",
+        "public STATUS v2 workflow state",
     )
     require_pattern(
         issues,
@@ -538,6 +560,128 @@ def main() -> int:
     for label, passed in prospective_expected_values.items():
         if not passed:
             issues.append(f"C5 prospective invariant failed: {label}")
+
+    prospective_v2_expected_values = {
+        "prereg.schema": (
+            c5_preregistration_v2.get("schema_version")
+            == "c5_prospective_panel_preregistration_v2"
+        ),
+        "prereg.append_only": (
+            c5_preregistration_v2.get("amendment", {}).get("kind")
+            == "append_only_pre_prediction_method_amendment"
+            and c5_preregistration_v2["amendment"].get(
+                "predictions_observed"
+            )
+            is False
+            and c5_preregistration_v2["amendment"].get(
+                "calibration_labels_observed"
+            )
+            is False
+            and c5_preregistration_v2["amendment"].get(
+                "evaluation_labels_observed"
+            )
+            is False
+        ),
+        "prereg.cluster_sampling": (
+            c5_preregistration_v2["protocol"]["target_selection"].get(
+                "sampling_unit"
+            )
+            == "official_ab_ag_cluster"
+            and c5_preregistration_v2["protocol"]["target_selection"].get(
+                "deduplicate_source_cluster"
+            )
+            is True
+        ),
+        "prereg.exact_binomial": (
+            c5_preregistration_v2["protocol"]["risk_control"].get(
+                "certificate_method"
+            )
+            == "exact_binomial_bonferroni"
+            and c5_preregistration_v2["protocol"]["risk_control"].get(
+                "sensitivity_certificate_method"
+            )
+            == "uniform_hoeffding"
+        ),
+        "source.selected": (
+            c5_source_audit_v2["selection"].get("selected_rows") == 144
+        ),
+        "source.unique_clusters": (
+            c5_source_audit_v2["selection"].get(
+                "selected_unique_source_clusters"
+            )
+            == 144
+        ),
+        "source.roles": (
+            c5_source_audit_v2["selection"].get("selected_by_role")
+            == {
+                "calibration": 80,
+                "calibration_reserve": 20,
+                "evaluation": 40,
+                "evaluation_reserve": 4,
+            }
+        ),
+        "source.no_labels": (
+            c5_source_audit_v2["privacy"].get("dockq_values_read") is False
+            and c5_source_audit_v2["privacy"].get(
+                "native_interface_labels_read"
+            )
+            is False
+        ),
+        "panel.valid": (
+            c5_panel_commitment_v2["validation"].get("passed") is True
+            and c5_panel_commitment_v2["panel"].get(
+                "unique_source_clusters"
+            )
+            == 144
+            and c5_panel_commitment_v2["panel"].get(
+                "duplicate_source_clusters"
+            )
+            == 0
+        ),
+        "input.qc": (
+            c5_input_freeze_v2["structure_qc"].get("checked") == 144
+            and c5_input_freeze_v2["structure_qc"].get("passed") == 144
+            and c5_input_freeze_v2["structure_qc"].get("issues_by_reason")
+            == {}
+        ),
+        "input.retained": (
+            c5_input_freeze_v2["retention"].get("rows") == 120
+            and c5_input_freeze_v2["retention"].get("retained_by_role")
+            == {"calibration": 80, "evaluation": 40}
+        ),
+        "input.private_boundary": (
+            c5_input_freeze_v2["af3_inputs"].get("files") == 120
+            and c5_input_freeze_v2["af3_inputs"].get(
+                "templates_disabled"
+            )
+            is True
+            and c5_input_freeze_v2["af3_inputs"].get(
+                "raw_sequences_emitted_publicly"
+            )
+            is False
+            and c5_input_freeze_v2["structure_qc"].get(
+                "dockq_or_interface_labels_read"
+            )
+            is False
+        ),
+        "input.fail_closed": (
+            c5_input_freeze_v2["decision"].get(
+                "ready_for_af3_prediction"
+            )
+            is True
+            and c5_input_freeze_v2["decision"].get(
+                "external_specialist_trust_enabled"
+            )
+            is False
+            and c5_input_freeze_v2["decision"].get(
+                "ready_for_dpo_rlvr"
+            )
+            is False
+        ),
+    }
+    for label, passed in prospective_v2_expected_values.items():
+        if not passed:
+            issues.append(f"C5 prospective v2 invariant failed: {label}")
     for needle in (
         "--output_dir=/root/af_output",
         'TARGET_OUTPUT="${AF3_OUTPUT_DIR}/${JOB_NAME}"',
@@ -698,17 +842,16 @@ def main() -> int:
     print("- Stage A checkpoint: tool_query 0/5; sealed routing 5/25; runtime oracle 25/25")
     print("- prospective Stage A: routing 35/180; hybrid 115/180; compiler 25/25 clean")
     print("- C5 prototype: fail-closed 12/12; trust-all 9 unsafe trusts")
+    print("- C5 v2 freeze: 144/144 unique candidate clusters; 120 retained")
     print("- C5 source replay: trust-all 28/55 failures; fixed gate 3/20")
     print("- C5 certification: no trusted set at alpha <= 0.30")
     print("- C5 independent calibration: 97 targets; 0 residual PDB overlap")
     print("- C5 independent certificates: antibody and nanobody both fail")
-    print("- C5 prospective freeze: 150 targets QC-passed; 120 AF3 inputs locked")
+    print("- C5 v1 target concentration: prediction stopped before label access")
     print("- C5 phase gates: 600-sample prediction lock and staged 80/40 reveal implemented")
-    print("- C5 execution gate: source/input/container/databases ready; parameters blocked")
     print("- C5 execution path: staged CPU data pipeline and GPU inference implemented")
-    print("- C5 parameter intake: official generation-pinned fetch ready; artifact absent")
-    print("- C5 attestation: v2 binds clean benchmark and model manifest")
-    print("- C5 next gate: AF3 environment attestation and Cayuga prediction")
+    print("- C5 v2 execution gate: fresh input-bound runtime attestation pending")
+    print("- C5 next gate: v2 attestation, then CPU task-0 smoke")
     print("- DPO/RLVR/HF gate: useful routing coverage plus independent evaluation required")
     print("- sealed evaluation gate: completed rows cannot be tuned on or rescored")
     print("- C5 gate: calibration metadata required before trust")

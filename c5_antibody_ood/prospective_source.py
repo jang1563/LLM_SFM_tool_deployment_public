@@ -8,7 +8,7 @@ import hashlib
 import json
 import math
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Sequence
@@ -191,6 +191,8 @@ def select_public_panel(
     used_sabdab: set[str] = set()
     duplicate_pdb_skipped = 0
     duplicate_sabdab_skipped = 0
+    conflict_clusters_skipped = 0
+    cluster_first = selection.get("deduplicate_source_cluster") is True
     selection_definitions = (
         (
             "calibration",
@@ -209,34 +211,80 @@ def select_public_panel(
         reserve_count = int(definition["reserve_targets"])
         required = primary_count + reserve_count
         accepted: list[EligibleTarget] = []
-        ordered = sorted(
-            by_split[source_split],
-            key=lambda target: (
-                hashlib.sha256(
-                    (
-                        public_seed
-                        + "|"
-                        + target.instance_id
-                    ).encode()
-                ).hexdigest(),
-                target.instance_id,
-            ),
-        )
-        for target in ordered:
-            if target.pdb_id in used_pdb:
-                duplicate_pdb_skipped += 1
-                continue
-            if target.sabdab_id in used_sabdab:
-                duplicate_sabdab_skipped += 1
-                continue
-            accepted.append(target)
-            used_pdb.add(target.pdb_id)
-            used_sabdab.add(target.sabdab_id)
-            if len(accepted) == required:
-                break
+        if cluster_first:
+            grouped: defaultdict[str, list[EligibleTarget]] = defaultdict(list)
+            for target in by_split[source_split]:
+                grouped[target.source_cluster_sha256].append(target)
+            ordered_clusters = sorted(
+                grouped,
+                key=lambda cluster: (
+                    hashlib.sha256(
+                        f"{public_seed}|cluster|{cluster}".encode()
+                    ).hexdigest(),
+                    cluster,
+                ),
+            )
+            for cluster in ordered_clusters:
+                ordered_targets = sorted(
+                    grouped[cluster],
+                    key=lambda target: (
+                        hashlib.sha256(
+                            (
+                                f"{public_seed}|target|{cluster}|"
+                                f"{target.instance_id}"
+                            ).encode()
+                        ).hexdigest(),
+                        target.instance_id,
+                    ),
+                )
+                selected_target: EligibleTarget | None = None
+                for target in ordered_targets:
+                    if target.pdb_id in used_pdb:
+                        duplicate_pdb_skipped += 1
+                        continue
+                    if target.sabdab_id in used_sabdab:
+                        duplicate_sabdab_skipped += 1
+                        continue
+                    selected_target = target
+                    break
+                if selected_target is None:
+                    conflict_clusters_skipped += 1
+                    continue
+                accepted.append(selected_target)
+                used_pdb.add(selected_target.pdb_id)
+                used_sabdab.add(selected_target.sabdab_id)
+                if len(accepted) == required:
+                    break
+        else:
+            ordered = sorted(
+                by_split[source_split],
+                key=lambda target: (
+                    hashlib.sha256(
+                        (
+                            public_seed
+                            + "|"
+                            + target.instance_id
+                        ).encode()
+                    ).hexdigest(),
+                    target.instance_id,
+                ),
+            )
+            for target in ordered:
+                if target.pdb_id in used_pdb:
+                    duplicate_pdb_skipped += 1
+                    continue
+                if target.sabdab_id in used_sabdab:
+                    duplicate_sabdab_skipped += 1
+                    continue
+                accepted.append(target)
+                used_pdb.add(target.pdb_id)
+                used_sabdab.add(target.sabdab_id)
+                if len(accepted) == required:
+                    break
         if len(accepted) != required:
+            unit = "clusters" if cluster_first else "targets"
             raise ProspectiveSourceError(
-                f"insufficient_{source_split}_targets:"
+                f"insufficient_{source_split}_{unit}:"
                 f"{len(accepted)}<{required}"
             )
         for index, target in enumerate(accepted):
@@ -250,7 +298,7 @@ def select_public_panel(
             int(row["selection_rank"]),
         )
     )
-    return selected, {
+    audit = {
         "eligible_rows_before_overlap_exclusion": len(eligible),
         "blocked_pdb_ids": len(blocked),
         "blocked_overlap_rows_excluded": overlap_rows,
@@ -281,6 +329,17 @@ def select_public_panel(
             }
         ),
     }
+    if cluster_first:
+        audit.update(
+            {
+                "selection_unit": "official_ab_ag_cluster",
+                "selected_unique_source_clusters": len(
+                    {row["source_cluster_sha256"] for row in selected}
+                ),
+                "conflict_clusters_skipped": conflict_clusters_skipped,
+            }
+        )
+    return selected, audit
 
 
 def build_prospective_panel(

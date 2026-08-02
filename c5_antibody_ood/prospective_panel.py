@@ -17,6 +17,8 @@ from .source_pilot import C5_CANDIDATE_THRESHOLDS
 
 PREREGISTRATION_SCHEMA = "c5_prospective_panel_preregistration_v1"
 PREREGISTRATION_ID = "c5-sabdab2-af3-prospective-2026-07-25-v1"
+PREREGISTRATION_SCHEMA_V2 = "c5_prospective_panel_preregistration_v2"
+PREREGISTRATION_ID_V2 = "c5-sabdab2-af3-prospective-2026-08-02-v2"
 SABDAB2_ARCHIVE_BYTES = 876_381_859
 SABDAB2_ARCHIVE_MD5 = "0dbb4cc499e9eb77f14008b232f2c38c"
 SABDAB2_SPLIT_BYTES = 140_769_855
@@ -75,6 +77,29 @@ def minimum_zero_failure_trusted(
 
     return math.ceil(
         math.log(candidate_count / delta) / (2 * alpha * alpha)
+    )
+
+
+def minimum_zero_failure_trusted_exact(
+    *,
+    alpha: float,
+    delta: float,
+    candidate_count: int,
+) -> int:
+    """Return the exact-binomial zero-failure minimum after Bonferroni."""
+
+    if not 0 < alpha < 1:
+        raise ValueError("alpha must be in (0, 1)")
+    if not 0 < delta < 1:
+        raise ValueError("delta must be in (0, 1)")
+    if (
+        isinstance(candidate_count, bool)
+        or not isinstance(candidate_count, int)
+        or candidate_count < 1
+    ):
+        raise ValueError("candidate_count must be a positive integer")
+    return math.ceil(
+        math.log(delta / candidate_count) / math.log(1 - alpha)
     )
 
 
@@ -288,11 +313,132 @@ def build_preregistration() -> dict[str, Any]:
     return result
 
 
+def build_preregistration_v2() -> dict[str, Any]:
+    """Build the label-free, cluster-balanced pre-prediction amendment."""
+
+    v1 = build_preregistration()
+    protocol = deepcopy(v1["protocol"])
+    selection = protocol["target_selection"]
+    selection.update(
+        {
+            "unit": "one paired-chain instance per ab_ag_cluster",
+            "sampling_unit": "official_ab_ag_cluster",
+            "cluster_column": "ab_ag_cluster",
+            "deduplicate_source_cluster": True,
+            "selection_algorithm": (
+                "sha256(public_seed + '|cluster|' + source_cluster_sha256), "
+                "then sha256(public_seed + '|target|' + "
+                "source_cluster_sha256 + '|' + source_instance_id), then "
+                "lexical source_instance_id"
+            ),
+        }
+    )
+    selection["evaluation"]["reserve_targets"] = 4
+
+    risk = protocol["risk_control"]
+    risk.update(
+        {
+            "certificate": (
+                "exact one-sided binomial test with Bonferroni correction"
+            ),
+            "certificate_method": "exact_binomial_bonferroni",
+            "calibration_test": (
+                "lower-tail Binomial(n, alpha) test at delta/candidate_count"
+            ),
+            "evaluation_upper_bound": (
+                "fixed-threshold exact one-sided binomial bound without "
+                "threshold-search multiplicity"
+            ),
+            "sensitivity_certificate": (
+                "uniform Hoeffding upper bound with union correction"
+            ),
+            "sensitivity_certificate_method": "uniform_hoeffding",
+        }
+    )
+    protocol["phase_gates"][0]["requires"].append(
+        "one target per official ab_ag_cluster across primary and reserves"
+    )
+    protocol["phase_gates"][1]["requires"].append(
+        "80 calibration and 40 evaluation source clusters are unique"
+    )
+
+    thresholds = risk["candidate_thresholds"]
+    alphas = (
+        risk["primary_alpha"],
+        *risk["secondary_alphas"],
+    )
+    design_analysis = {
+        "sampling_audit": {
+            "v1_calibration_targets": 80,
+            "v1_calibration_unique_clusters": 34,
+            "v1_calibration_largest_cluster": 35,
+            "v1_evaluation_targets": 40,
+            "v1_evaluation_unique_clusters": 17,
+            "v1_evaluation_largest_cluster": 16,
+            "v2_calibration_unique_clusters": 80,
+            "v2_evaluation_unique_clusters": 40,
+        },
+        **{
+            f"alpha_{alpha:.2f}": {
+                "alpha": alpha,
+                "minimum_zero_failure_trusted": (
+                    minimum_zero_failure_trusted_exact(
+                        alpha=alpha,
+                        delta=risk["delta"],
+                        candidate_count=len(thresholds),
+                    )
+                ),
+                "hoeffding_sensitivity_minimum_zero_failure_trusted": (
+                    minimum_zero_failure_trusted(
+                        alpha=alpha,
+                        delta=risk["delta"],
+                        candidate_count=len(thresholds),
+                    )
+                ),
+            }
+            for alpha in alphas
+        },
+    }
+    amendment = {
+        "kind": "append_only_pre_prediction_method_amendment",
+        "supersedes_preregistration_id": v1["preregistration_id"],
+        "supersedes_protocol_sha256": v1["commitment"]["protocol_sha256"],
+        "reason": (
+            "target-level selection concentrated repeated observations "
+            "within official sequence clusters and did not support the "
+            "independence interpretation required by the risk certificate"
+        ),
+        "evidence_used": "public_safe_metadata_and_method_power_only",
+        "predictions_observed": False,
+        "calibration_labels_observed": False,
+        "evaluation_labels_observed": False,
+    }
+    result = {
+        "schema_version": PREREGISTRATION_SCHEMA_V2,
+        "preregistration_id": PREREGISTRATION_ID_V2,
+        "created_date": "2026-08-02",
+        "workflow_state": "method_locked_source_intake_pending",
+        "amendment": amendment,
+        "protocol": protocol,
+        "design_analysis": design_analysis,
+    }
+    result["commitment"] = {
+        "algorithm": "sha256-canonical-json",
+        "scope": "protocol",
+        "protocol_sha256": canonical_sha256(protocol),
+    }
+    return result
+
+
 def validate_preregistration(record: Mapping[str, Any]) -> list[str]:
     """Validate both schema completeness and immutable method choices."""
 
     issues: list[str] = []
-    expected = build_preregistration()
+    is_v2 = (
+        record.get("schema_version") == PREREGISTRATION_SCHEMA_V2
+        or record.get("preregistration_id") == PREREGISTRATION_ID_V2
+    )
+    expected = build_preregistration_v2() if is_v2 else build_preregistration()
     for key in (
         "schema_version",
         "preregistration_id",
@@ -333,6 +479,8 @@ def validate_preregistration(record: Mapping[str, Any]) -> list[str]:
     design = record.get("design_analysis")
     if design != expected["design_analysis"]:
         issues.append("design_analysis_drift")
+    if is_v2 and record.get("amendment") != expected["amendment"]:
+        issues.append("amendment_drift")
     return issues
 
 
@@ -357,6 +505,7 @@ def validate_public_panel(
     seen_pdb: set[str] = set()
     seen_sabdab: set[str] = set()
     seen_rank: set[tuple[str, int]] = set()
+    seen_source_clusters: set[str] = set()
     calibration_clusters: set[str] = set()
     evaluation_clusters: set[str] = set()
     blocked = {value.lower() for value in blocked_pdb_ids}
@@ -479,10 +628,15 @@ def validate_public_panel(
             cluster_hash
         ):
             issues.append(f"{prefix}:source_cluster_sha256_invalid")
-        elif role in {"calibration", "calibration_reserve"}:
-            calibration_clusters.add(cluster_hash)
-        elif role in {"evaluation", "evaluation_reserve"}:
-            evaluation_clusters.add(cluster_hash)
+        else:
+            if selection.get("deduplicate_source_cluster") is True:
+                if cluster_hash in seen_source_clusters:
+                    issues.append(f"{prefix}:source_cluster_duplicate")
+                seen_source_clusters.add(cluster_hash)
+            if role in {"calibration", "calibration_reserve"}:
+                calibration_clusters.add(cluster_hash)
+            elif role in {"evaluation", "evaluation_reserve"}:
+                evaluation_clusters.add(cluster_hash)
 
     for role in PANEL_ROLES:
         expected_count = expected_counts.get(role, 0)
@@ -512,8 +666,48 @@ def build_panel_commitment(
         blocked_pdb_ids=blocked_pdb_ids,
     )
     counts = Counter(str(row.get("panel_role")) for row in rows)
+    panel = {
+        "rows": len(rows),
+        "roles": dict(sorted(counts.items())),
+        "manifest_sha256": canonical_sha256(list(rows)),
+        "blocked_pdb_overlap": sum(
+            str(row.get("pdb_id", "")).lower()
+            in {value.lower() for value in blocked_pdb_ids}
+            for row in rows
+        ),
+        "source_cluster_overlap_between_splits": len(
+            {
+                str(row.get("source_cluster_sha256"))
+                for row in rows
+                if row.get("panel_role")
+                in {"calibration", "calibration_reserve"}
+            }
+            & {
+                str(row.get("source_cluster_sha256"))
+                for row in rows
+                if row.get("panel_role")
+                in {"evaluation", "evaluation_reserve"}
+            }
+        ),
+    }
+    is_v2 = preregistration.get("schema_version") == PREREGISTRATION_SCHEMA_V2
+    if is_v2:
+        clusters = [
+            str(row.get("source_cluster_sha256"))
+            for row in rows
+        ]
+        panel.update(
+            {
+                "unique_source_clusters": len(set(clusters)),
+                "duplicate_source_clusters": len(clusters) - len(set(clusters)),
+            }
+        )
     return {
-        "schema_version": "c5_prospective_panel_commitment_v1",
+        "schema_version": (
+            "c5_prospective_panel_commitment_v2"
+            if is_v2
+            else "c5_prospective_panel_commitment_v1"
+        ),
         "preregistration_id": preregistration.get("preregistration_id"),
         "protocol_sha256": preregistration.get("commitment", {}).get(
             "protocol_sha256"
@@ -526,30 +720,7 @@ def build_panel_commitment(
             .get("source", {})
             .get("archive_md5"),
         },
-        "panel": {
-            "rows": len(rows),
-            "roles": dict(sorted(counts.items())),
-            "manifest_sha256": canonical_sha256(list(rows)),
-            "blocked_pdb_overlap": sum(
-                str(row.get("pdb_id", "")).lower()
-                in {value.lower() for value in blocked_pdb_ids}
-                for row in rows
-            ),
-            "source_cluster_overlap_between_splits": len(
-                {
-                    str(row.get("source_cluster_sha256"))
-                    for row in rows
-                    if row.get("panel_role")
-                    in {"calibration", "calibration_reserve"}
-                }
-                & {
-                    str(row.get("source_cluster_sha256"))
-                    for row in rows
-                    if row.get("panel_role")
-                    in {"evaluation", "evaluation_reserve"}
-                }
-            ),
-        },
+        "panel": panel,
         "validation": {
             "passed": not validation_issues,
             "issues": validation_issues,
@@ -614,11 +785,16 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write-default", type=Path)
     parser.add_argument("--check", type=Path)
+    parser.add_argument("--version", choices=("v1", "v2"), default="v1")
     args = parser.parse_args()
     if bool(args.write_default) == bool(args.check):
         parser.error("choose exactly one of --write-default or --check")
     if args.write_default:
-        record = build_preregistration()
+        record = (
+            build_preregistration_v2()
+            if args.version == "v2"
+            else build_preregistration()
+        )
         write_json(args.write_default, record)
         print(f"wrote {args.write_default}")
         print(f"protocol_sha256={record['commitment']['protocol_sha256']}")

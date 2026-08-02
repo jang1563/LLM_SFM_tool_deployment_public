@@ -11,7 +11,9 @@ from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 from .calibration import (
+    fixed_threshold_exact_binomial_metrics,
     fixed_threshold_hoeffding_metrics,
+    select_exact_binomial_certificate,
     select_hoeffding_certificate,
 )
 from .manifest import load_c5_manifest
@@ -81,20 +83,18 @@ def build_calibration_lock(
         native_structure_lock=native_structure_lock,
     )
     risk = preregistration["protocol"]["risk_control"]
-    thresholds = tuple(float(value) for value in risk["candidate_thresholds"])
     alphas = (
         float(risk["primary_alpha"]),
         *(float(value) for value in risk["secondary_alphas"]),
     )
     certificates = {
-        f"alpha_{alpha:.2f}": select_hoeffding_certificate(
+        f"alpha_{alpha:.2f}": _calibration_certificate(
             [
                 (observation["ranking_score"], observation["success"])
                 for observation in observations
             ],
+            preregistration=preregistration,
             alpha=alpha,
-            delta=float(risk["delta"]),
-            thresholds=thresholds,
         )
         for alpha in alphas
     }
@@ -446,13 +446,10 @@ def validate_calibration_lock(
             *(float(value) for value in risk["secondary_alphas"]),
         )
         expected_certificates = {
-            f"alpha_{alpha:.2f}": select_hoeffding_certificate(
+            f"alpha_{alpha:.2f}": _calibration_certificate(
                 pairs,
+                preregistration=preregistration,
                 alpha=alpha,
-                delta=float(risk["delta"]),
-                thresholds=tuple(
-                    float(value) for value in risk["candidate_thresholds"]
-                ),
             )
             for alpha in alphas
         }
@@ -859,7 +856,10 @@ def _selected_policy(
 ) -> dict[str, Any]:
     risk = preregistration["protocol"]["risk_control"]
     certified = primary_certificate["certified"] is True
-    return {
+    exact_binomial = risk.get("certificate_method") == (
+        "exact_binomial_bonferroni"
+    )
+    policy = {
         "calibration_dataset_id": (
             f"{preregistration['preregistration_id']}::calibration"
         ),
@@ -875,13 +875,23 @@ def _selected_policy(
         "delta": float(risk["delta"]),
         "certified": certified,
         "threshold_id": (
-            "c5_sabdab2_ranking_score_hoeffding_alpha_0_30_v1"
+            (
+                "c5_sabdab2_ranking_score_exact_binomial_alpha_0_30_v2"
+                if exact_binomial
+                else "c5_sabdab2_ranking_score_hoeffding_alpha_0_30_v1"
+            )
             if certified
             else None
         ),
         "threshold": primary_certificate["threshold"],
         "action_when_uncertified": risk["no_certificate_action"],
     }
+    if exact_binomial:
+        policy["certificate_method"] = risk["certificate_method"]
+        policy["sampling_unit"] = preregistration["protocol"][
+            "target_selection"
+        ]["sampling_unit"]
+    return policy
 
 
 def _evaluation_policies(
@@ -895,28 +905,27 @@ def _evaluation_policies(
         for observation in observations
     ]
     risk = preregistration["protocol"]["risk_control"]
-    delta = float(risk["delta"])
     certified = selected_policy["certified"] is True
     frozen_threshold = (
         float(selected_policy["threshold"]) if certified else None
     )
     applied_threshold = frozen_threshold if certified else math.inf
     policies = {
-        "trust_all": fixed_threshold_hoeffding_metrics(
+        "trust_all": _fixed_threshold_metrics(
             pairs,
             threshold=None,
-            delta=delta,
+            preregistration=preregistration,
         ),
-        "fixed_ranking_score_0_80": fixed_threshold_hoeffding_metrics(
+        "fixed_ranking_score_0_80": _fixed_threshold_metrics(
             pairs,
             threshold=0.80,
-            delta=delta,
+            preregistration=preregistration,
         ),
         "regime_specific_calibrated_gate": {
-            **fixed_threshold_hoeffding_metrics(
+            **_fixed_threshold_metrics(
                 pairs,
                 threshold=applied_threshold,
-                delta=delta,
+                preregistration=preregistration,
             ),
             "calibration_certified": certified,
             "threshold": frozen_threshold,
@@ -926,22 +935,91 @@ def _evaluation_policies(
                 else selected_policy["action_when_uncertified"]
             ),
         },
-        "fail_closed": fixed_threshold_hoeffding_metrics(
+        "fail_closed": _fixed_threshold_metrics(
             pairs,
             threshold=math.inf,
-            delta=delta,
+            preregistration=preregistration,
         ),
     }
     primary = policies["regime_specific_calibrated_gate"]
+    exact_risk_test = primary.get("risk_test_passed")
+    risk_supported = (
+        exact_risk_test is True
+        if isinstance(exact_risk_test, bool)
+        else (
+            primary["risk_upper_bound"] is not None
+            and primary["risk_upper_bound"]
+            <= float(risk["primary_alpha"])
+        )
+    )
     transfer_supported = (
         certified
         and selected_policy.get("regime_match") is True
         and primary["trusted"]
         >= int(risk["minimum_evaluation_trusted_for_transfer_claim"])
-        and primary["risk_upper_bound"] is not None
-        and primary["risk_upper_bound"] <= float(risk["primary_alpha"])
+        and risk_supported
     )
     return policies, transfer_supported
+
+
+def _calibration_certificate(
+    observations: Sequence[tuple[float, bool]],
+    *,
+    preregistration: Mapping[str, Any],
+    alpha: float,
+) -> dict[str, Any]:
+    risk = preregistration["protocol"]["risk_control"]
+    thresholds = tuple(float(value) for value in risk["candidate_thresholds"])
+    delta = float(risk["delta"])
+    if risk.get("certificate_method") != "exact_binomial_bonferroni":
+        return select_hoeffding_certificate(
+            observations,
+            alpha=alpha,
+            delta=delta,
+            thresholds=thresholds,
+        )
+    certificate = select_exact_binomial_certificate(
+        observations,
+        alpha=alpha,
+        delta=delta,
+        thresholds=thresholds,
+        multiplicity=int(risk["candidate_count"]),
+    )
+    certificate["hoeffding_sensitivity"] = select_hoeffding_certificate(
+        observations,
+        alpha=alpha,
+        delta=delta,
+        thresholds=thresholds,
+    )
+    return certificate
+
+
+def _fixed_threshold_metrics(
+    observations: Sequence[tuple[float, bool]],
+    *,
+    threshold: float | None,
+    preregistration: Mapping[str, Any],
+) -> dict[str, Any]:
+    risk = preregistration["protocol"]["risk_control"]
+    delta = float(risk["delta"])
+    if risk.get("certificate_method") != "exact_binomial_bonferroni":
+        return fixed_threshold_hoeffding_metrics(
+            observations,
+            threshold=threshold,
+            delta=delta,
+        )
+    metrics = fixed_threshold_exact_binomial_metrics(
+        observations,
+        threshold=threshold,
+        alpha=float(risk["primary_alpha"]),
+        delta=delta,
+    )
+    metrics["hoeffding_sensitivity"] = fixed_threshold_hoeffding_metrics(
+        observations,
+        threshold=threshold,
+        delta=delta,
+    )
+    return metrics
 
 
 def _load_json(path: str | Path) -> dict[str, Any]:

@@ -11,7 +11,10 @@ from c5_antibody_ood.calibration import (
 )
 from c5_antibody_ood.manifest import load_c5_manifest
 from c5_antibody_ood.prospective_native_lock import NATIVE_LOCK_SCHEMA
-from c5_antibody_ood.prospective_panel import canonical_sha256
+from c5_antibody_ood.prospective_panel import (
+    build_preregistration_v2,
+    canonical_sha256,
+)
 from c5_antibody_ood.prospective_predictions import PRIVATE_LOCK_SCHEMA
 from c5_antibody_ood.prospective_reveal import (
     ProspectiveRevealError,
@@ -356,6 +359,103 @@ def test_calibration_reveal_certifies_and_keeps_evaluation_sealed(
     assert fixture["rows"][0]["target_id"] not in rendered
     assert '"observations"' not in rendered
     assert '"dockq"' not in rendered.lower()
+
+
+def test_v2_reveal_uses_exact_binomial_and_keeps_hoeffding_sensitivity(
+    reveal_fixture,
+):
+    preregistration = build_preregistration_v2()
+    preregistration["workflow_state"] = "panel_locked_prediction_pending"
+    rows = deepcopy(reveal_fixture["rows"])
+    for index, row in enumerate(rows):
+        row["source_cluster_sha256"] = _sha(f"v2-cluster-{index}")
+
+    input_freeze = deepcopy(reveal_fixture["input_freeze"])
+    input_freeze["preregistration_id"] = preregistration[
+        "preregistration_id"
+    ]
+    input_freeze["protocol_sha256"] = preregistration["commitment"][
+        "protocol_sha256"
+    ]
+    input_freeze["retention"]["manifest_sha256"] = canonical_sha256(rows)
+    input_freeze["structure_qc"]["checked"] = 120
+    input_freeze["structure_qc"]["passed"] = 120
+    input_freeze["structure_qc"]["passed_by_role"] = {
+        "calibration": 80,
+        "evaluation": 40,
+    }
+    native_structure_lock = _native_structure_lock(
+        rows,
+        rows,
+        input_freeze,
+    )
+    prediction_lock = _prediction_lock(
+        rows,
+        preregistration,
+        input_freeze,
+    )
+    calibration_labels = _labels(
+        rows,
+        prediction_lock,
+        native_structure_lock,
+        preregistration,
+        role="calibration",
+        dockq=0.90,
+    )
+
+    calibration_lock, _ = build_calibration_lock(
+        preregistration=preregistration,
+        input_freeze=input_freeze,
+        retained_rows=rows,
+        prediction_lock=prediction_lock,
+        native_structure_lock=native_structure_lock,
+        calibration_labels=calibration_labels,
+        created_at_utc="2026-08-02T14:00:00+00:00",
+    )
+
+    primary = calibration_lock["certificates"]["alpha_0.30"]
+    assert primary["bound"] == (
+        "exact one-sided binomial with Bonferroni correction"
+    )
+    assert primary["certified"] is True
+    assert primary["hoeffding_sensitivity"]["certified"] is True
+    assert calibration_lock["selected_policy"]["certificate_method"] == (
+        "exact_binomial_bonferroni"
+    )
+    assert calibration_lock["selected_policy"]["sampling_unit"] == (
+        "official_ab_ag_cluster"
+    )
+
+    evaluation_labels = _labels(
+        rows,
+        prediction_lock,
+        native_structure_lock,
+        preregistration,
+        role="evaluation",
+        dockq=0.90,
+    )
+    evaluation_lock, _ = build_evaluation_lock(
+        preregistration=preregistration,
+        input_freeze=input_freeze,
+        retained_rows=rows,
+        prediction_lock=prediction_lock,
+        native_structure_lock=native_structure_lock,
+        calibration_lock=calibration_lock,
+        evaluation_labels=evaluation_labels,
+        created_at_utc="2026-08-02T15:00:00+00:00",
+    )
+
+    gate = evaluation_lock["policies"][
+        "regime_specific_calibrated_gate"
+    ]
+    assert gate["bound"] == "fixed-threshold exact one-sided binomial"
+    assert gate["risk_test_passed"] is True
+    assert gate["hoeffding_sensitivity"]["bound"] == (
+        "fixed-threshold Hoeffding"
+    )
+    assert evaluation_lock["decision"][
+        "regime_specific_transfer_supported"
+    ] is True
 
 
 def test_calibration_reveal_rejects_evaluation_rows_and_model_drift(

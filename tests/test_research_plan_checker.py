@@ -22,18 +22,15 @@ def test_research_plan_checker_passes() -> None:
     assert "fail-closed 12/12; trust-all 9 unsafe trusts" in result.stdout
     assert "C5 source replay: trust-all 28/55 failures" in result.stdout
     assert "C5 independent calibration: 97 targets" in result.stdout
-    assert "C5 prospective freeze: 150 targets QC-passed" in result.stdout
     assert (
-        "source/input/container/databases ready; parameters blocked"
+        "C5 v2 freeze: 144/144 unique candidate clusters; 120 retained"
         in result.stdout
     )
+    assert "C5 v1 target concentration: prediction stopped" in result.stdout
+    assert "C5 v2 execution gate" in result.stdout
     assert (
         "staged CPU data pipeline and GPU inference implemented"
         in result.stdout
     )
-    assert (
-        "official generation-pinned fetch ready; artifact absent"
-        in result.stdout
-    )
-    assert "C5 next gate: AF3 environment attestation" in result.stdout
+    assert "C5 next gate: v2 attestation, then CPU task-0 smoke" in result.stdout
     assert "completed rows cannot be tuned on or rescored" in result.stdout

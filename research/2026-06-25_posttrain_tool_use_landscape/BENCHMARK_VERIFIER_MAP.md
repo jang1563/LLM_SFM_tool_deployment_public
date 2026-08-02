@@ -86,6 +86,7 @@ as expensive evidence, not a cheap reward.
 | SFM trust | Boltz-2 reliability evaluation | Compressed confidence scores and target-dependent reliability behavior. | Supports fail-closed behavior when internal confidence lacks discrimination. |
 | SFM trust | Perturbation FM baseline studies / scPerturBench | Simple baselines, distribution-shift splits, unseen contexts and perturbations. | Supports `baseline` as an explicit action rather than an afterthought. |
 | Calibration | RCPS / conformal risk control | Finite-sample black-box risk control and distribution-shift extensions. | Method backbone for certifying `trust_specialist_output` thresholds. |
+| Calibration | Learn Then Test / hierarchical prediction / Hoeffding | Multiple-testing control for threshold search, group-aware sampling, and explicit independence assumptions. | Prevents repeated source-cluster observations from being counted as independent evidence and keeps uncertified gates fail closed. |
 | General science | ScienceWorld | Interactive text environment for scientific experiments. | Early grounding source: agents must act and observe, not just answer. |
 | General science | DiscoveryWorld | Virtual discovery cycles with task/action/explanatory-knowledge metrics. | Useful for hypothesis-experiment-analysis loop design. |
 | General science | ScienceAgentBench | Scientific Python program generation from peer-reviewed workflow tasks. | Good task-level scientific coding/evaluation source before end-to-end claims. |
