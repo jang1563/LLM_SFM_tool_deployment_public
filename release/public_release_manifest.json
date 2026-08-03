@@ -3,7 +3,7 @@
   "project": "LLM-SFM Tool Deployment",
   "release_profile": "benchmark_public_surface",
   "status": "public_clean_snapshot_release_surface",
-  "last_updated": "2026-07-26",
+  "last_updated": "2026-08-03",
   "benchmark_scope": {
     "primary_release_object": "Stage A biology tool-use trajectory benchmark substrate",
     "primary_claim": "Agents should be evaluated on tool -> evidence packet -> terminal action trajectories with hidden labels separated from model-visible prompts.",
@@ -1582,6 +1582,50 @@
       "path": "c5_antibody_ood/C5_PROSPECTIVE_PANEL_PREREGISTRATION_2026-07-25.md",
       "kind": "c5_prospective_preregistration_report",
       "sha256": "21e913de72c0bd5f900321772f818c7d571ef9ad946805d74f691f56742d35f2",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_prospective_panel_preregistration_v2.json",
+      "kind": "c5_cluster_balanced_prospective_protocol_lock",
+      "sha256": "490015f56e606919d040d6418f3eedf3d6ca383a4af5ca911dc57cd411fca1ab",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_sabdab2_prospective_panel_manifest_v2.jsonl",
+      "kind": "c5_cluster_balanced_prospective_candidate_panel",
+      "records": 144,
+      "sha256": "8bcd079138c4586711667293f826b1fd6de007d55ea517622be7dd190e97bbca",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_sabdab2_prospective_source_audit_2026-08-02_v2.json",
+      "kind": "c5_cluster_balanced_prospective_source_audit",
+      "sha256": "ea064f3999c01471117ab077a2116d4c5c8f9e262e4183b8f5a14788e9428ead",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_sabdab2_prospective_panel_commitment_v2.json",
+      "kind": "c5_cluster_balanced_prospective_panel_commitment",
+      "sha256": "f74995ae53c00469e3d0f617ac05134dad0b561b0257f333ed8acd9c47e1372c",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_sabdab2_prospective_retained_manifest_v2.jsonl",
+      "kind": "c5_cluster_balanced_prospective_retained_panel",
+      "records": 120,
+      "sha256": "b3f3ed241a87c8f2b11578ed962106de17de4c6f399ba2f56f14eeb8b1ee3aa6",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-08-02_v2.json",
+      "kind": "c5_cluster_balanced_prospective_af3_input_freeze",
+      "sha256": "6953f3f1657cc3a9af347aa3b276b27587744f2b725751fe34b04fec799bf22d",
+      "safe_to_publish": true
+    },
+    {
+      "path": "c5_antibody_ood/c5_sabdab2_prospective_af3_input_refreeze_2026-08-03_v3.json",
+      "kind": "c5_prospective_af3_runtime_compatibility_refreeze",
+      "sha256": "5da3f22aa903b9652a1e2325ae6f96218c215c54eae4061114529b33ca5dc455",
       "safe_to_publish": true
     }
   ],

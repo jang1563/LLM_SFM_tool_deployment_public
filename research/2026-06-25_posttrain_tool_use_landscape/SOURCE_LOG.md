@@ -1,13 +1,13 @@
 # Source Log
 
 Only sources that change a verifier, reward, policy, split, or claim boundary
-are recorded here. Access date for this checkpoint: 2026-08-02.
+are recorded here. Access date for this checkpoint: 2026-08-03.
 
 | Source | Primary URL | Change to the benchmark |
 | --- | --- | --- |
 | SAbDab2 Machine Learning Dataset v0.1.0 | https://doi.org/10.5281/zenodo.20083995 | Replaces ad hoc target curation with a checksum-locked 15,641-row source and an official antibody-and-antigen sequence-aware split. The official `ab_ag_cluster` is now the prospective sampling unit after target-level selection exposed severe within-cluster concentration. |
 | SAbDab2 license and distribution statement | https://sabdab.opig.stats.ox.ac.uk/about | Fixes the source attribution and `CC-BY-4.0` public-data boundary while keeping structures and sequences out of this repository. |
-| AlphaFold 3 v3.0.3 | https://github.com/google-deepmind/alphafold3/releases/tag/v3.0.3 | Pins prospective prediction to commit `7b197fe859790fc3e04d03ea70dd0b9ba48881c9`; the Dockerfile fixes `/app/alphafold` plus `uv run python3`, while the writer fixes the sanitized job/five-sample output layout, ranking CSV and summary schemas, and a ranking score with disorder bonus/clash penalty rather than a strict `[0,1]` range. |
+| AlphaFold 3 v3.0.3 | https://github.com/google-deepmind/alphafold3/blob/v3.0.3/src/alphafold3/common/folding_input.py | Pins prospective prediction to commit `7b197fe859790fc3e04d03ea70dd0b9ba48881c9`; the input contract accepts JSON versions 1-4, serializes processed input at version 4, and requires unique alphabetic, non-lowercase chain IDs. These facts now govern source-backed phase validation and a label-blind native-to-runtime chain-ID bridge. The writer also fixes the sanitized job/five-sample output layout, ranking CSV and summary schemas, and a ranking score with disorder bonus/clash penalty rather than a strict `[0,1]` range. |
 | AlphaFold 3 installation guide | https://github.com/google-deepmind/alphafold3/blob/v3.0.3/docs/installation.md | Makes official parameter authorization, direct receipt from Google, database presence, container identity, and high-memory GPU execution explicit preflight gates rather than implicit environment assumptions. |
 | AlphaFold 3 parameter-distribution update, 2026-07-23 | https://github.com/google-deepmind/alphafold3/commit/dd1a7badb62cbb0d4571666002159842c8c578c5 | Retires the request form and replaces it with a direct official Google Storage object. The provisioning verifier now pins the documented URL, object generation, byte count, source-instruction commit, and terms acceptance before hashing any private copy. |
 | AlphaFold 3 Model Parameters Terms of Use | https://github.com/google-deepmind/alphafold3/blob/main/WEIGHTS_TERMS_OF_USE.md | Keeps parameter use non-commercial and terms-bound, forbids weight redistribution, and keeps AF3 output out of training for similar biomolecular structure-prediction technology. The benchmark publishes no weights and trains no AF3-like predictor. |

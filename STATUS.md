@@ -1,6 +1,6 @@
 # Project Status
 
-Last updated: 2026-08-02
+Last updated: 2026-08-03
 
 ## Current Thesis
 
@@ -63,12 +63,27 @@ cluster-balanced v2 amendment.
   does not prove arbitrary future-distribution transfer. Any eventual risk
   statement remains conditional on the preregistered cluster-level sampling
   model and the frozen SAbDab2 regime.
+- The v2 runtime attestation passed, and one CPU data-pipeline task completed.
+  The pinned AF3 runtime accepts input JSON versions 1-4 but serializes the
+  processed record at version 4, so the phase validator now checks that
+  source-backed conversion while preserving name, seed, chain, sequence, and
+  hidden-label isolation. The completed task is the panel maximum by total
+  polymer length, not a representative median smoke.
+- The remaining CPU array was stopped at its first runtime-contract failure.
+  A label-blind audit found AF3-incompatible native chain IDs in 11/120 inputs
+  and 22 chains. Nine canceled partial directories were checksum-preserved in
+  private read-only quarantine; the single completed task remains unchanged.
+- An append-only v3 refreeze changes only those 22 runtime chain IDs. It keeps
+  all 120 targets, roles, native chain mappings, sequences, templates, seeds,
+  dialect, and input version fixed; 109 input files and the completed task's
+  input are byte-identical. The private native-to-runtime mapping is separate,
+  while the tracked artifact exposes only aggregate counts and commitments.
 - No model training, DPO, RLVR, prediction score, DockQ value, label, or
   external specialist trust is enabled.
 
-The current workflow state is `v2_inputs_frozen_runtime_attestation_pending`.
-Tracked v2 artifacts contain public metadata, commitments, and aggregate QC
-only. Raw structures, sequences, AF3 inputs, parameters, databases,
+The current workflow state is `v3_inputs_refrozen_runtime_reattestation_pending`.
+Tracked v2/v3 artifacts contain public metadata, commitments, and aggregate
+QC only. Raw structures, sequences, AF3 inputs, parameters, databases,
 predictions, attestations, and scheduler logs remain private and uncommitted.
 
 ## Source Changes
@@ -87,27 +102,32 @@ sources change the sampling verifier and risk certificate, so they are logged
 in `research/2026-06-25_posttrain_tool_use_landscape/SOURCE_LOG.md` and the
 verifier maps.
 
-The pinned AlphaFold 3 v3.0.3 and DockQ v2.1.3 execution/evaluation contracts
-remain unchanged.
+The pinned AlphaFold 3 v3.0.3 source adds two enforced verifier facts: accepted
+input JSON versions are 1-4 while serialization uses version 4, and chain IDs
+must satisfy the runtime's alphabetic/non-lowercase predicate with no
+duplicates. This changes the phase and input verifiers, not the prediction
+method. DockQ v2.1.3 remains unchanged.
 
 ## Next Decision
 
-Proceed with `stage_b_c5_v2_runtime_attestation_and_task0_smoke`.
+Proceed with `stage_b_c5_v3_reattestation_and_remaining_cpu_pipeline`.
 
-1. Commit the v2 protocol, cluster-first selector, exact-binomial evaluator,
-   public panel commitments, and input-freeze evidence as one clean method
-   checkpoint.
-2. Build a fresh v2 Cayuga runtime attestation against that clean benchmark
-   commit and the v2 protocol/input commitments. Require all components and
-   checksum replay to pass; do not reuse the v1 attestation.
-3. Run one CPU data-pipeline task and validate its canonical processed JSON
-   before submitting the remaining CPU array.
-4. Run one GPU inference task and validate the exact five-sample output before
+1. Commit the public-safe v3 refreeze evidence and its source-backed verifier
+   amendment. Keep the private chain mapping, inputs, partial quarantine, and
+   runtime logs uncommitted.
+2. Build a fresh Cayuga runtime attestation against the clean benchmark commit
+   and v3 input commitment. The prior attestation is evidence, not current
+   authorization, because both benchmark and input-set commitments changed.
+3. Run an exact resume audit: require one completed CPU output, zero partials,
+   byte-identical task-0 input, and successful amended phase/binding checks.
+4. Regenerate the remaining-task launch audit, then run tasks 1-119. Require
+   exact 120/120 processed-output coverage before GPU authorization.
+5. Run one GPU inference task and validate the exact five-sample output before
    submitting the remaining GPU array.
-5. Freeze all prediction outputs and the deterministic selected model before
+6. Freeze all prediction outputs and the deterministic selected model before
    any native-label calculation.
-6. Reveal exactly 80 calibration labels, freeze either the selected threshold
+7. Reveal exactly 80 calibration labels, freeze either the selected threshold
    or `verify_all`, and reveal the 40 evaluation labels once only after that
    policy is immutable.
-7. Keep Stage A optimizer escalation and all C5 trust claims closed until the
+8. Keep Stage A optimizer escalation and all C5 trust claims closed until the
    corresponding held-out evidence passes its preregistered gate.

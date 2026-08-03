@@ -46,6 +46,10 @@ TRACKED_INPUT_FREEZE = (
     ROOT
     / "c5_antibody_ood/c5_sabdab2_prospective_af3_input_freeze_2026-08-02_v2.json"
 )
+TRACKED_INPUT_REFREEZE = (
+    ROOT
+    / "c5_antibody_ood/c5_sabdab2_prospective_af3_input_refreeze_2026-08-03_v3.json"
+)
 FROMM_MANIFEST = ROOT / "c5_antibody_ood/c5_source_backed_manifest_v1.jsonl"
 GRAY_MANIFEST = (
     ROOT / "c5_antibody_ood/c5_gray_independent_calibration_manifest_v1.jsonl"
@@ -206,6 +210,50 @@ def test_tracked_v2_input_freeze_is_cluster_unique_and_fail_closed():
         "ready_for_af3_prediction": True,
         "ready_for_dpo_rlvr": False,
         "ready_for_model_training": False,
+    }
+
+
+def test_tracked_v3_refreeze_changes_only_runtime_chain_ids():
+    old_freeze = json.loads(TRACKED_INPUT_FREEZE.read_text())
+    refreeze = json.loads(TRACKED_INPUT_REFREEZE.read_text())
+
+    assert refreeze["schema_version"] == (
+        "c5_prospective_af3_input_refreeze_v1"
+    )
+    amendment = refreeze["amendment"]
+    assert amendment["kind"] == (
+        "append_only_pre_inference_runtime_compatibility_refreeze"
+    )
+    assert amendment["only_af3_runtime_chain_ids_changed"] is True
+    assert amendment["target_set_changed"] is False
+    assert amendment["panel_roles_changed"] is False
+    assert amendment["native_sequences_changed"] is False
+    assert amendment["templates_or_model_seeds_changed"] is False
+    assert amendment["input_dialect_or_version_changed"] is False
+    assert amendment["native_chain_mapping_changed"] is False
+    assert amendment["prediction_or_inference_outputs_read"] is False
+    assert amendment["dockq_or_interface_labels_read"] is False
+    assert refreeze["af3_inputs"]["files"] == 120
+    assert refreeze["af3_inputs"]["remapped_targets"] == 11
+    assert refreeze["af3_inputs"]["remapped_chains"] == 22
+    assert refreeze["af3_inputs"]["unchanged_input_files"] == 109
+    assert refreeze["af3_inputs"]["sequence_set_sha256"] == (
+        old_freeze["af3_inputs"]["sequence_set_sha256"]
+    )
+    validation = refreeze["refreeze_validation"]
+    assert all(
+        value
+        for key, value in validation.items()
+        if key != "raw_sequences_or_chain_ids_emitted_publicly"
+    )
+    assert validation["raw_sequences_or_chain_ids_emitted_publicly"] is False
+    assert not any(refreeze["release_boundary"].values())
+    assert refreeze["decision"] == {
+        "external_specialist_trust_enabled": False,
+        "ready_for_af3_prediction": True,
+        "ready_for_dpo_rlvr": False,
+        "ready_for_model_training": False,
+        "refreeze_validated": True,
     }
 
 

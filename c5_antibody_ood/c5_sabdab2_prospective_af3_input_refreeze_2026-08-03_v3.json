@@ -1,0 +1,104 @@
+{
+  "af3_inputs": {
+    "af3_chain_ids_runtime_compatible": true,
+    "af3_chain_mapping_set_sha256": "7a18118805b7a547a964242500fc46cffb5aad722f3e4c37adb2c479b8c0e7f2",
+    "af3_input_set_sha256": "6498dbe971dde8d6382237a4b6a5443df8b134ef327c3ea2cbbaaa47e7cdd5c2",
+    "files": 120,
+    "native_chain_ids_preserved_when_runtime_compatible": true,
+    "native_or_af3_chain_ids_emitted_publicly": false,
+    "private_chain_mapping_manifest_sha256": "7bd76c1f53759b6f3966c20c73ade7d9a973405c144fc1ddf099736bfaa26da1",
+    "private_chain_mapping_manifest_written": true,
+    "raw_sequences_emitted_publicly": false,
+    "remapped_chains": 22,
+    "remapped_targets": 11,
+    "sequence_set_sha256": "20f8ac9d198848de35382726eed515341e59d5c3d48f71345e885799cb2ac5d5",
+    "templates_disabled": true,
+    "unchanged_input_files": 109
+  },
+  "amendment": {
+    "chain_id_compatibility_audit_sha256": "f253091f9accff1e2735a283b5176cfa1281949be68e32afaac05921e7f8d468",
+    "data_pipeline_output_contract_read": true,
+    "dockq_or_interface_labels_read": false,
+    "failed_array_runtime_error_read": true,
+    "input_dialect_or_version_changed": false,
+    "kind": "append_only_pre_inference_runtime_compatibility_refreeze",
+    "native_chain_mapping_changed": false,
+    "native_sequences_changed": false,
+    "only_af3_runtime_chain_ids_changed": true,
+    "panel_roles_changed": false,
+    "prediction_or_inference_outputs_read": false,
+    "previous_af3_input_set_sha256": "e1a09f2f50cf226dba0efb66e0c21c97200ddc534ccf3d8e58b1759c6c6c1ec3",
+    "previous_input_freeze_sha256": "6953f3f1657cc3a9af347aa3b276b27587744f2b725751fe34b04fec799bf22d",
+    "reason": "pinned_af3_chain_id_contract",
+    "target_set_changed": false,
+    "templates_or_model_seeds_changed": false
+  },
+  "candidate_manifest": {
+    "rows": 144,
+    "sha256": "d64ef574a4fde8119bec8ec5c15d934d927f4493400828fbbd4499eb5ef47c81"
+  },
+  "decision": {
+    "external_specialist_trust_enabled": false,
+    "ready_for_af3_prediction": true,
+    "ready_for_dpo_rlvr": false,
+    "ready_for_model_training": false,
+    "refreeze_validated": true
+  },
+  "preregistration_id": "c5-sabdab2-af3-prospective-2026-08-02-v2",
+  "protocol_sha256": "4449952e5f8c23371f3894d74c04fe5dc211f59237a3e61c5ae559416e07f3b1",
+  "refreeze_validation": {
+    "all_new_chain_ids_runtime_compatible": true,
+    "all_new_chain_ids_unique_per_target": true,
+    "new_input_count_exact": true,
+    "old_input_set_checksum_matches": true,
+    "private_mapping_manifest_checksum_recorded": true,
+    "raw_sequences_or_chain_ids_emitted_publicly": false,
+    "retained_manifest_checksum_matches": true,
+    "sequence_set_checksum_unchanged": true,
+    "task0_input_bytes_unchanged": true
+  },
+  "release_boundary": {
+    "label_content_emitted": false,
+    "local_paths_emitted": false,
+    "native_or_af3_chain_identifiers_emitted": false,
+    "scheduler_identifiers_emitted": false,
+    "sequence_or_structure_content_emitted": false,
+    "target_identifiers_emitted": false
+  },
+  "retention": {
+    "failed_primary_by_role": {
+      "calibration": 0,
+      "evaluation": 0
+    },
+    "failed_reserve_by_role": {
+      "calibration": 0,
+      "evaluation": 0
+    },
+    "manifest_sha256": "388fae7f24f11275f1107cd03f9b3da746cb44a88c79d37b84da8cf81ee79121",
+    "promotions_by_role": {
+      "calibration": 0,
+      "evaluation": 0
+    },
+    "retained_by_role": {
+      "calibration": 80,
+      "evaluation": 40
+    },
+    "rows": 120,
+    "validation_issues": []
+  },
+  "schema_version": "c5_prospective_af3_input_refreeze_v1",
+  "structure_qc": {
+    "checked": 144,
+    "dockq_or_interface_labels_read": false,
+    "issues_by_reason": {},
+    "native_structure_set_sha256": "1ee767314773f4bbbdcbb3aee28e41ae761c8f77678f2d5071b1094c112ef794",
+    "passed": 144,
+    "passed_by_role": {
+      "calibration": 80,
+      "calibration_reserve": 20,
+      "evaluation": 40,
+      "evaluation_reserve": 4
+    },
+    "raw_structures_or_sequences_emitted_publicly": false
+  }
+}

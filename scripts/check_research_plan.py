@@ -269,14 +269,14 @@ def main() -> int:
     require_contains(
         issues,
         public_status,
-        "stage_b_c5_v2_runtime_attestation_and_task0_smoke",
+        "stage_b_c5_v3_reattestation_and_remaining_cpu_pipeline",
         "public STATUS C5 research decision",
     )
     require_contains(
         issues,
         public_status,
-        "v2_inputs_frozen_runtime_attestation_pending",
-        "public STATUS v2 workflow state",
+        "v3_inputs_refrozen_runtime_reattestation_pending",
+        "public STATUS v3 workflow state",
     )
     require_pattern(
         issues,
@@ -850,8 +850,8 @@ def main() -> int:
     print("- C5 v1 target concentration: prediction stopped before label access")
     print("- C5 phase gates: 600-sample prediction lock and staged 80/40 reveal implemented")
     print("- C5 execution path: staged CPU data pipeline and GPU inference implemented")
-    print("- C5 v2 execution gate: fresh input-bound runtime attestation pending")
-    print("- C5 next gate: v2 attestation, then CPU task-0 smoke")
+    print("- C5 v3 execution gate: fresh input-bound re-attestation pending")
+    print("- C5 next gate: resume audit, then remaining CPU data pipeline")
     print("- DPO/RLVR/HF gate: useful routing coverage plus independent evaluation required")
     print("- sealed evaluation gate: completed rows cannot be tuned on or rescored")
     print("- C5 gate: calibration metadata required before trust")
