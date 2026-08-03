@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import re
+import string
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
@@ -28,10 +29,60 @@ RESERVE_ROLE = {
     "calibration": "calibration_reserve",
     "evaluation": "evaluation_reserve",
 }
+AF3_CHAIN_ID_CANDIDATES = tuple(string.ascii_uppercase)
 
 
 class ProspectiveInputError(ValueError):
     """Raised when native QC or input freezing cannot satisfy the protocol."""
+
+
+def af3_runtime_chain_id_compatible(chain_id: str) -> bool:
+    """Match the pinned AF3 v3.0.3 input chain-ID predicate."""
+
+    return chain_id.isalpha() and not chain_id.islower()
+
+
+def assign_af3_chain_ids(native_chain_ids: Sequence[str]) -> tuple[str, ...]:
+    """Preserve compatible IDs and deterministically remap only invalid IDs."""
+
+    native_ids = tuple(native_chain_ids)
+    if (
+        not native_ids
+        or any(not isinstance(chain_id, str) or not chain_id for chain_id in native_ids)
+        or len(native_ids) != len(set(native_ids))
+    ):
+        raise ProspectiveInputError("native_chain_ids_invalid")
+    preserved = {
+        chain_id
+        for chain_id in native_ids
+        if af3_runtime_chain_id_compatible(chain_id)
+    }
+    if len(preserved) != sum(
+        af3_runtime_chain_id_compatible(chain_id) for chain_id in native_ids
+    ):
+        raise ProspectiveInputError("compatible_native_chain_id_duplicate")
+
+    assigned: list[str] = []
+    used = set(preserved)
+    candidates = iter(AF3_CHAIN_ID_CANDIDATES)
+    for native_id in native_ids:
+        if af3_runtime_chain_id_compatible(native_id):
+            assigned.append(native_id)
+            continue
+        candidate = next(
+            (chain_id for chain_id in candidates if chain_id not in used),
+            None,
+        )
+        if candidate is None:
+            raise ProspectiveInputError("af3_chain_id_space_exhausted")
+        assigned.append(candidate)
+        used.add(candidate)
+    if (
+        len(assigned) != len(set(assigned))
+        or not all(af3_runtime_chain_id_compatible(chain_id) for chain_id in assigned)
+    ):
+        raise ProspectiveInputError("af3_chain_id_assignment_invalid")
+    return tuple(assigned)
 
 
 @dataclass(frozen=True)
@@ -188,15 +239,29 @@ def write_private_af3_inputs(
     qc_results: Sequence[StructureQC],
     preregistration: Mapping[str, Any],
     output_dir: str | Path,
+    private_chain_mapping_out: str | Path | None = None,
 ) -> dict[str, Any]:
     """Write private template-free AF3 JSON and return hash commitments."""
 
     prediction = preregistration["protocol"]["prediction"]
     qc_by_target = {result.target_id: result for result in qc_results}
     output = Path(output_dir)
+    mapping_path = (
+        Path(private_chain_mapping_out)
+        if private_chain_mapping_out is not None
+        else None
+    )
+    if mapping_path is not None and (
+        mapping_path.exists() or mapping_path.is_symlink()
+    ):
+        raise ProspectiveInputError("private_chain_mapping_output_exists")
     output.mkdir(parents=True, exist_ok=True)
     file_hashes: dict[str, str] = {}
     sequence_hashes: dict[str, str] = {}
+    chain_mapping_hashes: dict[str, str] = {}
+    private_chain_mappings: list[dict[str, Any]] = []
+    remapped_targets = 0
+    remapped_chains = 0
     for row in retained_rows:
         target_id = str(row["target_id"])
         qc = qc_by_target[target_id]
@@ -204,17 +269,39 @@ def write_private_af3_inputs(
             raise ProspectiveInputError("retained_target_failed_qc")
         sequence_by_chain = dict(qc.chain_sequences)
         proteins = []
-        for mapping in row["chain_role_mapping"]:
-            chain_id = str(mapping["chain_id"])
+        native_chain_ids = tuple(
+            str(mapping["chain_id"])
+            for mapping in row["chain_role_mapping"]
+        )
+        af3_chain_ids = assign_af3_chain_ids(native_chain_ids)
+        mapping_rows: list[dict[str, str]] = []
+        for mapping, native_chain_id, af3_chain_id in zip(
+            row["chain_role_mapping"],
+            native_chain_ids,
+            af3_chain_ids,
+        ):
             proteins.append(
                 {
                     "protein": {
-                        "id": chain_id,
-                        "sequence": sequence_by_chain[chain_id],
+                        "id": af3_chain_id,
+                        "sequence": sequence_by_chain[native_chain_id],
                         "templates": [],
                     }
                 }
             )
+            mapping_rows.append(
+                {
+                    "native_chain_id": native_chain_id,
+                    "af3_chain_id": af3_chain_id,
+                    "role": str(mapping["role"]),
+                }
+            )
+        changed = sum(
+            native_id != af3_id
+            for native_id, af3_id in zip(native_chain_ids, af3_chain_ids)
+        )
+        remapped_chains += changed
+        remapped_targets += int(changed > 0)
         af3_input = {
             "name": _safe_job_name(str(row["instance_id"])),
             "modelSeeds": prediction["model_seeds"],
@@ -238,11 +325,44 @@ def write_private_af3_inputs(
                 for chain_id, sequence in qc.chain_sequences
             ]
         )
+        chain_mapping_hashes[target_id] = canonical_sha256(mapping_rows)
+        private_chain_mappings.append(
+            {
+                "target_id": target_id,
+                "instance_id": str(row["instance_id"]),
+                "chain_mapping": mapping_rows,
+            }
+        )
+    mapping_manifest_sha256: str | None = None
+    if mapping_path is not None:
+        mapping_path.parent.mkdir(parents=True, exist_ok=True)
+        mapping_path.write_text(
+            "".join(
+                json.dumps(row, sort_keys=True) + "\n"
+                for row in private_chain_mappings
+            )
+        )
+        mapping_path.chmod(0o600)
+        mapping_manifest_sha256 = sha256_file(mapping_path)
     return {
         "files": len(file_hashes),
         "af3_input_set_sha256": canonical_sha256(file_hashes),
         "sequence_set_sha256": canonical_sha256(sequence_hashes),
+        "af3_chain_mapping_set_sha256": canonical_sha256(
+            chain_mapping_hashes
+        ),
+        "private_chain_mapping_manifest_sha256": (
+            mapping_manifest_sha256
+        ),
+        "private_chain_mapping_manifest_written": (
+            mapping_manifest_sha256 is not None
+        ),
+        "remapped_targets": remapped_targets,
+        "remapped_chains": remapped_chains,
+        "af3_chain_ids_runtime_compatible": True,
+        "native_chain_ids_preserved_when_runtime_compatible": True,
         "raw_sequences_emitted_publicly": False,
+        "native_or_af3_chain_ids_emitted_publicly": False,
         "templates_disabled": (
             prediction["templates"] == "disabled_for_every_protein_chain"
         ),
@@ -256,6 +376,7 @@ def build_input_freeze(
     blocked_pdb_ids: set[str],
     structures_dir: str | Path,
     private_input_dir: str | Path,
+    private_chain_mapping_out: str | Path,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     """Run pre-prediction QC and build a public-safe input commitment."""
 
@@ -297,6 +418,7 @@ def build_input_freeze(
         qc_results,
         preregistration,
         private_input_dir,
+        private_chain_mapping_out,
     )
     structure_hashes = {
         result.target_id: result.structure_sha256
@@ -340,6 +462,10 @@ def build_input_freeze(
                 not retained_issues
                 and len(retained) == 120
                 and input_commitment["files"] == 120
+                and input_commitment["af3_chain_ids_runtime_compatible"]
+                and input_commitment[
+                    "private_chain_mapping_manifest_written"
+                ]
             ),
             "external_specialist_trust_enabled": False,
             "ready_for_model_training": False,
@@ -371,6 +497,11 @@ def main() -> int:
     parser.add_argument("--gray-manifest", type=Path, required=True)
     parser.add_argument("--structures-dir", type=Path, required=True)
     parser.add_argument("--private-input-dir", type=Path, required=True)
+    parser.add_argument(
+        "--private-chain-mapping-out",
+        type=Path,
+        required=True,
+    )
     parser.add_argument("--retained-manifest-out", type=Path, required=True)
     parser.add_argument("--audit-out", type=Path, required=True)
     args = parser.parse_args()
@@ -387,6 +518,7 @@ def main() -> int:
         blocked_pdb_ids=blocked,
         structures_dir=args.structures_dir,
         private_input_dir=args.private_input_dir,
+        private_chain_mapping_out=args.private_chain_mapping_out,
     )
     write_c5_manifest(args.retained_manifest_out, retained)
     write_json(args.audit_out, audit)

@@ -7,6 +7,8 @@ from c5_antibody_ood.manifest import load_c5_manifest
 from c5_antibody_ood.prospective_inputs import (
     ProspectiveInputError,
     StructureQC,
+    af3_runtime_chain_id_compatible,
+    assign_af3_chain_ids,
     retain_primary_or_promote_reserve,
     write_private_af3_inputs,
 )
@@ -166,10 +168,11 @@ def test_private_af3_inputs_disable_templates_and_return_only_hashes(tmp_path):
         retained,
         qc,
         preregistration,
-        tmp_path,
+        tmp_path / "inputs",
+        tmp_path / "private_chain_mapping.jsonl",
     )
 
-    files = list(tmp_path.glob("*.json"))
+    files = list((tmp_path / "inputs").glob("*.json"))
     assert len(files) == 1
     payload = json.loads(files[0].read_text())
     assert payload["modelSeeds"] == [20260725]
@@ -178,9 +181,47 @@ def test_private_af3_inputs_disable_templates_and_return_only_hashes(tmp_path):
         for sequence in payload["sequences"]
     )
     assert commitment["files"] == 1
+    assert commitment["private_chain_mapping_manifest_written"] is True
+    assert commitment["af3_chain_ids_runtime_compatible"] is True
     assert commitment["raw_sequences_emitted_publicly"] is False
     rendered_commitment = json.dumps(commitment)
     assert "ACDEFGHIKLMNPQRSTVWY" not in rendered_commitment
+
+
+def test_af3_chain_id_bridge_preserves_valid_and_remaps_only_invalid_ids():
+    assigned = assign_af3_chain_ids(("H", "L", "1", "b"))
+
+    assert assigned == ("H", "L", "A", "B")
+    assert all(af3_runtime_chain_id_compatible(chain_id) for chain_id in assigned)
+    assert assign_af3_chain_ids(("D", "E", "A")) == ("D", "E", "A")
+
+
+def test_af3_chain_id_bridge_rejects_duplicate_native_ids():
+    with pytest.raises(ProspectiveInputError, match="native_chain_ids_invalid"):
+        assign_af3_chain_ids(("A", "A"))
+
+
+def test_private_mapping_collision_fails_before_writing_inputs(tmp_path):
+    rows = load_c5_manifest(CANDIDATE_MANIFEST)
+    preregistration = json.loads(PREREGISTRATION.read_text())
+    retained = [rows[0]]
+    mapping_path = tmp_path / "private_chain_mapping.jsonl"
+    mapping_path.write_text("occupied\n")
+    input_dir = tmp_path / "inputs"
+
+    with pytest.raises(
+        ProspectiveInputError,
+        match="private_chain_mapping_output_exists",
+    ):
+        write_private_af3_inputs(
+            retained,
+            _qc_results(retained),
+            preregistration,
+            input_dir,
+            mapping_path,
+        )
+
+    assert not input_dir.exists()
 
 
 def test_tracked_cayuga_input_freeze_is_public_safe_and_locked():
